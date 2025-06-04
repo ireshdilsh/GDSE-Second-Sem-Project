@@ -1,6 +1,9 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,6 +12,9 @@ import com.example.demo.entity.Admin;
 import com.example.demo.service.AdminService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -21,6 +27,11 @@ public class AdminController {
     @PostMapping("/add/new/admin")
     public Admin addNewUser(@RequestBody AdminDto dto) {
         return adminService.addNewUser(dto);
+    }
+    
+    @GetMapping("/get/all/admin")
+    public ResponseEntity<List<Admin>> getAllAdmins() {
+        return ResponseEntity.status(200).body(adminService.getAllAdmins());
     }
     
     
