@@ -17,15 +17,19 @@ public class AdminServiceImpl implements AdminService{
     AdminRepository adminRepository;
 
     @Override
-    public Admin addNewUser(AdminDto dto) {
-        return adminRepository.save(new Admin(
-            dto.getId(),dto.getFName(),dto.getLName(),dto.getEmail(),dto.getPassword()
-        ));
+    public List<Admin> getAllAdmins() {
+        return adminRepository.findAll();
     }
 
     @Override
-    public List<Admin> getAllAdmins() {
-        return adminRepository.findAll();
+    public Admin addNewUser(AdminDto dto) {
+        Admin admin = new Admin();
+        
+        admin.setId(dto.getId());
+        admin.setEmail(dto.getEmail());
+        admin.setPassword(dto.getPassword());
+
+        return adminRepository.save(admin);
     }
 
 }
