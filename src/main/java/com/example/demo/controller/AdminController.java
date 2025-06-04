@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
-
 @RestController
 @CrossOrigin(origins = "*")
 public class AdminController {
@@ -33,6 +31,5 @@ public class AdminController {
     public ResponseEntity<List<Admin>> getAllAdmins() {
         return ResponseEntity.status(200).body(adminService.getAllAdmins());
     }
-    
-    
+
 }
