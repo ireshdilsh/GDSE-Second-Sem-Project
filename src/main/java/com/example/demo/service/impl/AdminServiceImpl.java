@@ -11,7 +11,7 @@ import com.example.demo.repository.AdminRepository;
 import com.example.demo.service.AdminService;
 
 @Service
-public class AdminServiceImpl implements AdminService{
+public class AdminServiceImpl implements AdminService {
 
     @Autowired
     AdminRepository adminRepository;
@@ -24,7 +24,7 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public Admin addNewUser(AdminDto dto) {
         Admin admin = new Admin();
-        
+
         admin.setId(dto.getId());
         admin.setEmail(dto.getEmail());
         admin.setPassword(dto.getPassword());
