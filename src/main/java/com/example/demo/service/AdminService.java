@@ -11,7 +11,6 @@ import com.example.demo.entity.Admin;
 public interface AdminService {
 
     Admin addNewUser(AdminDto dto);
-
     List<Admin> getAllAdmins();
     
 }
