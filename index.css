@@ -18,6 +18,7 @@ nav {
     padding: 20px 150px;
     width: 100%;
     margin-top: 20px;
+    background-color: #fff;
 }
 
 nav .logo img {
@@ -53,4 +54,79 @@ nav .links a::after {
 
 nav .links a:hover::after {
     transform: scale(-1);
+}
+
+#home{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    padding: 50px 150px;
+}
+
+#home #title{
+    font-size: 50px;
+    font-weight: 700;
+}
+
+#home #discription{
+    margin-top: -10px;
+    text-align: center;
+}
+
+#home .btns{
+    display: flex;
+    gap: 10px;
+}
+
+#home .btns button{
+    height: 37px;
+    width: 165px;
+}
+
+.mesh{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: -1;
+}
+
+.mesh .set-1,
+.mesh .set-2,
+.mesh .set-3{
+    display: flex;
+}
+
+.mesh .set-1 .div-1,
+.mesh .set-1 .div-2,
+.mesh .set-1 .div-3,
+.mesh .set-1 .div-4,
+.mesh .set-1 .div-5,
+.mesh .set-1 .div-6,
+.mesh .set-1 .div-7,
+.mesh .set-2 .div-1,
+.mesh .set-2 .div-2,
+.mesh .set-2 .div-3,
+.mesh .set-2 .div-4,
+.mesh .set-2 .div-5,
+.mesh .set-2 .div-6,
+.mesh .set-2 .div-7,
+.mesh .set-3 .div-1,
+.mesh .set-3 .div-2,
+.mesh .set-3 .div-3,
+.mesh .set-3 .div-4,
+.mesh .set-3 .div-5,
+.mesh .set-3 .div-6,
+.mesh .set-3 .div-7{
+    width: 220px;
+    height: 210px;
+    border: 1px solid #fafafa;
 }
