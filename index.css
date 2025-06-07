@@ -56,36 +56,39 @@ nav .links a:hover::after {
     transform: scale(-1);
 }
 
-#home{
+#home {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 500px;
+    height: 300px;
     padding: 50px 150px;
 }
 
-#home #title{
+#home #title {
     font-size: 50px;
     font-weight: 700;
+    background-color: #fff;
 }
 
-#home #discription{
+#home #discription {
     margin-top: -10px;
     text-align: center;
+    background-color: #fff;
 }
 
-#home .btns{
+#home .btns {
     display: flex;
     gap: 10px;
+    background-color: #fff;
 }
 
-#home .btns button{
+#home .btns button {
     height: 37px;
     width: 165px;
 }
 
-.mesh{
+.mesh {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -101,7 +104,7 @@ nav .links a:hover::after {
 
 .mesh .set-1,
 .mesh .set-2,
-.mesh .set-3{
+.mesh .set-3 {
     display: flex;
 }
 
@@ -125,8 +128,58 @@ nav .links a:hover::after {
 .mesh .set-3 .div-4,
 .mesh .set-3 .div-5,
 .mesh .set-3 .div-6,
-.mesh .set-3 .div-7{
+.mesh .set-3 .div-7 {
     width: 220px;
-    height: 210px;
+    height: 200px;
     border: 1px solid #fafafa;
+}
+
+#img-1,#img-2,#img-3,#img-4,#img-5 {
+    position: absolute;
+    height: 200px;
+    width: 305px;
+    overflow: hidden;
+    object-fit: cover;
+    background-size: cover;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+#img-1{
+    top: 420px;
+    left: 150px;
+}
+
+#img-2{
+    top: 420px;
+    right: 150px;
+}
+
+#img-3{
+    left: 460px;
+    top: 420px;
+}
+
+#img-4{
+    left: 770px;
+    top: 420px;
+}
+
+#destination{
+    margin-top: 240px;
+    padding: 80px 150px;
+    background-color: #fafafa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#destination #title{
+    font-weight: 700;
+    font-size: 50px;
+}
+
+#destination #discription{
+    margin-top: -10px;
 }
