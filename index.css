@@ -73,6 +73,7 @@ nav .links a:hover::after{
 
 #home .left-side #discription{
   font-size: 13px;
+  margin-top: 5px;
 }
 
 #home .left-side .btns{
@@ -100,6 +101,12 @@ nav .links a:hover::after{
 #home .left-side .btns #signinBtn{
   background-color: #fff;
   color: var(--secondry-color);
-  border: 1px solid var(--secondry-color);
+  border: 1.5px solid var(--secondry-color);
   border-radius: 5px;
+}
+
+#home .right-side img{
+  overflow: hidden;
+  background-size: cover;
+  object-fit: cover;
 }
