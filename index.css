@@ -5,3 +5,52 @@
   font-family: 'Hero';
   font-weight: 500;
 }
+
+:root{
+  --primary-color:#373643;
+  --secondry-color:#18cb96;
+}
+
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 150px;
+  margin-top: 20px;
+}
+
+nav .logo img{
+  width: 175px;
+}
+
+nav .links{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+nav .links a{
+  position: relative;
+  text-decoration: none;
+  color: var(--primary-color);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+nav .links a::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 22px;
+  background-color: var(--primary-color);
+  height: 1.5px;
+  border-radius: 150px;
+  width: 100%;
+  transition: 0.4s;
+  transform: scale(0);
+}
+
+nav .links a:hover::after{
+  transform: scale(1);
+}
