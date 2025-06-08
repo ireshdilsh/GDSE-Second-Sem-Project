@@ -183,3 +183,14 @@ nav .links a:hover::after {
 #destination #discription{
     margin-top: -10px;
 }
+
+#destination .cards{
+    display: flex;
+    flex-direction: column;
+}
+
+#destination .cards .set-1,
+#destination .cards .set-2{
+    display: flex;
+    gap: 15px;
+}
