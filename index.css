@@ -105,8 +105,8 @@ nav .links a:hover::after{
   border-radius: 5px;
 }
 
-#home .right-side img{
+/* #home .right-side img{
   overflow: hidden;
   background-size: cover;
   object-fit: cover;
-}
+} */
