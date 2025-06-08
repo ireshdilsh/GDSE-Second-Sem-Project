@@ -1,14 +1,15 @@
+:root{
+  --primary-color:#373643;
+  --secondry-color:#18cb96;
+}
+
 *{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: 'Hero';
-  font-weight: 500;
-}
-
-:root{
-  --primary-color:#373643;
-  --secondry-color:#18cb96;
+  font-weight: 600;
+  color: var(--primary-color);
 }
 
 nav{
@@ -53,4 +54,52 @@ nav .links a::after{
 
 nav .links a:hover::after{
   transform: scale(1);
+}
+
+#home{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 150px;
+}
+
+#home .left-side #title{
+  font-size: 58px;
+}
+
+#home .left-side #title span{
+  color: var(--secondry-color);
+}
+
+#home .left-side #discription{
+  font-size: 13px;
+}
+
+#home .left-side .btns{
+  display: flex;
+  gap: 15px;
+  margin-top: 20px
+}
+
+#home .left-side .btns button{
+  height: 38px;
+  width: 150px;
+  cursor: pointer;
+  &:hover{
+    opacity: 0.8;
+  }
+}
+
+#home .left-side .btns #signupBtn{
+  background-color: var(--secondry-color);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+#home .left-side .btns #signinBtn{
+  background-color: #fff;
+  color: var(--secondry-color);
+  border: 1px solid var(--secondry-color);
+  border-radius: 5px;
 }
