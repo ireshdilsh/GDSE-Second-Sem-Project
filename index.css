@@ -16,7 +16,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 150px;
+  padding: 20px 180px;
   margin-top: 20px;
 }
 
@@ -60,8 +60,8 @@ nav .links a:hover::after {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 100px;
-  padding: 50px 150px;
+  gap: 20px;
+  padding: 50px 180px;
 }
 
 #home .left-side #title {
@@ -139,7 +139,7 @@ nav .links a:hover::after {
   align-items: center;
   flex-direction: column;
   background-color: #fafafa;
-  padding: 50px 150px;
+  padding: 50px 180px;
 }
 
 #browse-skills #title {
