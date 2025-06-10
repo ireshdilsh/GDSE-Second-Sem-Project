@@ -55,16 +55,35 @@
       collaborate—whether it's coding, cooking, music, or anything in between.</p>
     <div class="btns">
       <button id="techBtn">Technology</button>
+      <section id="tech-section">
+
+      </section>
       <button id="artBtn">Art</button>
+      <section id="art-section">
+
+      </section>
       <button id="fitBtn">Fitness</button>
+      <section id="fit-section">
+
+      </section>
       <button id="cookBtn">Cooking</button>
+      <section id="cook-section">
+
+      </section>
       <button id="lanBtn">Languages</button>
+      <section id="lan-section">
+        
+      </section>
     </div>
   </section>
 
   <script src="./js/jquery-3.7.1.min.js"></script>
   <script>
-    $('#techBtn').on('click', ()=>{
+
+    $('#techBtn').css('background-color', 'var(--primary-color)');
+    $('#techBtn').css('color', '#fff');
+
+    $('#techBtn').on('click', () => {
       $('#techBtn').css('background-color', 'var(--primary-color)');
       $('#techBtn').css('color', '#fff');
       $('#artBtn').css('background-color', '#fff');
@@ -77,7 +96,7 @@
       $('#lanBtn').css('color', 'var(--primary-color)');
     })
 
-    $('#artBtn').on('click', ()=>{
+    $('#artBtn').on('click', () => {
       $('#artBtn').css('background-color', 'var(--primary-color)');
       $('#artBtn').css('color', '#fff');
       $('#techBtn').css('background-color', '#fff');
@@ -90,7 +109,7 @@
       $('#lanBtn').css('color', 'var(--primary-color)');
     })
 
-    $('#fitBtn').on('click', ()=>{
+    $('#fitBtn').on('click', () => {
       $('#fitBtn').css('background-color', 'var(--primary-color)');
       $('#fitBtn').css('color', '#fff');
       $('#techBtn').css('background-color', '#fff');
@@ -103,7 +122,7 @@
       $('#lanBtn').css('color', 'var(--primary-color)');
     })
 
-    $('#cookBtn').on('click', ()=>{
+    $('#cookBtn').on('click', () => {
       $('#cookBtn').css('background-color', 'var(--primary-color)');
       $('#cookBtn').css('color', '#fff');
       $('#techBtn').css('background-color', '#fff');
@@ -116,7 +135,7 @@
       $('#lanBtn').css('color', 'var(--primary-color)');
     })
 
-    $('#lanBtn').on('click', ()=>{
+    $('#lanBtn').on('click', () => {
       $('#lanBtn').css('background-color', 'var(--primary-color)');
       $('#lanBtn').css('color', '#fff');
       $('#techBtn').css('background-color', '#fff');
