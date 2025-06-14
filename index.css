@@ -1,13 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
   --primary-color: #373643;
-  --secondry-color: #18cb96;
+  --secondry-color: #6366f1;
 }
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Hero';
-  font-weight: 600;
+  font-family: "Roboto", sans-serif;
   color: var(--primary-color);
+  font-size: 13px;
+}
+
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 200px;
+  margin-top: 15px;
+}
+
+nav .logo img{
+  width: 200px;
+}
+
+nav .links{
+  display: flex;
+  gap: 25px;
+}
+
+nav .links a{
+  text-decoration: none;
+  color: var(--primary-color);
+  position: relative;
+  &:hover{
+    font-weight: 500;
+  }
+}
+
+nav .links a::after{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1.9px;
+  background-color: var(--primary-color);
+  left: 0;
+  top: 20px;
+  transition: 0.3s;
+  transform: scale(0);
+}
+
+nav .links a:hover::after{
+  transform: scale(1);
 }
