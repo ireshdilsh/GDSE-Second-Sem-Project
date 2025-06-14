@@ -111,3 +111,14 @@ nav .links a:hover::after {
   color: var(--primary-color);
   background-color: #fff;
 }
+
+#home .right-side{
+  position: relative;
+}
+
+#home .right-side img{
+  background-size: cover;
+  object-fit: cover;
+  height: 380px;
+  width: 380px;
+}
