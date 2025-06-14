@@ -119,6 +119,56 @@ nav .links a:hover::after {
 #home .right-side img{
   background-size: cover;
   object-fit: cover;
-  height: 380px;
-  width: 380px;
+  height: 350px;
+  width: 350px;
+}
+
+#home .right-side .adobe,
+#home .right-side .adobe-1,
+#home .right-side .adobe-2,
+#home .right-side .adobe-3,
+#home .right-side .adobe-4{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+#home .right-side .adobe img,
+#home .right-side .adobe-1 img,
+#home .right-side .adobe-2 img,
+#home .right-side .adobe-3 img,
+#home .right-side .adobe-4 img{
+ height: 30px;
+ width: 30px;
+}
+
+#home .right-side .adobe{
+  left: 0;
+  top: 0;
+}
+
+#home .right-side .adobe-1{
+  right: 25px;
+  top: 25px;
+}
+
+#home .right-side .adobe-2{
+  right: 0;
+  top: 250px;
+}
+
+#home .right-side .adobe-3{
+  bottom: -50px;
+  left: 120px;
+}
+
+#home .right-side .adobe-4{
+  bottom: 100px;
+  left: -80px;
 }
