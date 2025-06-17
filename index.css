@@ -284,3 +284,36 @@ body img{
   text-align: justify;
   margin-top: 25px;
 }
+
+#courses #graphc-section .cards{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+#courses #graphc-section .cards .set-1,
+#courses #graphc-section .cards .set-2{
+  display: flex;
+  gap: 10px;
+}
+
+#courses #graphc-section .cards .set-1 .card-1,
+#courses #graphc-section .cards .set-1 .card-2,
+#courses #graphc-section .cards .set-1 .card-3{
+  padding: 25;
+  border: 1.8px solid #fafafa;
+  border-radius: 7px;
+  padding: 25px;
+  width: 350px;
+  margin-top: 10px;
+}
+
+
+#courses #graphc-section .cards .set-1 .card-1 p,
+#courses #graphc-section .cards .set-1 .card-2 p,
+#courses #graphc-section .cards .set-1 .card-3 p{
+  text-align: justify;
+  margin-top: 25px;
+}
