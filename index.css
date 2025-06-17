@@ -34,14 +34,14 @@ body img{
   align-items: center;
   padding: 25px 200px;
   height: 600px;
-  background-color: rgba(0, 0, 0, 0.675);
+  background-color: rgba(0, 0, 0, 0.558);
 }
 
 #home nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: -120px;
+  margin-top: -50px;
 }
 
 #home nav .links {
