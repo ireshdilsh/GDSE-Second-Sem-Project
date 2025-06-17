@@ -9,29 +9,41 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: var(--primary-color);
-  font-size: 13px;
 }
 
-nav {
+body{
+  overflow-x: hidden;
+}
+
+body img{
+  background-size: cover;
+  object-fit: cover;
+  width: 101%;
+  height: 600px;
+}
+
+#home{
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   padding: 25px 200px;
-  margin-top: 15px;
 }
 
-nav .logo img {
-  width: 200px;
+#home nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-nav .links {
+#home nav .links {
   display: flex;
   gap: 25px;
 }
 
-nav .links a {
+#home nav .links a {
   text-decoration: none;
   color: var(--primary-color);
   position: relative;
@@ -42,7 +54,7 @@ nav .links a {
   }
 }
 
-nav .links a::after {
+#home nav .links a::after {
   content: "";
   position: absolute;
   width: 100%;
@@ -54,8 +66,25 @@ nav .links a::after {
   transform: scale(0);
 }
 
-nav .links a:hover::after {
+#home nav .links a:hover::after {
   transform: scale(1);
+}
+
+#home .sub-title h4{
+  text-align: center;
+  font-size: 13px;
+  margin-top: 100px;
+  font-weight: 600;
+}
+
+#home .title h1{
+  text-align: center;
+  font-weight: 700;
+}
+
+#home .discription{
+  text-align: center;
+  font-size: 13px;
 }
 
 
