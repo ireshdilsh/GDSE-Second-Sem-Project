@@ -161,4 +161,9 @@ body img{
   border: none;
   border: 1px solid var(--primary-color);
   border-radius: 50px;
+  transition: 0.4s;
+    &:hover{
+      background-color: var(--primary-color);
+      color: #fff;
+    }
 }
