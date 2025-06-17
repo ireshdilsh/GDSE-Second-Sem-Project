@@ -132,3 +132,33 @@ body img{
   font-size: 13px;
   height: 40px;
 }
+
+#courses{
+  display: flex;
+  justify-content: left;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 100px 200px;
+}
+
+#courses h1{
+  font-weight: 700;
+}
+
+#courses p{
+  font-size: 13px;
+}
+
+#courses .btns{
+  display: flex;
+  gap: 8px;
+}
+
+#courses .btns button{
+  padding: 8px 20px;
+  font-size: 13px;
+  background-color: #fff;
+  border: none;
+  border: 1px solid var(--primary-color);
+  border-radius: 50px;
+}
