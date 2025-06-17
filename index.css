@@ -207,3 +207,80 @@ body img{
   margin-top: 25px;
 }
 
+#courses #data-section .cards{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+#courses #data-section .cards .set-1,
+#courses #data-section .cards .set-2{
+  display: flex;
+  gap: 10px;
+}
+
+#courses #data-section .cards .set-1 .card-1,
+#courses #data-section .cards .set-1 .card-2,
+#courses #data-section .cards .set-1 .card-3,
+#courses #data-section .cards .set-2 .card-4,
+#courses #data-section .cards .set-2 .card-5,
+#courses #data-section .cards .set-2 .card-6{
+  padding: 25;
+  border: 1.8px solid #fafafa;
+  border-radius: 7px;
+  padding: 25px;
+  width: 350px;
+  margin-top: 10px;
+}
+
+
+#courses #data-section .cards .set-1 .card-1 p,
+#courses #data-section .cards .set-1 .card-2 p,
+#courses #data-section .cards .set-1 .card-3 p,
+#courses #data-section .cards .set-2 .card-4 p,
+#courses #data-section .cards .set-2 .card-5 p,
+#courses #data-section .cards .set-2 .card-6 p{
+  text-align: justify;
+  margin-top: 25px;
+}
+
+#courses #buisness-section .cards{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+#courses #buisness-section .cards .set-1,
+#courses #buisness-section .cards .set-2{
+  display: flex;
+  gap: 10px;
+}
+
+#courses #buisness-section .cards .set-1 .card-1,
+#courses #buisness-section .cards .set-1 .card-2,
+#courses #buisness-section .cards .set-1 .card-3,
+#courses #buisness-section .cards .set-2 .card-4,
+#courses #buisness-section .cards .set-2 .card-5,
+#courses #buisness-section .cards .set-2 .card-6{
+  padding: 25;
+  border: 1.8px solid #fafafa;
+  border-radius: 7px;
+  padding: 25px;
+  width: 350px;
+  margin-top: 10px;
+}
+
+
+#courses #buisness-section .cards .set-1 .card-1 p,
+#courses #buisness-section .cards .set-1 .card-2 p,
+#courses #buisness-section .cards .set-1 .card-3 p,
+#courses #buisness-section .cards .set-2 .card-4 p,
+#courses #buisness-section .cards .set-2 .card-5 p,
+#courses #buisness-section .cards .set-2 .card-6 p{
+  text-align: justify;
+  margin-top: 25px;
+}
