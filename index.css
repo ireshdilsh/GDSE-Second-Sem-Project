@@ -12,6 +12,23 @@
 }
 
 body{
-  font-size: 13px;
+  font-size: 14px;
   overflow-x: hidden;
+}
+
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 200px;
+  margin-top: 10px;
+}
+
+nav .logo img{
+  width: 180px;
+}
+
+nav .links{
+  display: flex;
+  gap: 20px;
 }
