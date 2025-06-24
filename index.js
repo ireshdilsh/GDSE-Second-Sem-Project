@@ -130,3 +130,4 @@ $('#language').on('click', function () {
     $('#marketing').css('background-color', 'transparent');
     $('#language').css('background-color', '#373643');
 })
+
