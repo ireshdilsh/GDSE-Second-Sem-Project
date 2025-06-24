@@ -11,12 +11,12 @@
   color: var(--primary-color);
 }
 
-body{
+body {
   font-size: 14px;
   overflow-x: hidden;
 }
 
-nav{
+nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -24,11 +24,33 @@ nav{
   margin-top: 10px;
 }
 
-nav .logo img{
+nav .logo img {
   width: 180px;
 }
 
-nav .links{
+nav .links {
   display: flex;
   gap: 20px;
+}
+
+nav .links a {
+  text-decoration: none;
+  color: var(--primary-color);
+  position: relative;
+}
+
+nav .links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 25px;
+  height: 1.2px;
+  width: 100%;
+  background-color: var(--primary-color);
+  transform: scaleX(0);
+  transition: 0.4s;
+}
+
+nav .links a:hover::after {
+  transform: scaleX(1);
 }
