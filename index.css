@@ -208,3 +208,8 @@ nav .links a:hover::after {
     opacity: 0.8;
   }
 }
+
+#pricing .cards .card-2 #plan-2,
+#pricing .cards .card-3 #plan-3{
+  margin-top: 70.5px;
+}
