@@ -99,3 +99,15 @@ nav .links a:hover::after {
 #home .left-side .btns #signin{
   font-size: 14px;
 }
+
+#courses{
+  display: flex;
+  justify-content: left;
+  align-items: flex-start;
+  padding: 50px 200px;
+  flex-direction: column;
+}
+
+#courses #title{
+  font-size: 36px;
+}
