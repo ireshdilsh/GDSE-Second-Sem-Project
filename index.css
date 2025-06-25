@@ -2,6 +2,8 @@
   --primary-color: #373643;
   --secondry-color: #ff4200;
   --third-color: #fcfcfc;
+  --forth-color : #fff3cd;
+  --fifth-color : #856404;
 }
 
 * {
@@ -216,4 +218,28 @@ nav .links a:hover::after {
 #pricing .cards .card-2 #plan-2,
 #pricing .cards .card-3 #plan-3{
   margin-top: 70.5px;
+}
+
+#pricing .alert{
+  background-color: var(--forth-color);
+  padding: 30px;
+  margin-top: 20px;
+  border-radius: 4px;
+}
+
+#pricing .alert #alert-title{
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--fifth-color);
+}
+
+#pricing .alert #alert-description{
+  font-size: 14px;
+  margin-top: 10px;
+  color: var(--fifth-color);
+}
+
+#pricing .alert a{
+  color: var(--fifth-color);
+  font-weight: 600;
 }
