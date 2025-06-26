@@ -1,102 +1,115 @@
-An **Online Course Buying Website** is an **excellent idea** even for a second-semester project — *if you keep the scope simple*. It touches on real-world e-commerce + education problems and lets you practice full-stack development using **HTML, CSS, JS + Spring Boot**.
+Great! Since you're using **Angular** for the frontend, here's the updated project plan tailored for an **Angular + Spring Boot** stack:
 
 ---
 
-## ✅ Why It’s a Good Choice:
+## ✅ Updated Project: **Online Course Buying Website**
 
-* **Real-World Problem:** Students often struggle to find quality courses in one place.
-* **Clear Business Use Case:** Course marketplace like Udemy or Skillshare.
-* **Great for Learning:** You’ll implement product listing, cart, user login, and backend logic.
-* **Easy to expand:** You can later add reviews, video content, admin dashboard, etc.
+### 🔧 Tech Stack
+
+| Layer      | Technology                      |
+| ---------- | ------------------------------- |
+| Frontend   | **Angular** (v15+ recommended)  |
+| Backend    | **Spring Boot** (REST API)      |
+| Database   | MySQL (or H2 for local dev)     |
+| Security   | JWT (optional), Spring Security |
+| Build Tool | Maven or Gradle                 |
 
 ---
 
-## 🔧 MVP (Minimum Viable Product) Scope — Ideal for You
+## 🎯 Updated MVP Features (Angular + Spring Boot)
 
 ### 👤 1. **User System**
 
-* Register & login (Spring Security optional)
-* Role: Student (Buyer), Admin (Course manager)
+* 🔒 Angular login/register forms with form validation
+* User roles: Student (Buyer) & Admin
+* Use JWT for secure login/authentication (optional)
 
 ### 📚 2. **Course Management**
 
-* Admin can: Add, edit, delete courses (title, price, description, category)
-* User can: View all courses (search, filter)
+* Angular admin dashboard to:
+
+  * Add/edit/delete courses
+  * Use reactive forms
+* Students can:
+
+  * View course catalog with filters
+  * Click to see course details (course ID route param)
 
 ### 🛒 3. **Cart & Purchase**
 
-* User can add course to cart
-* Checkout to “buy” course (you can simulate payment)
+* Add course to cart (use Angular service + local storage or reactive state like NgRx)
+* Checkout button triggers backend save
+* Confirmation screen after “purchase”
 
-### 📂 4. **My Courses (After Purchase)**
+### 📂 4. **My Courses**
 
-* User can view a list of purchased courses (like a dashboard)
-
----
-
-## 🌐 Technologies to Use
-
-| Layer    | Technology                        |
-| -------- | --------------------------------- |
-| Frontend | HTML, CSS, JavaScript             |
-| Backend  | Spring Boot (REST API)            |
-| Database | MySQL (or H2 for demo)            |
-| Optional | Thymeleaf (for server-side views) |
+* After purchase, show a dashboard (`/my-courses`) with bought course titles
 
 ---
 
-## 📦 Suggested Folder Structure (Spring Boot)
+## 🌐 Angular Folder Structure (Suggestion)
 
 ```
-com.onlinecourse
-├── controller
-├── service
-├── repository
-├── model
-├── dto
-└── config
+src/app
+├── components
+│   ├── course-list
+│   ├── course-detail
+│   ├── cart
+│   ├── my-courses
+│   └── admin-dashboard
+├── services
+│   └── course.service.ts
+├── models
+│   └── course.model.ts
+├── pages
+│   ├── login
+│   └── register
+└── app-routing.module.ts
 ```
 
 ---
 
-## 🖼️ UI Pages You Can Create
+## 🔁 API Integration Plan
 
-1. `index.html` – Homepage showing featured courses
-2. `courses.html` – All course listings
-3. `course-details.html` – Single course view with "Add to Cart"
-4. `cart.html` – View and checkout cart
-5. `login.html` / `register.html`
-6. `admin-dashboard.html` – For course management
-
----
-
-## 💡 Advanced (If you want to expand later)
-
-* Rating & reviews
-* File upload (PDF, video preview)
-* Real payment gateway (Stripe, PayPal)
-* JWT authentication
+| Endpoint (Spring Boot)   | Angular Call                 | Description           |
+| ------------------------ | ---------------------------- | --------------------- |
+| `GET /api/courses`       | `courseService.getCourses()` | List all courses      |
+| `GET /api/courses/{id}`  | `getCourse(id)`              | Single course details |
+| `POST /api/cart`         | `addToCart(course)`          | Simulated cart        |
+| `POST /api/purchase`     | `checkout(cart)`             | Save purchase         |
+| `GET /api/my-courses`    | `getMyCourses()`             | Get user's courses    |
+| `POST /api/admin/course` | `adminAddCourse()`           | Admin adds new        |
 
 ---
 
-## ⚠️ Tips
+## 🖼️ Angular UI Pages You Can Create
 
-* Keep video upload out for now (just simulate).
-* Cart can be simple — store it in session or use frontend storage.
-* For purchase, just save the course in a "purchased" table (no real payment needed).
-* Focus on clean UI + well-structured backend.
+1. `HomeComponent` – Featured courses
+2. `CourseListComponent` – All courses (with category filters)
+3. `CourseDetailComponent` – Add to cart view
+4. `CartComponent` – View & checkout cart
+5. `MyCoursesComponent` – After purchase dashboard
+6. `LoginComponent` / `RegisterComponent`
+7. `AdminDashboardComponent` – Manage courses
 
 ---
 
-### ✅ Verdict: YES — A great second-semester project!
+## 🔐 Optional JWT Flow
 
-If you keep it to a **basic marketplace**, it’s achievable and impressive.
+1. Angular sends `login()` → Spring Boot issues JWT token
+2. Store JWT in `localStorage`
+3. Angular includes JWT in Authorization header (`Bearer <token>`)
+4. Spring validates it with filter (Spring Security)
 
-Would you like:
+---
 
-* Feature list document?
-* Use case diagram?
-* Backend model & endpoint plan?
-* Starter Spring Boot structure?
+## 🚀 Want Next?
 
-Let me know — I’ll help you build it step by step.
+Would you like me to generate:
+
+* ✅ REST API structure (Spring Boot)?
+* ✅ Angular service and model templates?
+* ✅ Use case diagram?
+* ✅ ERD or MySQL schema?
+
+Just tell me what you'd like next!
