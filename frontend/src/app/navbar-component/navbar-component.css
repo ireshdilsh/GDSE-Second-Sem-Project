@@ -1,3 +1,44 @@
-nav img{
-    
+nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 200px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    margin-top: 15px;
+    background-color: #ffffff;
+    width: 100%;
+}
+
+nav .logo img{
+    width: 170px;
+}
+
+nav .links{
+    margin-left: 150px;
+    display: flex;
+    gap: 20px;
+}
+
+nav .links a{
+    text-decoration: none;
+    color: var(--primary-color);
+    position: relative;
+}
+
+nav .links a::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 25px;
+    height: 1.2px;
+    width: 100%;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transition: 0.3s;
+}
+
+nav .links a:hover::after{
+    transform: scaleX(1);
 }
