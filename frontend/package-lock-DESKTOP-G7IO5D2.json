@@ -18,8 +18,7 @@
         "@angular/ssr": "^20.0.2",
         "express": "^5.1.0",
         "rxjs": "~7.8.0",
-        "tslib": "^2.3.0",
-        "zone.js": "~0.15.0"
+        "tslib": "^2.3.0"
       },
       "devDependencies": {
         "@angular/build": "^20.0.2",
@@ -4529,9 +4528,9 @@
       "license": "MIT"
     },
     "node_modules/electron-to-chromium": {
-      "version": "1.5.176",
-      "resolved": "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.5.176.tgz",
-      "integrity": "sha512-2nDK9orkm7M9ZZkjO3PjbEd3VUulQLyg5T9O3enJdFvUg46Hzd4DUvTvAuEgbdHYXyFsiG4A5sO9IzToMH1cDg==",
+      "version": "1.5.177",
+      "resolved": "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.5.177.tgz",
+      "integrity": "sha512-7EH2G59nLsEMj97fpDuvVcYi6lwTcM1xuWw3PssD8xzboAW7zj7iB3COEEEATUfjLHrs5uKBLQT03V/8URx06g==",
       "dev": true,
       "license": "ISC"
     },
@@ -9439,12 +9438,6 @@
       "funding": {
         "url": "https://github.com/sponsors/sindresorhus"
       }
-    },
-    "node_modules/zone.js": {
-      "version": "0.15.1",
-      "resolved": "https://registry.npmjs.org/zone.js/-/zone.js-0.15.1.tgz",
-      "integrity": "sha512-XE96n56IQpJM7NAoXswY3XRLcWFW83xe0BiAOeMD7K5k5xecOeul3Qcpx6GqEeeHNkW5DWL5zOyTbEfB4eti8w==",
-      "license": "MIT"
     }
   }
 }
