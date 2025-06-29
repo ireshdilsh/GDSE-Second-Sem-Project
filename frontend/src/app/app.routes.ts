@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { NavbarComponent } from './navbar-component/navbar-component';
-import { DashboardComponent } from './dashboard-component/dashboard-component';
+import { LandingComponent } from './landing-component/landing-component';
 
 export const routes: Routes = [
-   {path : '' , component : DashboardComponent},
+   {path : '' , component : LandingComponent},
    {path : 'navbar', component : NavbarComponent}
 ];
