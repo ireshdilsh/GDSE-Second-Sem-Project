@@ -1,0 +1,26 @@
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 20px 200px;
+    gap: 100px;
+    background-color: #fff;
+    width: 100%;
+}
+
+nav .logo img {
+    width: 185px;
+}
+
+nav .links {
+    display: flex;
+    gap: 25px;
+}
+
+nav .links a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
