@@ -13,4 +13,5 @@ body{
     color: var(--primary-color);
     font-family: 'Poppins';
     font-size: 14px;
+    overflow-x: hidden;
 }

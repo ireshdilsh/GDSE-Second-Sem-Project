@@ -88,3 +88,27 @@ nav .links a:hover::after {
     background-color: var(--primary-color);
     color: #fff;
 }
+
+#company-logos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+#company-logos img{
+    width: 300px;
+    text-align: justify;
+    padding: 40px;
+    background-color: antiquewhite;
+    animation: animate linear infinite 25s;
+}
+
+@keyframes animate {
+    0%{
+        transform: translateX(550%);
+    }100%{
+        transform: translateX(-550%);
+    }
+}
