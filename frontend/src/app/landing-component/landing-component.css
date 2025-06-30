@@ -78,16 +78,20 @@ section img{
         background-color: rgba(255, 255, 255, 0.87);
         font-size: 14px;
         font-family: 'Poppins';
+        color: var(--primary-color);
     }
 }
 
-#home .btns button{
+#home .btns a{
     height: 42px;
     width: 200px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
     &:hover{
         opacity: 0.8;
     }

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing-component',
@@ -10,15 +9,4 @@ import { Router } from '@angular/router';
 })
 export class LandingComponent {
 
-  constructor( private router : Router) {
-    
-  }
-
-  gotoLoginView = () => {
-      this.router.navigate([''])
-  }
-
-  gotoRegisterView = () => {
-    
-  }
 }
