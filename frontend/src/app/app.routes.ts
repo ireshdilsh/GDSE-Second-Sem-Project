@@ -9,6 +9,6 @@ export const routes: Routes = [
    {path : '' , component : LandingComponent},
    {path : 'navbar', component : NavbarComponent},
    {path : 'ask/ai/agent', component : ChatbotComponent},
-   {path : 'auth/user' , component : LoginComponent},
-   {path : 'create/user/account' , component : RegisterComponent}
+   {path : 'auth/user/with/planifyai' , component : LoginComponent},
+   {path : 'create/user/account/with/planifyai' , component : RegisterComponent}
 ];
