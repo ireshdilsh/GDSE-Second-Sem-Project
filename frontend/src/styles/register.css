@@ -1,0 +1,17 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --primary-color : #373643;
+    --secondry-color : #0d6efd;
+}
+
+body{
+    font-family: 'Poppins';
+    font-size: 14px;
+    color: var(--primary-color);
+    overflow-x: hidden;
+}
