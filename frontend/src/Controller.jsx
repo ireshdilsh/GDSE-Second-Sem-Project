@@ -1,7 +1,10 @@
 import React from 'react'
+import Landing from './pages/Landing'
 
 export default function Controller() {
   return (
-    <div>Controller</div>
+    <div>
+      <Landing/>
+    </div>
   )
 }
