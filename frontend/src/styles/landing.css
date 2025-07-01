@@ -58,3 +58,56 @@ nav {
 
     }
 }
+
+#home{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 200px;
+
+    .left-side {
+        #title{
+            font-size: 20px;   
+        }
+
+        #subtitle{
+            font-size: 42px;
+            font-weight: 600;
+        }
+
+        #description{
+            font-size: 14px;
+            margin: 20px 0;
+        }
+
+        .btns{
+            display: flex;
+            gap: 15px;
+
+            button{
+                width: 200px;
+                height: 40px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 14px;
+                font-family: 'Poppins';
+
+                &:hover{
+                    opacity: 0.8;
+                }
+            }
+
+            #register{
+                background-color: var(--secondry-color);
+                color: #fff;
+            }
+
+            #login{
+                border: 1px solid var(--primary-color);
+                color: var(--primary-color);
+                background-color: #fff;
+            }
+        }
+    }
+}
