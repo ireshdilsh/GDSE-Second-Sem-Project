@@ -1,17 +1,27 @@
 import React from 'react'
 import '../styles/landing.css'
 import logo from '../assets/logo.png'
+import { useNavigate } from 'react-router-dom'
 
 export default function Landing() {
+
+    const navigate = useNavigate();
+
+    const gotoRegisterPage = () => {
+        navigate('/navigate/user/create/account')
+    }
+
     return (
         <div>
+            <div className="box-1"></div>
+            <div className="box-2"></div>
             <nav>
                 <div className="logo">
                     <img src={logo} alt="logo" />
                 </div>
                 <div className="links">
                     <a href="#home">Home</a>
-                    <a href="">Browse Lesson</a>
+                    <a href="#lesson">Browse Lesson</a>
                     <a href="">Blogs</a>
                     <a href="">Prcing</a>
                     <a href="">About Us</a>
@@ -27,13 +37,19 @@ export default function Landing() {
                     <p id='description'>SkillSpark connects curious learners with everyday experts through short, powerful lessons.
                         Discover new skills or share yours — anytime, anywhere, in just minutes.</p>
                     <div className="btns">
-                        <button id='register'>Become a Member</button>
+                        <button id='register' onClick={gotoRegisterPage}>Become a Member</button>
                         <button id='login'>Start Learning Now</button>
                     </div>
                 </div>
                 <div className="right-side">
                     <img src={logo} alt="" />
                 </div>
+            </section>
+
+            <section id='lesson'>
+                <p id='title'>Discover & Book Micro-Lessons</p>
+                <p id='description'>Explore a curated library of ultra-short lessons taught by real people.
+                    Filter by category, skill level, or price — and instantly book a live or recorded session.</p>
             </section>
 
         </div>
