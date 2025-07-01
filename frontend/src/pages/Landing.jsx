@@ -11,6 +11,10 @@ export default function Landing() {
         navigate('/navigate/user/create/account')
     }
 
+    const gotoLoginView = () => {
+        navigate('/navigate/user/auth/login')
+    }
+
     return (
         <div>
             <div className="box-1"></div>
@@ -38,7 +42,7 @@ export default function Landing() {
                         Discover new skills or share yours — anytime, anywhere, in just minutes.</p>
                     <div className="btns">
                         <button id='register' onClick={gotoRegisterPage}>Become a Member</button>
-                        <button id='login'>Start Learning Now</button>
+                        <button id='login' onClick={gotoLoginView}>Start Learning Now</button>
                     </div>
                 </div>
                 <div className="right-side">
