@@ -1,7 +1,3 @@
-Absolutely! Here’s a concise **project overview** for your **SkillSpark** micro-learning platform, perfect for a README, proposal, or documentation:
-
----
-
 # Project Overview: SkillSpark
 
 ### Concept
@@ -35,6 +31,3 @@ Absolutely! Here’s a concise **project overview** for your **SkillSpark** micr
 * Encourages skill exchange via barter to promote community.
 * Provides a trusted platform with reviews and secure payments.
 
----
-
-If you want, I can also help create a detailed use case diagram, user stories, or wireframe suggestions! Would you like that?
