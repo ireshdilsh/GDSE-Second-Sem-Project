@@ -1,6 +1,7 @@
 import React from 'react'
 import '../styles/register.css'
 import logo from '../assets/logo.png'
+import { Link } from 'react-router-dom'
 
 export default function Register() {
     return (
@@ -13,7 +14,7 @@ export default function Register() {
 
                 <div className="goto-register">
                     <p></p>
-                   
+                    <Link to="/navigate/user/auth/login">signin here</Link>
                 </div>
             </div>
         </div>
