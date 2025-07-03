@@ -1,8 +1,22 @@
 import React from 'react'
 import '../styles/login.css'
+import logo from '../assets/logo.png'
+import { Link } from 'react-router-dom'
 
 export default function Login() {
   return (
-    <div>Login</div>
+    <div>
+      <div className="login-form">
+        <img src={logo} alt="" />
+        <p id='title'>SmartAccess — Seamless & Secure Login</p>
+        <p id='description'>A fast, modern, and secure login experience designed for today’s web — combining elegant UI with robust authentication.</p>
+        <button>Continue With Google</button>
+        <button>Continue With Email</button>
+        <div className="goto-signup">
+          <p>if you already have an account ?</p>
+          <Link to="/navigate/user/create/account">signup here</Link>
+        </div>
+      </div>
+    </div>
   )
 }

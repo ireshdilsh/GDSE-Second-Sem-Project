@@ -15,3 +15,21 @@ body{
     color: var(--primary-color);
     overflow-x: hidden;
 }
+
+.login-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 100px 0px;
+
+    img{
+        width: 200px;
+    }
+
+    #title{
+        margin-top: 25px;
+        font-size: 22px;
+        font-weight: 500;
+    }
+}
