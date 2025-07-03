@@ -10,8 +10,8 @@ export default function Login() {
         <img src={logo} alt="" />
         <p id='title'>SmartAccess — Seamless & Secure Login</p>
         <p id='description'>A fast, modern, and secure login experience designed for today’s web — combining elegant UI with robust authentication.</p>
-        <button>Continue With Google</button>
-        <button>Continue With Email</button>
+        <button id='google'>Continue With Google</button>
+        <button id='email'>Continue With Email</button>
         <div className="goto-signup">
           <p>if you already haven't an account ?</p>
           <Link to="/navigate/user/create/account">signup here</Link>

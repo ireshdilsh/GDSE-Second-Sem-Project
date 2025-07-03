@@ -11,8 +11,8 @@ export default function Register() {
                 <p id='title'>Join SkillSpark – Learn. Teach. Grow.</p>
                 <p id='description'>Create your free account to start learning new skills or sharing your own.
                 </p>
-                <button>Continue With Google</button>
-                <button>Continue With Email</button>
+                <button id='google'>Continue With Google</button>
+                <button id='email'>Continue With Email</button>
                 <div className="goto-login">
                     <p>if you have an account ?</p>
                     <Link to="/navigate/user/auth/login">signin here</Link>

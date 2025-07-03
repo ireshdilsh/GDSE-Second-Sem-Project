@@ -27,6 +27,32 @@ body{
         width: 200px;
     }
 
+    button{
+        height: 42px;
+        width: 350px;
+        font-size: 14px;
+        border: none;
+        border-radius: 4px;
+        font-family: 'Poppins';
+
+        &:hover{
+            opacity: 0.8;
+            cursor: pointer;
+        }
+    }
+
+    #google{
+        background-color: var(--secondry-color);
+        color: #ffff;
+        margin-top: 15px;
+    }
+
+    #email{
+        margin-top: 15px;
+        border: 1.4px solid var(--primary-color);
+        background-color: #ffff;
+    }
+
     #title{
         margin-top: 25px;
         font-size: 22px;
