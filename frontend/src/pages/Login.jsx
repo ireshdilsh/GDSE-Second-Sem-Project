@@ -13,7 +13,7 @@ export default function Login() {
         <button>Continue With Google</button>
         <button>Continue With Email</button>
         <div className="goto-signup">
-          <p>if you already have an account ?</p>
+          <p>if you already haven't an account ?</p>
           <Link to="/navigate/user/create/account">signup here</Link>
         </div>
       </div>

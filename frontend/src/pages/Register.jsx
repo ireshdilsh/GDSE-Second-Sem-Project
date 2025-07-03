@@ -12,8 +12,8 @@ export default function Register() {
                 <p id='description'>Create your free account to start learning new skills or sharing your own.
                 </p>
 
-                <div className="goto-register">
-                    <p></p>
+                <div className="goto-login">
+                    <p>if you have an account ?</p>
                     <Link to="/navigate/user/auth/login">signin here</Link>
                 </div>
             </div>

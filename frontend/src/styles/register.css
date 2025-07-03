@@ -32,6 +32,18 @@ body{
         font-size: 22px;
         font-weight: 500;
     }
+
+    .goto-login {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 75px;
+        margin: 15px 0px;
+
+        a{
+            color: var(--secondry-color);
+        }
+    }
 }
 
 

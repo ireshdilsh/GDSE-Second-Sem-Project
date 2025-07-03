@@ -1,35 +1,47 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-:root{
-    --primary-color : #373643;
-    --secondry-color : #0d6efd;
+:root {
+    --primary-color: #373643;
+    --secondry-color: #0d6efd;
 }
 
-body{
+body {
     font-family: 'Poppins';
     font-size: 14px;
     color: var(--primary-color);
     overflow-x: hidden;
 }
 
-.login-form{
+.login-form {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     margin: 100px 0px;
 
-    img{
+    img {
         width: 200px;
     }
 
-    #title{
+    #title {
         margin-top: 25px;
         font-size: 22px;
         font-weight: 500;
+    }
+
+    .goto-signup{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 75px;
+        margin: 15px 0px;
+
+        a{
+            color: var(--secondry-color);
+        }
     }
 }
