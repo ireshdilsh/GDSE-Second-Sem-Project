@@ -96,9 +96,15 @@ nav {
 
 #home {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 40px 200px;
+    gap: 50px;
+    /* background-color: #fff; */
+
+    .right-side{
+        background-color: #fff;
+    }
 
     .left-side {
         #title {
