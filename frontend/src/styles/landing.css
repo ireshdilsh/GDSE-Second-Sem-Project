@@ -258,14 +258,16 @@ nav {
         margin-top: -12px;
     }
 
-    .pricing-body{
+    .pricing-body {
         margin-top: 20px;
         display: flex;
         justify-content: center;
         background-color: #fff;
         border-radius: 4px;
 
-        .card-1,.card-2,.card-3{
+        .card-1,
+        .card-2,
+        .card-3 {
             border: 1.6px solid #fafafa;
             padding: 20px;
             border-radius: 4px;
@@ -275,17 +277,17 @@ nav {
             align-items: center;
             flex-direction: column;
 
-            h6{
+            h6 {
                 font-weight: 600;
                 margin: 15px 0;
             }
 
-            p{
+            p {
                 text-align: center;
                 margin-bottom: 15px;
             }
 
-            button{
+            button {
                 height: 40px;
                 border: none;
                 border-radius: 4px;
@@ -293,17 +295,21 @@ nav {
                 background-color: var(--primary-color);
                 margin-top: 30px;
                 color: #fff;
+
+                &:hover {
+                    opacity: 0.8;
+                }
             }
         }
 
-        .card-2{
+        .card-2 {
             background-color: var(--secondry-color);
             color: #fff;
             border: none;
             height: 450px;
             transform: scale(1.05);
 
-            button{
+            button {
                 border: none;
                 background-color: #fff;
                 color: var(--primary-color);
@@ -328,6 +334,36 @@ nav {
 
     #description {
         margin-top: -12px;
+    }
+
+    .about-body {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 12px;
+
+        .left-side {
+
+            .card-1,
+            .card-2,
+            .card-3,
+            .card-4,
+            .card-5 {
+                padding: 25px;
+                border: 1.6px solid #fafafa;
+                border-radius: 4px;
+                width: 800px;
+                margin-top: 8px;
+
+                h5 {
+                    font-weight: 600;
+                }
+
+                p {
+                    margin-top: 15px;
+                }
+            }
+        }
     }
 }
 

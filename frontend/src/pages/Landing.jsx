@@ -164,7 +164,31 @@ export default function Landing() {
                 <p id='title'>About Us — Our Story & Mission</p>
                 <p id='description'>We’re passionate creators on a mission to solve real-world problems with smart, user-friendly solutions. Learn more about who we are and what drives us.</p>
                 <div className="about-body">
-
+                    <div className="left-side">
+                        <div className="card-1">
+                            <h5>About Us</h5>
+                            <p>At SkillSpark, we’re reimagining how people learn and share skills. Here’s what defines us:</p>
+                        </div>
+                        <div className="card-2">
+                            <h5>Our Mission</h5>
+                            <p>To make skill-building fast, accessible, and rewarding for everyone — whether you’re learning or teaching.</p>
+                        </div>
+                        <div className="card-3">
+                            <h5>What We Offer</h5>
+                            <p>An innovative micro-learning platform with live and recorded bite-sized lessons, a skill-barter system, and a vibrant community of learners and instructors.</p>
+                        </div>
+                        <div className="card-4">
+                            <h5>Why We’re Different</h5>
+                            <p>We empower anyone to become a micro-instructor, offer both paid and skill-swap options, and make learning fit into even the busiest schedule.</p>
+                        </div>
+                        <div className="card-5">
+                            <h5>Our Vision</h5>
+                            <p>To build a world where learning new skills is easy, social, and part of everyday life — no matter who you are or where you are.</p>
+                        </div>
+                    </div>
+                    <div className="right-side">
+                        <img src={logo} alt="" />
+                    </div>
                 </div>
             </section>
 
