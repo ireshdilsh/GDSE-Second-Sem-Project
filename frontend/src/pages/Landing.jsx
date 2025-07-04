@@ -65,24 +65,24 @@ export default function Landing() {
                 <div className="blog-body">
                     <div className="set-1">
                         <div className="card-1">
-                            <h4>Tips for Clean & Scalable Code</h4>
-                            <p>Discover practical techniques to write clean, maintainable React applications. From component structure to state management, we cover essential patterns every developer should know.</p>
-                            <p id='author'>By Alex Johnson</p>
+                            <h5>Tips for Clean & Scalable Code</h5>
+                            <p id='detail'>Discover practical techniques to write clean, maintainable React applications. From component structure to state management, we cover essential patterns every developer should know.</p>
+                            <p id='author'>- By Alex Johnson -</p>
                         </div>
                         <div className="card-2">
-                            <h4>Tips for Clean & Scalable Code</h4>
-                            <p>Discover practical techniques to write clean, maintainable React applications. From component structure to state management, we cover essential patterns every developer should know.</p>
-                            <p id='author'>By Alex Johnson</p>
+                            <h5>Tips for Clean & Scalable Code</h5>
+                            <p id='detail'>Discover practical techniques to write clean, maintainable React applications. From component structure to state management, we cover essential patterns every developer should know.</p>
+                            <p id='author'>-By Alex Johnson-</p>
                         </div>
                         <div className="card-3">
-                            <h4>Tips for Clean & Scalable Code</h4>
-                            <p>Discover practical techniques to write clean, maintainable React applications. From component structure to state management, we cover essential patterns every developer should know.</p>
-                            <p id='author'>By Alex Johnson</p>
+                            <h5>Tips for Clean & Scalable Code</h5>
+                            <p id='detail'>Discover practical techniques to write clean, maintainable React applications. From component structure to state management, we cover essential patterns every developer should know.</p>
+                            <p id='author'>-By Alex Johnson-</p>
                         </div>
                         <div className="card-4">
-                            <h4>Tips for Clean & Scalable Code</h4>
-                            <p>Discover practical techniques to write clean, maintainable React applications. From component structure to state management, we cover essential patterns every developer should know.</p>
-                            <p id='author'>By Alex Johnson</p>
+                            <h5>Tips for Clean & Scalable Code</h5>
+                            <p id='detail'>Discover practical techniques to write clean, maintainable React applications. From component structure to state management, we cover essential patterns every developer should know.</p>
+                            <p id='author'>-By Alex Johnson-</p>
                         </div>
                     </div>
                     <div className="set-2">
