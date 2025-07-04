@@ -2,6 +2,7 @@ import React from 'react'
 import '../styles/landing.css'
 import logo from '../assets/logo.png'
 import aboutImg from '../assets/about-img.jpg'
+import heroImg from '../assets/hero.jpg'
 import { useNavigate } from 'react-router-dom'
 
 export default function Landing() {
@@ -47,7 +48,7 @@ export default function Landing() {
                     </div>
                 </div>
                 <div className="right-side">
-                    <img src={logo} alt="" />
+                    <img src={aboutImg} alt="" />
                 </div>
             </section>
 

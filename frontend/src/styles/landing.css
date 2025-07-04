@@ -35,7 +35,7 @@ body {
 
 .box-2 {
     left: -255px;
-    top: 1500px;
+    top: 1700px;
     rotate: 45deg;
     animation: animate-box-1-and-2 linear infinite 20s;
 
@@ -100,10 +100,19 @@ nav {
     align-items: center;
     padding: 40px 200px;
     gap: 50px;
-    /* background-color: #fff; */
+    background-color: #fff;
 
     .right-side{
         background-color: #fff;
+        
+        img{
+            background-size: cover;
+            object-fit: cover;
+            width: 350px;
+            height: 550px;
+            overflow: hidden;
+            border-radius: 20px 0 20px 0;
+        }
     }
 
     .left-side {
@@ -348,7 +357,7 @@ nav {
         align-items: center;
         margin-top: 12px;
         gap: 50px;
-        
+
         .left-side {
 
             .card-1,
@@ -375,10 +384,10 @@ nav {
         .right-side{
             img{
                 background-size: cover;
-                object-fit: contain;
                 height: 600px;
                 overflow: hidden;
                 border-radius: 20px 0 20px 0;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
             }
         }
     }
