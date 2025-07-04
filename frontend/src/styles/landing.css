@@ -27,15 +27,28 @@ body {
 }
 
 .box-1 {
-    right: -230px;
-    top: -20px;
+    right: -250px;
+    top: -50px;
     rotate: 45deg;
+    animation: animate-box-1-and-2 linear infinite 20s;
 }
 
 .box-2 {
-    left: -250px;
+    left: -255px;
     top: 1500px;
     rotate: 45deg;
+    animation: animate-box-1-and-2 linear infinite 20s;
+
+}
+
+@keyframes animate-box-1-and-2 {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 nav {
@@ -145,5 +158,29 @@ nav {
     #title {
         font-size: 42px;
         font-weight: 600;
+    }
+
+    #description {
+        font-size: 14px;
+        margin-top: -12px;
+    }
+}
+
+#blog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 60px 200px;
+    margin-top: 50px;
+
+    #title {
+        font-size: 42px;
+        font-weight: 600;
+    }
+
+    #description {
+        font-size: 14px;
+        margin-top: -12px;
     }
 }

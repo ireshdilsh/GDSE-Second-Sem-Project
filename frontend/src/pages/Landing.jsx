@@ -56,6 +56,14 @@ export default function Landing() {
                     Filter by category, skill level, or price — and instantly book a live or recorded session.</p>
             </section>
 
+            <section id='blog'>
+                <p id='title'>Insights & Ideas — Our Blog</p>
+                <p id='description'>Explore fresh perspectives, practical tips, and inspiring stories on technology, design, and innovation — updated regularly for curious minds.</p>
+                <div className="blog-body">
+                    
+                </div>
+            </section>
+
         </div>
     )
 }
