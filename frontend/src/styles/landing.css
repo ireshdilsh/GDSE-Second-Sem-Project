@@ -347,7 +347,8 @@ nav {
         justify-content: space-between;
         align-items: center;
         margin-top: 12px;
-
+        gap: 50px;
+        
         .left-side {
 
             .card-1,
@@ -368,6 +369,16 @@ nav {
                 p {
                     margin-top: 15px;
                 }
+            }
+        }
+
+        .right-side{
+            img{
+                background-size: cover;
+                object-fit: contain;
+                height: 600px;
+                overflow: hidden;
+                border-radius: 20px 0 20px 0;
             }
         }
     }
