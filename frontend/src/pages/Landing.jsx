@@ -122,7 +122,41 @@ export default function Landing() {
                 <p id='title'>Simple & Transparent Pricing</p>
                 <p id='description'>Choose a plan that fits your needs — no hidden fees, no surprises. Upgrade anytime as your goals grow.</p>
                 <div className="pricing-body">
-
+                    <div className="card-1">
+                        <h6>Basic — Free</h6>
+                        <p>Perfect for trying out the essentials.</p>
+                        <ul>
+                            <li>Core features</li>
+                            <li>Limited access</li>
+                            <li>Community support</li>
+                            <li>500 MB storage</li>
+                        </ul>
+                        <button>Choose Plan</button>
+                    </div>
+                    <div className="card-2">
+                        <h6>Pro — $9/month</h6>
+                        <p>For individuals who want more functionality.</p>
+                        <ul>
+                            <li>All core features</li>
+                            <li>Priority email support</li>
+                            <li>Advanced analytics</li>
+                            <li>10 GB storage</li>
+                            <li>Enable Learna AI</li>
+                        </ul>
+                        <button>Choose Plan</button>
+                    </div>
+                    <div className="card-3">
+                        <h6>Premium — $19/month</h6>
+                        <p>For power users who need the best experience.</p>
+                        <ul>
+                            <li>Everything in Pro</li>
+                            <li>Early access to new features</li>
+                            <li>Dedicated support</li>
+                            <li>100 GB storage</li>
+                            <li>Enable Learna AI</li>
+                        </ul>
+                        <button>Choose Plan</button>
+                    </div>
                 </div>
             </section>
 

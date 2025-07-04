@@ -257,6 +257,60 @@ nav {
     #description {
         margin-top: -12px;
     }
+
+    .pricing-body{
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        background-color: #fff;
+        border-radius: 4px;
+
+        .card-1,.card-2,.card-3{
+            border: 1.6px solid #fafafa;
+            padding: 20px;
+            border-radius: 4px;
+            width: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            h6{
+                font-weight: 600;
+                margin: 15px 0;
+            }
+
+            p{
+                text-align: center;
+                margin-bottom: 15px;
+            }
+
+            button{
+                height: 40px;
+                border: none;
+                border-radius: 4px;
+                width: 300px;
+                background-color: var(--primary-color);
+                margin-top: 30px;
+                color: #fff;
+            }
+        }
+
+        .card-2{
+            background-color: var(--secondry-color);
+            color: #fff;
+            border: none;
+            height: 450px;
+            transform: scale(1.05);
+
+            button{
+                border: none;
+                background-color: #fff;
+                color: var(--primary-color);
+            }
+        }
+    }
+
 }
 
 #about {
