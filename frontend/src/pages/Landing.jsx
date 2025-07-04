@@ -64,47 +64,55 @@ export default function Landing() {
                 <p id='description'>Explore fresh perspectives, practical tips, and inspiring stories on technology, design, and innovation — updated regularly for curious minds.</p>
                 <div className="blog-body">
                     <div className="set-1">
-                        <div className="card-1">
-                            <h6>Tips for Clean & Scalable Code</h6>
-                            <p id='detail'>Discover practical techniques to write clean, maintainable React applications. From component structure to state management, we cover essential patterns every developer should know.</p>
-                            <p id='author'>- By Alex Johnson -</p>
+                        <div className="set-1-1">
+                            <div className="card-1">
+                                <h6>Tips for Clean & Scalable Code</h6>
+                                <p id='detail'>Discover practical techniques to write clean, maintainable React applications. From component structure to state management, we cover essential patterns every developer should know.</p>
+                                <p id='author'>- By Alex Johnson -</p>
+                            </div>
+                            <div className="card-2">
+                                <h6>Why Spring Boot is Still a Top Choice in 2025</h6>
+                                <p id='detail'>Learn why Spring Boot remains a reliable framework for modern backend development — including its simplicity, power, and growing ecosystem.</p>
+                                <p id='author'>- By Priya Sharma -</p>
+                            </div>
                         </div>
-                        <div className="card-2">
-                            <h6>Why Spring Boot is Still a Top Choice in 2025</h6>
-                            <p id='detail'>Learn why Spring Boot remains a reliable framework for modern backend development — including its simplicity, power, and growing ecosystem.</p>
-                            <p id='author'>- By Priya Sharma -</p>
-                        </div>
-                        <div className="card-3">
-                            <h6>UX Mistakes That Drive Users Away — And How to Fix Them</h6>
-                            <p id='detail'>Bad user experience can hurt your product. We highlight common UX pitfalls and offer actionable tips to create delightful, user-friendly designs.</p>
-                            <p id='author'>- By Michael Lee -</p>
-                        </div>
-                        <div className="card-4">
-                            <h6>Tips for Clean & Scalable Code</h6>
-                            <p id='detail'>Discover practical techniques to write clean, maintainable React applications. From component structure to state management, we cover essential patterns every developer should know.</p>
-                            <p id='author'>-By Alex Johnson-</p>
+                        <div className="set-1-2">
+                            <div className="card-3">
+                                <h6>UX Mistakes That Drive Users Away — And How to Fix Them</h6>
+                                <p id='detail'>Bad user experience can hurt your product. We highlight common UX pitfalls and offer actionable tips to create delightful, user-friendly designs.</p>
+                                <p id='author'>- By Michael Lee -</p>
+                            </div>
+                            <div className="card-4">
+                                <h6>Tips for Clean & Scalable Code</h6>
+                                <p id='detail'>Discover practical techniques to write clean, maintainable React applications. From component structure to state management, we cover essential patterns every developer should know.</p>
+                                <p id='author'>-By Alex Johnson-</p>
+                            </div>
                         </div>
                     </div>
                     <div className="set-2">
-                         <div className="card-1">
-                            <h6>Boost Your Productivity with These Developer Tools</h6>
-                            <p id='detail'>From debugging to deployment, we list essential tools and extensions that can save you time and make coding more enjoyable.</p>
-                            <p id='author'>- By Daniel Kim -</p>
+                        <div className="set-2-1">
+                            <div className="card-1">
+                                <h6>Boost Your Productivity with These Developer Tools</h6>
+                                <p id='detail'>From debugging to deployment, we list essential tools and extensions that can save you time and make coding more enjoyable.</p>
+                                <p id='author'>- By Daniel Kim -</p>
+                            </div>
+                            <div className="card-2">
+                                <h6>Why Responsive Design Is More Critical Than Ever</h6>
+                                <p id='detail'>With more devices and screen sizes than ever, responsive design is no longer optional. Learn how to ensure your site looks great everywhere.</p>
+                                <p id='author'>- By Emily Wong -</p>
+                            </div>
                         </div>
-                        <div className="card-2">
-                            <h6>Why Responsive Design Is More Critical Than Ever</h6>
-                            <p id='detail'>With more devices and screen sizes than ever, responsive design is no longer optional. Learn how to ensure your site looks great everywhere.</p>
-                            <p id='author'>- By Emily Wong -</p>
-                        </div>
-                        <div className="card-3">
-                            <h6>Security Best Practices for Modern Web Apps</h6>
-                            <p id='detail'>Protect your users and your app by following key security principles — covering authentication, data privacy, and safe coding habits.</p>
-                            <p id='author'>- By Rahul Patel -</p>
-                        </div>
-                        <div className="card-4">
-                            <h6>How to Build a Personal Brand as a Developer</h6>
-                            <p id='detail'>Stand out in a crowded industry by building your personal brand. Learn how to showcase your work, share knowledge, and connect with your audience.</p>
-                            <p id='author'>- By Olivia Brown -</p>
+                        <div className="set-2-2">
+                            <div className="card-3">
+                                <h6>Security Best Practices for Modern Web Apps</h6>
+                                <p id='detail'>Protect your users and your app by following key security principles — covering authentication, data privacy, and safe coding habits.</p>
+                                <p id='author'>- By Rahul Patel -</p>
+                            </div>
+                            <div className="card-4">
+                                <h6>How to Build a Personal Brand as a Developer</h6>
+                                <p id='detail'>Stand out in a crowded industry by building your personal brand. Learn how to showcase your work, share knowledge, and connect with your audience.</p>
+                                <p id='author'>- By Olivia Brown -</p>
+                            </div>
                         </div>
                     </div>
                 </div>
