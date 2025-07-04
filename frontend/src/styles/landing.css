@@ -172,6 +172,7 @@ nav {
     flex-direction: column;
     padding: 60px 200px;
     margin-top: 50px;
+    background-color: #fff;
 
     #title {
         font-size: 42px;
@@ -182,35 +183,49 @@ nav {
         margin-top: -12px;
     }
 
-    .blog-body{
+    .blog-body {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
         gap: 10px;
         margin-top: 20px;
-        .set-1{
+
+        .set-1,
+        .set-2 {
             display: flex;
             gap: 10px;
 
-            .card-1,.card-2,.card-3,.card-4{
+            .card-1,
+            .card-2,
+            .card-3,
+            .card-4 {
                 width: 300px;
                 padding: 20px;
                 border-radius: 4px;
                 border: 1.8px solid #fafafa;
+                transition: 0.4s;
+                &:hover{
+                    transform: scale(1.05);
+                    background-color: var(--secondry-color);
+                    color: #fff;
+                    border: none;
+                }
 
-                h5{
+                h6 {
                     text-align: center;
+                    font-weight: 600;
                 }
 
-                #detail{
+                #detail {
                     text-align: justify;
-                    margin-top: 25px;
+                    margin-top: 35px;
                 }
 
-                #author{
+                #author {
                     margin-top: 30px;
                     font-weight: 600;
+                    text-align: right;
                 }
             }
         }
