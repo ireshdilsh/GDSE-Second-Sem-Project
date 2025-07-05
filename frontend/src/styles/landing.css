@@ -370,6 +370,13 @@ nav {
                 border-radius: 4px;
                 width: 800px;
                 margin-top: 8px;
+                transition: 0.3s;
+
+                &:hover{
+                    background-color: var(--secondry-color);
+                    color: #fff;
+                    transform: scale(1.05);
+                }
 
                 h5 {
                     font-weight: 600;
