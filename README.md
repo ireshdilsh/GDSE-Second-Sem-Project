@@ -1,33 +1,53 @@
-# Project Overview: SkillSpark
+🌱 Urban Garden Swap — “Grow & Swap”
+A platform for city dwellers to swap homegrown fruits, vegetables, herbs, and plants.
 
-### Concept
+🔷 Concept:
+Many urban residents grow small amounts of produce (e.g., basil, tomatoes, chillies, microgreens) on balconies, rooftops, or in community gardens.
+But they usually can’t grow everything they need, and surplus goes to waste.
 
-**SkillSpark** is an innovative online platform designed for **micro-learning** — enabling users to quickly learn or teach specific skills through ultra-short (5-15 minute) live or recorded lessons. It empowers anyone to become a micro-instructor and helps busy learners fit skill-building into their schedules easily.
+Grow & Swap is a community platform where users can:
 
-### Key Features
+List the produce they’re growing and what they’re willing to swap.
 
-* **User Profiles:** Showcase skills users want to teach and learn.
-* **Micro-Lesson Marketplace:** Browse, book, and sell bite-sized lessons by category, skill level, and price.
-* **Live & Recorded Sessions:** Support for real-time video lessons and on-demand content.
-* **Skill Barter System:** Unique option to swap lessons instead of using money.
-* **Ratings & Reviews:** Community-driven feedback for quality assurance.
-* **Secure Authentication:** User registration, login, and profile management.
-* **Payment Integration:** Secure transactions for paid lessons.
-* **Responsive UI:** Built with ReactJS for smooth, interactive user experience.
-* **Robust Backend:** Spring Boot API managing data, security, scheduling, and payment processing.
+Browse what others have to offer nearby.
 
-### Technology Stack
+Schedule swaps or deliveries.
 
-* **Frontend:** ReactJS, React Router, Axios
-* **Backend:** Spring Boot, Spring Security, REST API
-* **Database:** PostgreSQL / MySQL
-* **Real-time Communication:** WebRTC or WebSocket (optional for live sessions)
-* **Payment Gateway:** Stripe / PayPal integration
+Share growing tips, recipes, and local gardening events.
 
-### Benefits
+🔷 Key Features:
+✅ User accounts & profiles with location and garden details.
+✅ Inventory: add/remove crops with photos & availability.
+✅ Search by crop or location radius.
+✅ Request a swap or offer your items to someone.
+✅ Messaging/chat for arranging pickup or delivery.
+✅ Points system or badges for active swappers.
+✅ Blog or tips section to keep people engaged.
 
-* Fits learning into busy lifestyles with micro-lessons.
-* Democratizes teaching by letting anyone share knowledge.
-* Encourages skill exchange via barter to promote community.
-* Provides a trusted platform with reviews and secure payments.
+🔷 Why it’s a good idea:
+Supports sustainability and reduces food waste.
 
+Builds local community connections.
+
+Works even in urban areas with limited space.
+
+Potential for future monetization: premium delivery, workshops, affiliate seeds/tools.
+
+Tech Stack:
+📌 Frontend (ReactJS):
+
+Responsive UI with React + Tailwind or Material UI.
+
+Map integration (Google Maps / Leaflet) for location-based browsing.
+
+State management: Redux or React Query.
+
+Authentication: JWT.
+
+📌 Backend (Spring Boot):
+
+RESTful API with Spring Web + Spring Security.
+
+Database: PostgreSQL or MongoDB.
+
+User management, inventory CRUD, chat (via WebSocket if real-time).
