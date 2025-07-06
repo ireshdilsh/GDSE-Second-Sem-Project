@@ -64,7 +64,9 @@ export default function Landing() {
         <p id="title">
           Green Marketplace — Tools, Seeds & More
         </p>
-        <p id="description"></p>
+        <p id="description">
+          Browse and shop gardening essentials from trusted sellers and local growers. Find seeds, tools, compost, and everything you need to make your garden thrive — all in one place.
+        </p>
       </section>
 
     </div>

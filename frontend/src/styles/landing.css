@@ -134,5 +134,9 @@
 #blogs #title{
     font-size: 52px;
     font-weight: 600;
-    /* color: var(--primary-color); */
+}
+
+#blogs #description{
+    text-align: center;
+    margin-top: -15px;
 }
