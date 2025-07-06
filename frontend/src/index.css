@@ -4,6 +4,12 @@
      font-family: "League Spartan", sans-serif;
 }
 
+:root{
+    --primary-color : #333;
+    --secondry-color : #fcfcfc;
+    --third-color : #fafafa;
+}
+
 body{
     overflow-x: hidden;
     font-size: 14px;
