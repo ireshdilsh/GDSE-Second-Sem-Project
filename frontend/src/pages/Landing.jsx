@@ -35,6 +35,26 @@ export default function Landing() {
         </div>
         <div className="right-side">
           <h3>Create Account</h3>
+          <p>Share your garden, discover fresh produce nearby,
+            and grow your community today.</p>
+          <div className="name">
+            <label for="exampleInputEmail1" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+          </div>
+          <div className="email">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+          <div className="create-pass">
+            <label for="exampleInputEmail1" class="form-label">Create Password</label>
+            <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+          </div>
+          <div className="confirm-pass">
+            <label for="exampleInputEmail1" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+          </div>
+          <button>Create My UrbanGreen Account</button>
         </div>
       </section>
     </div>
