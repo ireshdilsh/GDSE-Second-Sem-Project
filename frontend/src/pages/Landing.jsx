@@ -67,6 +67,13 @@ export default function Landing() {
         <p id="description">
           Browse and shop gardening essentials from trusted sellers and local growers. Find seeds, tools, compost, and everything you need to make your garden thrive — all in one place.
         </p>
+        <div className="btns">
+          <button>Seeds & Plants</button>
+          <button>Tools & Equipment</button>
+          <button>Soil & Fertilizer</button>
+          <button>Planters & Decorates</button>
+          <button>Books & Guides</button>
+        </div>
       </section>
 
     </div>
