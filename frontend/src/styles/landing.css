@@ -37,7 +37,7 @@ nav .links a {
 
 }
 
-#home{
+#home {
     padding: 40px 200px;
     display: flex;
     justify-content: center;
@@ -47,23 +47,23 @@ nav .links a {
     gap: 80px;
 }
 
-#home .left-side #title{
+#home .left-side #title {
     font-size: 22px;
     font-weight: 500;
     color: var(--secondry-color);
 }
 
-#home .left-side #sub-title{
+#home .left-side #sub-title {
     font-size: 52px;
     font-weight: 600;
     color: var(--secondry-color);
 }
 
-#home .left-side #description{
+#home .left-side #description {
     color: var(--secondry-color);
 }
 
-#home .left-side button{
+#home .left-side button {
     background-color: var(--secondry-color);
     color: var(--primary-color);
     font-weight: 500;
@@ -71,7 +71,8 @@ nav .links a {
     border-radius: 4px;
     padding: 8px 35px;
     margin-top: 15px;
-    &:hover{
+
+    &:hover {
         opacity: 0.8;
     }
 }
@@ -83,26 +84,27 @@ nav .links a {
     border-radius: 4px;
 }
 
-#home .right-side button{
-     color: var(--secondry-color);
+#home .right-side button {
+    color: var(--secondry-color);
     background-color: var(--primary-color);
     font-weight: 500;
     border: none;
     border-radius: 4px;
     padding: 8px 35px;
     margin-top: 25px;
-    &:hover{
+
+    &:hover {
         opacity: 0.8;
     }
 }
 
-#home .right-side input{
+#home .right-side input {
     background-color: var(--secondry-color);
 }
 
 #home .right-side .name,
 #home .right-side .email,
 #home .right-side .create-pass,
-#home .right-side .confirm-pass{
+#home .right-side .confirm-pass {
     margin-top: 15px;
 }
