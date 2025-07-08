@@ -128,6 +128,24 @@ nav .links a {
     text-align: center;
 }
 
+#marketplace .btns{
+    display: flex;
+    gap: 15px;
+}
+
+#marketplace .btns button{
+    border: none;
+    background-color: var(--secondry-color);
+    color: var(--primary-color);
+    border: 1.5px solid var(--primary-color);
+    border-radius: 50px;
+    padding: 7px 20px;
+}
+
+#marketplace .selections{
+    margin-top: 40px;
+}
+
 #blogs {
     padding: 40px 200px;
     margin-top: 40px;
@@ -253,7 +271,7 @@ nav .links a {
     margin-top: 10px;
     transition: 0.4s;
     &:hover{
-        transform: scale(1.05);
+        transform: scale(1.01);
     }
 }
 
