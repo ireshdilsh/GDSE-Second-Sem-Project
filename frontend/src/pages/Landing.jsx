@@ -17,8 +17,8 @@ export default function Landing() {
         <div className="links">
           <a href="#home">Home</a>
           <a href="#marketplace">Marketplace</a>
-          <a href="blogs">Blogs & Tips</a>
-          <a href="">GreenAI</a>
+          <a href="#blogs">Blogs & Tips</a>
+          <a href="#ai">GreenAI</a>
           <a href="">About Us</a>
           <a href="">Contact Us</a>
         </div>
@@ -75,77 +75,104 @@ export default function Landing() {
                 rfect for beginners with limited space.</p>
             </div>
             <div className="card-2">
-               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
               <hr />
               <p>Learn which herbs thrive on balconies and windowsills — pe
                 rfect for beginners with limited space.</p>
             </div>
             <div className="card-3">
-               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
               <hr />
               <p>Learn which herbs thrive on balconies and windowsills — pe
                 rfect for beginners with limited space.</p>
             </div>
           </div>
           <div className="set-2">
-             <div className="card-1">
+            <div className="card-1">
               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
               <hr />
               <p>Learn which herbs thrive on balconies and windowsills — pe
                 rfect for beginners with limited space.</p>
             </div>
             <div className="card-2">
-               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
               <hr />
               <p>Learn which herbs thrive on balconies and windowsills — pe
                 rfect for beginners with limited space.</p>
             </div>
             <div className="card-3">
-               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
               <hr />
               <p>Learn which herbs thrive on balconies and windowsills — pe
                 rfect for beginners with limited space.</p>
             </div>
           </div>
           <div className="set-3">
-             <div className="card-1">
+            <div className="card-1">
               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
               <hr />
               <p>Learn which herbs thrive on balconies and windowsills — pe
                 rfect for beginners with limited space.</p>
             </div>
             <div className="card-2">
-               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
               <hr />
               <p>Learn which herbs thrive on balconies and windowsills — pe
                 rfect for beginners with limited space.</p>
             </div>
             <div className="card-3">
-               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
               <hr />
               <p>Learn which herbs thrive on balconies and windowsills — pe
                 rfect for beginners with limited space.</p>
             </div>
           </div>
           <div className="set-4">
-             <div className="card-1">
+            <div className="card-1">
               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
               <hr />
               <p>Learn which herbs thrive on balconies and windowsills — pe
                 rfect for beginners with limited space.</p>
             </div>
             <div className="card-2">
-               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
               <hr />
               <p>Learn which herbs thrive on balconies and windowsills — pe
                 rfect for beginners with limited space.</p>
             </div>
             <div className="card-3">
-               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
               <hr />
               <p>Learn which herbs thrive on balconies and windowsills — pe
                 rfect for beginners with limited space.</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="ai">
+        <p id="title">Ask GreenAI — Your Gardening Assistant</p>
+        <p id="description">Got a question about plants, pests, or planting seasons? Let GreenAI help! Get instant, expert answers to all your gardening questions — anytime, anywhere.</p>
+        <div className="tutorial">
+          <div className="step-1">
+            <h5>1 . Go to the Ask GreenAI section from the navigation bar.</h5>
+            <p>Find the Ask GreenAI option in the navigation bar and click it to open the AI assistant page.</p>
+          </div>
+          <div className="step-2">
+            <h5>2 . In the input box, type your gardening question.</h5>
+            <p>In the input box at the bottom of the chat window, type any gardening-related question you have.</p>
+          </div>
+          <div className="step-3">
+            <h5>3 . Click the Send button (or press Send).</h5>
+            <p>After typing your question, click the Send button or simply press Enter on your keyboard to submit it.</p>
+          </div>
+          <div className="step-4">
+            <h5>4 . Wait a moment and view the AI’s response in the chat window.</h5>
+            <p>Wait a few seconds while the AI thinks, then see its answer appear in the chat window above.</p>
+          </div>
+          <div className="step-5">
+            <h5>5 . Treat the advice like friendly guidance — always double-check and use your best judgment when applying suggestions in your garden.</h5>
+            <p>Read the AI’s response carefully and treat it as helpful guidance. Always double-check and use your own judgment before applying advice in your garden.</p>
           </div>
         </div>
       </section>
