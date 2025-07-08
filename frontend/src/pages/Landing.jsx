@@ -15,10 +15,10 @@ export default function Landing() {
           <img src={logo} alt="" />
         </div>
         <div className="links">
-          <a href="">Home</a>
-          <a href="">Marketplace</a>
+          <a href="#home">Home</a>
+          <a href="#marketplace">Marketplace</a>
+          <a href="blogs">Blogs & Tips</a>
           <a href="">GreenAI</a>
-          <a href="">Blogs & Tips</a>
           <a href="">About Us</a>
           <a href="">Contact Us</a>
         </div>
@@ -55,6 +55,98 @@ export default function Landing() {
             <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
           </div>
           <button>Create My UrbanGreen Account</button>
+        </div>
+      </section>
+
+      <section id="marketplace">
+        <p id="title">Green Marketplace — Tools, Seeds & More</p>
+        <p id="description">Browse and shop gardening essentials from trusted sellers and local growers. Find seeds, tools and everything you need to make your garden thrive all in one place.</p>
+      </section>
+
+      <section id="blogs">
+        <p id="title">Grow Smarter — Blogs & Tips</p>
+        <p id="description">Discover expert advice, creative gardening hacks, and inspiring stories from the GreenLoop community. Whether you’re a beginner or a seasoned grower, find tips to make your garden — and swaps — thrive.</p>
+        <div className="blogs-cards">
+          <div className="set-1">
+            <div className="card-1">
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+            </div>
+            <div className="card-2">
+               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+            </div>
+            <div className="card-3">
+               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+            </div>
+          </div>
+          <div className="set-2">
+             <div className="card-1">
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+            </div>
+            <div className="card-2">
+               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+            </div>
+            <div className="card-3">
+               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+            </div>
+          </div>
+          <div className="set-3">
+             <div className="card-1">
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+            </div>
+            <div className="card-2">
+               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+            </div>
+            <div className="card-3">
+               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+            </div>
+          </div>
+          <div className="set-4">
+             <div className="card-1">
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+            </div>
+            <div className="card-2">
+               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+            </div>
+            <div className="card-3">
+               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+            </div>
+          </div>
         </div>
       </section>
     </div>

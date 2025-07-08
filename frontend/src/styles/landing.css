@@ -108,3 +108,71 @@ nav .links a {
 #home .right-side .confirm-pass {
     margin-top: 15px;
 }
+
+#marketplace{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px 200px;
+    margin-top: 40px;
+}
+
+#marketplace #title{
+    font-size: 52px;
+    font-weight: 600;
+}
+
+#marketplace #description{
+    margin-top: -20px;
+    text-align: center;
+}
+
+#blogs{
+    padding: 40px 200px;
+    margin-top: 40px;
+}
+
+#blogs #title{
+    font-size: 52px;
+    font-weight: 600;
+}
+
+#blogs #description{
+    margin-top: -20px;
+}
+
+#blogs .blogs-cards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+#blogs .blogs-cards .set-1,
+#blogs .blogs-cards .set-2,
+#blogs .blogs-cards .set-3,
+#blogs .blogs-cards .set-4{
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+#blogs .blogs-cards .set-1 .card-1,
+#blogs .blogs-cards .set-1 .card-2,
+#blogs .blogs-cards .set-1 .card-3,
+#blogs .blogs-cards .set-2 .card-1,
+#blogs .blogs-cards .set-2 .card-2,
+#blogs .blogs-cards .set-2 .card-3,
+#blogs .blogs-cards .set-3 .card-1,
+#blogs .blogs-cards .set-3 .card-2,
+#blogs .blogs-cards .set-3 .card-3,
+#blogs .blogs-cards .set-4 .card-1,
+#blogs .blogs-cards .set-4 .card-2,
+#blogs .blogs-cards .set-4 .card-3{
+    padding: 20px;
+    background-color: var(--third-color);
+    border-radius: 4px;
+}
+
