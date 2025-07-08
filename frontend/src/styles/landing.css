@@ -217,3 +217,50 @@ nav .links a {
     align-items: flex-start;
     flex-direction: column;
 }
+
+#about{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px 200px;
+    margin-top: 40px;
+}
+
+#about #title{
+    font-size: 52px;
+    font-weight: 600;
+}
+
+#about #description{
+    margin-top: -20px;
+}
+
+#about .about-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    margin-top: 50px;
+}
+
+#about .about-body .left-side .card-1,
+#about .about-body .left-side .card-2,
+#about .about-body .left-side .card-3{
+    padding: 30px;
+    border-radius: 4px;
+    background-color: var(--third-color);
+    margin-top: 10px;
+    transition: 0.4s;
+    &:hover{
+        transform: scale(1.05);
+    }
+}
+
+#about .about-body .right-side{
+   
+}
+
+#about h4{
+    margin-top: 75px;
+}

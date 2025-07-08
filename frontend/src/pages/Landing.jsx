@@ -19,7 +19,7 @@ export default function Landing() {
           <a href="#marketplace">Marketplace</a>
           <a href="#blogs">Blogs & Tips</a>
           <a href="#ai">GreenAI</a>
-          <a href="">About Us</a>
+          <a href="#about">About Us</a>
           <a href="">Contact Us</a>
         </div>
       </nav>
@@ -175,6 +175,39 @@ export default function Landing() {
             <p>Read the AI’s response carefully and treat it as helpful guidance. Always double-check and use your own judgment before applying advice in your garden.</p>
           </div>
         </div>
+      </section>
+
+      <section id='about'>
+        <p id="title">About Us — Growing Together with UrbanGreen</p>
+        <p id="description">At UrbanGreen, we believe gardening is more than just growing plants — it’s about growing connections, sharing harvests, and nurturing a greener world. Our platform helps gardeners of all skill levels connect, swap their homegrown p-
+          roduce, and learn from each other. Whether you have a big garden, a small balcony, or just a pot of herbs on your windowsill — you’re part of the GreenLoop community!</p>
+        <div className="about-body">
+          <div className="left-side">
+            <div className="card-1">
+              <h5>Our Mission</h5>
+              <hr />
+              <p>To create a vibrant, sustainable community where people grow, share, and thrive through gardening.</p>
+            </div>
+            <div className="card-2">
+              <h5>Our Vision</h5>
+              <hr />
+              <p>A world where no harvest goes to waste, everyone has access to fresh food, and neighbors grow closer 
+— one plant at a time.</p>
+            </div>
+            <div className="card-3">
+              <h5>Our Values</h5>
+              <hr />
+              <p>Sustainability — We care for the earth by reducing waste and encouraging eco-friendly practices.</p>
+              <p>Community — We bring people together through a shared love of gardening.</p>
+              <p>Learning — We help each other grow, not just plants but also knowledge.</p>
+              <p>Inclusivity — Everyone is welcome, regardless of experience or space.</p>
+            </div>
+          </div>
+          <div className="right-side">
+            <img src={logo} alt="" />
+          </div>
+        </div>
+        <h4>Let’s grow together, share more, and make the world greener — one swap at a time!</h4>
       </section>
     </div>
   )
