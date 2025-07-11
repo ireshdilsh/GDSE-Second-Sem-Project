@@ -128,12 +128,12 @@ nav .links a {
     text-align: center;
 }
 
-#marketplace .btns{
+#marketplace .btns {
     display: flex;
     gap: 15px;
 }
 
-#marketplace .btns button{
+#marketplace .btns button {
     border: none;
     background-color: var(--secondry-color);
     color: var(--primary-color);
@@ -142,7 +142,7 @@ nav .links a {
     padding: 7px 20px;
 }
 
-#marketplace .selections{
+#marketplace .selections {
     margin-top: 40px;
 }
 
@@ -228,7 +228,7 @@ nav .links a {
 #ai .tutorial .step-2,
 #ai .tutorial .step-3,
 #ai .tutorial .step-4,
-#ai .tutorial .step-5{
+#ai .tutorial .step-5 {
     margin-top: 50px;
     display: flex;
     justify-content: left;
@@ -236,7 +236,7 @@ nav .links a {
     flex-direction: column;
 }
 
-#about{
+#about {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -245,16 +245,16 @@ nav .links a {
     margin-top: 40px;
 }
 
-#about #title{
+#about #title {
     font-size: 52px;
     font-weight: 600;
 }
 
-#about #description{
+#about #description {
     margin-top: -20px;
 }
 
-#about .about-body{
+#about .about-body {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -264,21 +264,20 @@ nav .links a {
 
 #about .about-body .left-side .card-1,
 #about .about-body .left-side .card-2,
-#about .about-body .left-side .card-3{
+#about .about-body .left-side .card-3 {
     padding: 30px;
     border-radius: 4px;
     background-color: var(--third-color);
     margin-top: 10px;
     transition: 0.4s;
-    &:hover{
+
+    &:hover {
         transform: scale(1.01);
     }
 }
 
-#about .about-body .right-side{
-   
-}
+#about .about-body .right-side {}
 
-#about h4{
+#about h4 {
     margin-top: 75px;
 }
