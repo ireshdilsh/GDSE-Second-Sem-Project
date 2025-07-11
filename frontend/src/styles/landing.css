@@ -200,6 +200,10 @@ nav .links a {
     padding: 25px;
     border-radius: 4px;
     width: 350px;
+
+    &:hover{
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    }
 }
 
 #marketplace .selections .seeds .set-1 .card-1 p,
@@ -237,6 +241,16 @@ nav .links a {
 #marketplace .selections .books .set-2 .card-2 p,
 #marketplace .selections .books .set-2 .card-3 p{
     text-align: justify;
+}
+
+.instock{
+    padding: 2px 15px;
+    background-color: rgba(0, 128, 0, 0.184);
+    color: green;
+    width: 81px;
+    border-radius: 50px;
+    font-weight: 500;
+    margin-top: 30px;
 }
 
 #blogs {
