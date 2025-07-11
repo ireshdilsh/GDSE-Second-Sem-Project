@@ -90,16 +90,80 @@ export default function Landing() {
         </div>
         <div className="selections">
           {active === "seeds" && (
-            <div>
-              <h3>Seeds & Plants</h3>
-              <p>Explore a wide variety of seeds and live plants for your garden.</p>
+            <div className="seeds">
+             <div className="set-1">
+              <div className="card-1">
+                <h5>Organic Tomato Seeds</h5>
+                <hr />
+                <p>Grow your own fresh, juicy tomatoes with these high-quality organic seeds. Perfect for beginners and experienced gardeners alike, they thrive in pots, raised beds, or directly in the soil. Enjoy flavorful, healthy tomatoes from your garden while reducing your grocery bills and eating more sustainably every season.</p>
+              </div>
+              <div className="card-2">
+                  <h5>Basil Herb Plant</h5>
+                <hr />
+                <p>Add vibrant green basil to your kitchen or garden. This healthy basil plant provides a constant supply of aromatic leaves, perfect for cooking or garnishing. Easy to care for and fast-growing, it brings both flavor and beauty to any space while helping you connect with your garden daily.</p>
+              </div>
+              <div className="card-3">
+                  <h5>Sunflower Seeds</h5>
+                <hr />
+                <p>Brighten up your garden with these cheerful sunflower seeds. Perfect for garden borders or pots, sunflowers attract bees and birds while adding bold color to your space. They grow tall and strong, offering joy and natural beauty, making them a favorite choice for both children and adults alike.</p>
+              </div>
+             </div>
+             <div className="set-2">
+              <div className="card-1">
+                <h5>Strawberry Runners</h5>
+                <hr />
+                <p>Start growing sweet, delicious strawberries at home with these healthy runners. Easy to plant and maintain, they produce fresh fruits right from your garden or balcony. Experience the joy of harvesting your own juicy strawberries while saving money and reducing your carbon footprint. Perfect for any gardening enthusiast!</p>
+              </div>
+              <div className="card-2">
+                 <h5>Lavender Plant</h5>
+                <hr />
+                <p>Bring beauty and calming fragrance into your garden with this hardy lavender plant. Its purple flowers attract pollinators and its soothing aroma creates a relaxing environment. Perfect for gardens, patios, or windowsills, lavender is low-maintenance and long-lasting, offering both ornamental value and natural charm throughout the year.</p>
+              </div>
+              <div className="card-3">
+                 <h5>Spinach Seeds</h5>
+                <hr />
+                <p>Enjoy fresh, nutrient-rich greens at home with these easy-to-grow spinach seeds. Ideal for small gardens, pots, or raised beds, spinach grows quickly and provides a healthy, tasty addition to your meals. A perfect choice for anyone looking to eat healthier and garden sustainably, even in limited spaces.</p>
+              </div>
+             </div>
             </div>
           )}
 
           {active === "tools" && (
-            <div>
-              <h3>Tools & Equipment</h3>
-              <p>Find high-quality tools and equipment to help you garden with ease.</p>
+            <div className='tools'>
+              <div className="set-1">
+                <div className="card-1">
+                  <h5></h5>
+                  <hr />
+                  <p></p>
+                </div>
+                <div className="card-2">
+                  <h5></h5>
+                  <hr />
+                  <p></p>
+                </div>
+                <div className="card-3">
+                  <h5></h5>
+                  <hr />
+                  <p></p>
+                </div>
+              </div>
+              <div className="set-2">
+                <div className="card-1">
+                  <h5></h5>
+                  <hr />
+                  <p></p>
+                </div>
+                <div className="card-2">
+                  <h5></h5>
+                  <hr />
+                  <p></p>
+                </div>
+                <div className="card-3">
+                  <h5></h5>
+                  <hr />
+                  <p></p>
+                </div>
+              </div>
             </div>
           )}
 

@@ -146,6 +146,35 @@ nav .links a {
     margin-top: 40px;
 }
 
+#marketplace .selections .seeds .set-1,
+#marketplace .selections .seeds .set-2 {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#marketplace .selections .seeds .set-1 .card-1,
+#marketplace .selections .seeds .set-1 .card-2,
+#marketplace .selections .seeds .set-1 .card-3,
+#marketplace .selections .seeds .set-2 .card-1,
+#marketplace .selections .seeds .set-2 .card-2,
+#marketplace .selections .seeds .set-2 .card-3 {
+    background-color: var(--secondry-color);
+    border: 2px solid var(--third-color);
+    padding: 25px;
+    border-radius: 4px;
+    width: 350px;
+}
+
+#marketplace .selections .seeds .set-1 .card-1 p,
+#marketplace .selections .seeds .set-1 .card-2 p,
+#marketplace .selections .seeds .set-1 .card-3 p,
+#marketplace .selections .seeds .set-2 .card-1 p,
+#marketplace .selections .seeds .set-2 .card-2 p,
+#marketplace .selections .seeds .set-2 .card-3 p{
+    text-align: justify;
+}
+
 #blogs {
     padding: 40px 200px;
     margin-top: 40px;
