@@ -10,6 +10,13 @@ import seeds4 from '../assets/seeds/4.jpg'
 import seeds5 from '../assets/seeds/5.jpg'
 import seeds6 from '../assets/seeds/6.jpg'
 
+import tool1 from '../assets/tools/1.jpg'
+import tool2 from '../assets/tools/2.jpg'
+import tool3 from '../assets/tools/3.jpg'
+import tool4 from '../assets/tools/4.jpg'
+import tool5 from '../assets/tools/5.jpg'
+import tool6 from '../assets/tools/6.jpg'
+
 export default function Landing() {
 
   const [active, setActive] = useState("seeds");
@@ -163,6 +170,7 @@ export default function Landing() {
             <div className='tools'>
               <div className="set-1">
                 <div className="card-1">
+                  <img src={tool1} alt="" />
                   <h5>Stainless Steel Pruning Shears</h5>
                   <hr />
                   <p>Durable and sharp, these stainless steel pruning shears are perfect for trimming plants, harvesting herbs, and shaping your garden. With comfortable handles and a precise cut, they make gardening easier and more enjoyable while keeping your plants healthy and looking great.
@@ -172,6 +180,7 @@ export default function Landing() {
                   </div>
                 </div>
                 <div className="card-2">
+                  <img src={tool2} alt="" />
                   <h5>Gardening Gloves (Pair)</h5>
                   <hr />
                   <p>Protect your hands from dirt, thorns, and blisters with these comfortable gardening gloves. Breathable and durable, they give you a good grip and keep your hands clean while working with soil, plants, or tools. Essential for any gardener to work safely and comfortably in the garden.</p>
@@ -180,6 +189,7 @@ export default function Landing() {
                   </div>
                 </div>
                 <div className="card-3">
+                  <img src={tool3} alt="" />
                   <h5>Watering Can (Metal, 5L)</h5>
                   <hr />
                   <p>Keep your plants happy and hydrated with this sturdy metal watering can. Its classic design and long spout allow for gentle, precise watering without splashing. Perfect for indoor and outdoor plants, it’s both functional and stylish — a must-have tool for everyday gardening tasks.</p>
@@ -190,6 +200,7 @@ export default function Landing() {
               </div>
               <div className="set-2">
                 <div className="card-1">
+                  <img src={tool4} alt="" />
                   <h5>Hand Trowel</h5>
                   <hr />
                   <p>A versatile and handy tool for digging, planting, and transplanting small plants or seedlings. This hand trowel features a comfortable grip and a strong metal blade to handle all your soil work with ease, making it an essential addition to any gardener’s toolkit.</p>
@@ -198,6 +209,7 @@ export default function Landing() {
                   </div>
                 </div>
                 <div className="card-2">
+                  <img src={tool5} alt="" />
                   <h5>Garden Tool Set (5-piece)</h5>
                   <hr />
                   <p>This complete garden tool set includes all the essentials: trowel, pruners, weeder, cultivator, and gloves. Perfect for beginners and experienced gardeners, it helps you dig, plant, prune, and maintain your garden efficiently. Compact and easy to store, this set makes gardening more organized and fun.</p>
@@ -206,6 +218,7 @@ export default function Landing() {
                   </div>
                 </div>
                 <div className="card-3">
+                  <img src={tool6} alt="" />
                   <h5>Small Garden Hoe</h5>
                   <hr />
                   <p>Keep your soil loose and weed-free with this lightweight yet sturdy garden hoe. Ideal for breaking up compacted soil, shaping beds, and removing weeds, it saves time and energy while improving soil health and plant growth. A reliable companion for maintaining a beautiful and productive garden.</p>
