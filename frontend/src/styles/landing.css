@@ -243,6 +243,14 @@ nav .links a {
     text-align: justify;
 }
 
+#marketplace .selections img{
+    background-size: cover;
+    width: 300px;
+    overflow: hidden;
+    border-radius: 4px;
+    margin-bottom: 25px;
+}
+
 .instock {
     padding: 2px 15px;
     background-color: rgba(0, 128, 0, 0.184);

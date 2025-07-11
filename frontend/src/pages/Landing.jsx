@@ -3,6 +3,13 @@ import '../styles/landing.css'
 import bgVideo from '../assets/Green Aesthetic Forest Nature Video.mp4'
 import logo from '../assets/logo.png'
 
+import seeds1 from '../assets/seeds/1.jpg'
+import seeds2 from '../assets/seeds/2.jpg'
+import seeds3 from '../assets/seeds/3.jpg'
+import seeds4 from '../assets/seeds/4.jpg'
+import seeds5 from '../assets/seeds/5.jpg'
+import seeds6 from '../assets/seeds/6.jpg'
+
 export default function Landing() {
 
   const [active, setActive] = useState("seeds");
@@ -93,6 +100,7 @@ export default function Landing() {
             <div className="seeds">
               <div className="set-1">
                 <div className="card-1">
+                  <img src={seeds1} alt="" />
                   <h5>Organic Tomato Seeds</h5>
                   <hr />
                   <p>Grow your own fresh, juicy tomatoes with these high-quality organic seeds. Perfect for beginners and experienced gardeners alike, they thrive in pots, raised beds, or directly in the soil. Enjoy flavorful, healthy tomatoes from your garden while reducing your grocery bills and eating more sustainably every season.</p>
@@ -101,6 +109,7 @@ export default function Landing() {
                   </div>
                 </div>
                 <div className="card-2">
+                   <img src={seeds2} alt="" />
                   <h5>Basil Herb Plant</h5>
                   <hr />
                   <p>Add vibrant green basil to your kitchen or garden. This healthy basil plant provides a constant supply of aromatic leaves, perfect for cooking or garnishing. Easy to care for and fast-growing, it brings both flavor and beauty to any space while helping you connect with your garden daily.</p>
@@ -109,6 +118,7 @@ export default function Landing() {
                   </div>
                 </div>
                 <div className="card-3">
+                   <img src={seeds3} alt="" />
                   <h5>Sunflower Seeds</h5>
                   <hr />
                   <p>Brighten up your garden with these cheerful sunflower seeds. Perfect for garden borders or pots, sunflowers attract bees and birds while adding bold color to your space. They grow tall and strong, offering joy and natural beauty, making them a favorite choice for both children and adults alike.</p>
@@ -119,6 +129,7 @@ export default function Landing() {
               </div>
               <div className="set-2">
                 <div className="card-1">
+                   <img src={seeds4} alt="" />
                   <h5>Strawberry Runners</h5>
                   <hr />
                   <p>Start growing sweet, delicious strawberries at home with these healthy runners. Easy to plant and maintain, they produce fresh fruits right from your garden or balcony. Experience the joy of harvesting your own juicy strawberries while saving money and reducing your carbon footprint. Perfect for any gardening enthusiast!</p>
@@ -127,6 +138,7 @@ export default function Landing() {
                   </div>
                 </div>
                 <div className="card-2">
+                   <img src={seeds5} alt="" />
                   <h5>Lavender Plant</h5>
                   <hr />
                   <p>Bring beauty and calming fragrance into your garden with this hardy lavender plant. Its purple flowers attract pollinators and its soothing aroma creates a relaxing environment. Perfect for gardens, patios, or windowsills, lavender is low-maintenance and long-lasting, offering both ornamental value and natural charm throughout the year.</p>
@@ -135,6 +147,7 @@ export default function Landing() {
                   </div>
                 </div>
                 <div className="card-3">
+                   <img src={seeds6} alt="" />
                   <h5>Spinach Seeds</h5>
                   <hr />
                   <p>Enjoy fresh, nutrient-rich greens at home with these easy-to-grow spinach seeds. Ideal for small gardens, pots, or raised beds, spinach grows quickly and provides a healthy, tasty addition to your meals. A perfect choice for anyone looking to eat healthier and garden sustainably, even in limited spaces.</p>
