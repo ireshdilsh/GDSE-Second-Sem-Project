@@ -30,7 +30,7 @@ export default function Landing() {
           <a href="#blogs">Blogs & Tips</a>
           <a href="#ai">GreenAI</a>
           <a href="#about">About Us</a>
-          <a href="">Contact Us</a>
+          <a href="#contact">Contact Us</a>
         </div>
       </nav>
 
@@ -272,6 +272,15 @@ export default function Landing() {
         </div>
         <h4>Let’s grow together, share more, and make the world greener — one swap at a time!</h4>
       </section>
+
+      <section id="contact">
+
+      </section>
+
+      <footer>
+       
+      </footer>
+
     </div>
   )
 }
