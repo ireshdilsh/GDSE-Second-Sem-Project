@@ -147,15 +147,15 @@ nav .links a {
 }
 
 #marketplace .selections .seeds .set-1,
-#marketplace .selections .seeds .set-2, 
-#marketplace .selections .tools .set-1, 
-#marketplace .selections .tools .set-2, 
-#marketplace .selections .soil .set-1, 
+#marketplace .selections .seeds .set-2,
+#marketplace .selections .tools .set-1,
+#marketplace .selections .tools .set-2,
+#marketplace .selections .soil .set-1,
 #marketplace .selections .soil .set-2,
-#marketplace .selections .planters .set-1, 
+#marketplace .selections .planters .set-1,
 #marketplace .selections .planters .set-2,
-#marketplace .selections .books .set-1, 
-#marketplace .selections .books .set-2  {
+#marketplace .selections .books .set-1,
+#marketplace .selections .books .set-2 {
     display: flex;
     gap: 10px;
     margin-top: 10px;
@@ -201,7 +201,7 @@ nav .links a {
     border-radius: 4px;
     width: 350px;
 
-    &:hover{
+    &:hover {
         box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     }
 }
@@ -239,11 +239,11 @@ nav .links a {
 #marketplace .selections .books .set-1 .card-3 p,
 #marketplace .selections .books .set-2 .card-1 p,
 #marketplace .selections .books .set-2 .card-2 p,
-#marketplace .selections .books .set-2 .card-3 p{
+#marketplace .selections .books .set-2 .card-3 p {
     text-align: justify;
 }
 
-.instock{
+.instock {
     padding: 2px 15px;
     background-color: rgba(0, 128, 0, 0.184);
     color: green;
