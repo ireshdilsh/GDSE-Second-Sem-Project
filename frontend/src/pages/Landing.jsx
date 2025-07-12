@@ -17,6 +17,13 @@ import tool4 from '../assets/tools/4.jpg'
 import tool5 from '../assets/tools/5.jpg'
 import tool6 from '../assets/tools/6.jpg'
 
+import soil1 from '../assets/soil/1.jpg'
+import soil2 from '../assets/soil/2.jpg'
+import soil3 from '../assets/soil/3.jpg'
+import soil4 from '../assets/soil/4.jpg'
+import soil5 from '../assets/soil/5.jpg'
+import soil6 from '../assets/soil/6.jpg'
+
 export default function Landing() {
 
   const [active, setActive] = useState("seeds");
@@ -234,6 +241,7 @@ export default function Landing() {
             <div className='soil'>
               <div className="set-1">
                 <div className="card-1">
+                  <img src={soil1} alt="" />
                   <h5>Organic Compost (10kg Bag)</h5>
                   <hr />
                   <p>Enrich your soil with this nutrient-packed organic compost. Perfect for vegetables, flowers, and herbs, it improves soil structure, retains moisture, and promotes healthy plant growth naturally. An eco-friendly way to recycle and boost your garden’s productivity while caring for the earth.</p>
@@ -242,6 +250,7 @@ export default function Landing() {
                   </div>
                 </div>
                 <div className="card-2">
+                  <img src={soil2} alt="" />
                   <h5>Coco Peat Blocks</h5>
                   <hr />
                   <p>Lightweight and sustainable, these compressed coco peat blocks expand into soft, airy soil ideal for seedlings, pots, and garden beds. They retain water effectively and improve aeration, giving your plants the perfect growing medium without chemicals. Great for indoor and outdoor gardening alike.</p>
@@ -250,6 +259,7 @@ export default function Landing() {
                   </div>
                 </div>
                 <div className="card-3">
+                  <img src={soil3} alt="" />
                   <h5>Organic Vegetable Fertilizer</h5>
                   <hr />
                   <p>Boost your vegetable garden with this all-natural fertilizer, rich in essential nutrients. Specially formulated for edible plants, it enhances flavor, yield, and overall health of your crops while being safe for you and the environment. Enjoy healthier, tastier harvests naturally!</p>
@@ -260,6 +270,7 @@ export default function Landing() {
               </div>
               <div className="set-2">
                 <div className="card-1">
+                  <img src={soil4} alt="" />
                   <h5>Worm Castings (Vermicompost)</h5>
                   <hr />
                   <p>A natural powerhouse of nutrients, worm castings improve soil fertility, increase microbial activity, and help plants resist diseases. This odorless, organic vermicompost is perfect for all plants — flowers, veggies, or herbs — and ensures stronger roots and lush growth.</p>
@@ -268,6 +279,7 @@ export default function Landing() {
                   </div>
                 </div>
                 <div className="card-2">
+                  <img src={soil5} alt="" />
                   <h5>Potting Mix (Ready-to-Use)</h5>
                   <hr />
                   <p>Convenient and balanced, this ready-to-use potting mix is perfect for houseplants, balconies, and container gardening. Blended for optimal drainage and nutrient retention, it supports healthy root development and vibrant foliage. Just open the bag and start planting!</p>
@@ -276,6 +288,7 @@ export default function Landing() {
                   </div>
                 </div>
                 <div className="card-3">
+                  <img src={soil6} alt="" />
                   <h5>Natural Pest-Repellent Fertilizer</h5>
                   <hr />
                   <p>Protect and nourish your plants at the same time with this dual-purpose fertilizer. Enriched with organic ingredients that repel common pests while feeding the soil, it keeps your garden healthy and chemical-free. Ideal for eco-conscious gardeners looking for an easy, safe solution.</p>
