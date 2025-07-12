@@ -13,23 +13,21 @@ import com.example.demo.service.AdminService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @CrossOrigin(origins = "*")
 public class AdminController {
- 
-    @Autowired 
+
+    @Autowired
     AdminService adminService;
 
     @PostMapping("/add/new/admin")
     public Admin addNewUser(@RequestBody AdminDto dto) {
         return adminService.addNewUser(dto);
     }
-    
+
     @GetMapping("/get/all/admin")
     public ResponseEntity<List<Admin>> getAllAdmins() {
         return ResponseEntity.status(200).body(adminService.getAllAdmins());
     }
-
 }
