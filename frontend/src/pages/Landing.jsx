@@ -581,7 +581,7 @@ export default function Landing() {
       </section>
 
       <footer>
-        
+
       </footer>
 
     </div>
