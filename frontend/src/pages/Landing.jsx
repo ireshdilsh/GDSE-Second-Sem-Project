@@ -24,6 +24,13 @@ import soil4 from '../assets/soil/4.jpg'
 import soil5 from '../assets/soil/5.jpg'
 import soil6 from '../assets/soil/6.jpg'
 
+import planter1 from '../assets/planters/1.jpg'
+import planter2 from '../assets/planters/2.jpg'
+import planter3 from '../assets/planters/3.jpg'
+import planter4 from '../assets/planters/4.jpg'
+import planter5 from '../assets/planters/5.jpg'
+import planter6 from '../assets/planters/6.jpg'
+
 export default function Landing() {
 
   const [active, setActive] = useState("seeds");
@@ -304,6 +311,7 @@ export default function Landing() {
             <div className='planters'>
               <div className="set-1">
                 <div className="card-1">
+                  <img src={planter1} alt="" />
                   <h5>Ceramic Herb Planter</h5>
                   <hr />
                   <p>A stylish ceramic planter perfect for herbs, succulents, or flowers. Its sleek design fits beautifully on kitchen counters, balconies, or windowsills, adding a touch of elegance to your indoor or outdoor spaces while keeping your plants happy and healthy.</p>
@@ -312,6 +320,7 @@ export default function Landing() {
                   </div>
                 </div>
                 <div className="card-2">
+                  <img src={planter2} alt="" />
                   <h5>Hanging Basket Planters (Set of 2)</h5>
                   <hr />
                   <p>Maximize your space and add charm with these woven hanging baskets. Ideal for trailing plants, ferns, or flowers, they bring life to walls, balconies, or patios while saving floor space. Durable, lightweight, and perfect for creating a cozy green corner.</p>
@@ -320,6 +329,7 @@ export default function Landing() {
                   </div>
                 </div>
                 <div className="card-3">
+                  <img src={planter3} alt="" />
                   <h5>Wooden Raised Garden Bed</h5>
                   <hr />
                   <p>Grow vegetables, herbs, or flowers in this sturdy wooden raised bed. Perfect for backyards or terraces, it improves drainage, reduces weeds, and protects your plants from pests. A practical and attractive way to organize your garden while making planting more comfortable.</p>
@@ -330,6 +340,7 @@ export default function Landing() {
               </div>
               <div className="set-2">
                 <div className="card-1">
+                  <img src={planter4} alt="" />
                   <h5>Self-Watering Plastic Planters (Set of 3)</h5>
                   <hr />
                   <p>Keep your plants hydrated effortlessly with these self-watering planters. Ideal for busy gardeners, they store water at the bottom and deliver it as needed, reducing maintenance while promoting healthy roots. Lightweight, durable, and perfect for home or office use.</p>
@@ -338,6 +349,7 @@ export default function Landing() {
                   </div>
                 </div>
                 <div className="card-2">
+                  <img src={planter5} alt="" />
                   <h5>Decorative Metal Planter Stand</h5>
                   <hr />
                   <p>Elevate your plants with this elegant metal stand and planter combo. Adds height and dimension to your plant display while keeping pots off the ground. Perfect for indoor or outdoor use, combining functionality and style to showcase your favorite greenery beautifully.</p>
@@ -346,6 +358,7 @@ export default function Landing() {
                   </div>
                 </div>
                 <div className="card-3">
+                  <img src={planter6} alt="" />
                   <h5>Recycled Eco-Friendly Pots</h5>
                   <hr />
                   <p>Sustainably made from recycled materials, these eco-friendly pots are both beautiful and kind to the planet. Lightweight yet sturdy, they’re perfect for any type of plant and show your commitment to green living while enhancing your garden’s charm.</p>
