@@ -555,7 +555,7 @@ export default function Landing() {
       </section>
 
       <footer>
-
+          h1
       </footer>
 
     </div>
