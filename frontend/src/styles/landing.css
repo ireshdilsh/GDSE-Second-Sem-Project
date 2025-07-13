@@ -473,10 +473,17 @@ nav .links a:hover::after {
     background-color: var(--primary-color);
     color: var(--secondry-color);
     font-weight: 500;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
     &:hover{
         opacity: 0.8;
     }
+}
+
+#contact .contact-body .right-side button img{
+    height: 16px;
 }
 
 #contact .contact-body .right-side input,

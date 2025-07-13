@@ -628,7 +628,7 @@ export default function Landing() {
                 <label for="exampleInputEmail1" class="form-label">Message</label>
               <textarea type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
             </div>
-            <button>Send Message</button>
+            <button>Send Message <img src="https://img.icons8.com/?size=100&id=85971&format=png&color=fcfcfc" alt="" /></button>
           </div>
         </div>
       </section>
