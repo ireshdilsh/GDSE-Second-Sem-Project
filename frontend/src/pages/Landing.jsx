@@ -605,11 +605,31 @@ export default function Landing() {
       </section>
 
       <section id="contact">
-        <p id='title'></p>
-        <p id="description"></p>
+        <p id='title'>Get in Touch with GreenLoop</p>
+        <p id="description">Have a question, suggestion, or just want to say hello?  We’d love to hear from you! Fill out the form below or reach us directly through our contact details.Our team will get back to you as soon as possible.</p>
         <div className="contact-body">
           <div className="left-side"></div>
-          <div className="right-side"></div>
+          <div className="right-side">
+            <h4>Lets Collaborate !</h4>
+            <div className="name">
+              <label for="exampleInputEmail1" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+            </div>
+            <div className="email">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div className="subject">
+                <label for="exampleInputEmail1" class="form-label">Subject</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+            </div>
+            <div className="message">
+                <label for="exampleInputEmail1" class="form-label">Message</label>
+              <textarea type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+            </div>
+            <button>Send Message</button>
+          </div>
         </div>
       </section>
 
