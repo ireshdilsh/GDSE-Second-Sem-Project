@@ -4,6 +4,7 @@ import bgVideo from '../assets/Green Aesthetic Forest Nature Video.mp4'
 import logo from '../assets/logo.png'
 import about1 from '../assets/about-1.jpg'
 import about2 from '../assets/about-2.jpg'
+import footerlogo from '../assets/footer-logo.png'
 
 import seeds1 from '../assets/seeds/1.jpg'
 import seeds2 from '../assets/seeds/2.jpg'
@@ -605,7 +606,7 @@ export default function Landing() {
       </section>
 
       <section id="contact">
-        <p id='title'>Get in Touch with GreenLoop</p>
+        <p id='title'>Get in Touch with UrbanGreen</p>
         <p id="description">Have a question, suggestion, or just want to say hello?  We’d love to hear from you! Fill out the form below or reach us directly through our contact details.Our team will get back to you as soon as possible.</p>
         <div className="contact-body">
           <div className="left-side"></div>
@@ -621,11 +622,11 @@ export default function Landing() {
               <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
             </div>
             <div className="subject">
-                <label for="exampleInputEmail1" class="form-label">Subject</label>
+              <label for="exampleInputEmail1" class="form-label">Subject</label>
               <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
             </div>
             <div className="message">
-                <label for="exampleInputEmail1" class="form-label">Message</label>
+              <label for="exampleInputEmail1" class="form-label">Message</label>
               <textarea type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
             </div>
             <button>Send Message <img src="https://img.icons8.com/?size=100&id=85971&format=png&color=fcfcfc" alt="" /></button>
@@ -634,9 +635,38 @@ export default function Landing() {
       </section>
 
       <footer>
-
+        <div className="footer-body">
+          <div className="left-side">
+            <img src={footerlogo} alt="" />
+            <p>Connecting gardeners, sharing harvests, and growing greener
+              communities — together with UrbanGreen.</p>
+          </div>
+          <div className="middle-side">
+            <h4>Useful Links</h4>
+            <div className="links">
+              <a href="#home">Home</a>
+              <a href="#marketplace">Marketplace</a>
+              <a href="#blogs">Blogs & Tips</a>
+              <a href="#ai">GreenAI</a>
+              <a href="#about">About Us</a>
+              <a href="#contact">Contact Us</a>
+            </div>
+          </div>
+          <div className="right-side">
+            <h4>Stay Connected — Join Our Newsletter</h4>
+            <p>Join our newsletter and never miss out on fresh ideas, special -
+              offers, and inspiring stories from fellow gardeners.</p>
+            <div className="email">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <button>Subcribe Now</button>
+          </div>
+        </div>
+        <h5 id='thank-txt'>Thank you for being part of UrbanGreen — keep growing, keep sharing!</h5>
+        <p id='last'>© 2025 UrbanGreen. All rights reserved.</p>
       </footer>
-
     </div>
   )
 }
