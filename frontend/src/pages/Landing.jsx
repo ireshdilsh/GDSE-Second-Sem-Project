@@ -454,18 +454,21 @@ export default function Landing() {
               <hr />
               <p>Learn which herbs thrive on balconies and windowsills — pe
                 rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
             </div>
             <div className="card-2">
               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
               <hr />
               <p>Learn which herbs thrive on balconies and windowsills — pe
                 rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
             </div>
             <div className="card-3">
               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
               <hr />
               <p>Learn which herbs thrive on balconies and windowsills — pe
                 rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
             </div>
           </div>
           <div className="set-2">
@@ -474,18 +477,21 @@ export default function Landing() {
               <hr />
               <p>Learn which herbs thrive on balconies and windowsills — pe
                 rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
             </div>
             <div className="card-2">
               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
               <hr />
               <p>Learn which herbs thrive on balconies and windowsills — pe
                 rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
             </div>
             <div className="card-3">
               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
               <hr />
               <p>Learn which herbs thrive on balconies and windowsills — pe
                 rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
             </div>
           </div>
           <div className="set-3">
@@ -494,18 +500,21 @@ export default function Landing() {
               <hr />
               <p>Learn which herbs thrive on balconies and windowsills — pe
                 rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
             </div>
             <div className="card-2">
               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
               <hr />
               <p>Learn which herbs thrive on balconies and windowsills — pe
                 rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
             </div>
             <div className="card-3">
               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
               <hr />
               <p>Learn which herbs thrive on balconies and windowsills — pe
                 rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
             </div>
           </div>
           <div className="set-4">
@@ -514,18 +523,21 @@ export default function Landing() {
               <hr />
               <p>Learn which herbs thrive on balconies and windowsills — pe
                 rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
             </div>
             <div className="card-2">
               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
               <hr />
               <p>Learn which herbs thrive on balconies and windowsills — pe
                 rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
             </div>
             <div className="card-3">
               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
               <hr />
               <p>Learn which herbs thrive on balconies and windowsills — pe
                 rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
             </div>
           </div>
         </div>

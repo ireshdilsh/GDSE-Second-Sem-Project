@@ -314,6 +314,12 @@ nav .links a {
     }
 }
 
+#blogs #author{
+    text-align: right;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
 #ai {
     display: flex;
     justify-content: center;
