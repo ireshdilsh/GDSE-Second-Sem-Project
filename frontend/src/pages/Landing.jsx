@@ -31,6 +31,13 @@ import planter4 from '../assets/planters/4.jpg'
 import planter5 from '../assets/planters/5.jpg'
 import planter6 from '../assets/planters/6.jpg'
 
+import book1 from '../assets/books/1.jpg'
+import book2 from '../assets/books/2.jpg'
+import book3 from '../assets/books/3.jpg'
+import book4 from '../assets/books/4.jpg'
+import book5 from '../assets/books/5.jpg'
+import book6 from '../assets/books/6.jpg'
+
 export default function Landing() {
 
   const [active, setActive] = useState("seeds");
@@ -374,6 +381,7 @@ export default function Landing() {
             <div className='books'>
               <div className="set-1">
                 <div className="card-1">
+                  <img src={book1} alt="" />
                   <h5>The Urban Gardener’s Handbook</h5>
                   <hr />
                   <p>A practical guide for growing food in small spaces. Learn how to create a thriving garden on your balcony, rooftop, or windowsill. Packed with tips on choosing plants, maximizing space, and maintaining your garden sustainably, it’s perfect for beginners and experienced gardeners alike.</p>
@@ -382,6 +390,7 @@ export default function Landing() {
                   </div>
                 </div>
                 <div className="card-2">
+                  <img src={book2} alt="" />
                   <h5>Organic Gardening Made Easy</h5>
                   <hr />
                   <p>Discover the secrets of chemical-free gardening with this easy-to-follow book. Learn how to grow healthy vegetables, fruits, and flowers naturally. Includes soil tips, composting, pest control, and more to help you create a thriving, eco-friendly garden.</p>
@@ -390,6 +399,7 @@ export default function Landing() {
                   </div>
                 </div>
                 <div className="card-3">
+                  <img src={book3} alt="" />
                   <h5>Seasonal Planting Guide</h5>
                   <hr />
                   <p>Plan your garden for year-round beauty and productivity with this seasonal planting guide. It helps you know what to plant, when to plant, and how to care for your garden through every season. A must-have reference for maximizing harvests and maintaining a vibrant garden all year.</p>
@@ -400,6 +410,7 @@ export default function Landing() {
               </div>
               <div className="set-2">
                 <div className="card-1">
+                  <img src={book4} alt="" />
                   <h5>Companion Planting Secrets</h5>
                   <hr />
                   <p>Learn how to pair plants strategically to improve growth, deter pests, and boost yields naturally. This guide explains which plants thrive together and which don’t — helping you create a more productive and harmonious garden ecosystem.</p>
@@ -408,6 +419,7 @@ export default function Landing() {
                   </div>
                 </div>
                 <div className="card-2">
+                  <img src={book5} alt="" />
                   <h5>Composting for Beginners</h5>
                   <hr />
                   <p>Turn your kitchen scraps and garden waste into nutrient-rich compost with this beginner-friendly guide. Step-by-step instructions make it easy to start composting, improve your soil, and reduce household waste while keeping your garden healthy and green.</p>
@@ -416,6 +428,7 @@ export default function Landing() {
                   </div>
                 </div>
                 <div className="card-3">
+                  <img src={book6} alt="" />
                   <h5>Flower Gardening Inspiration</h5>
                   <hr />
                   <p>Bring color and fragrance to your garden with this beautifully illustrated guide to flower gardening. Learn how to choose the right flowers, design stunning beds, and care for blooms throughout the year. Perfect for gardeners who love vibrant, blooming spaces.</p>
