@@ -391,7 +391,16 @@ nav .links a {
     }
 }
 
-#about .about-body .right-side {}
+#about .about-body .right-side img{
+    width: 600px;
+    margin-top: 15px;
+    overflow: hidden;
+    border-radius: 10px;
+    background-size: cover;
+    object-fit: cover;
+    height: 380px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
 
 #about h4 {
     margin-top: 75px;

@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import '../styles/landing.css'
 import bgVideo from '../assets/Green Aesthetic Forest Nature Video.mp4'
 import logo from '../assets/logo.png'
+import about1 from '../assets/about-1.jpg'
+import about2 from '../assets/about-2.jpg'
 
 import seeds1 from '../assets/seeds/1.jpg'
 import seeds2 from '../assets/seeds/2.jpg'
@@ -583,7 +585,8 @@ export default function Landing() {
             </div>
           </div>
           <div className="right-side">
-            <img src={logo} alt="" />
+            <img src={about1} alt="" />
+            <img src={about2} alt="" />
           </div>
         </div>
         <h4>Let’s grow together, share more, and make the world greener — one swap at a time!</h4>
