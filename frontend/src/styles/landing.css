@@ -34,7 +34,24 @@ nav .links {
 nav .links a {
     text-decoration: none;
     color: var(--secondry-color);
+    position: relative;
+}
 
+nav .links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 30px;
+    width: 100%;
+    height: 1.6px;
+    border-radius: 100px;
+    background-color: var(--secondry-color);
+    transform: scale(0);
+    transition: 0.4s;
+}
+
+nav .links a:hover::after {
+    transform: scale(1);
 }
 
 #home {
@@ -314,7 +331,7 @@ nav .links a {
     }
 }
 
-#blogs #author{
+#blogs #author {
     text-align: right;
     font-weight: 600;
     margin-top: 20px;
@@ -397,7 +414,7 @@ nav .links a {
     }
 }
 
-#about .about-body .right-side img{
+#about .about-body .right-side img {
     width: 600px;
     margin-top: 15px;
     overflow: hidden;
@@ -410,4 +427,13 @@ nav .links a {
 
 #about h4 {
     margin-top: 75px;
+}
+
+#contatc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px 200px;
+    margin-top: 40px;
 }

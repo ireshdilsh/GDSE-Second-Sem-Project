@@ -605,7 +605,12 @@ export default function Landing() {
       </section>
 
       <section id="contact">
-
+        <p id='title'></p>
+        <p id="description"></p>
+        <div className="contact-body">
+          <div className="left-side"></div>
+          <div className="right-side"></div>
+        </div>
       </section>
 
       <footer>
