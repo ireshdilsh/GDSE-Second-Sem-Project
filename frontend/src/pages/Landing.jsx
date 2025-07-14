@@ -39,10 +39,12 @@ import book3 from '../assets/books/3.jpg'
 import book4 from '../assets/books/4.jpg'
 import book5 from '../assets/books/5.jpg'
 import book6 from '../assets/books/6.jpg'
+import { useNavigate } from 'react-router-dom'
 
 export default function Landing() {
 
   const [active, setActive] = useState("seeds");
+  const navigate = useNavigate();
 
   const btnStyle = (id) => ({
     border: "1.5px solid #333",
@@ -79,7 +81,7 @@ export default function Landing() {
             garden exchange.</p>
           <p id='description'>Discover a vibrant network of local gardeners trading homegrown fruits, vegetables, herbs, and plants. Share your harvest, find what you need, and connect
             with nature-loving neighbors — all in one simple, green circle.</p>
-          <button>Get Started</button>
+          <button onClick={()=>{navigate('/goto/user/auth/signin')}}>Get Started</button>
         </div>
         <div className="right-side">
           <h3>Create Account</h3>
@@ -103,7 +105,7 @@ export default function Landing() {
             <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
           </div>
           <button>Create My UrbanGreen Account</button>
-        
+
         </div>
       </section>
 
@@ -669,7 +671,7 @@ export default function Landing() {
         <p id='last'>© 2025 UrbanGreen. All rights reserved.</p>
       </footer>
 
-<img src={mainImage} id='footer-main-img' alt="" />
+      <img src={mainImage} id='footer-main-img' alt="" />
 
     </div>
   )
