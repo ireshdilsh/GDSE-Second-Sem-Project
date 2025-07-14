@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import '../styles/landing.css'
-import bgVideo from '../assets/Green Aesthetic Forest Nature Video.mp4'
 import logo from '../assets/logo.png'
 import about1 from '../assets/about-1.jpg'
 import about2 from '../assets/about-2.jpg'
-import footerlogo from '../assets/footer-logo.png'
+import mainImage from '../assets/footer.jpg'
 
 import seeds1 from '../assets/seeds/1.jpg'
 import seeds2 from '../assets/seeds/2.jpg'
@@ -55,8 +54,9 @@ export default function Landing() {
   return (
     <div>
 
-      <video src={bgVideo} autoPlay loop muted>
-      </video>
+      {/* <video src={bgVideo} autoPlay loop muted>
+      </video> */}
+      <img src={mainImage} id='bg-img' alt="" />
 
       <nav>
         <div className="logo">
@@ -103,6 +103,7 @@ export default function Landing() {
             <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
           </div>
           <button>Create My UrbanGreen Account</button>
+        
         </div>
       </section>
 
@@ -637,7 +638,7 @@ export default function Landing() {
       <footer>
         <div className="footer-body">
           <div className="left-side">
-            <img src={footerlogo} alt="" />
+            <img src={logo} alt="" />
             <p>Connecting gardeners, sharing harvests, and growing greener
               communities — together with UrbanGreen.</p>
           </div>
@@ -667,6 +668,9 @@ export default function Landing() {
         <h5 id='thank-txt'>Thank you for being part of UrbanGreen — keep growing, keep sharing!</h5>
         <p id='last'>© 2025 UrbanGreen. All rights reserved.</p>
       </footer>
+
+<img src={mainImage} id='footer-main-img' alt="" />
+
     </div>
   )
 }
