@@ -1,8 +1,11 @@
 import React from 'react'
 import logo from '../assets/footer-logo.png'
 import '../styles/signin.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 export default function Login() {
+
+  const navigate = useNavigate();
+
   return (
     <div className='login'>
       <img src={logo} alt="" id='logo' />
@@ -19,7 +22,7 @@ export default function Login() {
         <label htmlFor="">Password</label>
         <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
       </div>
-      <button>Goto Dashboard</button>
+      <button onClick={()=>{navigate('/user/dashboard')}}>Goto Dashboard</button>
     </div>
   )
 }
