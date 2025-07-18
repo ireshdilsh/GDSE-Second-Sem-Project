@@ -1,8 +1,11 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +26,11 @@ public class UserController {
     @PostMapping("/create/new/user/account")
     public ResponseEntity<User> createUserAccount(@RequestBody UserDto dto) {
         return ResponseEntity.status(200).body(userService.createUserAccount(dto));
+    }
+
+    @GetMapping("/get/all/users")
+    public ResponseEntity<List<User>> getAllUsers() {
+        return ResponseEntity.status(200).body(userService.getAllUsers());
     }
 
 }
