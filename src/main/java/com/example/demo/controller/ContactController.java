@@ -29,7 +29,7 @@ public class ContactController {
     }
 
     @GetMapping("/get/all/messages")
-    public ResponseEntity<List<Contact>> getAllMessages(){
+    public ResponseEntity<List<Contact>> getAllMessages() {
         return ResponseEntity.status(200).body(service.getAllMessages());
     }
 }
