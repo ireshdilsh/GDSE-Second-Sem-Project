@@ -22,7 +22,7 @@ export default function Login() {
         <label htmlFor="">Password</label>
         <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
       </div>
-      <button onClick={()=>{navigate('/user/dashboard')}}>Goto Dashboard</button>
+      <button onClick={() => { navigate('/user/dashboard') }}>Goto Dashboard</button>
     </div>
   )
 }

@@ -376,6 +376,19 @@ nav .links a:hover::after {
     flex-direction: column;
 }
 
+#ai .tutorial .step-2 img,
+#ai .tutorial .step-3 img,
+#ai .tutorial .step-4 img,
+#ai .tutorial .step-5 img {
+    background-size: cover;
+    object-fit: cover;
+    height: 500px;
+    width: 1100px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
 #about {
     display: flex;
     justify-content: center;
@@ -601,12 +614,12 @@ footer #last {
     margin-bottom: 0;
 }
 
-#footer-main-img{
-     background-size: cover;
+#footer-main-img {
+    background-size: cover;
     object-fit: cover;
     height: 592px;
     position: absolute;
-    top: 6560px;
+    top: 8060px;
     left: 0;
     width: 100%;
     z-index: -1;

@@ -39,6 +39,11 @@ import book3 from '../assets/books/3.jpg'
 import book4 from '../assets/books/4.jpg'
 import book5 from '../assets/books/5.jpg'
 import book6 from '../assets/books/6.jpg'
+
+import step3 from '../assets/ai-steps/step-3.png'
+import step4 from '../assets/ai-steps/step-4.png'
+import step5 from '../assets/ai-steps/step-5.png'
+
 import { useNavigate } from 'react-router-dom'
 
 export default function Landing() {
@@ -81,7 +86,7 @@ export default function Landing() {
             garden exchange.</p>
           <p id='description'>Discover a vibrant network of local gardeners trading homegrown fruits, vegetables, herbs, and plants. Share your harvest, find what you need, and connect
             with nature-loving neighbors — all in one simple, green circle.</p>
-          <button onClick={()=>{navigate('/goto/user/auth/signin')}}>Get Started</button>
+          <button onClick={() => { navigate('/goto/user/auth/signin') }}>Get Started</button>
         </div>
         <div className="right-side">
           <h3>Create Account</h3>
@@ -558,14 +563,17 @@ export default function Landing() {
           <div className="step-2">
             <h5>2 . In the input box, type your gardening question.</h5>
             <p>In the input box at the bottom of the chat window, type any gardening-related question you have.</p>
+            <img src={step3} alt="" />
           </div>
           <div className="step-3">
             <h5>3 . Click the Send button (or press Send).</h5>
             <p>After typing your question, click the Send button or simply press Enter on your keyboard to submit it.</p>
+            <img src={step4} alt="" />
           </div>
           <div className="step-4">
             <h5>4 . Wait a moment and view the AI’s response in the chat window.</h5>
             <p>Wait a few seconds while the AI thinks, then see its answer appear in the chat window above.</p>
+            <img src={step5} alt="" />
           </div>
           <div className="step-5">
             <h5>5 . Treat the advice like friendly guidance — always double-check and use your best judgment when applying suggestions in your garden.</h5>
