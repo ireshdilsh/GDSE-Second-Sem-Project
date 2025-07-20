@@ -18,12 +18,10 @@ import com.example.demo.service.NewsLetterService;
 public class NewsLetterController {
 
     @Autowired
-    private NewsLetterService service;
+    NewsLetterService service;
 
     @PostMapping("/newsletter")
     public ResponseEntity<NewsLetter> getNewsLetterEmail(@RequestBody NewsLetterDto dto) {
         return ResponseEntity.status(200).body(service.getNewsLetterEmail(dto));
     }
-
-
 }
