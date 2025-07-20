@@ -20,7 +20,7 @@ public class NewsLetterController {
     @Autowired
     NewsLetterService service;
 
-    @PostMapping("/newsletter")
+    @PostMapping("/newsletter/for/email/add")
     public ResponseEntity<NewsLetter> getNewsLetterEmail(@RequestBody NewsLetterDto dto) {
         return ResponseEntity.status(200).body(service.getNewsLetterEmail(dto));
     }
