@@ -25,5 +25,4 @@ public class NewsLetterController {
         return ResponseEntity.status(200).body(service.getNewsLetterEmail(dto));
     }
 
-    
 }
