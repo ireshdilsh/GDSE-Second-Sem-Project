@@ -260,6 +260,7 @@ export default function Landing() {
             </div>
           )}
 
+
           {active === "soil" && (
             <div className='soil'>
               <div className="set-1">
