@@ -61,8 +61,6 @@ export default function Landing() {
   return (
     <div>
 
-      {/* <video src={bgVideo} autoPlay loop muted>
-      </video> */}
       <img src={mainImage} id='bg-img' alt="" />
 
       <nav>
