@@ -5,14 +5,14 @@
 }
 
 :root{
-    --primary-color : #333;
-    --secondry-color : #fcfcfc;
-    --third-color : #efefef;
+    --primary-color : #373643;
+    --secondry-color : #FF4242;
+    --third-color : #F6F6F6;
 }
 
 body{
     overflow-x: hidden;
     font-size: 16px;
-    background-color: var(--secondry-color);
+    
     color: var(--primary-color);
 }
