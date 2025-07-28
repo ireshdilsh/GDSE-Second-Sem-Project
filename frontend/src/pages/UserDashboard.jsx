@@ -5,7 +5,6 @@ import logo from '../assets/footer-logo.png'
 export default function UserDashboard() {
 
   return (
-
     <div>
       <div className="header">
         <div className="left-side">

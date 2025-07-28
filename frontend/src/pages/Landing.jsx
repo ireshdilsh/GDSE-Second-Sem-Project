@@ -77,6 +77,8 @@ export default function Landing() {
         </div>
       </nav>
 
+      sec
+
       <section id="home">
         <div className="left-side">
           <p id='title'>Grow Together, Swap Freshness.</p>
