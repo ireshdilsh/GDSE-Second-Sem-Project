@@ -1,6 +1,95 @@
 #img{
     background-size: auto;
     object-fit: cover;
-    height: 700px;
+    height: 618px;
     width: 100%;
+}
+
+#home{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 150px;
+    padding: 20px 200px;
+    background : linear-gradient(to right,#ffffffeb,#ffffffef,transparent);
+}
+
+#home nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 175px;
+    margin-top: 15px;
+}
+
+#home nav .logo img{
+    width: 150px;
+}
+
+#home nav .links{
+    display: flex;
+    gap: 20px;
+}
+
+#home nav .links a{
+    text-decoration: none;
+    color: var(--primary-color);
+    position: relative;
+}
+
+#home nav button{
+    border: none;
+    border-radius: 50px;
+    border: 1.8px solid var(--forth-color);
+    background-color: transparent;
+    padding: 8px 20px;
+    color: var(--forth-color);
+    font-weight: 500;
+}
+
+#home nav .links a::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 25px;
+    background-color: var(--primary-color);
+    height: 1.2px;
+    width: 100%;
+    border-radius: 50px;
+    transform: scale(0);
+    transition: 0.4s;
+}
+
+#home nav .links a:hover::after{
+    transform: scale(1);
+}
+
+#home .body{
+    margin-bottom: 100px;
+    margin-top: -50px;
+}
+
+#home .body h1{
+    font-weight: 800;
+    margin: 20px 0;
+}
+
+#home .body button{
+   background-color: var(--secondry-color);
+   height: 40px;
+   color: var(--forth-color);
+   font-weight: 500;
+   border: none;
+   border-radius: 50px;
+   width: 150px;
+   margin-top: 15px;
+
+   &:hover{
+    opacity: 0.8;
+   }
 }
