@@ -3,6 +3,11 @@ import hero from '../assets/hero.jpeg'
 import '../styles/LandingPage.css'
 import logo from '../assets/logo.png'
 
+// ai for images
+import step3 from '../assets/ai-steps/step-3.png'
+import step4 from '../assets/ai-steps/step-4.png'
+import step5 from '../assets/ai-steps/step-5.png'
+
 // images for marketplace 
 import seeds1 from '../assets/seeds/1.jpg'
 import seeds2 from '../assets/seeds/2.jpg'
@@ -65,7 +70,7 @@ export default function LandingPage() {
           <div className="links">
             <a href="#home">Home</a>
             <a href="#marketplace">Marketplace</a>
-            <a href="">GreenAI</a>
+            <a href="#greenai">GreenAI</a>
             <a href="">Blogs & Tips</a>
             <a href="">About Us</a>
             <a href="">Contact Us</a>
@@ -76,7 +81,7 @@ export default function LandingPage() {
         <div className="body">
           <h6>Grow Together, Greener Cities Ahead_</h6>
           <h1>Reconnect with nature in the
-          <br />  heart of your city.</h1>
+            <br />  heart of your city.</h1>
           <p>Urban Green empowers you to plant, share, and care for green spaces—whether it's a balcony garden, rooftop planter,
             or community patch. <br /> Track your plants, swap seeds, and grow a greener neighborhood—one leaf at a time.</p>
           <button>Get Started</button>
@@ -86,7 +91,7 @@ export default function LandingPage() {
       <section id="marketplace">
         <h1>Buy, Sell & Swap Sustainable Goods</h1>
         <p id="description">Discover a thriving eco-market where urban growers and green enthusiasts trade plants, seeds, compost, tools, and handmade eco-products. <br />
-        Support local growers and find everything you need to nurture your urban jungle—right from your neighborhood.</p>
+          Support local growers and find everything you need to nurture your urban jungle—right from your neighborhood.</p>
         <div className="btns">
           <button onClick={() => setActive("seeds")} style={btnStyle("seeds")}>
             Seeds & Plants
@@ -422,6 +427,35 @@ export default function LandingPage() {
             </div>
           )}
         </div>
+      </section>
+
+      <section id='greenai'>
+        <h1>Smart Gardening, Powered by AI</h1>
+        <p>Let GreenAI guide your urban gardening journey. From plant care tips to pest detection and personalized watering schedules, our intelligent ass-
+          istant uses AI to help your plants thrive—saving time, water, and effort.</p>
+        <div className="body">
+          <div className="step-1">
+            <h6>1. Start a Chat</h6>
+            <p>Open the GreenAI chat and say hello or ask a question.</p>
+            <img src={step3} alt="" />
+          </div>
+          <div className="step-2">
+             <h6>2. Chat With GreenAI</h6>
+            <p>Whether it’s about plant care, composting, or what to grow next—just type it in.</p>
+            <img src={step4} alt="" />
+          </div>
+          <div className="step-3">
+             <h6>3. Get Instant Smart Advice</h6>
+            <p>GreenAI replies with accurate, eco-friendly tips to guide your urban gardening journey.</p>
+            <img src={step5} alt="" />
+          </div>
+        </div>
+      </section>
+
+      <section id='blogs'>
+        <h1>Learn. Grow. Thrive.</h1>
+        <p id='description'>Explore bite-sized gardening guides, eco-friendly lifestyle tips, and DIY projects—all tailored for city life. 
+        Whether you're a beginner or a seasoned grower, our curated blog helps you stay inspired and informed every day.</p>
       </section>
     </div>
   )
