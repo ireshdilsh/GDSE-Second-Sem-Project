@@ -1,0 +1,6 @@
+#img{
+    background-size: auto;
+    object-fit: cover;
+    height: 700px;
+    width: 100%;
+}
