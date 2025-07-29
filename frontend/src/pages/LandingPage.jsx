@@ -71,7 +71,7 @@ export default function LandingPage() {
             <a href="#home">Home</a>
             <a href="#marketplace">Marketplace</a>
             <a href="#greenai">GreenAI</a>
-            <a href="">Blogs & Tips</a>
+            <a href="#blogs">Blogs & Tips</a>
             <a href="">About Us</a>
             <a href="">Contact Us</a>
           </div>
