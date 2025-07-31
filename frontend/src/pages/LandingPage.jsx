@@ -72,7 +72,7 @@ export default function LandingPage() {
             <a href="#marketplace">Marketplace</a>
             <a href="#greenai">GreenAI</a>
             <a href="#blogs">Blogs & Tips</a>
-            <a href="">About Us</a>
+            <a href="#about">About Us</a>
             <a href="">Contact Us</a>
           </div>
           <button>Sign In Now</button>
@@ -440,12 +440,12 @@ export default function LandingPage() {
             <img src={step3} alt="" />
           </div>
           <div className="step-2">
-             <h6>2. Chat With GreenAI</h6>
+            <h6>2. Chat With GreenAI</h6>
             <p>Whether it’s about plant care, composting, or what to grow next—just type it in.</p>
             <img src={step4} alt="" />
           </div>
           <div className="step-3">
-             <h6>3. Get Instant Smart Advice</h6>
+            <h6>3. Get Instant Smart Advice</h6>
             <p>GreenAI replies with accurate, eco-friendly tips to guide your urban gardening journey.</p>
             <img src={step5} alt="" />
           </div>
@@ -454,9 +454,9 @@ export default function LandingPage() {
 
       <section id='blogs'>
         <h1>Learn. Grow. Thrive.</h1>
-        <p id='description'>Explore bite-sized gardening guides, eco-friendly lifestyle tips, and DIY projects—all tailored for city life. 
-        Whether you're a beginner or a seasoned grower, our curated blog helps you stay inspired and informed every day.</p>
-          <div className="blogs-cards">
+        <p id='description'>Explore bite-sized gardening guides, eco-friendly lifestyle tips, and DIY projects—all tailored for city life.
+          Whether you're a beginner or a seasoned grower, our curated blog helps you stay inspired and informed every day.</p>
+        <div className="blogs-cards">
           <div className="set-1">
             <div className="card-1">
               <h5>5 Easy Herbs to Grow in Small Spaces</h5>
@@ -550,6 +550,30 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section id='about'>
+        <h1>Greening Cities, One Plant at a Time</h1>
+        <p>Urban Green is an innovative GreenTech platform designed to bring nature back into urban environments. In a time where cities are growing faster
+          than green spaces, we believe the solution lies in empowering individuals to take sustainability into their own hands. Founded in 2025 in Colom-
+          bo, Sri Lanka, Urban Green was built on the vision of transforming every balcony, rooftop, and wall into a thriving patch of green. Our platfor-
+          m bridges the gap between nature and technology, offering smart tools for gardening, eco-commerce, and green education—all in one app.</p>
+
+        <p>We believe that everyone can be a gardener, no matter how much space or experience they have. Our app is built for beginners, hobbyists, and exp-
+          erts alike. Whether you're growing herbs on a kitchen shelf or cultivating a rooftop vegetable garden, Urban Green provides the knowledge, suppo-
+          rt, and community to help you succeed. By turning everyday spaces into eco-friendly zones, we promote not just plant growth, but well-being, bio-
+          diversity, and community connections.</p>
+
+        <p>At the heart of our technology is GreenAI, an intelligent chat-based assistant that helps users with personalized plant care. Users simply chat
+          with GreenAI to identify plant types, diagnose problems like yellowing leaves or pests, and receive actionable tips based on their specific loca-
+          tion and plant needs. The AI constantly learns and adapts, offering increasingly accurate guidance over time. This eliminates guesswork and allo-
+          ws even first-time growers to become confident caretakers.</p>
+
+        <p>Alongside GreenAI, we’ve built a thriving Green Marketplace—a local eco-commerce hub where users can buy, sell, or swap everything from plants and seeds to compost, tools, and handmade organic products. Our marketplace supports small-scale urban growers, eco-entrepreneurs, and sustainable businesses by giving them a dedicated platform to reach local buyers. We charge a small commission to ensure quality control while reinvesting in our tech and user support.</p>
+        <p>Education is a core part of our mission. Our Blogs & Tips section delivers expert-written content that’s easy to understand and relevant to urban living. From seasonal planting guides to eco-lifestyle hacks and DIY green decor, our content is tailored to inspire and inform. We also regularly spotlight real user stories, promote eco-challenges, and provide insights into sustainable practices that can be easily adopted in any city home.</p>
+        <p>Community is key to lasting impact. That’s why Urban Green isn't just a tool—it’s a movement. We aim to build a connected network of green-minded individuals who support one another through tips, trades, and collaborations. Our app includes features like grow-logs, plant sharing, and community garden finders to foster interaction and collective action. In doing so, we hope to reduce environmental anxiety and build a hopeful, shared vision for the future.</p>
+        <p>From a business perspective, Urban Green operates on a freemium model with in-app purchases and marketplace commissions. Premium users gain access to advanced AI features, exclusive blog content, and early access to eco-product launches. We are actively exploring brand partnerships, grant funding, and municipal collaborations to scale our impact and reach new markets across Asia and beyond.</p>
+        <p>In everything we do, our core belief remains the same: small green actions lead to big environmental change. Urban Green is here to equip and empower urban dwellers with the tools, knowledge, and community they need to make that change—starting right where they live.</p>
       </section>
     </div>
   )

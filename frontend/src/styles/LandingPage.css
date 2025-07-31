@@ -354,3 +354,22 @@
     font-size: 17px;
     font-weight: 500;
 }
+
+#about{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px 200px;
+    margin-top: 40px;
+    position: relative;
+}
+
+#about h1{
+    font-weight: 700;
+}
+
+#about p{
+    margin-top: 15px;
+    text-align: justify;
+}
