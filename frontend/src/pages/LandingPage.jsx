@@ -607,6 +607,43 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      <footer>
+        <div className="top">
+          <div className="left-side">
+            <img src={logo} alt="" />
+            <p>Growing greener cities, one plant at a time.
+              Empowering <br /> urban communities with smart gardening,
+              local eco-trade, <br /> and sustainable living.</p>
+          </div>
+          <div className="middle-side">
+            <h5>Useful Links</h5>
+            <div className="links">
+              <a href="#home">Home</a>
+              <a href="#marketplace">Marketplace</a>
+              <a href="#blogs">Blogs & Tips</a>
+              <a href="#greenai">GreenAI</a>
+              <a href="#about">About Us</a>
+              <a href="#contact">Contact Us</a>
+            </div>
+          </div>
+          <div className="right-side">
+            <h5>Subscribe to our newsletter</h5>
+            <p>Stay rooted in the latest urban gardeni-
+              ng tips, <br /> app updates, eco-living ideas,
+              and exclusive <br /> marketplace deals.</p>
+            <div className="subscribe">
+              <label for="exampleInputEmail1" class="form-label">Email Address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder='Enter your email'/>
+              <button>Subscribe Now</button>
+            </div>
+          </div>
+        </div>
+        <div className="bottom">
+          <p>© 2025 Earth Power Pvt Ltd. All rights reserved. | Privacy Policy | Terms of Service | Contact Us</p>
+        </div>
+      </footer>
+            <img src={hero} id='img-footer' alt="" />
     </div>
   )
 }
