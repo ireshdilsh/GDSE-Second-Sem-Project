@@ -43,13 +43,13 @@ import book3 from '../assets/books/3.jpg'
 import book4 from '../assets/books/4.jpg'
 import book5 from '../assets/books/5.jpg'
 import book6 from '../assets/books/6.jpg'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 
 
 export default function LandingPage() {
 
   const [active, setActive] = useState("seeds");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const btnStyle = (id) => ({
     border: "1.5px solid #333",

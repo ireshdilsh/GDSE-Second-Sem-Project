@@ -1,5 +1,5 @@
 *{
-     font-family: "Jetbrains Mono", sans-serif;
+     font-family: "Poppins", sans-serif;
 }
 
 :root{
@@ -11,7 +11,7 @@
 
 body{
     overflow-x: hidden;
-    font-size: 13px;
+    font-size: 12.8px;
     font-weight: 500;
     color: var(--primary-color);
 }
