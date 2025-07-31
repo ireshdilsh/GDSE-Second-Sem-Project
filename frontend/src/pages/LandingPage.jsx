@@ -456,6 +456,100 @@ export default function LandingPage() {
         <h1>Learn. Grow. Thrive.</h1>
         <p id='description'>Explore bite-sized gardening guides, eco-friendly lifestyle tips, and DIY projects—all tailored for city life. 
         Whether you're a beginner or a seasoned grower, our curated blog helps you stay inspired and informed every day.</p>
+          <div className="blogs-cards">
+          <div className="set-1">
+            <div className="card-1">
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
+            </div>
+            <div className="card-2">
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
+            </div>
+            <div className="card-3">
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
+            </div>
+          </div>
+          <div className="set-2">
+            <div className="card-1">
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
+            </div>
+            <div className="card-2">
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
+            </div>
+            <div className="card-3">
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
+            </div>
+          </div>
+          <div className="set-3">
+            <div className="card-1">
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
+            </div>
+            <div className="card-2">
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
+            </div>
+            <div className="card-3">
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
+            </div>
+          </div>
+          <div className="set-4">
+            <div className="card-1">
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
+            </div>
+            <div className="card-2">
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
+            </div>
+            <div className="card-3">
+              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
+              <hr />
+              <p>Learn which herbs thrive on balconies and windowsills — pe
+                rfect for beginners with limited space.</p>
+              <p id='author'>- Iresh Dilshan -</p>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   )
