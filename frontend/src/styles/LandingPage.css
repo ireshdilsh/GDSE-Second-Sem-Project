@@ -94,7 +94,7 @@
     }
 }
 
-#marketplace{
+#marketplace {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -108,7 +108,7 @@
     text-align: center;
 }
 
-#marketplace h1{
+#marketplace h1 {
     font-weight: 700;
 }
 
@@ -245,7 +245,7 @@
     margin-top: 30px;
 }
 
-#greenai{
+#greenai {
     display: flex;
     flex-direction: column;
     justify-content: left;
@@ -254,30 +254,30 @@
     margin-top: 40px;
 }
 
-#greenai h1{
+#greenai h1 {
     font-weight: 700;
 }
 
-#greenai .body{
+#greenai .body {
     margin-top: 20px;
 }
 
 #greenai .body .step-2,
-#greenai .body .step-3{
+#greenai .body .step-3 {
     margin-top: 75px;
 }
 
 
 #greenai .body .step-1 img,
 #greenai .body .step-2 img,
-#greenai .body .step-3 img{
+#greenai .body .step-3 img {
     overflow: hidden;
     border-radius: 10px;
     width: 100%;
     box-shadow: rgba(212, 212, 212, 0.049) 0px 50px 100px -20px, rgba(0, 0, 0, 0.036) 0px 30px 60px -30px;
 }
 
-#blogs{
+#blogs {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -286,11 +286,11 @@
     margin-top: 40px;
 }
 
-#blogs h1{
+#blogs h1 {
     font-weight: 700;
 }
 
-#blogs #description{
+#blogs #description {
     text-align: center;
 }
 
@@ -355,7 +355,7 @@
     font-weight: 500;
 }
 
-#about{
+#about {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -365,24 +365,24 @@
     position: relative;
 }
 
-#about h1{
+#about h1 {
     font-weight: 700;
 }
 
-#about p{
+#about p {
     margin-top: 15px;
     text-align: justify;
 }
 
 #about #left,
-#about #right{
-   position: absolute;
-   left: 0;
-   top: 0;
-   width: 300px;
+#about #right {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 300px;
 }
 
-#about #right{
+#about #right {
     left: unset;
     right: 0;
     top: unset;
@@ -390,13 +390,13 @@
     opacity: 0.2;
 }
 
-#about #left{
+#about #left {
     opacity: 0.2;
     top: 0;
     width: 280px;
 }
 
-#contact{
+#contact {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -405,27 +405,29 @@
     margin-top: 40px;
 }
 
-#contact h1{
+#contact h1 {
     font-weight: 700;
     margin-top: 20px;
 }
 
-#contact #description{
+#contact #description {
     text-align: center;
 }
 
-#contact .contact-body{
+#contact .contact-body {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 15px;
     padding: 50px 0;
     background-image: url('../assets/map.png');
-    width: 135%;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
     background-size: cover;
 }
 
-#contact .contact-body .right-side{
+#contact .contact-body .right-side {
     padding: 25px;
     display: flex;
     justify-content: center;
@@ -439,11 +441,11 @@
 
 #contact .contact-body .right-side input,
 #contact .contact-body .right-side button,
-#contact .contact-body .right-side textarea{
+#contact .contact-body .right-side textarea {
     width: 330px;
 }
 
-#contact .contact-body .right-side button{
+#contact .contact-body .right-side button {
     height: 38px;
     border: none;
     border-radius: 50px;
@@ -451,11 +453,9 @@
     color: var(--forth-color);
     outline: none;
 
-    &:hover{
+    &:hover {
         opacity: 0.8;
     }
 }
 
-#contact .contact-body{
-    
-}
+#contact .contact-body {}

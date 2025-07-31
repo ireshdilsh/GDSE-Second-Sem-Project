@@ -587,7 +587,7 @@ export default function LandingPage() {
         <div className="contact-body">
           <div className="right-side">
             <div className="name">
-               <label for="exampleInputEmail1" class="form-label">Full Name</label>
+              <label for="exampleInputEmail1" class="form-label">Full Name</label>
               <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
             </div>
             <div class="email">
@@ -596,12 +596,12 @@ export default function LandingPage() {
               <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
             </div>
             <div className="subject">
-               <label for="exampleInputEmail1" class="form-label">Subject</label>
+              <label for="exampleInputEmail1" class="form-label">Subject</label>
               <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
             </div>
             <div className="message">
               <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="7"></textarea>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="7"></textarea>
             </div>
             <button>Get in touch</button>
           </div>
