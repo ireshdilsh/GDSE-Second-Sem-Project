@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import hero from '../assets/hero.jpeg'
 import '../styles/LandingPage.css'
 import logo from '../assets/logo.png'
+import about1 from '../assets/about-1.png'
+import about2 from '../assets/about-2.png'
 
 // ai for images
 import step3 from '../assets/ai-steps/step-3.png'
@@ -73,7 +75,7 @@ export default function LandingPage() {
             <a href="#greenai">GreenAI</a>
             <a href="#blogs">Blogs & Tips</a>
             <a href="#about">About Us</a>
-            <a href="">Contact Us</a>
+            <a href="#contact">Contact Us</a>
           </div>
           <button>Sign In Now</button>
         </nav>
@@ -553,6 +555,8 @@ export default function LandingPage() {
       </section>
 
       <section id='about'>
+        <img src={about1} alt="" id="right" />
+        <img src={about2} alt="" id="left" />
         <h1>Greening Cities, One Plant at a Time</h1>
         <p>Urban Green is an innovative GreenTech platform designed to bring nature back into urban environments. In a time where cities are growing faster
           than green spaces, we believe the solution lies in empowering individuals to take sustainability into their own hands. Founded in 2025 in Colom-
@@ -574,6 +578,34 @@ export default function LandingPage() {
         <p>Community is key to lasting impact. That’s why Urban Green isn't just a tool—it’s a movement. We aim to build a connected network of green-minded individuals who support one another through tips, trades, and collaborations. Our app includes features like grow-logs, plant sharing, and community garden finders to foster interaction and collective action. In doing so, we hope to reduce environmental anxiety and build a hopeful, shared vision for the future.</p>
         <p>From a business perspective, Urban Green operates on a freemium model with in-app purchases and marketplace commissions. Premium users gain access to advanced AI features, exclusive blog content, and early access to eco-product launches. We are actively exploring brand partnerships, grant funding, and municipal collaborations to scale our impact and reach new markets across Asia and beyond.</p>
         <p>In everything we do, our core belief remains the same: small green actions lead to big environmental change. Urban Green is here to equip and empower urban dwellers with the tools, knowledge, and community they need to make that change—starting right where they live.</p>
+      </section>
+
+      <section id='contact'>
+        <h1>We'd love to hear from you!</h1>
+        <p id='description'>Whether you have questions, feedback, partnership ideas, or need help using the app—our team is here to support you. Reach out to us anytime and
+          we’ll get back to you as soon as possible.</p>
+        <div className="contact-body">
+          <div className="right-side">
+            <div className="name">
+               <label for="exampleInputEmail1" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+            </div>
+            <div class="email">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div className="subject">
+               <label for="exampleInputEmail1" class="form-label">Subject</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+            </div>
+            <div className="message">
+              <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="7"></textarea>
+            </div>
+            <button>Get in touch</button>
+          </div>
+        </div>
       </section>
     </div>
   )
