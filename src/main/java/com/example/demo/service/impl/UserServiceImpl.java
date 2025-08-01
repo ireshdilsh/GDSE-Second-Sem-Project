@@ -12,7 +12,10 @@ import com.example.demo.exception.ExistsByEmailException;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
@@ -20,7 +23,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
-    @Autowired
     ModelMapper modelMapper;
 
     @Override
@@ -32,7 +34,7 @@ public class UserServiceImpl implements UserService {
                 logger.error("Found Already Exists by Email Address", dto.getEmail());
                 throw new ExistsByEmailException("ExistsEmail Exception Running " + dto.getEmail());
             } else {
-                modelMapper.map(userRepository.save(dto), User.class);
+                userRepository.save(modelMapper.map(dto, User.class));
                 logger.info("User Saved In DB: {}", dto);
             }
         } catch (Exception e) {
