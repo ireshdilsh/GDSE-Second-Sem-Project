@@ -29,8 +29,9 @@ public class UserController {
 
     @PostMapping("/save/user")
     public ResponseEntity<APIResponse> postMethod(@RequestBody UserDto dto) {
+        logger.info("Received POST /save/user with data: {}", dto);
         service.postMethod(dto);
-        logger.info("goto values service " + dto);
+        logger.info("Successfully processed user save for: {}", dto); 
         return new ResponseEntity<>(new APIResponse(200, "success",dto), HttpStatus.CREATED);
     }
     
