@@ -12,8 +12,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ExistsByEmailException.class)
     public ResponseEntity<APIResponse> handleEmailExists(ExistsByEmailException e) {
-        APIResponse response = new APIResponse(409, e.getMessage(), null); 
-        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        return new ResponseEntity(new APIResponse(404, "Already Exists Email", null),HttpStatus.BAD_REQUEST);
     }
 
 }
