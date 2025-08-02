@@ -9,4 +9,6 @@ public interface UserService {
 
     void postMethod(UserDto dto);
 
+    void getMethod();
+
 }

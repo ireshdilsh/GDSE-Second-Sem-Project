@@ -1,5 +1,7 @@
 package com.example.demo.service.impl;
 
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +40,19 @@ public class UserServiceImpl implements UserService {
             logger.info("User Saved In DB: {}", dto);
         }
         logger.info("Operation Complete: {}");
+
+    }
+
+    @Override
+    public void getMethod() {
+        logger.info("Processing get all users in service");
+        List<User> users = userRepository.findAll();
+        
+            if (users.isEmpty()) {
+                
+            }
+
+        logger.info("Operation Complete");
 
     }
 

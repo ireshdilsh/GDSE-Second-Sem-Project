@@ -1,4 +1,11 @@
-[2025-08-01 20:59:30] - HHH10001005: Database info:
+[2025-08-01 21:06:50] - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-08-01 21:06:50] - HHH000412: Hibernate ORM core version 6.6.15.Final
+[2025-08-01 21:06:51] - HHH000026: Second-level cache disabled
+[2025-08-01 21:06:51] - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-08-01 21:06:51] - HikariPool-1 - Starting...
+[2025-08-01 21:06:52] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5d3b6585
+[2025-08-01 21:06:52] - HikariPool-1 - Start completed.
+[2025-08-01 21:06:52] - HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 9.0.1
@@ -6,137 +13,21 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-[2025-08-01 20:59:33] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[2025-08-01 20:59:33] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[2025-08-01 20:59:33] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userController': Unsatisfied dependency expressed through field 'service': Error creating bean with name 'userServiceImpl' defined in file [C:\Users\Admin\Downloads\demo\target\classes\com\example\demo\service\impl\UserServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'org.modelmapper.ModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-[2025-08-01 20:59:33] - Closing JPA EntityManagerFactory for persistence unit 'default'
-[2025-08-01 20:59:33] - HikariPool-1 - Shutdown initiated...
-[2025-08-01 20:59:33] - HikariPool-1 - Shutdown completed.
-[2025-08-01 20:59:33] - Stopping service [Tomcat]
-[2025-08-01 20:59:33] - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-[2025-08-01 20:59:33] - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 0 of constructor in com.example.demo.service.impl.UserServiceImpl required a bean of type 'org.modelmapper.ModelMapper' that could not be found.
-
-The injection point has the following annotations:
-	- @org.springframework.beans.factory.annotation.Autowired(required=true)
-
-
-Action:
-
-Consider defining a bean of type 'org.modelmapper.ModelMapper' in your configuration.
-
-[2025-08-01 21:02:46] - Starting DemoApplication using Java 17.0.11 with PID 13156 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
-[2025-08-01 21:02:46] - No active profile set, falling back to 1 default profile: "default"
-[2025-08-01 21:02:49] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-[2025-08-01 21:02:49] - Finished Spring Data repository scanning in 271 ms. Found 1 JPA repository interface.
-[2025-08-01 21:02:52] - Tomcat initialized with port 8080 (http)
-[2025-08-01 21:02:53] - Initializing ProtocolHandler ["http-nio-8080"]
-[2025-08-01 21:02:53] - Starting service [Tomcat]
-[2025-08-01 21:02:53] - Starting Servlet engine: [Apache Tomcat/10.1.41]
-[2025-08-01 21:02:53] - Initializing Spring embedded WebApplicationContext
-[2025-08-01 21:02:53] - Root WebApplicationContext: initialization completed in 6757 ms
-[2025-08-01 21:02:54] - HHH000204: Processing PersistenceUnitInfo [name: default]
-[2025-08-01 21:02:54] - HHH000412: Hibernate ORM core version 6.6.15.Final
-[2025-08-01 21:02:54] - HHH000026: Second-level cache disabled
-[2025-08-01 21:02:56] - No LoadTimeWeaver setup: ignoring JPA class transformer
-[2025-08-01 21:02:56] - HikariPool-1 - Starting...
-[2025-08-01 21:02:57] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1bbb42b4
-[2025-08-01 21:02:57] - HikariPool-1 - Start completed.
-[2025-08-01 21:02:58] - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 9.0.1
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-[2025-08-01 21:03:00] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[2025-08-01 21:03:00] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[2025-08-01 21:03:00] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userController': Unsatisfied dependency expressed through field 'service': Error creating bean with name 'userServiceImpl' defined in file [C:\Users\Admin\Downloads\demo\target\classes\com\example\demo\service\impl\UserServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'org.modelmapper.ModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-[2025-08-01 21:03:00] - Closing JPA EntityManagerFactory for persistence unit 'default'
-[2025-08-01 21:03:00] - HikariPool-1 - Shutdown initiated...
-[2025-08-01 21:03:00] - HikariPool-1 - Shutdown completed.
-[2025-08-01 21:03:00] - Stopping service [Tomcat]
-[2025-08-01 21:03:01] - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-[2025-08-01 21:03:01] - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 0 of constructor in com.example.demo.service.impl.UserServiceImpl required a bean of type 'org.modelmapper.ModelMapper' that could not be found.
-
-The injection point has the following annotations:
-	- @org.springframework.beans.factory.annotation.Autowired(required=true)
-
-
-Action:
-
-Consider defining a bean of type 'org.modelmapper.ModelMapper' in your configuration.
-
-[2025-08-01 21:05:38] - Starting DemoApplication using Java 17.0.11 with PID 6960 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
-[2025-08-01 21:05:38] - No active profile set, falling back to 1 default profile: "default"
-[2025-08-01 21:05:40] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-[2025-08-01 21:05:40] - Finished Spring Data repository scanning in 136 ms. Found 1 JPA repository interface.
-[2025-08-01 21:05:41] - Tomcat initialized with port 8080 (http)
-[2025-08-01 21:05:41] - Initializing ProtocolHandler ["http-nio-8080"]
-[2025-08-01 21:05:41] - Starting service [Tomcat]
-[2025-08-01 21:05:41] - Starting Servlet engine: [Apache Tomcat/10.1.41]
-[2025-08-01 21:05:41] - Initializing Spring embedded WebApplicationContext
-[2025-08-01 21:05:41] - Root WebApplicationContext: initialization completed in 3414 ms
-[2025-08-01 21:05:42] - HHH000204: Processing PersistenceUnitInfo [name: default]
-[2025-08-01 21:05:42] - HHH000412: Hibernate ORM core version 6.6.15.Final
-[2025-08-01 21:05:42] - HHH000026: Second-level cache disabled
-[2025-08-01 21:05:43] - No LoadTimeWeaver setup: ignoring JPA class transformer
-[2025-08-01 21:05:43] - HikariPool-1 - Starting...
-[2025-08-01 21:05:44] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5ee6fdc4
-[2025-08-01 21:05:44] - HikariPool-1 - Start completed.
-[2025-08-01 21:05:44] - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 9.0.1
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-[2025-08-01 21:05:46] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[2025-08-01 21:05:46] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[2025-08-01 21:05:46] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userController': Unsatisfied dependency expressed through field 'service': Error creating bean with name 'userServiceImpl' defined in file [C:\Users\Admin\Downloads\demo\target\classes\com\example\demo\service\impl\UserServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'org.modelmapper.ModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-[2025-08-01 21:05:46] - Closing JPA EntityManagerFactory for persistence unit 'default'
-[2025-08-01 21:05:46] - HikariPool-1 - Shutdown initiated...
-[2025-08-01 21:05:46] - HikariPool-1 - Shutdown completed.
-[2025-08-01 21:05:46] - Stopping service [Tomcat]
-[2025-08-01 21:05:46] - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-[2025-08-01 21:05:46] - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 0 of constructor in com.example.demo.service.impl.UserServiceImpl required a bean of type 'org.modelmapper.ModelMapper' that could not be found.
-
-The injection point has the following annotations:
-	- @org.springframework.beans.factory.annotation.Autowired(required=true)
-
-
-Action:
-
-Consider defining a bean of type 'org.modelmapper.ModelMapper' in your configuration.
-
+[2025-08-01 21:06:55] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-08-01 21:06:55] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-08-01 21:06:56] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-08-01 21:06:57] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-08-01 21:06:57] - Tomcat started on port 8080 (http) with context path '/'
+[2025-08-01 21:06:57] - Started DemoApplication in 13.13 seconds (process running for 15.143)
+[2025-08-01 21:07:03] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-08-01 21:07:03] - Initializing Servlet 'dispatcherServlet'
+[2025-08-01 21:07:03] - Completed initialization in 17 ms
+[2025-08-01 21:07:04] - Received POST /save/user with data: UserDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, password=iresh123)
+[2025-08-01 21:07:04] - Processing user in service: UserDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, password=iresh123)
+[2025-08-01 21:07:04] - User Saved In DB: UserDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, password=iresh123)
+[2025-08-01 21:07:04] - Operation Complete: {}
+[2025-08-01 21:07:04] - Successfully processed user save for: UserDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, password=iresh123)
+[2025-08-01 21:07:37] - Received POST /save/user with data: UserDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, password=iresh123)
+[2025-08-01 21:07:37] - Processing user in service: UserDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, password=iresh123)
+[2025-08-01 21:07:37] - Attempt to register with existing email: ireshdilshan466@gmail.com
+[2025-08-01 21:07:37] - Found Already Exists by Email Address
