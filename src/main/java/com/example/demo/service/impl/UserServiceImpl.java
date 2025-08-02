@@ -3,6 +3,7 @@ package com.example.demo.service.impl;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dto.UserDto;
 import com.example.demo.entity.User;
 import com.example.demo.exception.ExistsByEmailException;
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 
@@ -47,13 +49,11 @@ public class UserServiceImpl implements UserService {
     public void getMethod() {
         logger.info("Processing get all users in service");
         List<User> users = userRepository.findAll();
-        
-            if (users.isEmpty()) {
-                
-            }
-
-        logger.info("Operation Complete");
-
+        if (users.isEmpty()) {
+            throw new ResourceNotFoundException("Resource Not Found");
+        }
+        modelMapper.map(users,new TypeToken<List<UserDto>>(){}.getType());
+        logger.info("Operation Complete : {}", users);
     }
 
 }

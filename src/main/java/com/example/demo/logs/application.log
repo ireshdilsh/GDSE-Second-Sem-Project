@@ -1,11 +1,13 @@
-[2025-08-01 21:06:50] - HHH000204: Processing PersistenceUnitInfo [name: default]
-[2025-08-01 21:06:50] - HHH000412: Hibernate ORM core version 6.6.15.Final
-[2025-08-01 21:06:51] - HHH000026: Second-level cache disabled
-[2025-08-01 21:06:51] - No LoadTimeWeaver setup: ignoring JPA class transformer
-[2025-08-01 21:06:51] - HikariPool-1 - Starting...
-[2025-08-01 21:06:52] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5d3b6585
-[2025-08-01 21:06:52] - HikariPool-1 - Start completed.
-[2025-08-01 21:06:52] - HHH10001005: Database info:
+[2025-08-02 17:42:53] - Initializing Spring embedded WebApplicationContext
+[2025-08-02 17:42:53] - Root WebApplicationContext: initialization completed in 4112 ms
+[2025-08-02 17:42:53] - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-08-02 17:42:53] - HHH000412: Hibernate ORM core version 6.6.15.Final
+[2025-08-02 17:42:53] - HHH000026: Second-level cache disabled
+[2025-08-02 17:42:54] - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-08-02 17:42:54] - HikariPool-1 - Starting...
+[2025-08-02 17:42:55] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@70022d44
+[2025-08-02 17:42:55] - HikariPool-1 - Start completed.
+[2025-08-02 17:42:56] - HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 9.0.1
@@ -13,21 +15,16 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-[2025-08-01 21:06:55] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[2025-08-01 21:06:55] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[2025-08-01 21:06:56] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-[2025-08-01 21:06:57] - Starting ProtocolHandler ["http-nio-8080"]
-[2025-08-01 21:06:57] - Tomcat started on port 8080 (http) with context path '/'
-[2025-08-01 21:06:57] - Started DemoApplication in 13.13 seconds (process running for 15.143)
-[2025-08-01 21:07:03] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-[2025-08-01 21:07:03] - Initializing Servlet 'dispatcherServlet'
-[2025-08-01 21:07:03] - Completed initialization in 17 ms
-[2025-08-01 21:07:04] - Received POST /save/user with data: UserDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, password=iresh123)
-[2025-08-01 21:07:04] - Processing user in service: UserDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, password=iresh123)
-[2025-08-01 21:07:04] - User Saved In DB: UserDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, password=iresh123)
-[2025-08-01 21:07:04] - Operation Complete: {}
-[2025-08-01 21:07:04] - Successfully processed user save for: UserDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, password=iresh123)
-[2025-08-01 21:07:37] - Received POST /save/user with data: UserDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, password=iresh123)
-[2025-08-01 21:07:37] - Processing user in service: UserDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, password=iresh123)
-[2025-08-01 21:07:37] - Attempt to register with existing email: ireshdilshan466@gmail.com
-[2025-08-01 21:07:37] - Found Already Exists by Email Address
+[2025-08-02 17:42:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-08-02 17:42:58] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-08-02 17:42:59] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-08-02 17:43:00] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-08-02 17:43:00] - Tomcat started on port 8080 (http) with context path '/'
+[2025-08-02 17:43:00] - Started DemoApplication in 12.892 seconds (process running for 14.421)
+[2025-08-02 17:43:08] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-08-02 17:43:08] - Initializing Servlet 'dispatcherServlet'
+[2025-08-02 17:43:08] - Completed initialization in 11 ms
+[2025-08-02 17:43:18] - Received GET /get/all/users
+[2025-08-02 17:43:18] - Processing get all users in service
+[2025-08-02 17:43:18] - Operation Complete : [User(id=1, name=Iresh Dilshan, email=ireshgithub@gmail.com, password=iresh123), User(id=2, name=Iresh Dilshan, email=ireshdilshan46@gmail.com, password=iresh123), User(id=3, name=Iresh Dilshan, email=ireshdilshan466@gmail.com, password=iresh123)]
+[2025-08-02 17:43:18] - Successfully processed get all users

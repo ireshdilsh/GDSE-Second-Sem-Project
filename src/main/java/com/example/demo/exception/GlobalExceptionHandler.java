@@ -15,4 +15,9 @@ public class GlobalExceptionHandler {
         return new ResponseEntity(new APIResponse(404, "Already Exists Email", null),HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<APIResponse> handleResourceNotFound(ResourceNotFoundException e) {
+        return new ResponseEntity(new APIResponse(404, "Resource Not Found", null),HttpStatus.BAD_REQUEST);
+    }
+
 }
