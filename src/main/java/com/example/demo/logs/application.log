@@ -28,3 +28,41 @@
 [2025-08-02 17:43:18] - Processing get all users in service
 [2025-08-02 17:43:18] - Operation Complete : [User(id=1, name=Iresh Dilshan, email=ireshgithub@gmail.com, password=iresh123), User(id=2, name=Iresh Dilshan, email=ireshdilshan46@gmail.com, password=iresh123), User(id=3, name=Iresh Dilshan, email=ireshdilshan466@gmail.com, password=iresh123)]
 [2025-08-02 17:43:18] - Successfully processed get all users
+[2025-08-02 17:45:09] - Starting DemoApplication using Java 17.0.11 with PID 14132 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
+[2025-08-02 17:45:09] - No active profile set, falling back to 1 default profile: "default"
+[2025-08-02 17:45:12] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-08-02 17:45:12] - Finished Spring Data repository scanning in 199 ms. Found 1 JPA repository interface.
+[2025-08-02 17:45:14] - Tomcat initialized with port 8080 (http)
+[2025-08-02 17:45:14] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-08-02 17:45:14] - Starting service [Tomcat]
+[2025-08-02 17:45:14] - Starting Servlet engine: [Apache Tomcat/10.1.41]
+[2025-08-02 17:45:14] - Initializing Spring embedded WebApplicationContext
+[2025-08-02 17:45:14] - Root WebApplicationContext: initialization completed in 5674 ms
+[2025-08-02 17:45:15] - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-08-02 17:45:15] - HHH000412: Hibernate ORM core version 6.6.15.Final
+[2025-08-02 17:45:15] - HHH000026: Second-level cache disabled
+[2025-08-02 17:45:16] - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-08-02 17:45:16] - HikariPool-1 - Starting...
+[2025-08-02 17:45:17] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1171ba7e
+[2025-08-02 17:45:17] - HikariPool-1 - Start completed.
+[2025-08-02 17:45:17] - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 9.0.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[2025-08-02 17:45:19] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-08-02 17:45:19] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-08-02 17:45:19] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-08-02 17:45:21] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-08-02 17:45:21] - Tomcat started on port 8080 (http) with context path '/'
+[2025-08-02 17:45:21] - Started DemoApplication in 13.848 seconds (process running for 15.464)
+[2025-08-02 17:45:28] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-08-02 17:45:28] - Initializing Servlet 'dispatcherServlet'
+[2025-08-02 17:45:28] - Completed initialization in 0 ms
+[2025-08-02 17:45:29] - Received GET /get/all/users
+[2025-08-02 17:45:29] - Processing get all users in service
+[2025-08-02 17:45:29] - Operation Complete : [User(id=1, name=Iresh Dilshan, email=ireshgithub@gmail.com, password=iresh123), User(id=2, name=Iresh Dilshan, email=ireshdilshan46@gmail.com, password=iresh123), User(id=3, name=Iresh Dilshan, email=ireshdilshan466@gmail.com, password=iresh123)]
+[2025-08-02 17:45:29] - Successfully processed get all users

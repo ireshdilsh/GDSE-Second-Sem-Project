@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
-
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/v1")
@@ -34,17 +32,16 @@ public class UserController {
     public ResponseEntity<APIResponse> postMethod(@RequestBody UserDto dto) {
         logger.info("Received POST /save/user with data: {}", dto);
         service.postMethod(dto);
-        logger.info("Successfully processed user save for: {}", dto); 
-        return new ResponseEntity<>(new APIResponse(200, "success",dto), HttpStatus.CREATED);
+        logger.info("Successfully processed user save for: {}", dto);
+        return new ResponseEntity<>(new APIResponse(200, "success", dto), HttpStatus.CREATED);
     }
-    
+
     @GetMapping("/get/all/users")
     public ResponseEntity<APIResponse> getMethod() {
         logger.info("Received GET /get/all/users");
         service.getMethod();
         logger.info("Successfully processed get all users");
-        return new ResponseEntity<>(new APIResponse(200, "success",null), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(new APIResponse(200, "success", null), HttpStatus.OK);
     }
-    
 
 }
