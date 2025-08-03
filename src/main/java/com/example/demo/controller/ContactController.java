@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/contact")
 @CrossOrigin(origins = "*")
 public class ContactController {
 
