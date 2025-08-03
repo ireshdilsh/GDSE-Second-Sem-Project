@@ -45,13 +45,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void getMethod() {
+    public List<UserDto> getMethod() {
         logger.info("Processing get all users in service");
         List<User> users = userRepository.findAll();
         if (users.isEmpty()) {
             throw new ResourceNotFoundException("Resource Not Found");
         }
-        modelMapper.map(users,new TypeToken<List<UserDto>>(){}.getType());
+        return modelMapper.map(users, new TypeToken<List<UserDto>>() {}.getType());
     }
 
 }

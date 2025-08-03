@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.ContactDto;
@@ -9,6 +11,6 @@ public interface ContactService {
 
     void postMethod(ContactDto dto);
 
-    void getMethod();
+    List<ContactDto> getMethod();
 
 }

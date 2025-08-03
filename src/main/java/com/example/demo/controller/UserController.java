@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +41,9 @@ public class UserController {
     @GetMapping("/get/all/users")
     public ResponseEntity<APIResponse> getMethod() {
         logger.info("Received GET /get/all/users");
-        service.getMethod();
-        logger.info("Successfully processed get all users");
-        return new ResponseEntity<>(new APIResponse(200, "success", null), HttpStatus.OK);
+        List<UserDto>dtos = service.getMethod();
+        logger.info("Successfully processed get all users {} : " + dtos);
+        return new ResponseEntity<>(new APIResponse(200, "success", dtos), HttpStatus.OK);
     }
 
 }

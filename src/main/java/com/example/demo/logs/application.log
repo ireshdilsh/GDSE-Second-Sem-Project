@@ -1,21 +1,15 @@
-[2025-08-03 10:46:43] - Starting DemoApplication using Java 17.0.11 with PID 14424 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
-[2025-08-03 10:46:43] - No active profile set, falling back to 1 default profile: "default"
-[2025-08-03 10:46:46] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-[2025-08-03 10:46:47] - Finished Spring Data repository scanning in 347 ms. Found 2 JPA repository interfaces.
-[2025-08-03 10:46:50] - Tomcat initialized with port 8080 (http)
-[2025-08-03 10:46:50] - Initializing ProtocolHandler ["http-nio-8080"]
-[2025-08-03 10:46:50] - Starting service [Tomcat]
-[2025-08-03 10:46:50] - Starting Servlet engine: [Apache Tomcat/10.1.41]
-[2025-08-03 10:46:50] - Initializing Spring embedded WebApplicationContext
-[2025-08-03 10:46:51] - Root WebApplicationContext: initialization completed in 6947 ms
-[2025-08-03 10:46:51] - HHH000204: Processing PersistenceUnitInfo [name: default]
-[2025-08-03 10:46:52] - HHH000412: Hibernate ORM core version 6.6.15.Final
-[2025-08-03 10:46:52] - HHH000026: Second-level cache disabled
-[2025-08-03 10:46:53] - No LoadTimeWeaver setup: ignoring JPA class transformer
-[2025-08-03 10:46:53] - HikariPool-1 - Starting...
-[2025-08-03 10:46:55] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4f581211
-[2025-08-03 10:46:55] - HikariPool-1 - Start completed.
-[2025-08-03 10:46:55] - HHH10001005: Database info:
+[2025-08-03 11:14:55] - Starting service [Tomcat]
+[2025-08-03 11:14:55] - Starting Servlet engine: [Apache Tomcat/10.1.41]
+[2025-08-03 11:14:55] - Initializing Spring embedded WebApplicationContext
+[2025-08-03 11:14:55] - Root WebApplicationContext: initialization completed in 4915 ms
+[2025-08-03 11:14:56] - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-08-03 11:14:56] - HHH000412: Hibernate ORM core version 6.6.15.Final
+[2025-08-03 11:14:56] - HHH000026: Second-level cache disabled
+[2025-08-03 11:14:57] - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-08-03 11:14:57] - HikariPool-1 - Starting...
+[2025-08-03 11:14:58] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@77a9ac36
+[2025-08-03 11:14:58] - HikariPool-1 - Start completed.
+[2025-08-03 11:14:59] - HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 9.0.1
@@ -23,26 +17,98 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-[2025-08-03 10:46:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[2025-08-03 10:46:58] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[2025-08-03 10:46:59] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-[2025-08-03 10:47:00] - Starting ProtocolHandler ["http-nio-8080"]
-[2025-08-03 10:47:00] - Tomcat started on port 8080 (http) with context path '/'
-[2025-08-03 10:47:00] - Started DemoApplication in 17.975 seconds (process running for 19.599)
-[2025-08-03 10:50:22] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-[2025-08-03 10:50:22] - Initializing Servlet 'dispatcherServlet'
-[2025-08-03 10:50:22] - Completed initialization in 0 ms
-[2025-08-03 10:50:23] - Received POST /api/v1/path with data: ContactDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, subject=This Message for Seeds & Tools, message=My name is Iresh Dilshan, and I am reaching out regarding Seeds & Tools. I would appreciate it if you could provide more information about the available products, pricing, and any ongoing offers.)
-[2025-08-03 10:50:23] - Processing contact details in service: ContactDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, subject=This Message for Seeds & Tools, message=My name is Iresh Dilshan, and I am reaching out regarding Seeds & Tools. I would appreciate it if you could provide more information about the available products, pricing, and any ongoing offers.)
-[2025-08-03 10:50:23] - Contact details Saved In DB: ContactDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, subject=This Message for Seeds & Tools, message=My name is Iresh Dilshan, and I am reaching out regarding Seeds & Tools. I would appreciate it if you could provide more information about the available products, pricing, and any ongoing offers.)
-[2025-08-03 10:50:23] - Operation Complete : {}
-[2025-08-03 10:50:23] - Successfully processed contact details save for: ContactDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, subject=This Message for Seeds & Tools, message=My name is Iresh Dilshan, and I am reaching out regarding Seeds & Tools. I would appreciate it if you could provide more information about the available products, pricing, and any ongoing offers.)
-[2025-08-03 10:52:27] - Received GET /api/v1/path
-[2025-08-03 10:52:27] - Processing get all contact details in service
-[2025-08-03 10:52:27] - Operation Complete : [Contact(id=1, name=Iresh Dilshan, email=ireshdilshan46@gmail.com, subject=for improve garden, message=please help me improve my garden), Contact(id=2, name=Iresh Dilshan, email=ireshdilshan46@gmail.com, subject=How to Choose the Right Planter for Succulents i need big answer, message=Succulents are beautiful, hardy plants, but they have very specific needs when it comes to their container. The planter you choose plays a big role in keeping them healthy and happy. Here’s what to consider), Contact(id=3, name=Iresh Dilshan, email=ireshdilshan466@gmail.com, subject=This Message for Seeds & Tools, message=My name is Iresh Dilshan, and I am reaching out regarding Seeds & Tools. I would appreciate it if you could provide more information about the available products, pricing, and any ongoing offers.)]
-[2025-08-03 10:52:27] - Successfully processed get all contact details
-[2025-08-03 10:53:22] - Commencing graceful shutdown. Waiting for active requests to complete
-[2025-08-03 10:53:22] - Graceful shutdown complete
-[2025-08-03 10:53:22] - Closing JPA EntityManagerFactory for persistence unit 'default'
-[2025-08-03 10:53:22] - HikariPool-1 - Shutdown initiated...
-[2025-08-03 10:53:22] - HikariPool-1 - Shutdown completed.
+[2025-08-03 11:15:02] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-08-03 11:15:02] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-08-03 11:15:03] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-08-03 11:15:03] - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+[2025-08-03 11:15:04] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-08-03 11:15:04] - Tomcat started on port 8080 (http) with context path '/'
+[2025-08-03 11:15:04] - Started DemoApplication in 15.224 seconds (process running for 16.781)
+[2025-08-03 11:15:14] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-08-03 11:15:14] - Initializing Servlet 'dispatcherServlet'
+[2025-08-03 11:15:14] - Completed initialization in 8 ms
+[2025-08-03 11:15:15] - Received GET /get/all/users
+[2025-08-03 11:15:15] - Processing get all users in service
+[2025-08-03 11:15:15] - Successfully processed get all users
+[2025-08-03 11:15:35] - Received GET /get/all/users
+[2025-08-03 11:15:35] - Processing get all users in service
+[2025-08-03 11:15:35] - Successfully processed get all users
+[2025-08-03 11:19:36] - Starting DemoApplication using Java 17.0.11 with PID 14044 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
+[2025-08-03 11:19:36] - No active profile set, falling back to 1 default profile: "default"
+[2025-08-03 11:19:39] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-08-03 11:19:39] - Finished Spring Data repository scanning in 161 ms. Found 2 JPA repository interfaces.
+[2025-08-03 11:19:41] - Tomcat initialized with port 8080 (http)
+[2025-08-03 11:19:41] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-08-03 11:19:41] - Starting service [Tomcat]
+[2025-08-03 11:19:41] - Starting Servlet engine: [Apache Tomcat/10.1.41]
+[2025-08-03 11:19:42] - Initializing Spring embedded WebApplicationContext
+[2025-08-03 11:19:42] - Root WebApplicationContext: initialization completed in 5233 ms
+[2025-08-03 11:19:42] - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-08-03 11:19:43] - HHH000412: Hibernate ORM core version 6.6.15.Final
+[2025-08-03 11:19:43] - HHH000026: Second-level cache disabled
+[2025-08-03 11:19:43] - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-08-03 11:19:44] - HikariPool-1 - Starting...
+[2025-08-03 11:19:45] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2e1291a4
+[2025-08-03 11:19:45] - HikariPool-1 - Start completed.
+[2025-08-03 11:19:45] - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 9.0.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[2025-08-03 11:19:47] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-08-03 11:19:47] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-08-03 11:19:48] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-08-03 11:19:49] - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+[2025-08-03 11:19:50] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-08-03 11:19:50] - Tomcat started on port 8080 (http) with context path '/'
+[2025-08-03 11:19:50] - Started DemoApplication in 15.37 seconds (process running for 16.871)
+[2025-08-03 11:20:08] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-08-03 11:20:08] - Initializing Servlet 'dispatcherServlet'
+[2025-08-03 11:20:08] - Completed initialization in 6 ms
+[2025-08-03 11:20:08] - Received GET /api/v1/path
+[2025-08-03 11:20:08] - Processing get all contact details in service
+[2025-08-03 11:20:08] - Successfully processed get all contact details {} : [ContactDto(name=Iresh Dilshan, email=ireshdilshan46@gmail.com, subject=for improve garden, message=please help me improve my garden), ContactDto(name=Iresh Dilshan, email=ireshdilshan46@gmail.com, subject=How to Choose the Right Planter for Succulents i need big answer, message=Succulents are beautiful, hardy plants, but they have very specific needs when it comes to their container. The planter you choose plays a big role in keeping them healthy and happy. Here’s what to consider), ContactDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, subject=This Message for Seeds & Tools, message=My name is Iresh Dilshan, and I am reaching out regarding Seeds & Tools. I would appreciate it if you could provide more information about the available products, pricing, and any ongoing offers.)]
+[2025-08-03 11:21:18] - Starting DemoApplication using Java 17.0.11 with PID 12544 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
+[2025-08-03 11:21:18] - No active profile set, falling back to 1 default profile: "default"
+[2025-08-03 11:21:20] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-08-03 11:21:20] - Finished Spring Data repository scanning in 221 ms. Found 2 JPA repository interfaces.
+[2025-08-03 11:21:22] - Tomcat initialized with port 8080 (http)
+[2025-08-03 11:21:22] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-08-03 11:21:22] - Starting service [Tomcat]
+[2025-08-03 11:21:22] - Starting Servlet engine: [Apache Tomcat/10.1.41]
+[2025-08-03 11:21:22] - Initializing Spring embedded WebApplicationContext
+[2025-08-03 11:21:22] - Root WebApplicationContext: initialization completed in 4705 ms
+[2025-08-03 11:21:23] - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-08-03 11:21:23] - HHH000412: Hibernate ORM core version 6.6.15.Final
+[2025-08-03 11:21:23] - HHH000026: Second-level cache disabled
+[2025-08-03 11:21:24] - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-08-03 11:21:24] - HikariPool-1 - Starting...
+[2025-08-03 11:21:25] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@189633f2
+[2025-08-03 11:21:25] - HikariPool-1 - Start completed.
+[2025-08-03 11:21:25] - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 9.0.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[2025-08-03 11:21:27] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-08-03 11:21:27] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-08-03 11:21:28] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-08-03 11:21:28] - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+[2025-08-03 11:21:29] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-08-03 11:21:29] - Tomcat started on port 8080 (http) with context path '/'
+[2025-08-03 11:21:29] - Started DemoApplication in 12.75 seconds (process running for 13.905)
+[2025-08-03 11:25:03] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-08-03 11:25:03] - Initializing Servlet 'dispatcherServlet'
+[2025-08-03 11:25:03] - Completed initialization in 0 ms
+[2025-08-03 11:25:03] - Received GET /get/all/users
+[2025-08-03 11:25:03] - Processing get all users in service
+[2025-08-03 11:25:04] - Successfully processed get all users {} : [UserDto(name=Iresh Dilshan, email=ireshgithub@gmail.com, password=iresh123), UserDto(name=Iresh Dilshan, email=ireshdilshan46@gmail.com, password=iresh123), UserDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, password=iresh123)]
+[2025-08-03 11:25:23] - Received GET /api/v1/path
+[2025-08-03 11:25:23] - Processing get all contact details in service
+[2025-08-03 11:25:23] - Successfully processed get all contact details {} : [ContactDto(id=1, name=Iresh Dilshan, email=ireshdilshan46@gmail.com, subject=for improve garden, message=please help me improve my garden), ContactDto(id=2, name=Iresh Dilshan, email=ireshdilshan46@gmail.com, subject=How to Choose the Right Planter for Succulents i need big answer, message=Succulents are beautiful, hardy plants, but they have very specific needs when it comes to their container. The planter you choose plays a big role in keeping them healthy and happy. Here’s what to consider), ContactDto(id=3, name=Iresh Dilshan, email=ireshdilshan466@gmail.com, subject=This Message for Seeds & Tools, message=My name is Iresh Dilshan, and I am reaching out regarding Seeds & Tools. I would appreciate it if you could provide more information about the available products, pricing, and any ongoing offers.)]

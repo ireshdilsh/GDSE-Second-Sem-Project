@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +43,9 @@ public class ContactController {
     @GetMapping("/get/all/contact/details")
     public ResponseEntity<APIResponse> getMethod() {
         logger.info("Received GET /api/v1/path");
-        service.getMethod();
-        logger.info("Successfully processed get all contact details");
-        return new ResponseEntity<>(new APIResponse(200, "success", null), HttpStatus.OK);
+        List<ContactDto>dtos = service.getMethod();
+        logger.info("Successfully processed get all contact details {} : " + dtos);
+        return new ResponseEntity<>(new APIResponse(200, "success", dtos), HttpStatus.OK);
     }
     
 }

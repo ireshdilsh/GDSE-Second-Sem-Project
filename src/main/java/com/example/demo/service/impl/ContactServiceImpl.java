@@ -36,13 +36,13 @@ public class ContactServiceImpl implements ContactService{
     }
 
     @Override
-    public void getMethod() {
+    public List<ContactDto> getMethod() {
         logger.info("Processing get all contact details in service");
         List<Contact> contacts = contactRepository.findAll();
         if (contacts.isEmpty()) {
             throw new ResourceNotFoundException("Resource Not Found");
         }
-        modelMapper.map(contacts,new TypeToken<List<ContactDto>>(){}.getType());
+        return modelMapper.map(contacts,new TypeToken<List<ContactDto>>(){}.getType());
     }
 
 }
