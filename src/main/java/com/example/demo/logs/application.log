@@ -37,3 +37,12 @@
 [2025-08-03 10:50:23] - Contact details Saved In DB: ContactDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, subject=This Message for Seeds & Tools, message=My name is Iresh Dilshan, and I am reaching out regarding Seeds & Tools. I would appreciate it if you could provide more information about the available products, pricing, and any ongoing offers.)
 [2025-08-03 10:50:23] - Operation Complete : {}
 [2025-08-03 10:50:23] - Successfully processed contact details save for: ContactDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, subject=This Message for Seeds & Tools, message=My name is Iresh Dilshan, and I am reaching out regarding Seeds & Tools. I would appreciate it if you could provide more information about the available products, pricing, and any ongoing offers.)
+[2025-08-03 10:52:27] - Received GET /api/v1/path
+[2025-08-03 10:52:27] - Processing get all contact details in service
+[2025-08-03 10:52:27] - Operation Complete : [Contact(id=1, name=Iresh Dilshan, email=ireshdilshan46@gmail.com, subject=for improve garden, message=please help me improve my garden), Contact(id=2, name=Iresh Dilshan, email=ireshdilshan46@gmail.com, subject=How to Choose the Right Planter for Succulents i need big answer, message=Succulents are beautiful, hardy plants, but they have very specific needs when it comes to their container. The planter you choose plays a big role in keeping them healthy and happy. Here’s what to consider), Contact(id=3, name=Iresh Dilshan, email=ireshdilshan466@gmail.com, subject=This Message for Seeds & Tools, message=My name is Iresh Dilshan, and I am reaching out regarding Seeds & Tools. I would appreciate it if you could provide more information about the available products, pricing, and any ongoing offers.)]
+[2025-08-03 10:52:27] - Successfully processed get all contact details
+[2025-08-03 10:53:22] - Commencing graceful shutdown. Waiting for active requests to complete
+[2025-08-03 10:53:22] - Graceful shutdown complete
+[2025-08-03 10:53:22] - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2025-08-03 10:53:22] - HikariPool-1 - Shutdown initiated...
+[2025-08-03 10:53:22] - HikariPool-1 - Shutdown completed.
