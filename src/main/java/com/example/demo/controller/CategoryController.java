@@ -3,12 +3,17 @@ package com.example.demo.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.CategoryDto;
 import com.example.demo.service.CategoryService;
+import com.example.demo.utils.APIResponse;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,20 +34,21 @@ public class CategoryController {
     @Autowired
     CategoryService service;
 
-    @PostMapping("path")
-    public String postMethodName(@RequestBody String entity) {
-        //TODO: process POST request
-        
-        return entity;
+    @PostMapping("/save/category")
+    public ResponseEntity<APIResponse> postMethod(@RequestBody CategoryDto dto) {
+       loger.info("Received POST /save/category with data: {}", dto);
+       service.postMethod(dto);
+       loger.info("Successfully processed category save for: {}", dto);
+       return new ResponseEntity<>(new APIResponse(200, "success", dto), HttpStatus.CREATED);
     }
 
     @GetMapping("path")
-    public String getMethodName(@RequestParam String param) {
+    public String getMethod() {
         return new String();
     }
     
     @DeleteMapping("path")
-    public String deleteMethodName(@RequestParam String param) {
+    public String deleteMethod(@RequestParam String param) {
         return new String();
     }
 
@@ -52,6 +58,5 @@ public class CategoryController {
         
         return entity;
     }
-    
     
 }

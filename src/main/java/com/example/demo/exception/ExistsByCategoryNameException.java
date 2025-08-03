@@ -1,7 +1,7 @@
 package com.example.demo.exception;
 
 public class ExistsByCategoryNameException extends RuntimeException{
-    ExistsByCategoryNameException(String error){
+    public ExistsByCategoryNameException(String error){
         super();
     }
 }

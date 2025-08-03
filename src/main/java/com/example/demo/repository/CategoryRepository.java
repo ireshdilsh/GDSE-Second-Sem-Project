@@ -8,4 +8,6 @@ import com.example.demo.entity.Category;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category,Long>{
 
+    boolean existsByCategoryName(String cate_name);
+
 }

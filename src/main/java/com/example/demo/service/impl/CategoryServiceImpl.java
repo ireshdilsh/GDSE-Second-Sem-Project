@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.controller.CategoryController;
+import com.example.demo.dto.CategoryDto;
+import com.example.demo.entity.Category;
+import com.example.demo.exception.ExistsByCategoryNameException;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.service.CategoryService;
 
@@ -21,4 +24,17 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     CategoryRepository categoryRepository;
+
+    @Override
+    public void postMethod(CategoryDto dto) {
+        logger.info("Processing category details in service: {}", dto);
+        if (categoryRepository.existsByCategoryName(dto.getCate_name())) {
+            logger.warn("Attempt to register with existing category name: {}", dto.getCate_name());
+            logger.error("Found Already Exists by Category Name", dto.getCate_name());
+            throw new ExistsByCategoryNameException("ExistsEmail Exception Running " + dto.getCate_name());
+        } else {
+            categoryRepository.save(modelMapper.map(dto, Category.class));
+            logger.info("Category details Saved In DB: {}", dto);
+        }
+    }
 }
