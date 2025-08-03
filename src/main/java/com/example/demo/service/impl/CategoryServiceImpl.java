@@ -30,15 +30,16 @@ public class CategoryServiceImpl implements CategoryService {
     CategoryRepository categoryRepository;
 
     @Override
-    public void postMethod(CategoryDto dto) {
+    public CategoryDto postMethod(CategoryDto dto) {
         logger.info("Processing category details in service: {}", dto);
-        if (categoryRepository.existsBycate_name(dto.getCate_name())) {
-            logger.warn("Attempt to register with existing category name: {}", dto.getCate_name());
-            logger.error("Found Already Exists by Category Name", dto.getCate_name());
-            throw new ExistsByCategoryNameException("ExistsEmail Exception Running " + dto.getCate_name());
+        if (categoryRepository.existsBycateName(dto.getCateName())) {
+            logger.warn("Attempt to register with existing category name: {}", dto.getCateName());
+            throw new ExistsByCategoryNameException("ExistsEmail Exception Running " + dto.getCateName());
         } else {
-            categoryRepository.save(modelMapper.map(dto, Category.class));
-            logger.info("Category details Saved In DB: {}", dto);
+            Category savedEntity = categoryRepository.save(modelMapper.map(dto, Category.class));
+            CategoryDto savedDto = modelMapper.map(savedEntity, CategoryDto.class);
+            logger.info("Category saved with ID: {}", savedDto.getId());
+            return savedDto;
         }
     }
 
@@ -49,6 +50,7 @@ public class CategoryServiceImpl implements CategoryService {
         if (categories.isEmpty()) {
             throw new ResourceNotFoundException("Resource Not Found");
         }
-        return modelMapper.map(categories, new TypeToken<List<CategoryDto>>() {}.getType());
+        return modelMapper.map(categories, new TypeToken<List<CategoryDto>>() {
+        }.getType());
     }
 }

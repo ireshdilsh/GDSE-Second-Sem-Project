@@ -23,9 +23,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-
-
-
 @RestController
 @RequestMapping("/api/v1/category")
 @CrossOrigin(origins = "*")
@@ -38,20 +35,20 @@ public class CategoryController {
 
     @PostMapping("/save/category")
     public ResponseEntity<APIResponse> postMethod(@RequestBody CategoryDto dto) {
-       loger.info("Received POST /save/category with data: {}", dto);
-       service.postMethod(dto);
-       loger.info("Successfully processed category save for: {}", dto);
-       return new ResponseEntity<>(new APIResponse(200, "success", dto), HttpStatus.CREATED);
+        loger.info("Received POST /save/category with data: {}", dto);
+        CategoryDto saved = service.postMethod(dto);
+        loger.info("Successfully saved category with ID: {}", saved.getId());
+        return new ResponseEntity<>(new APIResponse(201, "success", saved), HttpStatus.CREATED);
     }
 
     @GetMapping("/get/all/categories")
     public ResponseEntity<APIResponse> getMethod() {
         loger.info("Received GET /get/all/categories");
-        List<CategoryDto>dtos = service.getMethod();
-        loger.info("Successfully processed get all categories {} : " , dtos);
+        List<CategoryDto> dtos = service.getMethod();
+        loger.info("Successfully processed get all categories {} : ", dtos);
         return new ResponseEntity<>(new APIResponse(200, "success", dtos), HttpStatus.OK);
     }
-    
+
     @DeleteMapping("path")
     public String deleteMethod(@RequestParam String param) {
         return new String();
@@ -59,9 +56,9 @@ public class CategoryController {
 
     @PutMapping("path/{id}")
     public String putMethodName(@PathVariable String id, @RequestBody String entity) {
-        //TODO: process PUT request
-        
+        // TODO: process PUT request
+
         return entity;
     }
-    
+
 }

@@ -9,7 +9,7 @@ import com.example.demo.dto.CategoryDto;
 @Service
 public interface CategoryService {
 
-    void postMethod(CategoryDto dto);
+    CategoryDto postMethod(CategoryDto dto);
 
     List<CategoryDto> getMethod();
 
