@@ -32,7 +32,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void postMethod(CategoryDto dto) {
         logger.info("Processing category details in service: {}", dto);
-        if (categoryRepository.existsByCategoryName(dto.getCate_name())) {
+        if (categoryRepository.existsBycate_name(dto.getCate_name())) {
             logger.warn("Attempt to register with existing category name: {}", dto.getCate_name());
             logger.error("Found Already Exists by Category Name", dto.getCate_name());
             throw new ExistsByCategoryNameException("ExistsEmail Exception Running " + dto.getCate_name());
