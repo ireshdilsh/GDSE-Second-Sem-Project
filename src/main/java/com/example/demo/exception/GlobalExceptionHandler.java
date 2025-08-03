@@ -20,4 +20,9 @@ public class GlobalExceptionHandler {
         return new ResponseEntity(new APIResponse(404, "Resource Not Found", null),HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(ExistsByCategoryNameException.class)
+    public ResponseEntity<APIResponse> handleCategoryNameExists(ExistsByCategoryNameException e) { 
+        return new ResponseEntity(new APIResponse(404, "Already Exists Category Name", null),HttpStatus.BAD_REQUEST); 
+    }
+
 }
