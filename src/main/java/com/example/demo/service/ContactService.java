@@ -9,4 +9,6 @@ public interface ContactService {
 
     void postMethod(ContactDto dto);
 
+    void getMethod();
+
 }

@@ -38,12 +38,12 @@ public class ContactController {
         return new ResponseEntity<>(new APIResponse(200, "success", dto), HttpStatus.CREATED);
     }
 
-    // @GetMapping("/get/all/contact/details")
-    // public ResponseEntity<APIResponse> getMethod() {
-    //     logger.info("Received GET /api/v1/path");
-    //     service.getMethod();
-    //     logger.info("Successfully processed get all contact details");
-    //     return new ResponseEntity<>(new APIResponse(200, "success", null), HttpStatus.OK);
-    // }
+    @GetMapping("/get/all/contact/details")
+    public ResponseEntity<APIResponse> getMethod() {
+        logger.info("Received GET /api/v1/path");
+        service.getMethod();
+        logger.info("Successfully processed get all contact details");
+        return new ResponseEntity<>(new APIResponse(200, "success", null), HttpStatus.OK);
+    }
     
 }
