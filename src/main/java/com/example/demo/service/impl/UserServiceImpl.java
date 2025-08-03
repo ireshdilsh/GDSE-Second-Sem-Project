@@ -41,7 +41,6 @@ public class UserServiceImpl implements UserService {
             userRepository.save(modelMapper.map(dto, User.class));
             logger.info("User Saved In DB: {}", dto);
         }
-        logger.info("Operation Complete: {}");
 
     }
 
@@ -53,7 +52,6 @@ public class UserServiceImpl implements UserService {
             throw new ResourceNotFoundException("Resource Not Found");
         }
         modelMapper.map(users,new TypeToken<List<UserDto>>(){}.getType());
-        logger.info("Operation Complete : {}", users);
     }
 
 }

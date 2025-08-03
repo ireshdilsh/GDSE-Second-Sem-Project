@@ -33,7 +33,6 @@ public class ContactServiceImpl implements ContactService{
         logger.info("Processing contact details in service: {}", dto);
         contactRepository.save(modelMapper.map(dto, Contact.class));
         logger.info("Contact details Saved In DB: {}", dto);
-        logger.info("Operation Complete : {}");
     }
 
     @Override
@@ -44,7 +43,6 @@ public class ContactServiceImpl implements ContactService{
             throw new ResourceNotFoundException("Resource Not Found");
         }
         modelMapper.map(contacts,new TypeToken<List<ContactDto>>(){}.getType());
-        logger.info("Operation Complete : {}", contacts);
     }
 
 }

@@ -1,13 +1,21 @@
-[2025-08-02 17:42:53] - Initializing Spring embedded WebApplicationContext
-[2025-08-02 17:42:53] - Root WebApplicationContext: initialization completed in 4112 ms
-[2025-08-02 17:42:53] - HHH000204: Processing PersistenceUnitInfo [name: default]
-[2025-08-02 17:42:53] - HHH000412: Hibernate ORM core version 6.6.15.Final
-[2025-08-02 17:42:53] - HHH000026: Second-level cache disabled
-[2025-08-02 17:42:54] - No LoadTimeWeaver setup: ignoring JPA class transformer
-[2025-08-02 17:42:54] - HikariPool-1 - Starting...
-[2025-08-02 17:42:55] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@70022d44
-[2025-08-02 17:42:55] - HikariPool-1 - Start completed.
-[2025-08-02 17:42:56] - HHH10001005: Database info:
+[2025-08-03 10:46:43] - Starting DemoApplication using Java 17.0.11 with PID 14424 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
+[2025-08-03 10:46:43] - No active profile set, falling back to 1 default profile: "default"
+[2025-08-03 10:46:46] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-08-03 10:46:47] - Finished Spring Data repository scanning in 347 ms. Found 2 JPA repository interfaces.
+[2025-08-03 10:46:50] - Tomcat initialized with port 8080 (http)
+[2025-08-03 10:46:50] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-08-03 10:46:50] - Starting service [Tomcat]
+[2025-08-03 10:46:50] - Starting Servlet engine: [Apache Tomcat/10.1.41]
+[2025-08-03 10:46:50] - Initializing Spring embedded WebApplicationContext
+[2025-08-03 10:46:51] - Root WebApplicationContext: initialization completed in 6947 ms
+[2025-08-03 10:46:51] - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-08-03 10:46:52] - HHH000412: Hibernate ORM core version 6.6.15.Final
+[2025-08-03 10:46:52] - HHH000026: Second-level cache disabled
+[2025-08-03 10:46:53] - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-08-03 10:46:53] - HikariPool-1 - Starting...
+[2025-08-03 10:46:55] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4f581211
+[2025-08-03 10:46:55] - HikariPool-1 - Start completed.
+[2025-08-03 10:46:55] - HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 9.0.1
@@ -15,54 +23,17 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-[2025-08-02 17:42:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[2025-08-02 17:42:58] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[2025-08-02 17:42:59] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-[2025-08-02 17:43:00] - Starting ProtocolHandler ["http-nio-8080"]
-[2025-08-02 17:43:00] - Tomcat started on port 8080 (http) with context path '/'
-[2025-08-02 17:43:00] - Started DemoApplication in 12.892 seconds (process running for 14.421)
-[2025-08-02 17:43:08] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-[2025-08-02 17:43:08] - Initializing Servlet 'dispatcherServlet'
-[2025-08-02 17:43:08] - Completed initialization in 11 ms
-[2025-08-02 17:43:18] - Received GET /get/all/users
-[2025-08-02 17:43:18] - Processing get all users in service
-[2025-08-02 17:43:18] - Operation Complete : [User(id=1, name=Iresh Dilshan, email=ireshgithub@gmail.com, password=iresh123), User(id=2, name=Iresh Dilshan, email=ireshdilshan46@gmail.com, password=iresh123), User(id=3, name=Iresh Dilshan, email=ireshdilshan466@gmail.com, password=iresh123)]
-[2025-08-02 17:43:18] - Successfully processed get all users
-[2025-08-02 17:45:09] - Starting DemoApplication using Java 17.0.11 with PID 14132 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
-[2025-08-02 17:45:09] - No active profile set, falling back to 1 default profile: "default"
-[2025-08-02 17:45:12] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-[2025-08-02 17:45:12] - Finished Spring Data repository scanning in 199 ms. Found 1 JPA repository interface.
-[2025-08-02 17:45:14] - Tomcat initialized with port 8080 (http)
-[2025-08-02 17:45:14] - Initializing ProtocolHandler ["http-nio-8080"]
-[2025-08-02 17:45:14] - Starting service [Tomcat]
-[2025-08-02 17:45:14] - Starting Servlet engine: [Apache Tomcat/10.1.41]
-[2025-08-02 17:45:14] - Initializing Spring embedded WebApplicationContext
-[2025-08-02 17:45:14] - Root WebApplicationContext: initialization completed in 5674 ms
-[2025-08-02 17:45:15] - HHH000204: Processing PersistenceUnitInfo [name: default]
-[2025-08-02 17:45:15] - HHH000412: Hibernate ORM core version 6.6.15.Final
-[2025-08-02 17:45:15] - HHH000026: Second-level cache disabled
-[2025-08-02 17:45:16] - No LoadTimeWeaver setup: ignoring JPA class transformer
-[2025-08-02 17:45:16] - HikariPool-1 - Starting...
-[2025-08-02 17:45:17] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1171ba7e
-[2025-08-02 17:45:17] - HikariPool-1 - Start completed.
-[2025-08-02 17:45:17] - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 9.0.1
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-[2025-08-02 17:45:19] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[2025-08-02 17:45:19] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[2025-08-02 17:45:19] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-[2025-08-02 17:45:21] - Starting ProtocolHandler ["http-nio-8080"]
-[2025-08-02 17:45:21] - Tomcat started on port 8080 (http) with context path '/'
-[2025-08-02 17:45:21] - Started DemoApplication in 13.848 seconds (process running for 15.464)
-[2025-08-02 17:45:28] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-[2025-08-02 17:45:28] - Initializing Servlet 'dispatcherServlet'
-[2025-08-02 17:45:28] - Completed initialization in 0 ms
-[2025-08-02 17:45:29] - Received GET /get/all/users
-[2025-08-02 17:45:29] - Processing get all users in service
-[2025-08-02 17:45:29] - Operation Complete : [User(id=1, name=Iresh Dilshan, email=ireshgithub@gmail.com, password=iresh123), User(id=2, name=Iresh Dilshan, email=ireshdilshan46@gmail.com, password=iresh123), User(id=3, name=Iresh Dilshan, email=ireshdilshan466@gmail.com, password=iresh123)]
-[2025-08-02 17:45:29] - Successfully processed get all users
+[2025-08-03 10:46:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-08-03 10:46:58] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-08-03 10:46:59] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-08-03 10:47:00] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-08-03 10:47:00] - Tomcat started on port 8080 (http) with context path '/'
+[2025-08-03 10:47:00] - Started DemoApplication in 17.975 seconds (process running for 19.599)
+[2025-08-03 10:50:22] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-08-03 10:50:22] - Initializing Servlet 'dispatcherServlet'
+[2025-08-03 10:50:22] - Completed initialization in 0 ms
+[2025-08-03 10:50:23] - Received POST /api/v1/path with data: ContactDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, subject=This Message for Seeds & Tools, message=My name is Iresh Dilshan, and I am reaching out regarding Seeds & Tools. I would appreciate it if you could provide more information about the available products, pricing, and any ongoing offers.)
+[2025-08-03 10:50:23] - Processing contact details in service: ContactDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, subject=This Message for Seeds & Tools, message=My name is Iresh Dilshan, and I am reaching out regarding Seeds & Tools. I would appreciate it if you could provide more information about the available products, pricing, and any ongoing offers.)
+[2025-08-03 10:50:23] - Contact details Saved In DB: ContactDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, subject=This Message for Seeds & Tools, message=My name is Iresh Dilshan, and I am reaching out regarding Seeds & Tools. I would appreciate it if you could provide more information about the available products, pricing, and any ongoing offers.)
+[2025-08-03 10:50:23] - Operation Complete : {}
+[2025-08-03 10:50:23] - Successfully processed contact details save for: ContactDto(name=Iresh Dilshan, email=ireshdilshan466@gmail.com, subject=This Message for Seeds & Tools, message=My name is Iresh Dilshan, and I am reaching out regarding Seeds & Tools. I would appreciate it if you could provide more information about the available products, pricing, and any ongoing offers.)
