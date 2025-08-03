@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class CategoryServiceImpl implements CategoryService {
 
     private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
-    ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     @Autowired
     CategoryRepository categoryRepository;
