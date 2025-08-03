@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.CategoryDto;
@@ -8,5 +10,7 @@ import com.example.demo.dto.CategoryDto;
 public interface CategoryService {
 
     void postMethod(CategoryDto dto);
+
+    List<CategoryDto> getMethod();
 
 }

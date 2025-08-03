@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +44,12 @@ public class CategoryController {
        return new ResponseEntity<>(new APIResponse(200, "success", dto), HttpStatus.CREATED);
     }
 
-    @GetMapping("path")
-    public String getMethod() {
-        return new String();
+    @GetMapping("/get/all/categories")
+    public ResponseEntity<APIResponse> getMethod() {
+        loger.info("Received GET /get/all/categories");
+        List<CategoryDto>dtos = service.getMethod();
+        loger.info("Successfully processed get all categories {} : " , dtos);
+        return new ResponseEntity<>(new APIResponse(200, "success", dtos), HttpStatus.OK);
     }
     
     @DeleteMapping("path")
