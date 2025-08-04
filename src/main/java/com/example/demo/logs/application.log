@@ -1,76 +1,8 @@
-[2025-08-04 16:52:12] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-[2025-08-04 16:52:12] - Finished Spring Data repository scanning in 231 ms. Found 4 JPA repository interfaces.
-[2025-08-04 16:52:15] - Tomcat initialized with port 8080 (http)
-[2025-08-04 16:52:15] - Initializing ProtocolHandler ["http-nio-8080"]
-[2025-08-04 16:52:16] - Starting service [Tomcat]
-[2025-08-04 16:52:16] - Starting Servlet engine: [Apache Tomcat/10.1.41]
-[2025-08-04 16:52:16] - Initializing Spring embedded WebApplicationContext
-[2025-08-04 16:52:16] - Root WebApplicationContext: initialization completed in 7483 ms
-[2025-08-04 16:52:17] - HHH000204: Processing PersistenceUnitInfo [name: default]
-[2025-08-04 16:52:17] - HHH000412: Hibernate ORM core version 6.6.15.Final
-[2025-08-04 16:52:18] - HHH000026: Second-level cache disabled
-[2025-08-04 16:52:18] - No LoadTimeWeaver setup: ignoring JPA class transformer
-[2025-08-04 16:52:19] - HikariPool-1 - Starting...
-[2025-08-04 16:52:20] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1e4d8770
-[2025-08-04 16:52:20] - HikariPool-1 - Start completed.
-[2025-08-04 16:52:20] - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 9.0.1
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-[2025-08-04 16:52:22] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[2025-08-04 16:52:22] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[2025-08-04 16:52:23] - Hibernate is in classpath; If applicable, HQL parser will be used.
-[2025-08-04 16:52:26] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-[2025-08-04 16:52:26] - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-[2025-08-04 16:52:27] - Starting ProtocolHandler ["http-nio-8080"]
-[2025-08-04 16:52:27] - Tomcat started on port 8080 (http) with context path '/'
-[2025-08-04 16:52:27] - Started DemoApplication in 20.195 seconds (process running for 21.4)
-[2025-08-04 16:52:53] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-[2025-08-04 16:52:53] - Initializing Servlet 'dispatcherServlet'
-[2025-08-04 16:52:53] - Completed initialization in 0 ms
-[2025-08-04 16:52:53] - Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required part 'image' is not present.]
-[2025-08-04 17:03:29] - Starting DemoApplication using Java 17.0.11 with PID 15400 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
-[2025-08-04 17:03:29] - No active profile set, falling back to 1 default profile: "default"
-[2025-08-04 17:03:32] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-[2025-08-04 17:03:33] - Finished Spring Data repository scanning in 219 ms. Found 4 JPA repository interfaces.
-[2025-08-04 17:03:35] - Tomcat initialized with port 8080 (http)
-[2025-08-04 17:03:35] - Initializing ProtocolHandler ["http-nio-8080"]
-[2025-08-04 17:03:35] - Starting service [Tomcat]
-[2025-08-04 17:03:35] - Starting Servlet engine: [Apache Tomcat/10.1.41]
-[2025-08-04 17:03:36] - Initializing Spring embedded WebApplicationContext
-[2025-08-04 17:03:36] - Root WebApplicationContext: initialization completed in 6496 ms
-[2025-08-04 17:03:36] - HHH000204: Processing PersistenceUnitInfo [name: default]
-[2025-08-04 17:03:36] - HHH000412: Hibernate ORM core version 6.6.15.Final
-[2025-08-04 17:03:36] - HHH000026: Second-level cache disabled
-[2025-08-04 17:03:37] - No LoadTimeWeaver setup: ignoring JPA class transformer
-[2025-08-04 17:03:37] - HikariPool-1 - Starting...
-[2025-08-04 17:03:38] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@aa8dce8
-[2025-08-04 17:03:38] - HikariPool-1 - Start completed.
-[2025-08-04 17:03:39] - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 9.0.1
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-[2025-08-04 17:03:41] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[2025-08-04 17:03:41] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[2025-08-04 17:03:41] - Hibernate is in classpath; If applicable, HQL parser will be used.
-[2025-08-04 17:03:44] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-[2025-08-04 17:03:44] - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-[2025-08-04 17:03:46] - Starting ProtocolHandler ["http-nio-8080"]
-[2025-08-04 17:03:46] - Tomcat started on port 8080 (http) with context path '/'
-[2025-08-04 17:03:46] - Started DemoApplication in 18.414 seconds (process running for 19.999)
-[2025-08-04 17:03:51] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-[2025-08-04 17:03:51] - Initializing Servlet 'dispatcherServlet'
-[2025-08-04 17:03:51] - Completed initialization in 0 ms
-[2025-08-04 17:03:51] - Received POST /save/blog/with/image with blog: My Blog Title and image: codeing-1.jpg
-[2025-08-04 17:03:51] - Processing blog save with image: My Blog Title
-[2025-08-04 17:03:51] - Image processed: codeing-1.jpg - Size: 655701 bytes
-[2025-08-04 17:03:55] - Blog saved successfully with ID: 2
-[2025-08-04 17:03:55] - Successfully processed blog with image save for: My Blog Title
+[2025-08-04 17:17:37] - Received GET /get/all/blogs
+[2025-08-04 17:17:37] - Fetching all blogs
+[2025-08-04 17:17:38] - Successfully retrieved 2 blogs
+[2025-08-04 17:17:56] - Commencing graceful shutdown. Waiting for active requests to complete
+[2025-08-04 17:17:56] - Graceful shutdown complete
+[2025-08-04 17:17:56] - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2025-08-04 17:17:56] - HikariPool-1 - Shutdown initiated...
+[2025-08-04 17:17:56] - HikariPool-1 - Shutdown completed.
