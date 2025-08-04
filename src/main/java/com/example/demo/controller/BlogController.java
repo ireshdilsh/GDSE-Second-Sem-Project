@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @CrossOrigin(origins = "*")
 public class BlogController {
 
-    private static final Logger logger = LoggerFactory.getLogger(BlogController.class); 
+    private static final Logger logger = LoggerFactory.getLogger(BlogController.class);
 
     @Autowired
     BlogService service;
@@ -53,6 +55,14 @@ public class BlogController {
         List<BlogDto> blogs = service.getBlogsByEmail(email);
         logger.info("Successfully retrieved {} blogs for email: {}", blogs.size(), email);
         return new ResponseEntity<>(new APIResponse(200, "Blogs retrieved successfully", blogs), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/blog/{id}")
+    public ResponseEntity<APIResponse> deleteBlog(@PathVariable Long id) {
+        logger.info("Received DELETE /delete/blog/{}", id);
+        service.deleteBlog(id);
+        logger.info("Blog deleted successfully with ID: {}", id);
+        return new ResponseEntity<>(new APIResponse(200, "Blog deleted successfully", null), HttpStatus.OK);
     }
 
 }

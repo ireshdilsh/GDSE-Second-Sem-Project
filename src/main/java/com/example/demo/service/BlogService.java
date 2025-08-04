@@ -14,5 +14,7 @@ public interface BlogService {
     List<BlogDto> getMethod();
     
     List<BlogDto> getBlogsByEmail(String email);
+    
+    void deleteBlog(Long id);
 
 }

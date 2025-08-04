@@ -71,4 +71,17 @@ public class BlogServiceImpl implements BlogService{
         logger.info("Successfully retrieved {} blogs for email {}: {}", blogDtos.size(), email, blogDtos);
         return blogDtos;
     }
+
+    @Override
+    public void deleteBlog(Long id) {
+        logger.info("Processing delete blog with ID: {}", id);
+        
+        if (!repository.existsById(id)) {
+            logger.warn("Blog not found with ID: {}", id);
+            throw new ResourceNotFoundException("Blog not found with ID: " + id);
+        }
+        
+        repository.deleteById(id);
+        logger.info("Blog deleted successfully with ID: {}", id);
+    }
 }
