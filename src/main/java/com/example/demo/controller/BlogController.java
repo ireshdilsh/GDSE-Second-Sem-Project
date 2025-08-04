@@ -1,12 +1,16 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.BlogDto;
@@ -35,5 +39,20 @@ public class BlogController {
         return new ResponseEntity<>(new APIResponse(200, "Blog created successfully", dto),HttpStatus.CREATED);
     }
     
+    @GetMapping("/get/all/blogs")
+    public ResponseEntity<APIResponse> getMethod() {
+        logger.info("Received GET /get/all/blogs");
+        List<BlogDto> blogs = service.getMethod();
+        logger.info("Successfully processed get all blogs {} : " + blogs);
+        return new ResponseEntity<>(new APIResponse(200, "success", blogs), HttpStatus.OK);
+    }
+
+    @GetMapping("/get/blogs/by/email")
+    public ResponseEntity<APIResponse> getBlogsByEmail(@RequestParam String email) {
+        logger.info("Received GET /get/blogs/by/email with email: {}", email);
+        List<BlogDto> blogs = service.getBlogsByEmail(email);
+        logger.info("Successfully retrieved {} blogs for email: {}", blogs.size(), email);
+        return new ResponseEntity<>(new APIResponse(200, "Blogs retrieved successfully", blogs), HttpStatus.OK);
+    }
 
 }

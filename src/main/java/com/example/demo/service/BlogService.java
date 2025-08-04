@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.BlogDto;
@@ -8,5 +10,9 @@ import com.example.demo.dto.BlogDto;
 public interface BlogService {
 
     void postMethod(BlogDto dto);
+    
+    List<BlogDto> getMethod();
+    
+    List<BlogDto> getBlogsByEmail(String email);
 
 }
