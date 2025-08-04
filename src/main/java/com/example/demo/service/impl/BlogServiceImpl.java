@@ -19,6 +19,7 @@ public class BlogServiceImpl implements BlogService{
 
     private static final Logger logger = LoggerFactory.getLogger(BlogServiceImpl.class);
     ModelMapper modelMapper;
+    
     @Autowired
     BlogRepository repository;
 
