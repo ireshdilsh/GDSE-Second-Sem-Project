@@ -32,7 +32,7 @@ public class BlogServiceImpl implements BlogService {
     private final ModelMapper modelMapper;
 
     @Override
-    public BlogDto saveBlogWithImage(BlogDto blogDto, MultipartFile image) {
+    public void saveBlogWithImage(BlogDto blogDto, MultipartFile image) {
         logger.info("Processing blog save with image: {}", blogDto.getTitle());
         
         try {
@@ -47,10 +47,8 @@ public class BlogServiceImpl implements BlogService {
             
             Blog blog = modelMapper.map(blogDto, Blog.class);
             Blog savedBlog = blogRepository.save(blog);
-            BlogDto savedDto = modelMapper.map(savedBlog, BlogDto.class);
             
-            logger.info("Blog saved successfully with ID: {}", savedDto.getId());
-            return savedDto;
+            logger.info("Blog saved successfully with ID: {}", savedBlog.getId());
             
         } catch (IOException e) {
             logger.error("Error processing image for blog: {}", blogDto.getTitle(), e);
@@ -59,15 +57,13 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public BlogDto saveBlog(BlogDto blogDto) {
+    public void saveBlog(BlogDto blogDto) {
         logger.info("Processing blog save without image: {}", blogDto.getTitle());
         
         Blog blog = modelMapper.map(blogDto, Blog.class);
         Blog savedBlog = blogRepository.save(blog);
-        BlogDto savedDto = modelMapper.map(savedBlog, BlogDto.class);
         
-        logger.info("Blog saved successfully with ID: {}", savedDto.getId());
-        return savedDto;
+        logger.info("Blog saved successfully with ID: {}", savedBlog.getId());
     }
 
     @Override

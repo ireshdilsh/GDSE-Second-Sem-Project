@@ -36,26 +36,26 @@ public class BlogController {
     @Autowired
     private BlogService blogService;
 
-    @PostMapping("/add/new/blog")
-    public ResponseEntity<APIResponse> createBlog(@RequestBody BlogDto blogDto) {
-        logger.info("Received POST /add/new/blog with data: {}", blogDto);
-        BlogDto savedBlog = blogService.saveBlog(blogDto);
-        logger.info("Successfully created blog with ID: {}", savedBlog.getId());
-        return new ResponseEntity<>(new APIResponse(201, "Blog created successfully", savedBlog), HttpStatus.CREATED);
+    @PostMapping("/save/blog")
+    public ResponseEntity<APIResponse> postMethod(@RequestBody BlogDto blogDto) {
+        logger.info("Received POST /save/blog with data: {}", blogDto);
+        blogService.saveBlog(blogDto);
+        logger.info("Successfully processed blog save for: {}", blogDto.getTitle());
+        return new ResponseEntity<>(new APIResponse(200, "success", blogDto), HttpStatus.CREATED);
     }
 
-    @PostMapping(value = "/add/blog/with/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<APIResponse> createBlogWithImage(
+    @PostMapping(value = "/save/blog/with/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<APIResponse> postMethodWithImage(
             @RequestPart("blog") BlogDto blogDto,
             @RequestPart("image") MultipartFile image) {
         
-        logger.info("Received POST /add/blog/with/image with blog: {} and image: {}", 
+        logger.info("Received POST /save/blog/with/image with blog: {} and image: {}", 
                    blogDto.getTitle(), image.getOriginalFilename());
         
-        BlogDto savedBlog = blogService.saveBlogWithImage(blogDto, image);
-        logger.info("Successfully created blog with image, ID: {}", savedBlog.getId());
+        blogService.saveBlogWithImage(blogDto, image);
+        logger.info("Successfully processed blog with image save for: {}", blogDto.getTitle());
         
-        return new ResponseEntity<>(new APIResponse(201, "Blog with image created successfully", savedBlog), HttpStatus.CREATED);
+        return new ResponseEntity<>(new APIResponse(200, "success", blogDto), HttpStatus.CREATED);
     }
 
     @GetMapping("/get/all/blogs")
