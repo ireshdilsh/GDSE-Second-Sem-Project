@@ -11,10 +11,10 @@ import com.example.demo.dto.BlogDto;
 public interface BlogService {
     
     // Save blog with image
-    void saveBlogWithImage(BlogDto blogDto, MultipartFile image);
+    BlogDto saveBlogWithImage(BlogDto blogDto, MultipartFile image);
     
     // Save blog without image
-    void saveBlog(BlogDto blogDto);
+    BlogDto saveBlog(BlogDto blogDto);
     
     // Get all blogs
     List<BlogDto> getAllBlogs();
