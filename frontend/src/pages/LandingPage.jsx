@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import hero from '../assets/hero.jpeg'
-import '../styles/LandingPage.css'
+import '../styles/landing.css'
 import logo from '../assets/logo.png'
 import about1 from '../assets/about-1.png'
 import about2 from '../assets/about-2.png'
@@ -47,7 +47,6 @@ import book5 from '../assets/books/5.jpg'
 import book6 from '../assets/books/6.jpg'
 // import { useNavigate } from 'react-router-dom'
 
-
 export default function LandingPage() {
 
   const [active, setActive] = useState("seeds");
@@ -61,119 +60,180 @@ export default function LandingPage() {
   });
 
   return (
-    <div>
-      <img src={hero} id='img' alt="" />
+    <div className="position-relative">
+      <img src={hero} className="position-absolute w-100 h-100 object-fit-cover" style={{zIndex: -1}} alt="Hero Background" />
 
-      <section id='home'>
-        <nav>
-          <div className="logo">
-            <img src={logo} alt="" />
+      <section id='home' className="min-vh-100 d-flex flex-column">
+        <nav className="navbar navbar-expand-lg navbar-light bg-transparent py-3">
+          <div className="container">
+            <div className="navbar-brand">
+              <img src={logo} alt="Urban Green Logo" className="img-fluid" style={{maxHeight: '60px'}} />
+            </div>
+            <button className="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNav">
+              <div className="navbar-nav mx-auto">
+                <a className="nav-link px-3 fw-medium" href="#home">Home</a>
+                <a className="nav-link px-3 fw-medium" href="#marketplace">Marketplace</a>
+                <a className="nav-link px-3 fw-medium" href="#greenai">GreenAI</a>
+                <a className="nav-link px-3 fw-medium" href="#blogs">Blogs & Tips</a>
+                <a className="nav-link px-3 fw-medium" href="#about">About Us</a>
+                <a className="nav-link px-3 fw-medium" href="#contact">Contact Us</a>
+              </div>
+              <button className="btn btn-outline-success rounded-pill px-4 fw-medium">Sign In Now</button>
+            </div>
           </div>
-          <div className="links">
-            <a href="#home">Home</a>
-            <a href="#marketplace">Marketplace</a>
-            <a href="#greenai">GreenAI</a>
-            <a href="#blogs">Blogs & Tips</a>
-            <a href="#about">About Us</a>
-            <a href="#contact">Contact Us</a>
-          </div>
-          <button>Sign In Now</button>
         </nav>
 
-        <div className="body">
-          <h6>Grow Together, Greener Cities Ahead_</h6>
-          <h1>Reconnect with nature in the
-            <br />  heart of your city.</h1>
-          <p>Urban Green empowers you to plant, share, and care for green spaces—whether it's a balcony garden, rooftop planter,
-            or community patch. <br /> Track your plants, swap seeds, and grow a greener neighborhood—one leaf at a time.</p>
-          <button>Get Started</button>
-        </div>
-      </section>
-
-      <section id="marketplace">
-        <h1>Buy, Sell & Swap Sustainable Goods</h1>
-        <p id="description">Discover a thriving eco-market where urban growers and green enthusiasts trade plants, seeds, compost, tools, and handmade eco-products. <br />
-          Support local growers and find everything you need to nurture your urban jungle—right from your neighborhood.</p>
-        <div className="btns">
-          <button onClick={() => setActive("seeds")} style={btnStyle("seeds")}>
-            Seeds & Plants
-          </button>
-          <button onClick={() => setActive("tools")} style={btnStyle("tools")}>
-            Tools & Equipment
-          </button>
-          <button onClick={() => setActive("soil")} style={btnStyle("soil")}>
-            Soil & Fertilizer
-          </button>
-          <button onClick={() => setActive("planters")} style={btnStyle("planters")}>
-            Planters & Decorates
-          </button>
-          <button onClick={() => setActive("books")} style={btnStyle("books")}>
-            Books & Guides
-          </button>
-        </div>
-        <div className="selections">
-          {active === "seeds" && (
-            <div className="seeds">
-              <div className="set-1">
-                <div className="card-1">
-                  <img src={seeds1} alt="" />
-                  <h5>Organic Tomato Seeds</h5>
-                  <hr />
-                  <p>Grow your own fresh, juicy tomatoes with these high-quality organic seeds. Perfect for beginners and experienced gardeners alike, they thrive in pots, raised beds, or directly in the soil. Enjoy flavorful, healthy tomatoes from your garden while reducing your grocery bills and eating more sustainably every season.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-                <div className="card-2">
-                  <img src={seeds2} alt="" />
-                  <h5>Basil Herb Plant</h5>
-                  <hr />
-                  <p>Add vibrant green basil to your kitchen or garden. This healthy basil plant provides a constant supply of aromatic leaves, perfect for cooking or garnishing. Easy to care for and fast-growing, it brings both flavor and beauty to any space while helping you connect with your garden daily.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-                <div className="card-3">
-                  <img src={seeds3} alt="" />
-                  <h5>Sunflower Seeds</h5>
-                  <hr />
-                  <p>Brighten up your garden with these cheerful sunflower seeds. Perfect for garden borders or pots, sunflowers attract bees and birds while adding bold color to your space. They grow tall and strong, offering joy and natural beauty, making them a favorite choice for both children and adults alike.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-              </div>
-              <div className="set-2">
-                <div className="card-1">
-                  <img src={seeds4} alt="" />
-                  <h5>Strawberry Runners</h5>
-                  <hr />
-                  <p>Start growing sweet, delicious strawberries at home with these healthy runners. Easy to plant and maintain, they produce fresh fruits right from your garden or balcony. Experience the joy of harvesting your own juicy strawberries while saving money and reducing your carbon footprint. Perfect for any gardening enthusiast!</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-                <div className="card-2">
-                  <img src={seeds5} alt="" />
-                  <h5>Lavender Plant</h5>
-                  <hr />
-                  <p>Bring beauty and calming fragrance into your garden with this hardy lavender plant. Its purple flowers attract pollinators and its soothing aroma creates a relaxing environment. Perfect for gardens, patios, or windowsills, lavender is low-maintenance and long-lasting, offering both ornamental value and natural charm throughout the year.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-                <div className="card-3">
-                  <img src={seeds6} alt="" />
-                  <h5>Spinach Seeds</h5>
-                  <hr />
-                  <p>Enjoy fresh, nutrient-rich greens at home with these easy-to-grow spinach seeds. Ideal for small gardens, pots, or raised beds, spinach grows quickly and provides a healthy, tasty addition to your meals. A perfect choice for anyone looking to eat healthier and garden sustainably, even in limited spaces.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
+        <div className="flex-grow-1 d-flex align-items-center">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-8 col-md-10">
+                <div className="hero-content text-white">
+                  <h6 className="text-success mb-3 fw-medium">Grow Together, Greener Cities Ahead_</h6>
+                  <h1 className="display-3 fw-bold mb-4 lh-1">Reconnect with nature in the heart of your city.</h1>
+                  <p className="lead mb-4 opacity-90">Urban Green empowers you to plant, share, and care for green spaces—whether it's a balcony garden, rooftop planter, or community patch. Track your plants, swap seeds, and grow a greener neighborhood—one leaf at a time.</p>
+                  <button className="btn btn-success btn-lg rounded-pill px-5 py-3 fw-medium shadow-lg">Get Started</button>
                 </div>
               </div>
             </div>
-          )}
+          </div>
+        </div>
+      </section>
+
+      <section id="marketplace" className="py-5 bg-light">
+        <div className="container">
+          <div className="text-center mb-5">
+            <h1 className="display-4 fw-bold mb-3">Buy, Sell & Swap Sustainable Goods</h1>
+            <p className="lead text-muted">Discover a thriving eco-market where urban growers and green enthusiasts trade plants, seeds, compost, tools, and handmade eco-products. Support local growers and find everything you need to nurture your urban jungle—right from your neighborhood.</p>
+          </div>
+
+          <div className="row mb-4">
+            <div className="col-12">
+              <div className="nav nav-pills justify-content-center bg-white rounded-pill p-2 shadow-sm" role="tablist">
+                <button 
+                  className={`nav-link rounded-pill px-4 py-2 fw-medium ${active === "seeds" ? "active" : ""}`}
+                  onClick={() => setActive("seeds")} 
+                  style={btnStyle("seeds")}
+                >
+                  Seeds & Plants
+                </button>
+                <button 
+                  className={`nav-link rounded-pill px-4 py-2 fw-medium ${active === "tools" ? "active" : ""}`}
+                  onClick={() => setActive("tools")} 
+                  style={btnStyle("tools")}
+                >
+                  Tools & Equipment
+                </button>
+                <button 
+                  className={`nav-link rounded-pill px-4 py-2 fw-medium ${active === "soil" ? "active" : ""}`}
+                  onClick={() => setActive("soil")} 
+                  style={btnStyle("soil")}
+                >
+                  Soil & Fertilizer
+                </button>
+                <button 
+                  className={`nav-link rounded-pill px-4 py-2 fw-medium ${active === "planters" ? "active" : ""}`}
+                  onClick={() => setActive("planters")} 
+                  style={btnStyle("planters")}
+                >
+                  Planters & Decorates
+                </button>
+                <button 
+                  className={`nav-link rounded-pill px-4 py-2 fw-medium ${active === "books" ? "active" : ""}`}
+                  onClick={() => setActive("books")} 
+                  style={btnStyle("books")}
+                >
+                  Books & Guides
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="row g-4">
+            {active === "seeds" && (
+              <>
+                <div className="col-lg-4 col-md-6">
+                  <div className="card h-100 border-0 shadow-sm">
+                    <img src={seeds1} className="card-img-top" alt="Organic Tomato Seeds" style={{height: '250px', objectFit: 'cover'}} />
+                    <div className="card-body d-flex flex-column">
+                      <h5 className="card-title fw-bold">Organic Tomato Seeds</h5>
+                      <p className="card-text text-muted flex-grow-1">Grow your own fresh, juicy tomatoes with these high-quality organic seeds. Perfect for beginners and experienced gardeners alike.</p>
+                      <div className="d-flex justify-content-between align-items-center mt-auto">
+                        <span className="badge bg-success rounded-pill">In Stock</span>
+                        <button className="btn btn-success rounded-pill px-3">Add to Cart</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-4 col-md-6">
+                  <div className="card h-100 border-0 shadow-sm">
+                    <img src={seeds2} className="card-img-top" alt="Basil Herb Plant" style={{height: '250px', objectFit: 'cover'}} />
+                    <div className="card-body d-flex flex-column">
+                      <h5 className="card-title fw-bold">Basil Herb Plant</h5>
+                      <p className="card-text text-muted flex-grow-1">Add vibrant green basil to your kitchen or garden. This healthy basil plant provides a constant supply of aromatic leaves.</p>
+                      <div className="d-flex justify-content-between align-items-center mt-auto">
+                        <span className="badge bg-success rounded-pill">In Stock</span>
+                        <button className="btn btn-success rounded-pill px-3">Add to Cart</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-4 col-md-6">
+                  <div className="card h-100 border-0 shadow-sm">
+                    <img src={seeds3} className="card-img-top" alt="Sunflower Seeds" style={{height: '250px', objectFit: 'cover'}} />
+                    <div className="card-body d-flex flex-column">
+                      <h5 className="card-title fw-bold">Sunflower Seeds</h5>
+                      <p className="card-text text-muted flex-grow-1">Brighten up your garden with these cheerful sunflower seeds. Perfect for garden borders or pots.</p>
+                      <div className="d-flex justify-content-between align-items-center mt-auto">
+                        <span className="badge bg-success rounded-pill">In Stock</span>
+                        <button className="btn btn-success rounded-pill px-3">Add to Cart</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-4 col-md-6">
+                  <div className="card h-100 border-0 shadow-sm">
+                    <img src={seeds4} className="card-img-top" alt="Strawberry Runners" style={{height: '250px', objectFit: 'cover'}} />
+                    <div className="card-body d-flex flex-column">
+                      <h5 className="card-title fw-bold">Strawberry Runners</h5>
+                      <p className="card-text text-muted flex-grow-1">Start growing sweet, delicious strawberries at home with these healthy runners.</p>
+                      <div className="d-flex justify-content-between align-items-center mt-auto">
+                        <span className="badge bg-success rounded-pill">In Stock</span>
+                        <button className="btn btn-success rounded-pill px-3">Add to Cart</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-4 col-md-6">
+                  <div className="card h-100 border-0 shadow-sm">
+                    <img src={seeds5} className="card-img-top" alt="Lavender Plant" style={{height: '250px', objectFit: 'cover'}} />
+                    <div className="card-body d-flex flex-column">
+                      <h5 className="card-title fw-bold">Lavender Plant</h5>
+                      <p className="card-text text-muted flex-grow-1">Bring beauty and calming fragrance into your garden with this hardy lavender plant.</p>
+                      <div className="d-flex justify-content-between align-items-center mt-auto">
+                        <span className="badge bg-success rounded-pill">In Stock</span>
+                        <button className="btn btn-success rounded-pill px-3">Add to Cart</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-4 col-md-6">
+                  <div className="card h-100 border-0 shadow-sm">
+                    <img src={seeds6} className="card-img-top" alt="Spinach Seeds" style={{height: '250px', objectFit: 'cover'}} />
+                    <div className="card-body d-flex flex-column">
+                      <h5 className="card-title fw-bold">Spinach Seeds</h5>
+                      <p className="card-text text-muted flex-grow-1">Enjoy fresh, nutrient-rich greens at home with these easy-to-grow spinach seeds.</p>
+                      <div className="d-flex justify-content-between align-items-center mt-auto">
+                        <span className="badge bg-success rounded-pill">In Stock</span>
+                        <button className="btn btn-success rounded-pill px-3">Add to Cart</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
 
           {active === "tools" && (
             <div className='tools'>
@@ -427,11 +487,10 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
-          )}
+            )}
+          </div>
         </div>
-      </section>
-
-      <section id='greenai'>
+      </section>      <section id='greenai' className="py-5 bg-white">
         <h1>Smart Gardening, Powered by AI</h1>
         <p>Let GreenAI guide your urban gardening journey. From plant care tips to pest detection and personalized watering schedules, our intelligent ass-
           istant uses AI to help your plants thrive—saving time, water, and effort.</p>
