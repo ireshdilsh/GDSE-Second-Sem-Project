@@ -92,15 +92,15 @@ export default function NewLandingPage() {
                 </div>
                 <div className="mt-5 d-flex gap-4 text-center text-lg-start justify-content-center justify-content-lg-start flex-wrap">
                   <div className="flex-fill">
-                    <div className="h3 fw-bold text-success">10K+</div>
+                    <div className="h3 fw-bold text-light">10K+</div>
                     <small className="opacity-75">Active Gardeners</small>
                   </div>
                   <div className="flex-fill">
-                    <div className="h3 fw-bold text-success">50K+</div>
+                    <div className="h3 fw-bold text-light">50K+</div>
                     <small className="opacity-75">Swaps Completed</small>
                   </div>
                   <div className="flex-fill">
-                    <div className="h3 fw-bold text-success">100+</div>
+                    <div className="h3 fw-bold text-light">100+</div>
                     <small className="opacity-75">Cities Connected</small>
                   </div>
                 </div>
