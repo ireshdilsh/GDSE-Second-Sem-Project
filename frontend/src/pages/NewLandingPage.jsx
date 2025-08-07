@@ -30,11 +30,11 @@ export default function NewLandingPage() {
           <a className="navbar-brand d-flex align-items-center" href="#home">
             <span className="fw-bold text-success fs-4">Grow & Swap</span>
           </a>
-          
+
           <button className="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span className="navbar-toggler-icon"></span>
           </button>
-          
+
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto me-4">
               <li className="nav-item">
@@ -67,7 +67,7 @@ export default function NewLandingPage() {
           <img src={hero} alt="Urban Garden" className="w-100 h-100 object-fit-cover" />
           <div className="hero-overlay position-absolute top-0 start-0 w-100 h-100"></div>
         </div>
-        
+
         <div className="container position-relative">
           <div className="row align-items-center min-vh-100">
             <div className="col-lg-6 col-md-8 col-sm-10 mx-auto mx-lg-0">
@@ -111,7 +111,7 @@ export default function NewLandingPage() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-6 bg-light" style={{marginTop: '120px'}}>
+      <section id="features" className="py-6 bg-light" style={{ marginTop: '120px' }}>
         <div className="container">
           <div className="row mb-5">
             <div className="col-lg-8 mx-auto text-center">
@@ -262,7 +262,7 @@ export default function NewLandingPage() {
             <div className="col-lg-6">
               <div className="steps-content">
                 <div className="step-item d-flex mb-4">
-                  <div className="step-number bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-4" style={{width: '60px', height: '60px'}}>
+                  <div className="step-number bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-4" style={{ width: '60px', height: '60px' }}>
                     <span className="fw-bold fs-4">1</span>
                   </div>
                   <div>
@@ -274,7 +274,7 @@ export default function NewLandingPage() {
                 </div>
 
                 <div className="step-item d-flex mb-4">
-                  <div className="step-number bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-4" style={{width: '60px', height: '60px'}}>
+                  <div className="step-number bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-4" style={{ width: '60px', height: '60px' }}>
                     <span className="fw-bold fs-4">2</span>
                   </div>
                   <div>
@@ -286,7 +286,7 @@ export default function NewLandingPage() {
                 </div>
 
                 <div className="step-item d-flex mb-4">
-                  <div className="step-number bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-4" style={{width: '60px', height: '60px'}}>
+                  <div className="step-number bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-4" style={{ width: '60px', height: '60px' }}>
                     <span className="fw-bold fs-4">3</span>
                   </div>
                   <div>
@@ -298,7 +298,7 @@ export default function NewLandingPage() {
                 </div>
 
                 <div className="step-item d-flex">
-                  <div className="step-number bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-4" style={{width: '60px', height: '60px'}}>
+                  <div className="step-number bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-4" style={{ width: '60px', height: '60px' }}>
                     <span className="fw-bold fs-4">4</span>
                   </div>
                   <div>
@@ -375,7 +375,7 @@ export default function NewLandingPage() {
                     "I've connected with amazing gardeners in my neighborhood and learned so much! The swap system is brilliant - I've tried vegetables I never would have grown myself."
                   </p>
                   <div className="d-flex align-items-center">
-                    <div className="avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style={{width: '50px', height: '50px'}}>
+                    <div className="avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style={{ width: '50px', height: '50px' }}>
                       <span className="fw-bold text-success">SM</span>
                     </div>
                     <div>
@@ -399,7 +399,7 @@ export default function NewLandingPage() {
                     "The community aspect is what makes this special. It's not just about swapping produce - we share knowledge, tools, and genuine friendships have formed."
                   </p>
                   <div className="d-flex align-items-center">
-                    <div className="avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style={{width: '50px', height: '50px'}}>
+                    <div className="avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style={{ width: '50px', height: '50px' }}>
                       <span className="fw-bold text-success">MJ</span>
                     </div>
                     <div>
@@ -423,7 +423,7 @@ export default function NewLandingPage() {
                     "As a beginner, I was nervous about gardening. This platform connected me with experienced growers who mentored me. Now I'm growing my own herbs and vegetables!"
                   </p>
                   <div className="d-flex align-items-center">
-                    <div className="avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style={{width: '50px', height: '50px'}}>
+                    <div className="avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style={{ width: '50px', height: '50px' }}>
                       <span className="fw-bold text-success">EP</span>
                     </div>
                     <div>
@@ -458,7 +458,7 @@ export default function NewLandingPage() {
             <div className="col-lg-4 col-md-6">
               <article className="blog-card card border-0 shadow-sm h-100 hover-card">
                 <div className="blog-image-container position-relative overflow-hidden">
-                  <img src={seeds1} alt="Container Gardening" className="card-img-top" style={{height: '250px', objectFit: 'cover'}} />
+                  <img src={seeds1} alt="Container Gardening" className="card-img-top" style={{ height: '250px', objectFit: 'cover' }} />
                   <div className="blog-category position-absolute top-0 start-0 m-3">
                     <span className="badge bg-success rounded-pill">Beginner Guide</span>
                   </div>
@@ -472,7 +472,7 @@ export default function NewLandingPage() {
                   </p>
                   <div className="d-flex align-items-center justify-content-between">
                     <div className="d-flex align-items-center">
-                      <div className="author-avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-2" style={{width: '35px', height: '35px'}}>
+                      <div className="author-avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-2" style={{ width: '35px', height: '35px' }}>
                         <span className="fw-bold text-success small">JD</span>
                       </div>
                       <small className="text-muted">Jane Doe • 5 min read</small>
@@ -486,7 +486,7 @@ export default function NewLandingPage() {
             <div className="col-lg-4 col-md-6">
               <article className="blog-card card border-0 shadow-sm h-100 hover-card">
                 <div className="blog-image-container position-relative overflow-hidden">
-                  <img src={tools1} alt="Seasonal Planting" className="card-img-top" style={{height: '250px', objectFit: 'cover'}} />
+                  <img src={tools1} alt="Seasonal Planting" className="card-img-top" style={{ height: '250px', objectFit: 'cover' }} />
                   <div className="blog-category position-absolute top-0 start-0 m-3">
                     <span className="badge bg-warning rounded-pill">Seasonal Tips</span>
                   </div>
@@ -500,7 +500,7 @@ export default function NewLandingPage() {
                   </p>
                   <div className="d-flex align-items-center justify-content-between">
                     <div className="d-flex align-items-center">
-                      <div className="author-avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-2" style={{width: '35px', height: '35px'}}>
+                      <div className="author-avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-2" style={{ width: '35px', height: '35px' }}>
                         <span className="fw-bold text-success small">RS</span>
                       </div>
                       <small className="text-muted">Robert Smith • 7 min read</small>
@@ -514,7 +514,7 @@ export default function NewLandingPage() {
             <div className="col-lg-4 col-md-6">
               <article className="blog-card card border-0 shadow-sm h-100 hover-card">
                 <div className="blog-image-container position-relative overflow-hidden">
-                  <img src={soil1} alt="Community Recipe" className="card-img-top" style={{height: '250px', objectFit: 'cover'}} />
+                  <img src={soil1} alt="Community Recipe" className="card-img-top" style={{ height: '250px', objectFit: 'cover' }} />
                   <div className="blog-category position-absolute top-0 start-0 m-3">
                     <span className="badge bg-info rounded-pill">Recipes</span>
                   </div>
@@ -528,7 +528,7 @@ export default function NewLandingPage() {
                   </p>
                   <div className="d-flex align-items-center justify-content-between">
                     <div className="d-flex align-items-center">
-                      <div className="author-avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-2" style={{width: '35px', height: '35px'}}>
+                      <div className="author-avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-2" style={{ width: '35px', height: '35px' }}>
                         <span className="fw-bold text-success small">ML</span>
                       </div>
                       <small className="text-muted">Maria Lopez • 4 min read</small>
@@ -546,7 +546,7 @@ export default function NewLandingPage() {
                 <div className="col-lg-4 col-md-6">
                   <article className="blog-card card border-0 shadow-sm h-100 hover-card">
                     <div className="blog-image-container position-relative overflow-hidden">
-                      <img src={planters1} alt="Urban Composting" className="card-img-top" style={{height: '250px', objectFit: 'cover'}} />
+                      <img src={planters1} alt="Urban Composting" className="card-img-top" style={{ height: '250px', objectFit: 'cover' }} />
                       <div className="blog-category position-absolute top-0 start-0 m-3">
                         <span className="badge bg-success rounded-pill">Sustainability</span>
                       </div>
@@ -560,7 +560,7 @@ export default function NewLandingPage() {
                       </p>
                       <div className="d-flex align-items-center justify-content-between">
                         <div className="d-flex align-items-center">
-                          <div className="author-avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-2" style={{width: '35px', height: '35px'}}>
+                          <div className="author-avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-2" style={{ width: '35px', height: '35px' }}>
                             <span className="fw-bold text-success small">DK</span>
                           </div>
                           <small className="text-muted">David Kim • 6 min read</small>
@@ -574,7 +574,7 @@ export default function NewLandingPage() {
                 <div className="col-lg-4 col-md-6">
                   <article className="blog-card card border-0 shadow-sm h-100 hover-card">
                     <div className="blog-image-container position-relative overflow-hidden">
-                      <img src={planters2} alt="Hydroponic Systems" className="card-img-top" style={{height: '250px', objectFit: 'cover'}} />
+                      <img src={planters2} alt="Hydroponic Systems" className="card-img-top" style={{ height: '250px', objectFit: 'cover' }} />
                       <div className="blog-category position-absolute top-0 start-0 m-3">
                         <span className="badge bg-primary rounded-pill">Technology</span>
                       </div>
@@ -588,7 +588,7 @@ export default function NewLandingPage() {
                       </p>
                       <div className="d-flex align-items-center justify-content-between">
                         <div className="d-flex align-items-center">
-                          <div className="author-avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-2" style={{width: '35px', height: '35px'}}>
+                          <div className="author-avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-2" style={{ width: '35px', height: '35px' }}>
                             <span className="fw-bold text-success small">AL</span>
                           </div>
                           <small className="text-muted">Anna Lee • 8 min read</small>
@@ -602,7 +602,7 @@ export default function NewLandingPage() {
                 <div className="col-lg-4 col-md-6">
                   <article className="blog-card card border-0 shadow-sm h-100 hover-card">
                     <div className="blog-image-container position-relative overflow-hidden">
-                      <img src={books1} alt="Plant Diseases" className="card-img-top" style={{height: '250px', objectFit: 'cover'}} />
+                      <img src={books1} alt="Plant Diseases" className="card-img-top" style={{ height: '250px', objectFit: 'cover' }} />
                       <div className="blog-category position-absolute top-0 start-0 m-3">
                         <span className="badge bg-danger rounded-pill">Plant Care</span>
                       </div>
@@ -616,7 +616,7 @@ export default function NewLandingPage() {
                       </p>
                       <div className="d-flex align-items-center justify-content-between">
                         <div className="d-flex align-items-center">
-                          <div className="author-avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-2" style={{width: '35px', height: '35px'}}>
+                          <div className="author-avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-2" style={{ width: '35px', height: '35px' }}>
                             <span className="fw-bold text-success small">TC</span>
                           </div>
                           <small className="text-muted">Tom Chen • 7 min read</small>
@@ -631,7 +631,7 @@ export default function NewLandingPage() {
                 <div className="col-lg-4 col-md-6">
                   <article className="blog-card card border-0 shadow-sm h-100 hover-card">
                     <div className="blog-image-container position-relative overflow-hidden">
-                      <img src={seeds2} alt="Indoor Herb Garden" className="card-img-top" style={{height: '250px', objectFit: 'cover'}} />
+                      <img src={seeds2} alt="Indoor Herb Garden" className="card-img-top" style={{ height: '250px', objectFit: 'cover' }} />
                       <div className="blog-category position-absolute top-0 start-0 m-3">
                         <span className="badge bg-success rounded-pill">Indoor Growing</span>
                       </div>
@@ -645,7 +645,7 @@ export default function NewLandingPage() {
                       </p>
                       <div className="d-flex align-items-center justify-content-between">
                         <div className="d-flex align-items-center">
-                          <div className="author-avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-2" style={{width: '35px', height: '35px'}}>
+                          <div className="author-avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-2" style={{ width: '35px', height: '35px' }}>
                             <span className="fw-bold text-success small">LM</span>
                           </div>
                           <small className="text-muted">Lisa Martin • 5 min read</small>
@@ -659,7 +659,7 @@ export default function NewLandingPage() {
                 <div className="col-lg-4 col-md-6">
                   <article className="blog-card card border-0 shadow-sm h-100 hover-card">
                     <div className="blog-image-container position-relative overflow-hidden">
-                      <img src={tools2} alt="Garden Tools" className="card-img-top" style={{height: '250px', objectFit: 'cover'}} />
+                      <img src={tools2} alt="Garden Tools" className="card-img-top" style={{ height: '250px', objectFit: 'cover' }} />
                       <div className="blog-category position-absolute top-0 start-0 m-3">
                         <span className="badge bg-info rounded-pill">Tools & Equipment</span>
                       </div>
@@ -673,7 +673,7 @@ export default function NewLandingPage() {
                       </p>
                       <div className="d-flex align-items-center justify-content-between">
                         <div className="d-flex align-items-center">
-                          <div className="author-avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-2" style={{width: '35px', height: '35px'}}>
+                          <div className="author-avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-2" style={{ width: '35px', height: '35px' }}>
                             <span className="fw-bold text-success small">BW</span>
                           </div>
                           <small className="text-muted">Ben Wilson • 6 min read</small>
@@ -687,7 +687,7 @@ export default function NewLandingPage() {
                 <div className="col-lg-4 col-md-6">
                   <article className="blog-card card border-0 shadow-sm h-100 hover-card">
                     <div className="blog-image-container position-relative overflow-hidden">
-                      <img src={soil2} alt="Soil Preparation" className="card-img-top" style={{height: '250px', objectFit: 'cover'}} />
+                      <img src={soil2} alt="Soil Preparation" className="card-img-top" style={{ height: '250px', objectFit: 'cover' }} />
                       <div className="blog-category position-absolute top-0 start-0 m-3">
                         <span className="badge bg-warning rounded-pill">Soil Science</span>
                       </div>
@@ -701,7 +701,7 @@ export default function NewLandingPage() {
                       </p>
                       <div className="d-flex align-items-center justify-content-between">
                         <div className="d-flex align-items-center">
-                          <div className="author-avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-2" style={{width: '35px', height: '35px'}}>
+                          <div className="author-avatar bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-2" style={{ width: '35px', height: '35px' }}>
                             <span className="fw-bold text-success small">SF</span>
                           </div>
                           <small className="text-muted">Sara Foster • 9 min read</small>
@@ -717,7 +717,7 @@ export default function NewLandingPage() {
 
           {/* Show More/Show Less Button */}
           <div className="text-center mt-5">
-            <button 
+            <button
               className="btn btn-success btn-lg rounded-pill px-5 blog-expand-button"
               onClick={toggleBlogs}
             >
@@ -744,7 +744,7 @@ export default function NewLandingPage() {
             <div className="col-lg-8">
               <h2 className="display-4 fw-bold mb-4">Ready to Start Growing?</h2>
               <p className="lead mb-4 mb-lg-0">
-                Join thousands of urban gardeners who are building sustainable communities, one swap at a time. 
+                Join thousands of urban gardeners who are building sustainable communities, one swap at a time.
                 Your garden journey starts here!
               </p>
             </div>
@@ -768,7 +768,6 @@ export default function NewLandingPage() {
           <div className="row g-4">
             <div className="col-lg-4 col-md-12 text-center text-lg-start">
               <div className="d-flex align-items-center justify-content-center justify-content-lg-start mb-4">
-                <img src={logo} alt="Grow & Swap" height="40" className="me-3" />
                 <span className="h4 fw-bold mb-0">Grow & Swap</span>
               </div>
               <p className="text-light mb-4">
