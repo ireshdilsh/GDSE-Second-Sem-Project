@@ -1,708 +1,1004 @@
-import React, { useState } from 'react'
-import hero from '../assets/hero.jpeg'
-import '../styles/landing.css'
-import logo from '../assets/logo.png'
-import about1 from '../assets/about-1.png'
-import about2 from '../assets/about-2.png'
+import React, { useState, useEffect } from 'react';
+import '../styles/LandingPage.css';
 
-// ai for images
-import step3 from '../assets/ai-steps/step-3.png'
-import step4 from '../assets/ai-steps/step-4.png'
-import step5 from '../assets/ai-steps/step-5.png'
+const LandingPage = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+  const [showSignInModal, setShowSignInModal] = useState(false);
+  const [showSignUpModal, setShowSignUpModal] = useState(false);
 
-// images for marketplace 
-import seeds1 from '../assets/seeds/1.jpg'
-import seeds2 from '../assets/seeds/2.jpg'
-import seeds3 from '../assets/seeds/3.jpg'
-import seeds4 from '../assets/seeds/4.jpg'
-import seeds5 from '../assets/seeds/5.jpg'
-import seeds6 from '../assets/seeds/6.jpg'
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+      
+      // Update active section based on scroll position
+      const sections = ['home', 'services', 'greenai', 'marketplace', 'blogs', 'about', 'contact'];
+      const current = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      if (current) setActiveSection(current);
+    };
 
-import tool1 from '../assets/tools/1.jpg'
-import tool2 from '../assets/tools/2.jpg'
-import tool3 from '../assets/tools/3.jpg'
-import tool4 from '../assets/tools/4.jpg'
-import tool5 from '../assets/tools/5.jpg'
-import tool6 from '../assets/tools/6.jpg'
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-import soil1 from '../assets/soil/1.jpg'
-import soil2 from '../assets/soil/2.jpg'
-import soil3 from '../assets/soil/3.jpg'
-import soil4 from '../assets/soil/4.jpg'
-import soil5 from '../assets/soil/5.jpg'
-import soil6 from '../assets/soil/6.jpg'
-
-import planter1 from '../assets/planters/1.jpg'
-import planter2 from '../assets/planters/2.jpg'
-import planter3 from '../assets/planters/3.jpg'
-import planter4 from '../assets/planters/4.jpg'
-import planter5 from '../assets/planters/5.jpg'
-import planter6 from '../assets/planters/6.jpg'
-
-import book1 from '../assets/books/1.jpg'
-import book2 from '../assets/books/2.jpg'
-import book3 from '../assets/books/3.jpg'
-import book4 from '../assets/books/4.jpg'
-import book5 from '../assets/books/5.jpg'
-import book6 from '../assets/books/6.jpg'
-// import { useNavigate } from 'react-router-dom'
-
-export default function LandingPage() {
-
-  const [active, setActive] = useState("seeds");
-  // const navigate = useNavigate();
-
-  const btnStyle = (id) => ({
-    border: "1.5px solid #333",
-    cursor: "pointer",
-    backgroundColor: active === id ? "#373643" : "#fff",
-    color: active === id ? "#fff" : "#373643",
-  });
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   return (
-    <div className="position-relative">
-      <img src={hero} className="position-absolute w-100 h-100 object-fit-cover" style={{zIndex: -1}} alt="Hero Background" />
-
-      <section id='home' className="min-vh-100 d-flex flex-column">
-        <nav className="navbar navbar-expand-lg navbar-light bg-transparent py-3">
-          <div className="container">
-            <div className="navbar-brand">
-              <img src={logo} alt="Urban Green Logo" className="img-fluid" style={{maxHeight: '60px'}} />
-            </div>
-            <button className="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNav">
-              <div className="navbar-nav mx-auto">
-                <a className="nav-link px-3 fw-medium" href="#home">Home</a>
-                <a className="nav-link px-3 fw-medium" href="#marketplace">Marketplace</a>
-                <a className="nav-link px-3 fw-medium" href="#greenai">GreenAI</a>
-                <a className="nav-link px-3 fw-medium" href="#blogs">Blogs & Tips</a>
-                <a className="nav-link px-3 fw-medium" href="#about">About Us</a>
-                <a className="nav-link px-3 fw-medium" href="#contact">Contact Us</a>
-              </div>
-              <button className="btn btn-outline-success rounded-pill px-4 fw-medium">Sign In Now</button>
-            </div>
-          </div>
-        </nav>
-
-        <div className="flex-grow-1 d-flex align-items-center">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-8 col-md-10">
-                <div className="hero-content text-white">
-                  <h6 className="text-success mb-3 fw-medium">Grow Together, Greener Cities Ahead_</h6>
-                  <h1 className="display-3 fw-bold mb-4 lh-1">Reconnect with nature in the heart of your city.</h1>
-                  <p className="lead mb-4 opacity-90">Urban Green empowers you to plant, share, and care for green spaces—whether it's a balcony garden, rooftop planter, or community patch. Track your plants, swap seeds, and grow a greener neighborhood—one leaf at a time.</p>
-                  <button className="btn btn-success btn-lg rounded-pill px-5 py-3 fw-medium shadow-lg">Get Started</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="marketplace" className="py-5 bg-light">
+    <div className="landing-page">
+      {/* Navigation */}
+      <nav className={`navbar navbar-expand-lg fixed-top transition-all ${isScrolled ? 'navbar-scrolled' : 'navbar-transparent'}`}>
         <div className="container">
-          <div className="text-center mb-5">
-            <h1 className="display-4 fw-bold mb-3">Buy, Sell & Swap Sustainable Goods</h1>
-            <p className="lead text-muted">Discover a thriving eco-market where urban growers and green enthusiasts trade plants, seeds, compost, tools, and handmade eco-products. Support local growers and find everything you need to nurture your urban jungle—right from your neighborhood.</p>
+          <a className="navbar-brand" href="#home">
+            <div className="brand-logo">
+              <span className="brand-icon">🌱</span>
+              <span className="brand-text">Grow & Swap</span>
+            </div>
+          </a>
+          
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav ms-auto">
+              {[
+                { id: 'home', label: 'Home' },
+                { id: 'services', label: 'Features' },
+                { id: 'greenai', label: 'Community' },
+                { id: 'marketplace', label: 'Marketplace' },
+                { id: 'blogs', label: 'Garden Tips' },
+                { id: 'about', label: 'About Us' },
+                { id: 'contact', label: 'Contact' }
+              ].map(item => (
+                <li key={item.id} className="nav-item">
+                  <button 
+                    className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
+                    onClick={() => scrollToSection(item.id)}
+                  >
+                    {item.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
           </div>
+        </div>
+      </nav>
 
-          <div className="row mb-4">
-            <div className="col-12">
-              <div className="nav nav-pills justify-content-center bg-white rounded-pill p-2 shadow-sm" role="tablist">
-                <button 
-                  className={`nav-link rounded-pill px-4 py-2 fw-medium ${active === "seeds" ? "active" : ""}`}
-                  onClick={() => setActive("seeds")} 
-                  style={btnStyle("seeds")}
-                >
-                  Seeds & Plants
-                </button>
-                <button 
-                  className={`nav-link rounded-pill px-4 py-2 fw-medium ${active === "tools" ? "active" : ""}`}
-                  onClick={() => setActive("tools")} 
-                  style={btnStyle("tools")}
-                >
-                  Tools & Equipment
-                </button>
-                <button 
-                  className={`nav-link rounded-pill px-4 py-2 fw-medium ${active === "soil" ? "active" : ""}`}
-                  onClick={() => setActive("soil")} 
-                  style={btnStyle("soil")}
-                >
-                  Soil & Fertilizer
-                </button>
-                <button 
-                  className={`nav-link rounded-pill px-4 py-2 fw-medium ${active === "planters" ? "active" : ""}`}
-                  onClick={() => setActive("planters")} 
-                  style={btnStyle("planters")}
-                >
-                  Planters & Decorates
-                </button>
-                <button 
-                  className={`nav-link rounded-pill px-4 py-2 fw-medium ${active === "books" ? "active" : ""}`}
-                  onClick={() => setActive("books")} 
-                  style={btnStyle("books")}
-                >
-                  Books & Guides
-                </button>
+      {/* Hero Section */}
+      <section id="home" className="hero-section">
+        <div className="hero-background"></div>
+        <div className="container">
+          <div className="row align-items-center min-vh-100">
+            <div className="col-lg-6">
+              <div className="hero-content">
+                <span className="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2 mb-3">
+                  🌱 Welcome to Urban Gardening Community
+                </span>
+                <h1 className="hero-title">
+                  Grow, Share & Swap with 
+                  <span className="text-gradient"> Local Gardeners</span>
+                </h1>
+                <p className="hero-subtitle">
+                  Connect with urban gardeners in your neighborhood. Share surplus produce, 
+                  exchange gardening knowledge, and build a sustainable community right from your home garden.
+                </p>
+                <div className="hero-buttons">
+                  <button 
+                    className="btn btn-success btn-lg me-3"
+                    onClick={() => setShowSignUpModal(true)}
+                  >
+                    <i className="fas fa-seedling me-2"></i>
+                    Start Growing
+                  </button>
+                  <button className="btn btn-outline-light btn-lg">
+                    <i className="fas fa-play me-2"></i>
+                    How It Works
+                  </button>
+                </div>
+                <div className="hero-stats">
+                  <div className="stat-item">
+                    <h3>5K+</h3>
+                    <span>Gardeners</span>
+                  </div>
+                  <div className="stat-item">
+                    <h3>10K+</h3>
+                    <span>Swaps Made</span>
+                  </div>
+                  <div className="stat-item">
+                    <h3>95%</h3>
+                    <span>Happy Users</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-6">
+              <div className="hero-image">
+                <div className="floating-card card-1">
+                  <i className="fas fa-exchange-alt"></i>
+                  <span>Easy Swapping</span>
+                </div>
+                <div className="floating-card card-2">
+                  <i className="fas fa-users"></i>
+                  <span>Local Community</span>
+                </div>
+                <div className="floating-card card-3">
+                  <i className="fas fa-seedling"></i>
+                  <span>Home Grown</span>
+                </div>
               </div>
             </div>
           </div>
+        </div>
+        <div className="scroll-indicator">
+          <div className="scroll-arrow"></div>
+        </div>
+      </section>
 
+      {/* Services Section */}
+      <section id="services" className="services-section py-5">
+        <div className="container">
+          <div className="section-header text-center mb-5">
+            <span className="section-badge">Key Features</span>
+            <h2 className="section-title">What We Offer</h2>
+            <p className="section-subtitle">
+              Everything you need to connect with local gardeners and share your harvest
+            </p>
+          </div>
+          
           <div className="row g-4">
-            {active === "seeds" && (
-              <>
-                <div className="col-lg-4 col-md-6">
-                  <div className="card h-100 border-0 shadow-sm">
-                    <img src={seeds1} className="card-img-top" alt="Organic Tomato Seeds" style={{height: '250px', objectFit: 'cover'}} />
-                    <div className="card-body d-flex flex-column">
-                      <h5 className="card-title fw-bold">Organic Tomato Seeds</h5>
-                      <p className="card-text text-muted flex-grow-1">Grow your own fresh, juicy tomatoes with these high-quality organic seeds. Perfect for beginners and experienced gardeners alike.</p>
-                      <div className="d-flex justify-content-between align-items-center mt-auto">
-                        <span className="badge bg-success rounded-pill">In Stock</span>
-                        <button className="btn btn-success rounded-pill px-3">Add to Cart</button>
-                      </div>
-                    </div>
+            {[
+              {
+                icon: 'fas fa-user-circle',
+                title: 'User Profiles',
+                description: 'Create detailed profiles with your location and garden information',
+                color: 'success'
+              },
+              {
+                icon: 'fas fa-seedling',
+                title: 'Crop Inventory',
+                description: 'Manage your garden inventory with photos and availability status',
+                color: 'info'
+              },
+              {
+                icon: 'fas fa-map-marker-alt',
+                title: 'Local Search',
+                description: 'Find nearby gardeners and crops using interactive maps',
+                color: 'warning'
+              },
+              {
+                icon: 'fas fa-exchange-alt',
+                title: 'Swap System',
+                description: 'Send swap requests and offers with built-in messaging',
+                color: 'primary'
+              },
+              {
+                icon: 'fas fa-trophy',
+                title: 'Points & Badges',
+                description: 'Earn rewards for being an active community member',
+                color: 'warning'
+              },
+              {
+                icon: 'fas fa-blog',
+                title: 'Garden Tips',
+                description: 'Access gardening guides, recipes, and community events',
+                color: 'success'
+              }
+            ].map((service, index) => (
+              <div key={index} className="col-lg-4 col-md-6">
+                <div className="service-card">
+                  <div className={`service-icon bg-${service.color}`}>
+                    <i className={service.icon}></i>
                   </div>
-                </div>
-                <div className="col-lg-4 col-md-6">
-                  <div className="card h-100 border-0 shadow-sm">
-                    <img src={seeds2} className="card-img-top" alt="Basil Herb Plant" style={{height: '250px', objectFit: 'cover'}} />
-                    <div className="card-body d-flex flex-column">
-                      <h5 className="card-title fw-bold">Basil Herb Plant</h5>
-                      <p className="card-text text-muted flex-grow-1">Add vibrant green basil to your kitchen or garden. This healthy basil plant provides a constant supply of aromatic leaves.</p>
-                      <div className="d-flex justify-content-between align-items-center mt-auto">
-                        <span className="badge bg-success rounded-pill">In Stock</span>
-                        <button className="btn btn-success rounded-pill px-3">Add to Cart</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-4 col-md-6">
-                  <div className="card h-100 border-0 shadow-sm">
-                    <img src={seeds3} className="card-img-top" alt="Sunflower Seeds" style={{height: '250px', objectFit: 'cover'}} />
-                    <div className="card-body d-flex flex-column">
-                      <h5 className="card-title fw-bold">Sunflower Seeds</h5>
-                      <p className="card-text text-muted flex-grow-1">Brighten up your garden with these cheerful sunflower seeds. Perfect for garden borders or pots.</p>
-                      <div className="d-flex justify-content-between align-items-center mt-auto">
-                        <span className="badge bg-success rounded-pill">In Stock</span>
-                        <button className="btn btn-success rounded-pill px-3">Add to Cart</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-4 col-md-6">
-                  <div className="card h-100 border-0 shadow-sm">
-                    <img src={seeds4} className="card-img-top" alt="Strawberry Runners" style={{height: '250px', objectFit: 'cover'}} />
-                    <div className="card-body d-flex flex-column">
-                      <h5 className="card-title fw-bold">Strawberry Runners</h5>
-                      <p className="card-text text-muted flex-grow-1">Start growing sweet, delicious strawberries at home with these healthy runners.</p>
-                      <div className="d-flex justify-content-between align-items-center mt-auto">
-                        <span className="badge bg-success rounded-pill">In Stock</span>
-                        <button className="btn btn-success rounded-pill px-3">Add to Cart</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-4 col-md-6">
-                  <div className="card h-100 border-0 shadow-sm">
-                    <img src={seeds5} className="card-img-top" alt="Lavender Plant" style={{height: '250px', objectFit: 'cover'}} />
-                    <div className="card-body d-flex flex-column">
-                      <h5 className="card-title fw-bold">Lavender Plant</h5>
-                      <p className="card-text text-muted flex-grow-1">Bring beauty and calming fragrance into your garden with this hardy lavender plant.</p>
-                      <div className="d-flex justify-content-between align-items-center mt-auto">
-                        <span className="badge bg-success rounded-pill">In Stock</span>
-                        <button className="btn btn-success rounded-pill px-3">Add to Cart</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-4 col-md-6">
-                  <div className="card h-100 border-0 shadow-sm">
-                    <img src={seeds6} className="card-img-top" alt="Spinach Seeds" style={{height: '250px', objectFit: 'cover'}} />
-                    <div className="card-body d-flex flex-column">
-                      <h5 className="card-title fw-bold">Spinach Seeds</h5>
-                      <p className="card-text text-muted flex-grow-1">Enjoy fresh, nutrient-rich greens at home with these easy-to-grow spinach seeds.</p>
-                      <div className="d-flex justify-content-between align-items-center mt-auto">
-                        <span className="badge bg-success rounded-pill">In Stock</span>
-                        <button className="btn btn-success rounded-pill px-3">Add to Cart</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </>
-            )}
-
-          {active === "tools" && (
-            <div className='tools'>
-              <div className="set-1">
-                <div className="card-1">
-                  <img src={tool1} alt="" />
-                  <h5>Stainless Steel Pruning Shears</h5>
-                  <hr />
-                  <p>Durable and sharp, these stainless steel pruning shears are perfect for trimming plants, harvesting herbs, and shaping your garden. With comfortable handles and a precise cut, they make gardening easier and more enjoyable while keeping your plants healthy and looking great.
-                  </p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-                <div className="card-2">
-                  <img src={tool2} alt="" />
-                  <h5>Gardening Gloves (Pair)</h5>
-                  <hr />
-                  <p>Protect your hands from dirt, thorns, and blisters with these comfortable gardening gloves. Breathable and durable, they give you a good grip and keep your hands clean while working with soil, plants, or tools. Essential for any gardener to work safely and comfortably in the garden.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-                <div className="card-3">
-                  <img src={tool3} alt="" />
-                  <h5>Watering Can (Metal, 5L)</h5>
-                  <hr />
-                  <p>Keep your plants happy and hydrated with this sturdy metal watering can. Its classic design and long spout allow for gentle, precise watering without splashing. Perfect for indoor and outdoor plants, it’s both functional and stylish — a must-have tool for everyday gardening tasks.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
+                  <h4>{service.title}</h4>
+                  <p>{service.description}</p>
+                  <button 
+                    className="btn btn-link"
+                    onClick={() => setShowSignInModal(true)}
+                  >
+                    Learn More <i className="fas fa-arrow-right"></i>
+                  </button>
                 </div>
               </div>
-              <div className="set-2">
-                <div className="card-1">
-                  <img src={tool4} alt="" />
-                  <h5>Hand Trowel</h5>
-                  <hr />
-                  <p>A versatile and handy tool for digging, planting, and transplanting small plants or seedlings. This hand trowel features a comfortable grip and a strong metal blade to handle all your soil work with ease, making it an essential addition to any gardener’s toolkit.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-                <div className="card-2">
-                  <img src={tool5} alt="" />
-                  <h5>Garden Tool Set (5-piece)</h5>
-                  <hr />
-                  <p>This complete garden tool set includes all the essentials: trowel, pruners, weeder, cultivator, and gloves. Perfect for beginners and experienced gardeners, it helps you dig, plant, prune, and maintain your garden efficiently. Compact and easy to store, this set makes gardening more organized and fun.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-                <div className="card-3">
-                  <img src={tool6} alt="" />
-                  <h5>Small Garden Hoe</h5>
-                  <hr />
-                  <p>Keep your soil loose and weed-free with this lightweight yet sturdy garden hoe. Ideal for breaking up compacted soil, shaping beds, and removing weeds, it saves time and energy while improving soil health and plant growth. A reliable companion for maintaining a beautiful and productive garden.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-
-          {active === "soil" && (
-            <div className='soil'>
-              <div className="set-1">
-                <div className="card-1">
-                  <img src={soil1} alt="" />
-                  <h5>Organic Compost (10kg Bag)</h5>
-                  <hr />
-                  <p>Enrich your soil with this nutrient-packed organic compost. Perfect for vegetables, flowers, and herbs, it improves soil structure, retains moisture, and promotes healthy plant growth naturally. An eco-friendly way to recycle and boost your garden’s productivity while caring for the earth.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-                <div className="card-2">
-                  <img src={soil2} alt="" />
-                  <h5>Coco Peat Blocks</h5>
-                  <hr />
-                  <p>Lightweight and sustainable, these compressed coco peat blocks expand into soft, airy soil ideal for seedlings, pots, and garden beds. They retain water effectively and improve aeration, giving your plants the perfect growing medium without chemicals. Great for indoor and outdoor gardening alike.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-                <div className="card-3">
-                  <img src={soil3} alt="" />
-                  <h5>Organic Vegetable Fertilizer</h5>
-                  <hr />
-                  <p>Boost your vegetable garden with this all-natural fertilizer, rich in essential nutrients. Specially formulated for edible plants, it enhances flavor, yield, and overall health of your crops while being safe for you and the environment. Enjoy healthier, tastier harvests naturally!</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-              </div>
-              <div className="set-2">
-                <div className="card-1">
-                  <img src={soil4} alt="" />
-                  <h5>Worm Castings (Vermicompost)</h5>
-                  <hr />
-                  <p>A natural powerhouse of nutrients, worm castings improve soil fertility, increase microbial activity, and help plants resist diseases. This odorless, organic vermicompost is perfect for all plants — flowers, veggies, or herbs — and ensures stronger roots and lush growth.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-                <div className="card-2">
-                  <img src={soil5} alt="" />
-                  <h5>Potting Mix (Ready-to-Use)</h5>
-                  <hr />
-                  <p>Convenient and balanced, this ready-to-use potting mix is perfect for houseplants, balconies, and container gardening. Blended for optimal drainage and nutrient retention, it supports healthy root development and vibrant foliage. Just open the bag and start planting!</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-                <div className="card-3">
-                  <img src={soil6} alt="" />
-                  <h5>Natural Pest-Repellent Fertilizer</h5>
-                  <hr />
-                  <p>Protect and nourish your plants at the same time with this dual-purpose fertilizer. Enriched with organic ingredients that repel common pests while feeding the soil, it keeps your garden healthy and chemical-free. Ideal for eco-conscious gardeners looking for an easy, safe solution.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {active === "planters" && (
-            <div className='planters'>
-              <div className="set-1">
-                <div className="card-1">
-                  <img src={planter1} alt="" />
-                  <h5>Ceramic Herb Planter</h5>
-                  <hr />
-                  <p>A stylish ceramic planter perfect for herbs, succulents, or flowers. Its sleek design fits beautifully on kitchen counters, balconies, or windowsills, adding a touch of elegance to your indoor or outdoor spaces while keeping your plants happy and healthy.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-                <div className="card-2">
-                  <img src={planter2} alt="" />
-                  <h5>Hanging Basket Planters (Set of 2)</h5>
-                  <hr />
-                  <p>Maximize your space and add charm with these woven hanging baskets. Ideal for trailing plants, ferns, or flowers, they bring life to walls, balconies, or patios while saving floor space. Durable, lightweight, and perfect for creating a cozy green corner.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-                <div className="card-3">
-                  <img src={planter3} alt="" />
-                  <h5>Wooden Raised Garden Bed</h5>
-                  <hr />
-                  <p>Grow vegetables, herbs, or flowers in this sturdy wooden raised bed. Perfect for backyards or terraces, it improves drainage, reduces weeds, and protects your plants from pests. A practical and attractive way to organize your garden while making planting more comfortable.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-              </div>
-              <div className="set-2">
-                <div className="card-1">
-                  <img src={planter4} alt="" />
-                  <h5>Self-Watering Plastic Planters (Set of 3)</h5>
-                  <hr />
-                  <p>Keep your plants hydrated effortlessly with these self-watering planters. Ideal for busy gardeners, they store water at the bottom and deliver it as needed, reducing maintenance while promoting healthy roots. Lightweight, durable, and perfect for home or office use.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-                <div className="card-2">
-                  <img src={planter5} alt="" />
-                  <h5>Decorative Metal Planter Stand</h5>
-                  <hr />
-                  <p>Elevate your plants with this elegant metal stand and planter combo. Adds height and dimension to your plant display while keeping pots off the ground. Perfect for indoor or outdoor use, combining functionality and style to showcase your favorite greenery beautifully.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-                <div className="card-3">
-                  <img src={planter6} alt="" />
-                  <h5>Recycled Eco-Friendly Pots</h5>
-                  <hr />
-                  <p>Sustainably made from recycled materials, these eco-friendly pots are both beautiful and kind to the planet. Lightweight yet sturdy, they’re perfect for any type of plant and show your commitment to green living while enhancing your garden’s charm.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {active === "books" && (
-            <div className='books'>
-              <div className="set-1">
-                <div className="card-1">
-                  <img src={book1} alt="" />
-                  <h5>The Urban Gardener’s Handbook</h5>
-                  <hr />
-                  <p>A practical guide for growing food in small spaces. Learn how to create a thriving garden on your balcony, rooftop, or windowsill. Packed with tips on choosing plants, maximizing space, and maintaining your garden sustainably, it’s perfect for beginners and experienced gardeners alike.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-                <div className="card-2">
-                  <img src={book2} alt="" />
-                  <h5>Organic Gardening Made Easy</h5>
-                  <hr />
-                  <p>Discover the secrets of chemical-free gardening with this easy-to-follow book. Learn how to grow healthy vegetables, fruits, and flowers naturally. Includes soil tips, composting, pest control, and more to help you create a thriving, eco-friendly garden.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-                <div className="card-3">
-                  <img src={book3} alt="" />
-                  <h5>Seasonal Planting Guide</h5>
-                  <hr />
-                  <p>Plan your garden for year-round beauty and productivity with this seasonal planting guide. It helps you know what to plant, when to plant, and how to care for your garden through every season. A must-have reference for maximizing harvests and maintaining a vibrant garden all year.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-              </div>
-              <div className="set-2">
-                <div className="card-1">
-                  <img src={book4} alt="" />
-                  <h5>Companion Planting Secrets</h5>
-                  <hr />
-                  <p>Learn how to pair plants strategically to improve growth, deter pests, and boost yields naturally. This guide explains which plants thrive together and which don’t — helping you create a more productive and harmonious garden ecosystem.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-                <div className="card-2">
-                  <img src={book5} alt="" />
-                  <h5>Composting for Beginners</h5>
-                  <hr />
-                  <p>Turn your kitchen scraps and garden waste into nutrient-rich compost with this beginner-friendly guide. Step-by-step instructions make it easy to start composting, improve your soil, and reduce household waste while keeping your garden healthy and green.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-                <div className="card-3">
-                  <img src={book6} alt="" />
-                  <h5>Flower Gardening Inspiration</h5>
-                  <hr />
-                  <p>Bring color and fragrance to your garden with this beautifully illustrated guide to flower gardening. Learn how to choose the right flowers, design stunning beds, and care for blooms throughout the year. Perfect for gardeners who love vibrant, blooming spaces.</p>
-                  <div className="instock">
-                    in stock
-                  </div>
-                </div>
-              </div>
-            </div>
-            )}
-          </div>
-        </div>
-      </section>      <section id='greenai' className="py-5 bg-white">
-        <h1>Smart Gardening, Powered by AI</h1>
-        <p>Let GreenAI guide your urban gardening journey. From plant care tips to pest detection and personalized watering schedules, our intelligent ass-
-          istant uses AI to help your plants thrive—saving time, water, and effort.</p>
-        <div className="body">
-          <div className="step-1">
-            <h6>1. Start a Chat</h6>
-            <p>Open the GreenAI chat and say hello or ask a question.</p>
-            <img src={step3} alt="" />
-          </div>
-          <div className="step-2">
-            <h6>2. Chat With GreenAI</h6>
-            <p>Whether it’s about plant care, composting, or what to grow next—just type it in.</p>
-            <img src={step4} alt="" />
-          </div>
-          <div className="step-3">
-            <h6>3. Get Instant Smart Advice</h6>
-            <p>GreenAI replies with accurate, eco-friendly tips to guide your urban gardening journey.</p>
-            <img src={step5} alt="" />
+            ))}
           </div>
         </div>
       </section>
 
-      <section id='blogs'>
-        <h1>Learn. Grow. Thrive.</h1>
-        <p id='description'>Explore bite-sized gardening guides, eco-friendly lifestyle tips, and DIY projects—all tailored for city life.
-          Whether you're a beginner or a seasoned grower, our curated blog helps you stay inspired and informed every day.</p>
-        <div className="blogs-cards">
-          <div className="set-1">
-            <div className="card-1">
-              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
-              <hr />
-              <p>Learn which herbs thrive on balconies and windowsills — pe
-                rfect for beginners with limited space.</p>
-              <p id='author'>- Iresh Dilshan -</p>
+      {/* Green AI Section */}
+      <section id="greenai" className="greenai-section py-5">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-lg-6">
+              <div className="greenai-content">
+                <span className="section-badge">Urban Garden Community</span>
+                <h2 className="section-title">Connect with Local Gardeners</h2>
+                <p className="section-description">
+                  Join a vibrant community of urban gardeners who share knowledge, exchange produce, 
+                  and help each other grow sustainable gardens in city spaces.
+                </p>
+                
+                <div className="feature-list">
+                  {[
+                    'Smart Crop Matching System',
+                    'Community Garden Events',
+                    'Real-time Swap Notifications',
+                    'Local Gardening Tips & Guides'
+                  ].map((feature, index) => (
+                    <div key={index} className="feature-item">
+                      <i className="fas fa-check-circle text-success"></i>
+                      <span>{feature}</span>
+                    </div>
+                  ))}
+                </div>
+                
+                <button 
+                  className="btn btn-success btn-lg mt-4"
+                  onClick={() => setShowSignInModal(true)}
+                >
+                  Join Community
+                </button>
+              </div>
             </div>
-            <div className="card-2">
-              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
-              <hr />
-              <p>Learn which herbs thrive on balconies and windowsills — pe
-                rfect for beginners with limited space.</p>
-              <p id='author'>- Iresh Dilshan -</p>
-            </div>
-            <div className="card-3">
-              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
-              <hr />
-              <p>Learn which herbs thrive on balconies and windowsills — pe
-                rfect for beginners with limited space.</p>
-              <p id='author'>- Iresh Dilshan -</p>
-            </div>
-          </div>
-          <div className="set-2">
-            <div className="card-1">
-              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
-              <hr />
-              <p>Learn which herbs thrive on balconies and windowsills — pe
-                rfect for beginners with limited space.</p>
-              <p id='author'>- Iresh Dilshan -</p>
-            </div>
-            <div className="card-2">
-              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
-              <hr />
-              <p>Learn which herbs thrive on balconies and windowsills — pe
-                rfect for beginners with limited space.</p>
-              <p id='author'>- Iresh Dilshan -</p>
-            </div>
-            <div className="card-3">
-              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
-              <hr />
-              <p>Learn which herbs thrive on balconies and windowsills — pe
-                rfect for beginners with limited space.</p>
-              <p id='author'>- Iresh Dilshan -</p>
-            </div>
-          </div>
-          <div className="set-3">
-            <div className="card-1">
-              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
-              <hr />
-              <p>Learn which herbs thrive on balconies and windowsills — pe
-                rfect for beginners with limited space.</p>
-              <p id='author'>- Iresh Dilshan -</p>
-            </div>
-            <div className="card-2">
-              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
-              <hr />
-              <p>Learn which herbs thrive on balconies and windowsills — pe
-                rfect for beginners with limited space.</p>
-              <p id='author'>- Iresh Dilshan -</p>
-            </div>
-            <div className="card-3">
-              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
-              <hr />
-              <p>Learn which herbs thrive on balconies and windowsills — pe
-                rfect for beginners with limited space.</p>
-              <p id='author'>- Iresh Dilshan -</p>
-            </div>
-          </div>
-          <div className="set-4">
-            <div className="card-1">
-              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
-              <hr />
-              <p>Learn which herbs thrive on balconies and windowsills — pe
-                rfect for beginners with limited space.</p>
-              <p id='author'>- Iresh Dilshan -</p>
-            </div>
-            <div className="card-2">
-              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
-              <hr />
-              <p>Learn which herbs thrive on balconies and windowsills — pe
-                rfect for beginners with limited space.</p>
-              <p id='author'>- Iresh Dilshan -</p>
-            </div>
-            <div className="card-3">
-              <h5>5 Easy Herbs to Grow in Small Spaces</h5>
-              <hr />
-              <p>Learn which herbs thrive on balconies and windowsills — pe
-                rfect for beginners with limited space.</p>
-              <p id='author'>- Iresh Dilshan -</p>
+            <div className="col-lg-6">
+              <div className="ai-visualization">
+                <div className="ai-dashboard">
+                  <div className="dashboard-header">
+                    <span>Community Dashboard</span>
+                    <div className="status-indicator active"></div>
+                  </div>
+                  <div className="dashboard-content">
+                    <div className="metric">
+                      <span className="label">Active Swaps</span>
+                      <span className="value">142</span>
+                    </div>
+                    <div className="metric">
+                      <span className="label">Produce Shared</span>
+                      <span className="value">2.1k lbs</span>
+                    </div>
+                    <div className="metric">
+                      <span className="label">Community Score</span>
+                      <span className="value">98.5%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id='about'>
-        <img src={about1} alt="" id="right" />
-        <img src={about2} alt="" id="left" />
-        <h1>Greening Cities, One Plant at a Time</h1>
-        <p>Urban Green is an innovative GreenTech platform designed to bring nature back into urban environments. In a time where cities are growing faster
-          than green spaces, we believe the solution lies in empowering individuals to take sustainability into their own hands. Founded in 2025 in Colom-
-          bo, Sri Lanka, Urban Green was built on the vision of transforming every balcony, rooftop, and wall into a thriving patch of green. Our platfor-
-          m bridges the gap between nature and technology, offering smart tools for gardening, eco-commerce, and green education—all in one app.</p>
-
-        <p>We believe that everyone can be a gardener, no matter how much space or experience they have. Our app is built for beginners, hobbyists, and exp-
-          erts alike. Whether you're growing herbs on a kitchen shelf or cultivating a rooftop vegetable garden, Urban Green provides the knowledge, suppo-
-          rt, and community to help you succeed. By turning everyday spaces into eco-friendly zones, we promote not just plant growth, but well-being, bio-
-          diversity, and community connections.</p>
-
-        <p>At the heart of our technology is GreenAI, an intelligent chat-based assistant that helps users with personalized plant care. Users simply chat
-          with GreenAI to identify plant types, diagnose problems like yellowing leaves or pests, and receive actionable tips based on their specific loca-
-          tion and plant needs. The AI constantly learns and adapts, offering increasingly accurate guidance over time. This eliminates guesswork and allo-
-          ws even first-time growers to become confident caretakers.</p>
-
-        <p>Alongside GreenAI, we’ve built a thriving Green Marketplace—a local eco-commerce hub where users can buy, sell, or swap everything from plants and seeds to compost, tools, and handmade organic products. Our marketplace supports small-scale urban growers, eco-entrepreneurs, and sustainable businesses by giving them a dedicated platform to reach local buyers. We charge a small commission to ensure quality control while reinvesting in our tech and user support.</p>
-        <p>Education is a core part of our mission. Our Blogs & Tips section delivers expert-written content that’s easy to understand and relevant to urban living. From seasonal planting guides to eco-lifestyle hacks and DIY green decor, our content is tailored to inspire and inform. We also regularly spotlight real user stories, promote eco-challenges, and provide insights into sustainable practices that can be easily adopted in any city home.</p>
-        <p>Community is key to lasting impact. That’s why Urban Green isn't just a tool—it’s a movement. We aim to build a connected network of green-minded individuals who support one another through tips, trades, and collaborations. Our app includes features like grow-logs, plant sharing, and community garden finders to foster interaction and collective action. In doing so, we hope to reduce environmental anxiety and build a hopeful, shared vision for the future.</p>
-        <p>From a business perspective, Urban Green operates on a freemium model with in-app purchases and marketplace commissions. Premium users gain access to advanced AI features, exclusive blog content, and early access to eco-product launches. We are actively exploring brand partnerships, grant funding, and municipal collaborations to scale our impact and reach new markets across Asia and beyond.</p>
-        <p>In everything we do, our core belief remains the same: small green actions lead to big environmental change. Urban Green is here to equip and empower urban dwellers with the tools, knowledge, and community they need to make that change—starting right where they live.</p>
-      </section>
-
-      <section id='contact'>
-        <h1>We'd love to hear from you!</h1>
-        <p id='description'>Whether you have questions, feedback, partnership ideas, or need help using the app—our team is here to support you. Reach out to us anytime and
-          we’ll get back to you as soon as possible.</p>
-        <div className="contact-body">
-          <div className="right-side">
-            <div className="name">
-              <label for="exampleInputEmail1" class="form-label">Full Name</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-            </div>
-            <div class="email">
-              <label for="exampleInputEmail1" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-            </div>
-            <div className="subject">
-              <label for="exampleInputEmail1" class="form-label">Subject</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-            </div>
-            <div className="message">
-              <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="7"></textarea>
-            </div>
-            <button>Get in touch</button>
+      {/* Marketplace Section */}
+      <section id="marketplace" className="marketplace-section py-5">
+        <div className="container">
+          <div className="section-header text-center mb-5">
+            <span className="section-badge">Garden Marketplace</span>
+            <h2 className="section-title">Fresh Produce & Garden Supplies</h2>
+            <p className="section-subtitle">
+              Shop fresh produce from local gardeners and find quality garden supplies
+            </p>
+          </div>
+          
+          <div className="row g-4">
+            {[
+              {
+                image: 'https://images.unsplash.com/photo-1502741338009-cac2772e18bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+                title: 'Fresh Organic Tomatoes (2 lbs)',
+                price: '$8.99',
+                rating: 4.8,
+                seller: 'Sarah\'s Urban Garden',
+                originalPrice: '$12.99',
+                discount: '31% OFF'
+              },
+              {
+                image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                title: 'Complete Herb Garden Kit',
+                price: '$15.00',
+                rating: 4.9,
+                seller: 'Mike\'s Garden Shop',
+                originalPrice: '$25.00',
+                discount: '40% OFF'
+              },
+              {
+                image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+                title: 'Organic Lettuce & Greens Mix',
+                price: '$6.50',
+                rating: 4.7,
+                seller: 'Emma\'s Fresh Produce',
+                originalPrice: '$9.99',
+                discount: '35% OFF'
+              },
+              {
+                image: 'https://images.unsplash.com/photo-1506084868230-bb9d95c24759?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+                title: 'Hot Pepper Seeds Collection',
+                price: '$8.99',
+                rating: 4.6,
+                seller: 'Green Thumb Co.',
+                originalPrice: '$12.99',
+                discount: '31% OFF'
+              },
+              {
+                image: 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+                title: 'Fresh Zucchini Harvest (3 lbs)',
+                price: '$7.99',
+                rating: 4.9,
+                seller: 'John\'s Organic Garden',
+                originalPrice: '$11.99',
+                discount: '33% OFF'
+              },
+              {
+                image: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+                title: 'Premium Garden Tool Set',
+                price: '$35.00',
+                rating: 4.5,
+                seller: 'Urban Garden Supply',
+                originalPrice: '$49.99',
+                discount: '30% OFF'
+              },
+              {
+                image: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+                title: 'Fresh Basil & Mint Bundle',
+                price: '$4.99',
+                rating: 4.8,
+                seller: 'Lisa\'s Herb Corner',
+                originalPrice: '$7.99',
+                discount: '38% OFF'
+              },
+              {
+                image: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+                title: 'Eco-Friendly Composting Kit',
+                price: '$22.99',
+                rating: 4.4,
+                seller: 'Eco Garden Store',
+                originalPrice: '$29.99',
+                discount: '23% OFF'
+              }
+            ].map((product, index) => (
+              <div key={index} className="col-lg-3 col-md-6">
+                <div className="product-card">
+                  <div className="product-image">
+                    <img src={product.image} alt={product.title} />
+                    {product.discount && (
+                      <span className="discount-badge">{product.discount}</span>
+                    )}
+                    <div className="product-overlay">
+                      <button className="wishlist-btn">
+                        <i className="far fa-heart"></i>
+                      </button>
+                      <button className="quick-view-btn">
+                        <i className="fas fa-eye"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div className="product-info">
+                    <h5>{product.title}</h5>
+                    <div className="product-rating">
+                      {[...Array(5)].map((_, i) => (
+                        <i key={i} className={`fas fa-star ${i < Math.floor(product.rating) ? 'active' : ''}`}></i>
+                      ))}
+                      <span>({product.rating})</span>
+                    </div>
+                    <p className="seller">by {product.seller}</p>
+                    <div className="product-footer">
+                      <div className="price-section">
+                        <span className="price">{product.price}</span>
+                        {product.originalPrice && (
+                          <span className="original-price">{product.originalPrice}</span>
+                        )}
+                      </div>
+                      <button 
+                        className="btn btn-success btn-sm add-to-cart-btn"
+                        onClick={() => setShowSignInModal(true)}
+                      >
+                        <i className="fas fa-shopping-cart me-1"></i>
+                        Add to Cart
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <div className="text-center mt-5">
+            <button 
+              className="btn btn-outline-success btn-lg"
+              onClick={() => setShowSignInModal(true)}
+            >
+              View All Available Items
+            </button>
           </div>
         </div>
       </section>
 
-      <footer>
-        <div className="top">
-          <div className="left-side">
-            <img src={logo} alt="" />
-            <p>Growing greener cities, one plant at a time.
-              Empowering <br /> urban communities with smart gardening,
-              local eco-trade, <br /> and sustainable living.</p>
+      {/* Blog Section */}
+      <section id="blogs" className="blog-section py-5">
+        <div className="container">
+          <div className="section-header text-center mb-5">
+            <span className="section-badge">Garden Tips & Guides</span>
+            <h2 className="section-title">Urban Gardening Blog</h2>
+            <p className="section-subtitle">
+              Learn from experienced gardeners and share your growing knowledge
+            </p>
           </div>
-          <div className="middle-side">
-            <h5>Useful Links</h5>
-            <div className="links">
-              <a href="#home">Home</a>
-              <a href="#marketplace">Marketplace</a>
-              <a href="#blogs">Blogs & Tips</a>
-              <a href="#greenai">GreenAI</a>
-              <a href="#about">About Us</a>
-              <a href="#contact">Contact Us</a>
+          
+          <div className="row g-4">
+            {[
+              {
+                category: 'Vegetable Growing',
+                title: 'The Complete Guide to Growing Tomatoes in Small Spaces',
+                excerpt: 'Learn how to grow delicious tomatoes in containers, balconies, and small urban gardens...',
+                author: 'Sarah Green',
+                date: 'Aug 5, 2025',
+                readTime: '5 min read',
+                image: 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80'
+              },
+              {
+                category: 'Urban Gardening',
+                title: 'How to Start Your First Balcony Garden',
+                excerpt: 'Essential tips for creating a thriving garden in small urban spaces and containers...',
+                author: 'Mark Johnson',
+                date: 'Aug 3, 2025',
+                readTime: '8 min read',
+                image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80'
+              },
+              {
+                category: 'Herb Gardening',
+                title: '10 Essential Herbs Every Urban Gardener Should Grow',
+                excerpt: 'Discover easy-to-grow herbs that thrive in containers and add flavor to your cooking...',
+                author: 'Emma Wilson',
+                date: 'Aug 1, 2025',
+                readTime: '6 min read',
+                image: 'https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80'
+              },
+              {
+                category: 'Community Gardening',
+                title: 'Building Strong Neighborhood Garden Communities',
+                excerpt: 'How to connect with fellow gardeners and create lasting community relationships...',
+                author: 'Dr. Alex Chen',
+                date: 'Jul 28, 2025',
+                readTime: '7 min read',
+                image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80'
+              },
+              {
+                category: 'Seasonal Growing',
+                title: 'Fall Planting: What to Grow in Your Urban Garden',
+                excerpt: 'Discover the best vegetables and herbs to plant during the fall season...',
+                author: 'Maria Rodriguez',
+                date: 'Jul 25, 2025',
+                readTime: '6 min read',
+                image: 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80'
+              },
+              {
+                category: 'Sustainable Practices',
+                title: 'Composting in Small Spaces: A Beginner\'s Guide',
+                excerpt: 'Learn how to create rich compost for your garden even in apartments and small homes...',
+                author: 'James Park',
+                date: 'Jul 22, 2025',
+                readTime: '9 min read',
+                image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80'
+              }
+            ].map((post, index) => (
+              <div key={index} className="col-lg-4 col-md-6">
+                <article className="blog-card">
+                  <div className="blog-image">
+                    <img src={post.image} alt={post.title} />
+                    <div className="blog-overlay">
+                      <span className={`blog-category category-${(index % 3) + 1}`}>{post.category}</span>
+                    </div>
+                  </div>
+                  <div className="blog-content">
+                    <h4>{post.title}</h4>
+                    <p>{post.excerpt}</p>
+                    <div className="blog-meta">
+                      <div className="author-info">
+                        <div className="author-avatar">
+                          <i className="fas fa-user"></i>
+                        </div>
+                        <div>
+                          <span className="author">{post.author}</span>
+                          <span className="date">{post.date}</span>
+                        </div>
+                      </div>
+                      <span className="read-time">
+                        <i className="fas fa-clock"></i>
+                        {post.readTime}
+                      </span>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            ))}
+          </div>
+          
+          <div className="text-center mt-5">
+            <button 
+              className="btn btn-success btn-lg"
+              onClick={() => setShowSignInModal(true)}
+            >
+              Read More Garden Tips
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* About Us Section */}
+      <section id="about" className="about-section py-5">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-lg-6">
+              <div className="about-content">
+                <span className="section-badge">About GreenTech</span>
+                <h2 className="section-title">Leading the Green Revolution</h2>
+                <p className="section-description">
+                  We are passionate about creating innovative solutions that help businesses and 
+                  individuals transition to sustainable practices while maintaining efficiency and profitability.
+                </p>
+                
+                <div className="mission-values">
+                  <div className="value-item">
+                    <i className="fas fa-globe text-success"></i>
+                    <div>
+                      <h5>Global Impact</h5>
+                      <p>Making environmental solutions accessible worldwide</p>
+                    </div>
+                  </div>
+                  <div className="value-item">
+                    <i className="fas fa-lightbulb text-warning"></i>
+                    <div>
+                      <h5>Innovation</h5>
+                      <p>Cutting-edge technology for sustainable solutions</p>
+                    </div>
+                  </div>
+                  <div className="value-item">
+                    <i className="fas fa-users text-info"></i>
+                    <div>
+                      <h5>Community</h5>
+                      <p>Building a network of eco-conscious leaders</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <button 
+                  className="btn btn-success btn-lg mt-4"
+                  onClick={() => setShowSignInModal(true)}
+                >
+                  Learn Our Story
+                </button>
+              </div>
             </div>
-          </div>
-          <div className="right-side">
-            <h5>Subscribe to our newsletter</h5>
-            <p>Stay rooted in the latest urban gardeni-
-              ng tips, <br /> app updates, eco-living ideas,
-              and exclusive <br /> marketplace deals.</p>
-            <div className="subscribe">
-              <label for="exampleInputEmail1" class="form-label">Email Address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder='Enter your email'/>
-              <button>Subscribe Now</button>
+            <div className="col-lg-6">
+              <div className="about-stats">
+                <div className="stats-grid">
+                  {[
+                    { number: '5+', label: 'Years Experience' },
+                    { number: '1000+', label: 'Projects Completed' },
+                    { number: '50+', label: 'Team Members' },
+                    { number: '25+', label: 'Countries Served' }
+                  ].map((stat, index) => (
+                    <div key={index} className="stat-card">
+                      <h3>{stat.number}</h3>
+                      <p>{stat.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div className="bottom">
-          <p>© 2025 Earth Power Pvt Ltd. All rights reserved. | Privacy Policy | Terms of Service | Contact Us</p>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="contact-section py-5">
+        <div className="container">
+          <div className="section-header text-center mb-5">
+            <span className="section-badge">Get in Touch</span>
+            <h2 className="section-title">Let's Work Together</h2>
+            <p className="section-subtitle">
+              Ready to start your sustainable journey? Contact us today!
+            </p>
+          </div>
+          
+          <div className="row">
+            <div className="col-lg-8 mx-auto">
+              <div className="contact-form">
+                <form>
+                  <div className="row g-3">
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label>Full Name</label>
+                        <input type="text" className="form-control" placeholder="Your Name" />
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label>Email Address</label>
+                        <input type="email" className="form-control" placeholder="your@email.com" />
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" className="form-control" placeholder="+1 (555) 000-0000" />
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label>Service Interest</label>
+                        <select className="form-control">
+                          <option>Select a service</option>
+                          <option>Solar Solutions</option>
+                          <option>Green AI</option>
+                          <option>Marketplace</option>
+                          <option>Consultation</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div className="col-12">
+                      <div className="form-group">
+                        <label>Message</label>
+                        <textarea className="form-control" rows="5" placeholder="Tell us about your project..."></textarea>
+                      </div>
+                    </div>
+                    <div className="col-12 text-center">
+                      <button type="submit" className="btn btn-success btn-lg">
+                        Send Message
+                        <i className="fas fa-paper-plane ms-2"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          <div className="row mt-5">
+            <div className="col-lg-4 text-center">
+              <div className="contact-info">
+                <i className="fas fa-map-marker-alt"></i>
+                <h5>Visit Us</h5>
+                <p>123 Green Street<br />Eco City, EC 12345</p>
+              </div>
+            </div>
+            <div className="col-lg-4 text-center">
+              <div className="contact-info">
+                <i className="fas fa-phone"></i>
+                <h5>Call Us</h5>
+                <p>+1 (555) 123-4567<br />Mon-Fri 9AM-6PM</p>
+              </div>
+            </div>
+            <div className="col-lg-4 text-center">
+              <div className="contact-info">
+                <i className="fas fa-envelope"></i>
+                <h5>Email Us</h5>
+                <p>hello@greentech.com<br />support@greentech.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="footer">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-4">
+              <div className="footer-brand">
+                <div className="brand-logo">
+                  <span className="brand-icon">🌱</span>
+                  <span className="brand-text">GreenTech</span>
+                </div>
+                <p>Leading the way to a sustainable future through innovative green technology solutions.</p>
+                <div className="social-links">
+                  {['facebook', 'twitter', 'linkedin', 'instagram'].map(social => (
+                    <a key={social} href="#" className="social-link">
+                      <i className={`fab fa-${social}`}></i>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-2 col-md-6">
+              <div className="footer-links">
+                <h5>Services</h5>
+                <ul>
+                  <li><a href="#services">Solar Solutions</a></li>
+                  <li><a href="#services">Wind Energy</a></li>
+                  <li><a href="#services">Green Farming</a></li>
+                  <li><a href="#services">Smart Buildings</a></li>
+                </ul>
+              </div>
+            </div>
+            <div className="col-lg-2 col-md-6">
+              <div className="footer-links">
+                <h5>Company</h5>
+                <ul>
+                  <li><a href="#about">About Us</a></li>
+                  <li><a href="#blogs">Blog</a></li>
+                  <li><a href="#contact">Contact</a></li>
+                  <li><a href="#">Careers</a></li>
+                </ul>
+              </div>
+            </div>
+            <div className="col-lg-2 col-md-6">
+              <div className="footer-links">
+                <h5>Resources</h5>
+                <ul>
+                  <li><a href="#">Documentation</a></li>
+                  <li><a href="#">Support</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">Terms of Service</a></li>
+                </ul>
+              </div>
+            </div>
+            <div className="col-lg-2 col-md-6">
+              <div className="footer-newsletter">
+                <h5>Newsletter</h5>
+                <p>Stay updated with our latest news</p>
+                <div className="newsletter-form">
+                  <input type="email" placeholder="Your email" />
+                  <button type="submit">
+                    <i className="fas fa-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div className="footer-bottom">
+            <div className="row align-items-center">
+              <div className="col-md-6">
+                <p>&copy; 2025 GreenTech. All rights reserved.</p>
+              </div>
+              <div className="col-md-6 text-end">
+                <p>Made with 💚 for a sustainable future</p>
+              </div>
+            </div>
+          </div>
         </div>
       </footer>
-            <img src={hero} id='img-footer' alt="" />
+
+      {/* Sign In Modal */}
+      {showSignInModal && (
+        <div className="modal-overlay" onClick={() => setShowSignInModal(false)}>
+          <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3>Welcome Back</h3>
+              <button 
+                className="modal-close-btn"
+                onClick={() => setShowSignInModal(false)}
+              >
+                <i className="fas fa-times"></i>
+              </button>
+            </div>
+            
+            <form className="auth-form">
+              <div className="form-group">
+                <label>Email Address</label>
+                <div className="input-group">
+                  <i className="fas fa-envelope"></i>
+                  <input 
+                    type="email" 
+                    placeholder="Enter your email"
+                    className="form-control"
+                  />
+                </div>
+              </div>
+              
+              <div className="form-group">
+                <label>Password</label>
+                <div className="input-group">
+                  <i className="fas fa-lock"></i>
+                  <input 
+                    type="password" 
+                    placeholder="Enter your password"
+                    className="form-control"
+                  />
+                </div>
+              </div>
+              
+              <div className="form-options">
+                <label className="checkbox-label">
+                  <input type="checkbox" />
+                  <span className="checkmark"></span>
+                  Remember me
+                </label>
+                <button type="button" className="forgot-password">
+                  Forgot password?
+                </button>
+              </div>
+              
+              <button type="submit" className="btn btn-success btn-block">
+                <i className="fas fa-sign-in-alt me-2"></i>
+                Sign In
+              </button>
+              
+              <div className="divider">
+                <span>or continue with</span>
+              </div>
+              
+              <div className="social-auth">
+                <button type="button" className="btn btn-social google">
+                  <i className="fab fa-google"></i>
+                  Google
+                </button>
+                <button type="button" className="btn btn-social facebook">
+                  <i className="fab fa-facebook-f"></i>
+                  Facebook
+                </button>
+              </div>
+              
+              <div className="auth-switch">
+                <span>Don't have an account? </span>
+                <button 
+                  type="button"
+                  onClick={() => {
+                    setShowSignInModal(false);
+                    setShowSignUpModal(true);
+                  }}
+                >
+                  Sign Up
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Sign Up Modal */}
+      {showSignUpModal && (
+        <div className="modal-overlay" onClick={() => setShowSignUpModal(false)}>
+          <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3>Join Our Community</h3>
+              <button 
+                className="modal-close-btn"
+                onClick={() => setShowSignUpModal(false)}
+              >
+                <i className="fas fa-times"></i>
+              </button>
+            </div>
+            
+            <form className="auth-form">
+              <div className="form-row">
+                <div className="form-group">
+                  <label>First Name</label>
+                  <div className="input-group">
+                    <i className="fas fa-user"></i>
+                    <input 
+                      type="text" 
+                      placeholder="First name"
+                      className="form-control"
+                    />
+                  </div>
+                </div>
+                
+                <div className="form-group">
+                  <label>Last Name</label>
+                  <div className="input-group">
+                    <i className="fas fa-user"></i>
+                    <input 
+                      type="text" 
+                      placeholder="Last name"
+                      className="form-control"
+                    />
+                  </div>
+                </div>
+              </div>
+              
+              <div className="form-group">
+                <label>Email Address</label>
+                <div className="input-group">
+                  <i className="fas fa-envelope"></i>
+                  <input 
+                    type="email" 
+                    placeholder="Enter your email"
+                    className="form-control"
+                  />
+                </div>
+              </div>
+              
+              <div className="form-group">
+                <label>Password</label>
+                <div className="input-group">
+                  <i className="fas fa-lock"></i>
+                  <input 
+                    type="password" 
+                    placeholder="Create a password"
+                    className="form-control"
+                  />
+                </div>
+              </div>
+              
+              <div className="form-group">
+                <label>Confirm Password</label>
+                <div className="input-group">
+                  <i className="fas fa-lock"></i>
+                  <input 
+                    type="password" 
+                    placeholder="Confirm your password"
+                    className="form-control"
+                  />
+                </div>
+              </div>
+              
+              <div className="form-group">
+                <label>Location (Optional)</label>
+                <div className="input-group">
+                  <i className="fas fa-map-marker-alt"></i>
+                  <input 
+                    type="text" 
+                    placeholder="City, State"
+                    className="form-control"
+                  />
+                </div>
+              </div>
+              
+              <div className="form-options">
+                <label className="checkbox-label">
+                  <input type="checkbox" />
+                  <span className="checkmark"></span>
+                  I agree to the terms of service and Privacy Policy
+                </label>
+              </div>
+              
+              <div className="form-options">
+                <label className="checkbox-label">
+                  <input type="checkbox" />
+                  <span className="checkmark"></span>
+                  Send me gardening tips and community updates
+                </label>
+              </div>
+              
+              <button type="submit" className="btn btn-success btn-block">
+                <i className="fas fa-user-plus me-2"></i>
+                Create Account
+              </button>
+              
+              <div className="divider">
+                <span>or continue with</span>
+              </div>
+              
+              <div className="social-auth">
+                <button type="button" className="btn btn-social google">
+                  <i className="fab fa-google"></i>
+                  Google
+                </button>
+                <button type="button" className="btn btn-social facebook">
+                  <i className="fab fa-facebook-f"></i>
+                  Facebook
+                </button>
+              </div>
+              
+              <div className="auth-switch">
+                <span>Already have an account? </span>
+                <button 
+                  type="button"
+                  onClick={() => {
+                    setShowSignUpModal(false);
+                    setShowSignInModal(true);
+                  }}
+                >
+                  Sign In
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};
+
+export default LandingPage;
