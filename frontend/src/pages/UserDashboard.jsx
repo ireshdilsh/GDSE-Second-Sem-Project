@@ -1,8 +1,8 @@
 import React, { useState} from 'react';
 import ModernNavbar from '../components/ModernNavbar';
-import GreenAI from '../components/GreenAI';
 import BlogsPopup from '../components/BlogsPopup';
 import '../components/ModernNavbar.css';
+import GreenAI from '../components/GreenAI';
 
 const UserDashboard = () => {
   const [activeTab, setActiveTab] = useState('dashboard');

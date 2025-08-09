@@ -1,99 +1,210 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
+import './GreenAI.css';
 
-const GreenAI = () => {
+export default function GreenAI() {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      type: 'ai',
-      content: "🌱 Hello! I'm GreenAI, your personal gardening assistant. I can help you with plant care, gardening tips, plant identification, pest control, and plant matching for swaps. How can I assist you today?",
-      timestamp: new Date().toLocaleTimeString()
+      role: 'assistant',
+      content: 'Hello! I\'m GreenAI, your AI assistant for all things related to gardening, plants, and sustainable living. How can I help you today?',
+      timestamp: new Date()
     }
   ]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [connectionStatus, setConnectionStatus] = useState('idle'); // idle, testing, connected, failed
   const messagesEndRef = useRef(null);
-  const [quickActions] = useState([
-    { text: "How often should I water my monstera?", icon: "💧" },
-    { text: "Identify this plant disease", icon: "🔍" },
-    { text: "Best plants for low light", icon: "🌿" },
-    { text: "When to repot my snake plant?", icon: "🪴" }
-  ]);
+  const textareaRef = useRef(null);
+
+  // API configuration
+  const API_KEY = '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';
+  const API_URL = 'https://openrouter.ai/api/v1/chat/completions';
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
 
-  const sendMessage = async (message = inputMessage) => {
-    if (!message.trim()) return;
+  const testConnection = async () => {
+    setConnectionStatus('testing');
+    try {
+      const response = await axios.post(
+        API_URL,
+        {
+          model: 'meta-llama/llama-3.1-8b-instruct:free',
+          messages: [
+            {
+              role: 'user',
+              content: 'Hello, this is a connection test.'
+            }
+          ],
+          temperature: 0.1,
+          max_tokens: 10
+        },
+        {
+          headers: {
+            'Authorization': `Bearer ${API_KEY}`,
+            'Content-Type': 'application/json',
+            'HTTP-Referer': window.location.origin,
+            'X-Title': 'GreenAI Assistant'
+          }
+        }
+      );
+      
+      if (response.data && response.data.choices) {
+        setConnectionStatus('connected');
+        setError(null);
+      }
+    } catch (err) {
+      setConnectionStatus('failed');
+      console.error('Connection test failed:', err);
+      setError(`Connection test failed: ${err.response?.status || 'Unknown error'}`);
+    }
+  };
+
+  const adjustTextareaHeight = () => {
+    const textarea = textareaRef.current;
+    if (textarea) {
+      textarea.style.height = 'auto';
+      textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+    }
+  };
+
+  // Simple offline fallback responses
+  const getOfflineResponse = (message) => {
+    const lowerMessage = message.toLowerCase();
+    
+    if (lowerMessage.includes('plant') || lowerMessage.includes('grow')) {
+      return "🌱 For successful plant growth, ensure your plants have adequate light, water, and nutrients. Most plants need well-draining soil and consistent care. What specific plants are you interested in growing?";
+    }
+    if (lowerMessage.includes('water')) {
+      return "💧 Watering is crucial! Most plants prefer deep, less frequent watering rather than daily light watering. Check soil moisture by inserting your finger 1-2 inches deep - if it's dry, it's time to water.";
+    }
+    if (lowerMessage.includes('soil')) {
+      return "🌍 Good soil is the foundation of healthy plants! Use well-draining potting mix for containers, and consider adding compost to improve soil structure and nutrients.";
+    }
+    if (lowerMessage.includes('seed')) {
+      return "🌰 Starting from seeds is rewarding! Make sure to plant at the right depth (usually 2-3 times the seed's width), keep soil moist but not soggy, and provide adequate warmth and light.";
+    }
+    if (lowerMessage.includes('pest') || lowerMessage.includes('bug')) {
+      return "🐛 For natural pest control, try neem oil, insecticidal soap, or companion planting. Encouraging beneficial insects like ladybugs can also help control harmful pests.";
+    }
+    
+    return "🌿 I'm currently running in offline mode with limited responses. For the best gardening advice, please check your internet connection and try again. In the meantime, remember that most plant problems stem from watering issues - too much or too little!";
+  };
+
+  const sendMessage = async () => {
+    if (!inputMessage.trim() || isLoading) return;
 
     const userMessage = {
       id: Date.now(),
-      type: 'user',
-      content: message,
-      timestamp: new Date().toLocaleTimeString()
+      role: 'user',
+      content: inputMessage.trim(),
+      timestamp: new Date()
     };
 
     setMessages(prev => [...prev, userMessage]);
     setInputMessage('');
     setIsLoading(true);
+    setError(null);
 
-    try {
-      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': 'Bearer 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',
-          'Content-Type': 'application/json',
-          'HTTP-Referer': window.location.origin,
-          'X-Title': 'GreenAI Gardening Assistant'
-        },
-        body: JSON.stringify({
-          model: "openai/gpt-oss-20b",
-          messages: [
-            {
-              role: "system",
-              content: "You are GreenAI, a specialized gardening assistant. You ONLY help with gardening, plant care, plant identification, pest control, plant diseases, plant matching for swaps/trades, indoor/outdoor gardening, soil care, fertilizers, watering schedules, plant propagation, and related botanical topics. If asked about anything else, politely redirect to gardening topics. Keep responses helpful, friendly, and concise. Use plant emojis when appropriate. Focus on practical advice."
-            },
-            {
-              role: "user",
-              content: message
-            }
-          ],
-          temperature: 0.7,
-          max_tokens: 500
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error(`API request failed: ${response.status}`);
-      }
-
-      const data = await response.json();
-      const aiResponse = data.choices[0]?.message?.content || "Sorry, I couldn't process your request. Please try again.";
-
-      const aiMessage = {
-        id: Date.now() + 1,
-        type: 'ai',
-        content: aiResponse,
-        timestamp: new Date().toLocaleTimeString()
-      };
-
-      setMessages(prev => [...prev, aiMessage]);
-    } catch (error) {
-      console.error('API Error:', error);
-      const errorMessage = {
-        id: Date.now() + 1,
-        type: 'ai',
-        content: "🌱 Sorry, I'm having trouble connecting right now. Please try again in a moment. In the meantime, remember that most houseplants prefer indirect sunlight and watering when the top inch of soil feels dry!",
-        timestamp: new Date().toLocaleTimeString()
-      };
-      setMessages(prev => [...prev, errorMessage]);
-    } finally {
-      setIsLoading(false);
+    // Reset textarea height
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
     }
+
+    // Try different models as fallbacks
+    const models = [
+      'meta-llama/llama-3.1-8b-instruct:free',
+      'microsoft/phi-3-mini-128k-instruct:free',
+      'google/gemma-2-9b-it:free'
+    ];
+
+    let lastError = null;
+    let success = false;
+
+    for (const model of models) {
+      try {
+        const response = await axios.post(
+          API_URL,
+          {
+            model: model,
+            messages: [
+              {
+                role: 'system',
+                content: 'You are GreenAI, a helpful AI assistant specializing in gardening, plants, agriculture, sustainability, and environmental topics. Provide informative, practical, and encouraging advice to help users with their green living journey.'
+              },
+              ...messages.slice(-10).map(msg => ({ // Keep last 10 messages for context
+                role: msg.role,
+                content: msg.content
+              })),
+              {
+                role: 'user',
+                content: userMessage.content
+              }
+            ],
+            temperature: 0.7,
+            max_tokens: 1000
+          },
+          {
+            headers: {
+              'Authorization': `Bearer ${API_KEY}`,
+              'Content-Type': 'application/json',
+              'HTTP-Referer': window.location.origin,
+              'X-Title': 'GreenAI Assistant'
+            }
+          }
+        );
+
+        const aiMessage = {
+          id: Date.now() + 1,
+          role: 'assistant',
+          content: response.data.choices[0].message.content,
+          timestamp: new Date()
+        };
+
+        setMessages(prev => [...prev, aiMessage]);
+        setConnectionStatus('connected');
+        success = true;
+        break; // Success, exit the loop
+      } catch (err) {
+        lastError = err;
+        console.error(`Error with model ${model}:`, err);
+        continue; // Try next model
+      }
+    }
+
+    if (!success) {
+      // All API models failed, use offline fallback
+      console.error('All models failed, using offline fallback. Last error:', lastError);
+      setConnectionStatus('failed');
+      
+      const offlineResponse = getOfflineResponse(userMessage.content);
+      
+      const fallbackMessage = {
+        id: Date.now() + 1,
+        role: 'assistant',
+        content: offlineResponse,
+        timestamp: new Date()
+      };
+      
+      setMessages(prev => [...prev, fallbackMessage]);
+      
+      if (lastError?.response?.status === 401) {
+        setError('API key authentication failed. Using offline mode.');
+      } else if (lastError?.response?.status === 429) {
+        setError('Rate limit exceeded. Using offline mode.');
+      } else {
+        setError('Connection failed. Using offline mode with basic responses.');
+      }
+    }
+    
+    setIsLoading(false);
   };
 
   const handleKeyPress = (e) => {
@@ -103,210 +214,125 @@ const GreenAI = () => {
     }
   };
 
+  const formatMessage = (content) => {
+    // Simple markdown-like formatting
+    return content
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      .replace(/`(.*?)`/g, '<code>$1</code>')
+      .replace(/\n/g, '<br>');
+  };
+
+  const clearChat = () => {
+    setMessages([
+      {
+        id: 1,
+        role: 'assistant',
+        content: 'Hello! I\'m GreenAI, your AI assistant for all things related to gardening, plants, and sustainable living. How can I help you today?',
+        timestamp: new Date()
+      }
+    ]);
+    setError(null);
+    setConnectionStatus('idle');
+  };
+
   return (
-    <div className="container-fluid h-100">
-      <div className="row h-100">
-        {/* Chat Section */}
-        <div className="col-lg-8">
-          <div className="card border-0 shadow-sm h-100 d-flex flex-column">
-            {/* Header */}
-            <div className="card-header bg-gradient text-white border-0" style={{background: 'linear-gradient(135deg, #22c55e, #16a34a)'}}>
-              <div className="d-flex align-items-center">
-                <div className="me-3">
-                  <i className="fas fa-robot fs-3"></i>
-                </div>
-                <div>
-                  <h5 className="mb-0 fw-bold">GreenAI Assistant</h5>
-                  <small className="opacity-75">Your Personal Gardening Expert</small>
-                </div>
-                <div className="ms-auto">
-                  <span className="badge bg-light text-success">
-                    <i className="fas fa-circle me-1" style={{fontSize: '0.5rem'}}></i>
-                    Online
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Messages Area */}
-            <div className="card-body flex-grow-1 overflow-auto" style={{height: '400px'}}>
-              <div className="messages-container">
-                {messages.map((message) => (
-                  <div key={message.id} className={`mb-3 d-flex ${message.type === 'user' ? 'justify-content-end' : 'justify-content-start'}`}>
-                    <div className={`d-flex align-items-start ${message.type === 'user' ? 'flex-row-reverse' : ''}`} style={{maxWidth: '80%'}}>
-                      <div className={`rounded-circle d-flex align-items-center justify-content-center me-2 ms-2 ${message.type === 'user' ? 'ms-0 me-2' : 'me-2 ms-0'}`} style={{width: '35px', height: '35px', backgroundColor: message.type === 'user' ? '#3b82f6' : '#22c55e'}}>
-                        <i className={`fas ${message.type === 'user' ? 'fa-user' : 'fa-robot'} text-white`}></i>
-                      </div>
-                      <div className={`p-3 rounded-3 ${message.type === 'user' ? 'bg-primary text-white' : 'bg-light'}`}>
-                        <div className="message-content">
-                          {message.content}
-                        </div>
-                        <small className={`d-block mt-1 ${message.type === 'user' ? 'text-white-50' : 'text-muted'}`}>
-                          {message.timestamp}
-                        </small>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-                {isLoading && (
-                  <div className="mb-3 d-flex justify-content-start">
-                    <div className="d-flex align-items-start">
-                      <div className="rounded-circle d-flex align-items-center justify-content-center me-2" style={{width: '35px', height: '35px', backgroundColor: '#22c55e'}}>
-                        <i className="fas fa-robot text-white"></i>
-                      </div>
-                      <div className="bg-light p-3 rounded-3">
-                        <div className="typing-indicator">
-                          <span></span>
-                          <span></span>
-                          <span></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-                <div ref={messagesEndRef} />
-              </div>
-            </div>
-
-            {/* Input Area */}
-            <div className="card-footer bg-white border-0">
-              <div className="d-flex align-items-center gap-2">
-                <input
-                  type="text"
-                  className="form-control border-0 bg-light"
-                  placeholder="Ask me anything about gardening, plant care, or plant identification..."
-                  value={inputMessage}
-                  onChange={(e) => setInputMessage(e.target.value)}
-                  onKeyPress={handleKeyPress}
-                />
-                <button 
-                  className="btn btn-success px-4"
-                  onClick={() => sendMessage()}
-                  disabled={isLoading || !inputMessage.trim()}
-                >
-                  <i className="fas fa-paper-plane"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Sidebar */}
-        <div className="col-lg-4">
-          <div className="row g-3">
-            {/* Quick Actions */}
-            <div className="col-12">
-              <div className="card border-0 shadow-sm">
-                <div className="card-header bg-white border-0">
-                  <h6 className="mb-0 fw-bold">Quick Questions</h6>
-                </div>
-                <div className="card-body">
-                  <div className="d-grid gap-2">
-                    {quickActions.map((action, index) => (
-                      <button 
-                        key={index}
-                        className="btn btn-outline-success text-start"
-                        onClick={() => sendMessage(action.text)}
-                      >
-                        <span className="me-2">{action.icon}</span>
-                        {action.text}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* AI Features */}
-            <div className="col-12">
-              <div className="card border-0 shadow-sm">
-                <div className="card-header bg-white border-0">
-                  <h6 className="mb-0 fw-bold">AI Features</h6>
-                </div>
-                <div className="card-body">
-                  <div className="list-group list-group-flush">
-                    <div className="list-group-item border-0 px-0">
-                      <div className="d-flex align-items-center">
-                        <i className="fas fa-seedling text-success me-3"></i>
-                        <div>
-                          <div className="fw-medium">Plant Care Tips</div>
-                          <small className="text-muted">Personalized care advice</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="list-group-item border-0 px-0">
-                      <div className="d-flex align-items-center">
-                        <i className="fas fa-search text-info me-3"></i>
-                        <div>
-                          <div className="fw-medium">Plant Identification</div>
-                          <small className="text-muted">Describe your plant</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="list-group-item border-0 px-0">
-                      <div className="d-flex align-items-center">
-                        <i className="fas fa-bug text-warning me-3"></i>
-                        <div>
-                          <div className="fw-medium">Pest & Disease Help</div>
-                          <small className="text-muted">Diagnosis & treatment</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="list-group-item border-0 px-0">
-                      <div className="d-flex align-items-center">
-                        <i className="fas fa-exchange-alt text-primary me-3"></i>
-                        <div>
-                          <div className="fw-medium">Plant Matching</div>
-                          <small className="text-muted">Perfect swap suggestions</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Tips */}
-            <div className="col-12">
-              <div className="card border-0 shadow-sm bg-gradient text-white" style={{background: 'linear-gradient(135deg, #16a34a, #15803d)'}}>
-                <div className="card-body text-center">
-                  <i className="fas fa-lightbulb fs-2 mb-3"></i>
-                  <h6 className="fw-bold mb-2">Pro Tip</h6>
-                  <p className="small mb-0 opacity-90">
-                    Be specific when describing your plants or problems. Include details like leaf color, size, and growing conditions for better AI assistance!
-                  </p>
-                </div>
-              </div>
-            </div>
+    <div className="green-ai-container">
+      <div className="green-ai-header">
+        <div className="header-content">
+          <h2>🌱 GreenAI Assistant</h2>
+          <div className="header-actions">
+            <button 
+              onClick={testConnection} 
+              className={`connection-test-btn ${connectionStatus}`}
+              title="Test API Connection"
+              disabled={connectionStatus === 'testing'}
+            >
+              {connectionStatus === 'testing' ? '⏳' : 
+               connectionStatus === 'connected' ? '✅' : 
+               connectionStatus === 'failed' ? '❌' : '🔗'}
+            </button>
+            <button onClick={clearChat} className="clear-chat-btn" title="Clear Chat">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2 2v4a2 2 0 0 1 2 2v2"/>
+              </svg>
+            </button>
           </div>
         </div>
       </div>
 
-      <style jsx>{`
-        .typing-indicator {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-        }
-        .typing-indicator span {
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          background-color: #22c55e;
-          animation: typing 1.4s infinite ease-in-out;
-        }
-        .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
-        .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
-        @keyframes typing {
-          0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
-          40% { transform: scale(1); opacity: 1; }
-        }
-        .messages-container {
-          min-height: 100%;
-        }
-      `}</style>
+      <div className="chat-messages">
+        {messages.map((message) => (
+          <div key={message.id} className={`message ${message.role}`}>
+            <div className="message-avatar">
+              {message.role === 'assistant' ? '🤖' : '👤'}
+            </div>
+            <div className="message-content">
+              <div 
+                className="message-text" 
+                dangerouslySetInnerHTML={{ __html: formatMessage(message.content) }}
+              />
+              <div className="message-time">
+                {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+              </div>
+            </div>
+          </div>
+        ))}
+        
+        {isLoading && (
+          <div className="message assistant">
+            <div className="message-avatar">🤖</div>
+            <div className="message-content">
+              <div className="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+        )}
+        
+        <div ref={messagesEndRef} />
+      </div>
+
+      {error && (
+        <div className="error-message">
+          <span>⚠️ {error}</span>
+          <button onClick={() => setError(null)} className="error-close">×</button>
+        </div>
+      )}
+
+      <div className="chat-input-container">
+        <div className="input-wrapper">
+          <textarea
+            ref={textareaRef}
+            value={inputMessage}
+            onChange={(e) => {
+              setInputMessage(e.target.value);
+              adjustTextareaHeight();
+            }}
+            onKeyPress={handleKeyPress}
+            placeholder="Ask me about gardening, plants, or sustainable living..."
+            className="chat-input"
+            disabled={isLoading}
+            rows={1}
+          />
+          <button 
+            onClick={sendMessage}
+            disabled={!inputMessage.trim() || isLoading}
+            className="send-button"
+          >
+            {isLoading ? (
+              <div className="spinner"></div>
+            ) : (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22,2 15,22 11,13 2,9 22,2"></polygon>
+              </svg>
+            )}
+          </button>
+        </div>
+      </div>
     </div>
   );
-};
-
-export default GreenAI;
+}
