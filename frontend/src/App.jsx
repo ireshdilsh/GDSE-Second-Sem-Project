@@ -1,11 +1,11 @@
 import LandingPage from './pages/LandingPage';
 import './App.css';
-import ModernUserDashboard from './pages/ModernUserDashboard';
+import UserDashboard from './pages/UserDashboard';
 
 function App() {
   return (
     <div>
-      <ModernUserDashboard/>
+      <UserDashboard/>
     </div>
   );
 }

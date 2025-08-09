@@ -3,7 +3,7 @@ import ModernNavbar from '../components/ModernNavbar';
 import GreenAI from '../components/GreenAI';
 import '../components/ModernNavbar.css';
 
-const ModernUserDashboard = () => {
+const UserDashboard = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
   
   const [user] = useState({
@@ -319,4 +319,4 @@ const ModernUserDashboard = () => {
   );
 };
 
-export default ModernUserDashboard;
+export default UserDashboard;
