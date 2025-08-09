@@ -1,5 +1,6 @@
 import React, { useState} from 'react';
 import ModernNavbar from '../components/ModernNavbar';
+import GreenAI from '../components/GreenAI';
 import '../components/ModernNavbar.css';
 
 const ModernUserDashboard = () => {
@@ -291,10 +292,12 @@ const ModernUserDashboard = () => {
   const renderContent = () => {
     switch(activeTab) {
       case 'dashboard': return renderDashboard();
+      case 'greenai': return <GreenAI />;
       case 'plants': return renderPlants();
-      case 'swaps': return <div className="text-center py-5"><h4>Swap History</h4><p className="text-muted">Coming soon...</p></div>;
+      case 'trades': return <div className="text-center py-5"><h4>Trade History</h4><p className="text-muted">Coming soon...</p></div>;
       case 'community': return <div className="text-center py-5"><h4>Community</h4><p className="text-muted">Coming soon...</p></div>;
       case 'profile': return <div className="text-center py-5"><h4>Profile Settings</h4><p className="text-muted">Coming soon...</p></div>;
+      case 'settings': return <div className="text-center py-5"><h4>Settings</h4><p className="text-muted">Coming soon...</p></div>;
       default: return renderDashboard();
     }
   };

@@ -276,7 +276,7 @@ const ModernNavbar = ({ user, onTabChange, activeTab }) => {
                 <div className="py-2">
                   {[
                     { id: 'profile', icon: 'fas fa-user', label: 'My Profile', color: 'text-primary' },
-                    { id: 'plants', icon: 'fas fa-seedling', label: 'My Plants', color: 'text-success' },
+                    { id: 'greenai', icon: 'fas fa-robot', label: 'GreenAI Assistant', color: 'text-success' },
                     { id: 'trades', icon: 'fas fa-exchange-alt', label: 'Trade History', color: 'text-info' },
                     { id: 'settings', icon: 'fas fa-cog', label: 'Settings', color: 'text-muted' }
                   ].map(item => (
