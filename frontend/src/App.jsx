@@ -1,13 +1,13 @@
-import './App.css'
-import LandingPage from './pages/LandingPage'
+import LandingPage from './pages/LandingPage';
+import './App.css';
+import ModernUserDashboard from './pages/ModernUserDashboard';
 
 function App() {
-
   return (
     <div>
-      <LandingPage />
+      <ModernUserDashboard/>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -38,7 +38,7 @@ const LandingPage = () => {
   return (
     <div className="landing-page">
       {/* Navigation */}
-      <nav className={`navbar navbar-expand-lg fixed-top transition-all ${isScrolled ? 'navbar-scrolled' : 'navbar-transparent'}`}>
+    <nav className={`navbar navbar-expand-lg fixed-top transition-all ${isScrolled ? 'navbar-scrolled' : 'navbar-transparent'}`}>
         <div className="container">
           <a className="navbar-brand" href="#home">
             <div className="brand-logo">
@@ -75,7 +75,6 @@ const LandingPage = () => {
           </div>
         </div>
       </nav>
-
       {/* Hero Section */}
       <section id="home" className="hero-section">
         <div className="hero-background"></div>
@@ -819,7 +818,7 @@ const LandingPage = () => {
                 </button>
               </div>
               
-              <button type="submit" className="btn btn-success btn-block">
+              <button type="submit" className="btn btn-success btn-block" onClick={()=>{alert("Click the Signin Btn")}}>
                 <i className="fas fa-sign-in-alt me-2"></i>
                 Sign In
               </button>
