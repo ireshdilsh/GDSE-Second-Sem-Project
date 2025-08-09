@@ -1,10 +1,12 @@
 import React, { useState} from 'react';
 import ModernNavbar from '../components/ModernNavbar';
 import GreenAI from '../components/GreenAI';
+import BlogsPopup from '../components/BlogsPopup';
 import '../components/ModernNavbar.css';
 
 const UserDashboard = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [showBlogsPopup, setShowBlogsPopup] = useState(false);
   
   const [user] = useState({
     name: 'John Gardener',
@@ -113,10 +115,6 @@ const UserDashboard = () => {
           <h2 className="fw-bold text-dark mb-1">Selling Products</h2>
           <p className="text-muted mb-0">Manage your plant collection for sale</p>
         </div>
-        <button className="btn btn-success">
-          <i className="fas fa-plus me-2"></i>
-          Add New Product
-        </button>
       </div>
 
       {/* Selling Products Grid */}
@@ -308,13 +306,21 @@ const UserDashboard = () => {
       <ModernNavbar 
         user={user} 
         onTabChange={setActiveTab} 
-        activeTab={activeTab} 
+        activeTab={activeTab}
+        onBlogsClick={() => setShowBlogsPopup(true)} 
       />
 
       {/* Main Content - Full Width */}
       <div className="container-fluid p-4">
         {renderContent()}
       </div>
+
+      {/* Blogs Popup */}
+      <BlogsPopup 
+        show={showBlogsPopup} 
+        onClose={() => setShowBlogsPopup(false)} 
+        user={user} 
+      />
     </div>
   );
 };

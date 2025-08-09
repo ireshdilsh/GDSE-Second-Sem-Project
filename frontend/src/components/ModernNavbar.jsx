@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-const ModernNavbar = ({ user, onTabChange, activeTab }) => {
+const ModernNavbar = ({ user, onTabChange, activeTab, onBlogsClick }) => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const profileMenuRef = useRef(null);
@@ -82,7 +82,6 @@ const ModernNavbar = ({ user, onTabChange, activeTab }) => {
               <div className="fw-bold" style={{ color: '#16a34a', fontSize: '1.4rem' }}>
                 Grow & Swap
               </div>
-              <div className="text-muted small">Plant Dashboard</div>
             </div>
           </div>
         </div>
@@ -276,6 +275,7 @@ const ModernNavbar = ({ user, onTabChange, activeTab }) => {
                 <div className="py-2">
                   {[
                     { id: 'profile', icon: 'fas fa-user', label: 'My Profile', color: 'text-primary' },
+                    { id: 'blogs', icon: 'fas fa-blog', label: 'My Blogs', color: 'text-warning', isSpecial: true },
                     { id: 'greenai', icon: 'fas fa-robot', label: 'GreenAI Assistant', color: 'text-success' },
                     { id: 'trades', icon: 'fas fa-exchange-alt', label: 'Trade History', color: 'text-info' },
                     { id: 'settings', icon: 'fas fa-cog', label: 'Settings', color: 'text-muted' }
@@ -283,7 +283,7 @@ const ModernNavbar = ({ user, onTabChange, activeTab }) => {
                     <button 
                       key={item.id}
                       className="dropdown-item d-flex align-items-center px-4 py-3 border-0 bg-transparent w-100 text-start"
-                      onClick={() => handleMenuItemClick(item.id)}
+                      onClick={() => item.isSpecial ? onBlogsClick?.() : handleMenuItemClick(item.id)}
                       style={{ transition: 'background-color 0.2s ease' }}
                     >
                       <i className={`${item.icon} me-3 ${item.color}`} style={{ width: '16px' }}></i>
