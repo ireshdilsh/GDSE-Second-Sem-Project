@@ -66,4 +66,5 @@ public class BlogController {
         logger.info("Blog deleted successfully with ID: {}", id);
         return new ResponseEntity<>(new APIResponse(200, "Blog deleted successfully", null), HttpStatus.OK);
     }
+
 }
