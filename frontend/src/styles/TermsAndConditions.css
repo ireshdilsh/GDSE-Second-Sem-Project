@@ -1,0 +1,68 @@
+/* Terms and Conditions Page Styles */
+
+.terms-container {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  min-height: 100vh;
+}
+
+.terms-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: none;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+}
+
+.terms-header {
+  background: linear-gradient(135deg, #2d5016 0%, #4a7c59 50%, #6ea574 100%);
+  color: white;
+  border-radius: 20px 20px 0 0;
+}
+
+.section-title {
+  color: #2d5016;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.section-title:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(135deg, #2d5016, #4a7c59);
+  border-radius: 2px;
+}
+
+.terms-text {
+  color: #495057;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.highlight-box {
+  background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+  border-left: 4px solid #4a7c59;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.back-btn {
+  background: linear-gradient(135deg, #2d5016, #4a7c59);
+  border: none;
+  border-radius: 50px;
+  padding: 12px 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(45, 80, 22, 0.3);
+  background: linear-gradient(135deg, #4a7c59, #2d5016);
+}
