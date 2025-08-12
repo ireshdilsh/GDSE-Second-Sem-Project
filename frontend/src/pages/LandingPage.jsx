@@ -735,9 +735,9 @@ const LandingPage = () => {
                             <h6 className="fw-bold text-white mb-3">Company</h6>
                             <ul className="list-unstyled">
                                 <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">About Us</a></li>
-                                <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">Careers</a></li>
+                                <li className="mb-2"><Link to ="/career" className="text-white opacity-75 text-decoration-none">Careers</Link></li>
                                 <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">Press</a></li>
-                                <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">Partners</a></li>
+                                <li className="mb-2"><Link to ="/partners" className="text-white opacity-75 text-decoration-none">Partners</Link></li>
                             </ul>
                         </div>
                     </div>
