@@ -709,7 +709,7 @@ const LandingPage = () => {
                             <ul className="list-unstyled">
                                 <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">How it Works</a></li>
                                 <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">Features</a></li>
-                                <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">Pricing</a></li>
+                                <li className="mb-2"><Link to="/pricing" className="text-white opacity-75 text-decoration-none">Pricing</Link></li>
                                 <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">Mobile App</a></li>
                             </ul>
                         </div>
