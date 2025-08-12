@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '../styles/LandingPage.css';
+import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
     const [showModal, setShowModal] = useState(false);
@@ -915,7 +916,7 @@ const LandingPage = () => {
                                             <div className="form-check mb-4">
                                                 <input className="form-check-input" type="checkbox" id="termsCheck" />
                                                 <label className="form-check-label text-muted" htmlFor="termsCheck">
-                                                    I agree to the <a href="#" style={{ color: '#4a7c59' }}>Terms of Service</a> and <a href="#" style={{ color: '#4a7c59' }}>Privacy Policy</a>
+                                                    I agree to the <Link to="/terms/and/conditions" style={{ color: '#4a7c59' }}>Terms of Service</Link> and <Link to ="/terms/and/conditions" style={{ color: '#4a7c59' }}>Privacy Policy</Link>
                                                 </label>
                                             </div>
                                             <button type="submit" className="btn btn-success w-100 btn-modern mb-3" style={{ backgroundColor: '#2d5016', borderColor: '#2d5016' }}>
