@@ -27,7 +27,6 @@ public class ContactController {
 
     private static final Logger logger = LoggerFactory.getLogger(ContactController.class);
 
-
     @Qualifier("contactServiceImpl")
     @Autowired
     ContactService service;
