@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '../styles/LandingPage.css';
@@ -7,6 +8,38 @@ import { Link } from 'react-router-dom';
 const LandingPage = () => {
     const [showModal, setShowModal] = useState(false);
     const [isSignUp, setIsSignUp] = useState(false);
+    
+    // Contact form state
+    const [contactForm, setContactForm] = useState({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+    });
+    const [contactStatus, setContactStatus] = useState({ 
+        loading: false, 
+        success: null, 
+        error: null 
+    });
+
+    // Contact form handlers
+    const handleContactChange = (e) => {
+        setContactForm({ ...contactForm, [e.target.name]: e.target.value });
+    };
+
+    const handleContactSubmit = async (e) => {
+        e.preventDefault();
+        setContactStatus({ loading: true, success: null, error: null });
+        
+        try {
+            await axios.post('http://localhost:8080/api/v1/contact/save/contact/details', contactForm);
+            setContactStatus({ loading: false, success: 'Message sent successfully!', error: null });
+            setContactForm({ name: '', email: '', subject: '', message: '' });
+        } catch (err) {
+            setContactStatus({ loading: false, success: null, error: 'Failed to send message. Please try again.' });
+            console.log(err);
+        }
+    };
 
     return (
         <div className="landing-page">
@@ -619,7 +652,7 @@ const LandingPage = () => {
                                 <h4 className="fw-bold mb-4 text-center" style={{ color: '#2d5016' }}>
                                     📧 Contact Us
                                 </h4>
-                                <form>
+                                <form onSubmit={handleContactSubmit}>
                                     <div className="mb-4">
                                         <label className="form-label fw-bold text-muted">Name</label>
                                         <input
@@ -627,6 +660,10 @@ const LandingPage = () => {
                                             className="form-control form-control-lg border-0 shadow-sm"
                                             placeholder="Enter your full name"
                                             style={{ backgroundColor: '#f8f9fa', fontSize: '14px', height: '45px' }}
+                                            name="name"
+                                            value={contactForm.name}
+                                            onChange={handleContactChange}
+                                            required
                                         />
                                     </div>
                                     <div className="mb-4">
@@ -636,6 +673,10 @@ const LandingPage = () => {
                                             className="form-control form-control-lg border-0 shadow-sm"
                                             placeholder="Enter your email address"
                                             style={{ backgroundColor: '#f8f9fa', fontSize: '14px', height: '45px' }}
+                                            name="email"
+                                            value={contactForm.email}
+                                            onChange={handleContactChange}
+                                            required
                                         />
                                     </div>
                                     <div className="mb-4">
@@ -645,6 +686,10 @@ const LandingPage = () => {
                                             className="form-control form-control-lg border-0 shadow-sm"
                                             placeholder="What's this about?"
                                             style={{ backgroundColor: '#f8f9fa', fontSize: '14px', height: '45px' }}
+                                            name="subject"
+                                            value={contactForm.subject}
+                                            onChange={handleContactChange}
+                                            required
                                         />
                                     </div>
                                     <div className="mb-4">
@@ -654,12 +699,31 @@ const LandingPage = () => {
                                             rows="5"
                                             placeholder="Tell us more about your inquiry..."
                                             style={{ backgroundColor: '#f8f9fa', fontSize: '14px' }}
+                                            name="message"
+                                            value={contactForm.message}
+                                            onChange={handleContactChange}
+                                            required
                                         ></textarea>
                                     </div>
-                                    <button type="submit" className="btn btn-lg w-100 btn-modern text-white mb-3" style={{ background: 'linear-gradient(135deg, #2d5016, #4a7c59)', border: 'none' }}>
-                                        <i className="fas fa-paper-plane me-2"></i>
-                                        Send Message
+                                    <button type="submit" className="btn btn-lg w-100 btn-modern text-white mb-3" style={{ background: 'linear-gradient(135deg, #2d5016, #4a7c59)', border: 'none' }} disabled={contactStatus.loading}>
+                                        {contactStatus.loading ? (
+                                            <>
+                                                <span className="spinner-border spinner-border-sm me-2"></span>
+                                                Sending...
+                                            </>
+                                        ) : (
+                                            <>
+                                                <i className="fas fa-paper-plane me-2"></i>
+                                                Send Message
+                                            </>
+                                        )}
                                     </button>
+                                    {contactStatus.success && (
+                                        <div className="alert alert-success text-center py-2 mb-3">{contactStatus.success}</div>
+                                    )}
+                                    {contactStatus.error && (
+                                        <div className="alert alert-danger text-center py-2 mb-3">{contactStatus.error}</div>
+                                    )}
                                 </form>
                                 <div className="text-center">
                                     <small className="text-muted">
@@ -718,7 +782,7 @@ const LandingPage = () => {
                             <ul className="list-unstyled">
                                 <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">Success Stories</a></li>
                                 <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">Events</a></li>
-                                <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">Blog</a></li>
+                                <li className="mb-2"><Link to="/blogs" className="text-white opacity-75 text-decoration-none">Blog</Link></li>
                                 <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">Newsletter</a></li>
                             </ul>
                         </div>
@@ -734,9 +798,9 @@ const LandingPage = () => {
                         <div className="col-lg-2 col-md-3 mb-4">
                             <h6 className="fw-bold text-white mb-3">Company</h6>
                             <ul className="list-unstyled">
-                                <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">About Us</a></li>
+                                <li className="mb-2"><Link to="/about" className="text-white opacity-75 text-decoration-none">About Us</Link></li>
                                 <li className="mb-2"><Link to ="/career" className="text-white opacity-75 text-decoration-none">Careers</Link></li>
-                                <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">Press</a></li>
+                                <li className="mb-2"><Link to ="/press" className="text-white opacity-75 text-decoration-none">Press</Link></li>
                                 <li className="mb-2"><Link to ="/partners" className="text-white opacity-75 text-decoration-none">Partners</Link></li>
                             </ul>
                         </div>
