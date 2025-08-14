@@ -9,6 +9,8 @@ import BlogsPage from './src/pages/BlogsPage'
 import PressPage from './src/pages/PressPage'
 import AboutUsPage from './src/pages/AboutUsPage'
 import SuccessStoriesPage from './src/pages/SuccessStoriesPage'
+import ForgotPasswordPage from './src/pages/ForgotPasswordPage'
+import PasswordResetPage from './src/pages/PasswordResetPage'
 
 export default function Controller() {
   return (
@@ -23,6 +25,8 @@ export default function Controller() {
                 <Route path='/blogs' element = {<BlogsPage/>}></Route>
                 <Route path='/press' element = {<PressPage/>}></Route>
                 <Route path='/about' element = {<AboutUsPage/>}></Route>
+                <Route path='/forget/password' element = {<ForgotPasswordPage/>}></Route>
+                <Route path='/password/reset' element = {<PasswordResetPage/>}></Route>
                 <Route path='/success/stories' element = {<SuccessStoriesPage/>}></Route>
             </Routes>
         </BrowserRouter>

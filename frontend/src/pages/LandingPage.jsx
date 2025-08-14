@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const LandingPage = () => {
     const [showModal, setShowModal] = useState(false);
     const [isSignUp, setIsSignUp] = useState(false);
-    
+
     // Contact form state
     const [contactForm, setContactForm] = useState({
         name: '',
@@ -16,10 +16,10 @@ const LandingPage = () => {
         subject: '',
         message: ''
     });
-    const [contactStatus, setContactStatus] = useState({ 
-        loading: false, 
-        success: null, 
-        error: null 
+    const [contactStatus, setContactStatus] = useState({
+        loading: false,
+        success: null,
+        error: null
     });
 
     // Contact form handlers
@@ -30,7 +30,7 @@ const LandingPage = () => {
     const handleContactSubmit = async (e) => {
         e.preventDefault();
         setContactStatus({ loading: true, success: null, error: null });
-        
+
         try {
             await axios.post('http://localhost:8080/api/v1/contact/save/contact/details', contactForm);
             setContactStatus({ loading: false, success: 'Message sent successfully!', error: null });
@@ -38,6 +38,111 @@ const LandingPage = () => {
         } catch (err) {
             setContactStatus({ loading: false, success: null, error: 'Failed to send message. Please try again.' });
             console.log(err);
+        }
+    };
+
+    // Signup form state
+    const [signupForm, setSignupForm] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        termsAccepted: false
+    });
+    const [signupStatus, setSignupStatus] = useState({
+        loading: false,
+        success: null,
+        error: null
+    });
+    const [passwordErrors, setPasswordErrors] = useState({
+        match: false,
+        length: false,
+        complexity: false
+    });
+
+    // Signup form handlers
+    const handleSignupChange = (e) => {
+        const { name, value, type, checked } = e.target;
+        setSignupForm({ 
+            ...signupForm, 
+            [name]: type === 'checkbox' ? checked : value 
+        });
+        
+        // Real-time password validation
+        if (name === 'password' || name === 'confirmPassword') {
+            validatePasswords(
+                name === 'password' ? value : signupForm.password,
+                name === 'confirmPassword' ? value : signupForm.confirmPassword
+            );
+        }
+    };    const validatePasswords = (password, confirmPassword) => {
+        setPasswordErrors({
+            match: confirmPassword !== '' && password !== confirmPassword,
+            length: password.length > 0 && password.length < 8,
+            complexity: password.length > 0 && !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(password)
+        });
+    };
+
+    const handleSignupSubmit = async (e) => {
+        e.preventDefault();
+        
+        // Check if terms are accepted
+        if (!signupForm.termsAccepted) {
+            setSignupStatus({ loading: false, success: null, error: 'You must accept the Terms of Service and Privacy Policy to create an account!' });
+            return;
+        }
+        
+        // Final validation
+        if (signupForm.password !== signupForm.confirmPassword) {
+            setSignupStatus({ loading: false, success: null, error: 'Passwords do not match!' });
+            return;
+        }        if (signupForm.password.length < 8) {
+            setSignupStatus({ loading: false, success: null, error: 'Password must be at least 8 characters long!' });
+            return;
+        }
+
+        if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(signupForm.password)) {
+            setSignupStatus({ loading: false, success: null, error: 'Password must contain at least one uppercase letter, one lowercase letter, and one number!' });
+            return;
+        }
+
+        setSignupStatus({ loading: true, success: null, error: null });
+
+        try {
+            // Prepare data for API (exclude confirmPassword)
+            const userData = {
+                firstName: signupForm.firstName,
+                lastName: signupForm.lastName,
+                email: signupForm.email,
+                password: signupForm.password
+            };
+
+            await axios.post('http://localhost:8080/api/v1/user/save/user', userData);
+            setSignupStatus({ loading: false, success: 'Account created successfully! Please sign in.', error: null });
+
+            // Reset form
+            setSignupForm({
+                firstName: '',
+                lastName: '',
+                email: '',
+                password: '',
+                confirmPassword: '',
+                termsAccepted: false
+            });
+
+            // Switch to signin modal after 2 seconds
+            setTimeout(() => {
+                setIsSignUp(false);
+                setSignupStatus({ loading: false, success: null, error: null });
+            }, 2000);
+
+        } catch (err) {
+            setSignupStatus({
+                loading: false,
+                success: null,
+                error: err.response?.data?.message || 'Failed to create account. Please try again.'
+            });
         }
     };
 
@@ -174,7 +279,7 @@ const LandingPage = () => {
                                     <div className="position-relative mb-4">
                                         <div className="bg-gradient rounded-4 d-inline-flex align-items-center justify-content-center"
                                             style={{ width: '90px', height: '90px', background: 'linear-gradient(135deg, #2d5016, #4a7c59)' }}>
-                                            <i className="fas fa-user-circle fa-2x" style={{color: '#a8d5ba'}}></i>
+                                            <i className="fas fa-user-circle fa-2x" style={{ color: '#a8d5ba' }}></i>
                                         </div>
                                     </div>
                                     <h5 className="fw-bold mb-3" style={{ color: '#2d5016' }}>Smart Profiles</h5>
@@ -191,7 +296,7 @@ const LandingPage = () => {
                                     <div className="position-relative mb-4">
                                         <div className="bg-gradient rounded-4 d-inline-flex align-items-center justify-content-center"
                                             style={{ width: '90px', height: '90px', background: 'linear-gradient(135deg, #2d5016, #4a7c59)' }}>
-                                            <i className="fas fa-seedling fa-2x" style={{color: '#a8d5ba'}}></i>
+                                            <i className="fas fa-seedling fa-2x" style={{ color: '#a8d5ba' }}></i>
                                         </div>
                                     </div>
                                     <h5 className="fw-bold mb-3" style={{ color: '#2d5016' }}>Crop Management</h5>
@@ -208,7 +313,7 @@ const LandingPage = () => {
                                     <div className="position-relative mb-4">
                                         <div className="bg-gradient rounded-4 d-inline-flex align-items-center justify-content-center"
                                             style={{ width: '90px', height: '90px', background: 'linear-gradient(135deg, #2d5016, #4a7c59)' }}>
-                                            <i className="fas fa-map-marked-alt fa-2x" style={{color: '#a8d5ba'}}></i>
+                                            <i className="fas fa-map-marked-alt fa-2x" style={{ color: '#a8d5ba' }}></i>
                                         </div>
                                     </div>
                                     <h5 className="fw-bold mb-3" style={{ color: '#2d5016' }}>Location-Based Search</h5>
@@ -225,7 +330,7 @@ const LandingPage = () => {
                                     <div className="position-relative mb-4">
                                         <div className="bg-gradient rounded-4 d-inline-flex align-items-center justify-content-center"
                                             style={{ width: '90px', height: '90px', background: 'linear-gradient(135deg, #2d5016, #4a7c59)' }}>
-                                            <i className="fas fa-exchange-alt fa-2x" style={{color: '#a8d5ba'}}></i>
+                                            <i className="fas fa-exchange-alt fa-2x" style={{ color: '#a8d5ba' }}></i>
                                         </div>
                                     </div>
                                     <h5 className="fw-bold mb-3" style={{ color: '#2d5016' }}>Smart Swapping</h5>
@@ -242,7 +347,7 @@ const LandingPage = () => {
                                     <div className="position-relative mb-4">
                                         <div className="bg-gradient rounded-4 d-inline-flex align-items-center justify-content-center"
                                             style={{ width: '90px', height: '90px', background: 'linear-gradient(135deg, #2d5016, #4a7c59)' }}>
-                                            <i className="fas fa-trophy fa-2x" style={{color: '#a8d5ba'}}></i>
+                                            <i className="fas fa-trophy fa-2x" style={{ color: '#a8d5ba' }}></i>
                                         </div>
                                     </div>
                                     <h5 className="fw-bold mb-3" style={{ color: '#2d5016' }}>Rewards System</h5>
@@ -259,7 +364,7 @@ const LandingPage = () => {
                                     <div className="position-relative mb-4">
                                         <div className="bg-gradient rounded-4 d-inline-flex align-items-center justify-content-center"
                                             style={{ width: '90px', height: '90px', background: 'linear-gradient(135deg, #2d5016, #4a7c59)' }}>
-                                            <i className="fas fa-blog fa-2x" style={{color: '#a8d5ba'}}></i>
+                                            <i className="fas fa-blog fa-2x" style={{ color: '#a8d5ba' }}></i>
                                         </div>
                                     </div>
                                     <h5 className="fw-bold mb-3" style={{ color: '#2d5016' }}>Knowledge Hub</h5>
@@ -418,7 +523,7 @@ const LandingPage = () => {
                                 <div className="col-md-6">
                                     <div className="d-flex align-items-start">
                                         <div className="bg-white bg-opacity-30 rounded-3 p-3 me-3">
-                                            <i className="fas fa-leaf fa-2x" style={{color: '#2d5016'}}></i>
+                                            <i className="fas fa-leaf fa-2x" style={{ color: '#2d5016' }}></i>
                                         </div>
                                         <div>
                                             <h5 className="fw-bold mb-2">Reduce Food Waste</h5>
@@ -431,7 +536,7 @@ const LandingPage = () => {
                                 <div className="col-md-6">
                                     <div className="d-flex align-items-start">
                                         <div className="bg-white bg-opacity-30 rounded-3 p-3 me-3">
-                                            <i className="fas fa-hands-helping fa-2x" style={{color: '#2d5016'}}></i>
+                                            <i className="fas fa-hands-helping fa-2x" style={{ color: '#2d5016' }}></i>
                                         </div>
                                         <div>
                                             <h5 className="fw-bold mb-2">Build Connections</h5>
@@ -444,7 +549,7 @@ const LandingPage = () => {
                                 <div className="col-md-6">
                                     <div className="d-flex align-items-start">
                                         <div className="bg-white bg-opacity-30 rounded-3 p-3 me-3">
-                                            <i className="fas fa-recycle fa-2x" style={{color: '#2d5016'}}></i>
+                                            <i className="fas fa-recycle fa-2x" style={{ color: '#2d5016' }}></i>
                                         </div>
                                         <div>
                                             <h5 className="fw-bold mb-2">Promote Sustainability</h5>
@@ -457,7 +562,7 @@ const LandingPage = () => {
                                 <div className="col-md-6">
                                     <div className="d-flex align-items-start">
                                         <div className="bg-white bg-opacity-30 rounded-3 p-3 me-3">
-                                            <i className="fas fa-graduation-cap fa-2x" style={{color: '#2d5016'}}></i>
+                                            <i className="fas fa-graduation-cap fa-2x" style={{ color: '#2d5016' }}></i>
                                         </div>
                                         <div>
                                             <h5 className="fw-bold mb-2">Learn Together</h5>
@@ -626,7 +731,7 @@ const LandingPage = () => {
                                 <div className="col-md-6 mb-4">
                                     <div className="d-flex align-items-center">
                                         <div className="bg-white bg-opacity-30 rounded-3 p-3 me-3">
-                                            <i className="fas fa-envelope fa-xl" style={{color: '#2d5016'}}></i>
+                                            <i className="fas fa-envelope fa-xl" style={{ color: '#2d5016' }}></i>
                                         </div>
                                         <div>
                                             <h6 className="fw-bold mb-1">Email Support</h6>
@@ -637,7 +742,7 @@ const LandingPage = () => {
                                 <div className="col-md-6 mb-4">
                                     <div className="d-flex align-items-center">
                                         <div className="bg-white bg-opacity-30 rounded-3 p-3 me-3">
-                                            <i className="fas fa-phone fa-xl" style={{color: '#2d5016'}}></i>
+                                            <i className="fas fa-phone fa-xl" style={{ color: '#2d5016' }}></i>
                                         </div>
                                         <div>
                                             <h6 className="fw-bold mb-1">Call Us</h6>
@@ -799,9 +904,9 @@ const LandingPage = () => {
                             <h6 className="fw-bold text-white mb-3">Company</h6>
                             <ul className="list-unstyled">
                                 <li className="mb-2"><Link to="/about" className="text-white opacity-75 text-decoration-none">About Us</Link></li>
-                                <li className="mb-2"><Link to ="/career" className="text-white opacity-75 text-decoration-none">Careers</Link></li>
-                                <li className="mb-2"><Link to ="/press" className="text-white opacity-75 text-decoration-none">Press</Link></li>
-                                <li className="mb-2"><Link to ="/partners" className="text-white opacity-75 text-decoration-none">Partners</Link></li>
+                                <li className="mb-2"><Link to="/career" className="text-white opacity-75 text-decoration-none">Careers</Link></li>
+                                <li className="mb-2"><Link to="/press" className="text-white opacity-75 text-decoration-none">Press</Link></li>
+                                <li className="mb-2"><Link to="/partners" className="text-white opacity-75 text-decoration-none">Partners</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -833,22 +938,22 @@ const LandingPage = () => {
                                         Grow & Swap
                                     </h4>
                                 </div>
-                                <button 
-                                    type="button" 
-                                    className="btn-close" 
+                                <button
+                                    type="button"
+                                    className="btn-close"
                                     onClick={() => setShowModal(false)}
                                 ></button>
                             </div>
                             <div className="modal-body px-4 pb-4">
                                 {/* Tab Navigation */}
                                 <div className="text-center mb-4">
-                                    <button 
+                                    <button
                                         className={`auth-tab me-4 ${!isSignUp ? 'active' : ''}`}
                                         onClick={() => setIsSignUp(false)}
                                     >
                                         Sign In
                                     </button>
-                                    <button 
+                                    <button
                                         className={`auth-tab ${isSignUp ? 'active' : ''}`}
                                         onClick={() => setIsSignUp(true)}
                                     >
@@ -867,10 +972,10 @@ const LandingPage = () => {
                                                 <label htmlFor="signInEmail" className="form-label fw-600" style={{ color: '#2d5016' }}>
                                                     Email Address
                                                 </label>
-                                                <input 
-                                                    type="email" 
-                                                    className="form-control" 
-                                                    id="signInEmail" 
+                                                <input
+                                                    type="email"
+                                                    className="form-control"
+                                                    id="signInEmail"
                                                     placeholder="Enter your email"
                                                 />
                                             </div>
@@ -878,10 +983,10 @@ const LandingPage = () => {
                                                 <label htmlFor="signInPassword" className="form-label fw-600" style={{ color: '#2d5016' }}>
                                                     Password
                                                 </label>
-                                                <input 
-                                                    type="password" 
-                                                    className="form-control" 
-                                                    id="signInPassword" 
+                                                <input
+                                                    type="password"
+                                                    className="form-control"
+                                                    id="signInPassword"
                                                     placeholder="Enter your password"
                                                 />
                                             </div>
@@ -892,20 +997,20 @@ const LandingPage = () => {
                                                         Remember me
                                                     </label>
                                                 </div>
-                                                <a href="#" className="text-decoration-none" style={{ color: '#4a7c59' }}>
+                                                <Link to="/forget/password" className="text-decoration-none" style={{ color: '#4a7c59' }}>
                                                     Forgot Password?
-                                                </a>
+                                                </Link>
                                             </div>
                                             <button type="submit" className="btn btn-success w-100 btn-modern mb-3" style={{ backgroundColor: '#2d5016', borderColor: '#2d5016' }}>
                                                 <i className="fas fa-sign-in-alt me-2"></i>
                                                 Sign In
                                             </button>
                                         </form>
-                                        
+
                                         <div className="text-center mb-4">
                                             <span className="text-muted">or continue with</span>
                                         </div>
-                                        
+
                                         <div className="d-grid gap-2 mb-4">
                                             <button className="btn btn-outline-dark btn-google">
                                                 <i className="fab fa-google me-2"></i>
@@ -919,28 +1024,36 @@ const LandingPage = () => {
                                         <h5 className="text-center mb-4" style={{ color: '#2d5016' }}>
                                             Join Our Community!
                                         </h5>
-                                        <form>
+                                        <form onSubmit={handleSignupSubmit}>
                                             <div className="row">
                                                 <div className="col-md-6 mb-3">
                                                     <label htmlFor="firstName" className="form-label fw-600" style={{ color: '#2d5016' }}>
                                                         First Name
                                                     </label>
-                                                    <input 
-                                                        type="text" 
-                                                        className="form-control" 
-                                                        id="firstName" 
+                                                    <input
+                                                        type="text"
+                                                        className="form-control"
+                                                        id="firstName"
+                                                        name="firstName"
                                                         placeholder="First name"
+                                                        value={signupForm.firstName}
+                                                        onChange={handleSignupChange}
+                                                        required
                                                     />
                                                 </div>
                                                 <div className="col-md-6 mb-3">
                                                     <label htmlFor="lastName" className="form-label fw-600" style={{ color: '#2d5016' }}>
                                                         Last Name
                                                     </label>
-                                                    <input 
-                                                        type="text" 
-                                                        className="form-control" 
-                                                        id="lastName" 
+                                                    <input
+                                                        type="text"
+                                                        className="form-control"
+                                                        id="lastName"
+                                                        name="lastName"
                                                         placeholder="Last name"
+                                                        value={signupForm.lastName}
+                                                        onChange={handleSignupChange}
+                                                        required
                                                     />
                                                 </div>
                                             </div>
@@ -948,51 +1061,119 @@ const LandingPage = () => {
                                                 <label htmlFor="signUpEmail" className="form-label fw-600" style={{ color: '#2d5016' }}>
                                                     Email Address
                                                 </label>
-                                                <input 
-                                                    type="email" 
-                                                    className="form-control" 
-                                                    id="signUpEmail" 
+                                                <input
+                                                    type="email"
+                                                    className="form-control"
+                                                    id="signUpEmail"
+                                                    name="email"
                                                     placeholder="Enter your email"
+                                                    value={signupForm.email}
+                                                    onChange={handleSignupChange}
+                                                    required
                                                 />
                                             </div>
                                             <div className="mb-3">
                                                 <label htmlFor="signUpPassword" className="form-label fw-600" style={{ color: '#2d5016' }}>
                                                     Password
                                                 </label>
-                                                <input 
-                                                    type="password" 
-                                                    className="form-control" 
-                                                    id="signUpPassword" 
+                                                <input
+                                                    type="password"
+                                                    className={`form-control ${passwordErrors.length || passwordErrors.complexity ? 'is-invalid' : signupForm.password && !passwordErrors.length && !passwordErrors.complexity ? 'is-valid' : ''}`}
+                                                    id="signUpPassword"
+                                                    name="password"
                                                     placeholder="Create a password"
+                                                    value={signupForm.password}
+                                                    onChange={handleSignupChange}
+                                                    required
                                                 />
+                                                {passwordErrors.length && (
+                                                    <div className="invalid-feedback">
+                                                        Password must be at least 8 characters long.
+                                                    </div>
+                                                )}
+                                                {passwordErrors.complexity && !passwordErrors.length && (
+                                                    <div className="invalid-feedback">
+                                                        Password must contain uppercase, lowercase, and number.
+                                                    </div>
+                                                )}
+                                                {signupForm.password && !passwordErrors.length && !passwordErrors.complexity && (
+                                                    <div className="valid-feedback">
+                                                        Password looks good!
+                                                    </div>
+                                                )}
+                                                <small className="form-text text-muted">
+                                                    Password must be at least 8 characters with uppercase, lowercase, and number.
+                                                </small>
                                             </div>
                                             <div className="mb-4">
                                                 <label htmlFor="confirmPassword" className="form-label fw-600" style={{ color: '#2d5016' }}>
                                                     Confirm Password
                                                 </label>
-                                                <input 
-                                                    type="password" 
-                                                    className="form-control" 
-                                                    id="confirmPassword" 
+                                                <input
+                                                    type="password"
+                                                    className={`form-control ${passwordErrors.match ? 'is-invalid' : signupForm.confirmPassword && !passwordErrors.match ? 'is-valid' : ''}`}
+                                                    id="confirmPassword"
+                                                    name="confirmPassword"
                                                     placeholder="Confirm your password"
+                                                    value={signupForm.confirmPassword}
+                                                    onChange={handleSignupChange}
+                                                    required
                                                 />
+                                                {passwordErrors.match && (
+                                                    <div className="invalid-feedback">
+                                                        Passwords do not match.
+                                                    </div>
+                                                )}
+                                                {signupForm.confirmPassword && !passwordErrors.match && (
+                                                    <div className="valid-feedback">
+                                                        Passwords match!
+                                                    </div>
+                                                )}
                                             </div>
                                             <div className="form-check mb-4">
-                                                <input className="form-check-input" type="checkbox" id="termsCheck" />
+                                                <input 
+                                                    className="form-check-input" 
+                                                    type="checkbox" 
+                                                    id="termsCheck"
+                                                    name="termsAccepted"
+                                                    checked={signupForm.termsAccepted}
+                                                    onChange={handleSignupChange}
+                                                    required
+                                                />
                                                 <label className="form-check-label text-muted" htmlFor="termsCheck">
-                                                    I agree to the <Link to="/terms/and/conditions" style={{ color: '#4a7c59' }}>Terms of Service</Link> and <Link to ="/terms/and/conditions" style={{ color: '#4a7c59' }}>Privacy Policy</Link>
+                                                    I agree to the <Link to="/terms/and/conditions" style={{ color: '#4a7c59' }}>Terms of Service</Link> and <Link to="/terms/and/conditions" style={{ color: '#4a7c59' }}>Privacy Policy</Link>
                                                 </label>
                                             </div>
-                                            <button type="submit" className="btn btn-success w-100 btn-modern mb-3" style={{ backgroundColor: '#2d5016', borderColor: '#2d5016' }}>
-                                                <i className="fas fa-user-plus me-2"></i>
-                                                Create Account
+                                            <button
+                                                type="submit"
+                                                className="btn btn-success w-100 btn-modern mb-3"
+                                                style={{ backgroundColor: '#2d5016', borderColor: '#2d5016' }}
+                                                disabled={signupStatus.loading || passwordErrors.match || passwordErrors.length || passwordErrors.complexity || !signupForm.termsAccepted}
+                                            >
+                                                {signupStatus.loading ? (
+                                                    <>
+                                                        <span className="spinner-border spinner-border-sm me-2"></span>
+                                                        Creating Account...
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <i className="fas fa-user-plus me-2"></i>
+                                                        Create Account
+                                                    </>
+                                                )}
                                             </button>
+                                            {signupStatus.success && (
+                                                <div className="alert alert-success text-center py-2 mb-3">{signupStatus.success}</div>
+                                            )}
+                                            {signupStatus.error && (
+                                                <div className="alert alert-danger text-center py-2 mb-3">{signupStatus.error}</div>
+                                            )}
                                         </form>
-                                        
+
                                         <div className="text-center mb-4">
                                             <span className="text-muted">or sign up with</span>
                                         </div>
-                                        
+
                                         <div className="d-grid gap-2 mb-4">
                                             <button className="btn btn-outline-dark btn-google">
                                                 <i className="fab fa-google me-2"></i>
@@ -1009,8 +1190,8 @@ const LandingPage = () => {
 
             {/* Modal Backdrop */}
             {showModal && (
-                <div 
-                    className="modal-backdrop fade show" 
+                <div
+                    className="modal-backdrop fade show"
                     onClick={() => setShowModal(false)}
                 ></div>
             )}
