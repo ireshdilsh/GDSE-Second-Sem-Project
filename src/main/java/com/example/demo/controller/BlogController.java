@@ -35,7 +35,6 @@ public class BlogController {
     @Qualifier("blogServiceImpl")
     BlogService service;
 
-
     @PostMapping("/post/new/blog")
     public ResponseEntity<APIResponse> postMethod(@RequestBody BlogDto dto) {
         logger.info("Received request to create a new blog with title: {}", dto);
