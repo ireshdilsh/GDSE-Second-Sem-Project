@@ -11,11 +11,47 @@ export default function LandingPage() {
     waste: 0
   });
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   // Handle initial load
   useEffect(() => {
     setIsLoaded(true);
   }, []);
+
+  // Handle navbar scroll effect and active section detection
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+
+      // Get all sections
+      const sections = ['home', 'about', 'features', 'how-it-works', 'community', 'contact'];
+      const scrollPosition = window.scrollY + 100; // Offset for navbar height
+
+      // Find which section is currently in view
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveSection(sections[i]);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Toggle mobile menu
+  const toggleMobileMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  // Close mobile menu when clicking on a link
+  const closeMobileMenu = () => {
+    setIsMenuOpen(false);
+  };
 
   // Animate stats on load
   useEffect(() => {
@@ -41,6 +77,55 @@ export default function LandingPage() {
 
   return (
     <div className="modern-landing">
+      {/* Navigation Bar */}
+      <nav className={`navbar-modern ${isScrolled ? 'scrolled' : ''}`}>
+        <div className="container-fluid hero-padding-180">
+          <div className="navbar-content d-flex justify-content-between align-items-center">
+            {/* Logo */}
+            <div className="navbar-brand">
+              <a href="#home" className="brand-link" onClick={closeMobileMenu}>
+                <div className="brand-icon">
+                  <i className="fas fa-leaf"></i>
+                </div>
+                <span className="brand-text">UrbanGreen</span>
+              </a>
+            </div>
+            
+            {/* Navigation Links */}
+            <div className="navbar-links d-none d-lg-flex">
+              <a href="#home" className={`nav-link ${activeSection === 'home' ? 'active' : ''}`} onClick={closeMobileMenu}>Home</a>
+              <a href="#about" className={`nav-link ${activeSection === 'about' ? 'active' : ''}`} onClick={closeMobileMenu}>About</a>
+              <a href="#features" className={`nav-link ${activeSection === 'features' ? 'active' : ''}`} onClick={closeMobileMenu}>Features</a>
+              <a href="#how-it-works" className={`nav-link ${activeSection === 'how-it-works' ? 'active' : ''}`} onClick={closeMobileMenu}>How It Works</a>
+              <a href="#community" className={`nav-link ${activeSection === 'community' ? 'active' : ''}`} onClick={closeMobileMenu}>Community</a>
+              <a href="#contact" className={`nav-link ${activeSection === 'contact' ? 'active' : ''}`} onClick={closeMobileMenu}>Contact</a>
+            </div>
+            
+            {/* CTA Button & Mobile Menu */}
+            <div className="navbar-actions d-flex align-items-center gap-3">              
+              {/* Mobile Menu Toggle */}
+              <button className="mobile-menu-toggle d-lg-none" onClick={toggleMobileMenu}>
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Menu */}
+          <div className={`mobile-menu ${isMenuOpen ? 'show' : ''}`}>
+            <div className="mobile-menu-content">
+              <a href="#home" className={`mobile-nav-link ${activeSection === 'home' ? 'active' : ''}`} onClick={closeMobileMenu}>Home</a>
+              <a href="#about" className={`mobile-nav-link ${activeSection === 'about' ? 'active' : ''}`} onClick={closeMobileMenu}>About</a>
+              <a href="#features" className={`mobile-nav-link ${activeSection === 'features' ? 'active' : ''}`} onClick={closeMobileMenu}>Features</a>
+              <a href="#how-it-works" className={`mobile-nav-link ${activeSection === 'how-it-works' ? 'active' : ''}`} onClick={closeMobileMenu}>How It Works</a>
+              <a href="#community" className={`mobile-nav-link ${activeSection === 'community' ? 'active' : ''}`} onClick={closeMobileMenu}>Community</a>
+              <a href="#contact" className={`mobile-nav-link ${activeSection === 'contact' ? 'active' : ''}`} onClick={closeMobileMenu}>Contact</a>
+            </div>
+          </div>
+        </div>
+  </nav>
+      
       {/* Hero Section */}
       <section id="home" className="hero-minimal">
         <div className="container-fluid hero-padding-180">
@@ -62,10 +147,8 @@ export default function LandingPage() {
                 </h1>
                 
                 <p className="hero-description-minimal">
-                  <span className="typing-text">
-                    Connect with urban gardeners worldwide. Share knowledge, exchange fresh produce, 
-                    and build sustainable communities that thrive in harmony with nature.
-                  </span>
+                  Connect with urban gardeners worldwide. Share knowledge, exchange fresh produce, 
+                  and build sustainable communities that thrive in harmony with nature.
                 </p>
                 
                 <div className="hero-actions-minimal d-flex flex-column flex-sm-row gap-3">
