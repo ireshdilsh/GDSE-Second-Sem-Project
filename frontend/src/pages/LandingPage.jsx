@@ -155,6 +155,14 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
+        
+        {/* Clippath Wave Effects */}
+        <div className="hero-wave-container">
+          <div className="hero-wave hero-wave-1"></div>
+          <div className="hero-wave hero-wave-2"></div>
+          <div className="hero-wave hero-wave-3"></div>
+          <div className="hero-wave hero-wave-4"></div>
+        </div>
       </section>
 
       {/* About Section */}
@@ -509,10 +517,24 @@ export default function LandingPage() {
                   <textarea className="form-input" rows="4" placeholder="Tell us about your gardening goals and interests..."></textarea>
                 </div>
                 
-                <button type="submit" className="btn-primary large full-width">
-                  <span>Join Our Garden Community</span>
-                  <i className="fas fa-arrow-right"></i>
-                </button>
+                <div className="form-submit-wrapper">
+                  <button type="submit" className="btn-contact-primary">
+                    <div className="btn-content">
+                      <span className="btn-text">Join Our Garden Community</span>
+                      <div className="btn-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M5 12H19M12 5L19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="btn-overlay"></div>
+                  </button>
+                  
+                  <p className="form-privacy-text">
+                    <i className="fas fa-lock"></i>
+                    We respect your privacy and never share your information
+                  </p>
+                </div>
               </form>
             </div>
           </div>
