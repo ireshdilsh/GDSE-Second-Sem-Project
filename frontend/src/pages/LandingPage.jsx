@@ -158,10 +158,8 @@ export default function LandingPage() {
                 </h1>
                 
                 <p className="hero-description-minimal">
-                  <span className="typing-text">
-                    Connect with urban gardeners worldwide. Share knowledge, exchange fresh produce, 
-                    and build sustainable communities that thrive in harmony with nature.
-                  </span>
+                  Connect with urban gardeners worldwide. Share knowledge, exchange fresh produce, 
+                  and build sustainable communities that thrive in harmony with nature.
                 </p>
                 
                 <div className="hero-actions-minimal d-flex flex-column flex-sm-row gap-3">
