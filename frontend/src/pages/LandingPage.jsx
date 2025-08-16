@@ -1,1202 +1,597 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import '../styles/LandingPage.css';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/LandingPage.css';
 
-const LandingPage = () => {
-    const [showModal, setShowModal] = useState(false);
-    const [isSignUp, setIsSignUp] = useState(false);
+export default function LandingPage() {
+  const [stats, setStats] = useState({
+    gardeners: 0,
+    swaps: 0,
+    cities: 0,
+    waste: 0
+  });
+  const [isLoaded, setIsLoaded] = useState(false);
 
-    // Contact form state
-    const [contactForm, setContactForm] = useState({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
+  // Handle initial load
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  // Animate stats on load
+  useEffect(() => {
+    const targetStats = { gardeners: 50000, swaps: 125000, cities: 350, waste: 85 };
+    const duration = 2000;
+    const steps = 60;
+    const stepDuration = duration / steps;
+
+    Object.keys(targetStats).forEach(key => {
+      let current = 0;
+      const increment = targetStats[key] / steps;
+      
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= targetStats[key]) {
+          current = targetStats[key];
+          clearInterval(timer);
+        }
+        setStats(prev => ({ ...prev, [key]: Math.floor(current) }));
+      }, stepDuration);
     });
-    const [contactStatus, setContactStatus] = useState({
-        loading: false,
-        success: null,
-        error: null
-    });
+  }, [isLoaded]);
 
-    // Contact form handlers
-    const handleContactChange = (e) => {
-        setContactForm({ ...contactForm, [e.target.name]: e.target.value });
-    };
-
-    const handleContactSubmit = async (e) => {
-        e.preventDefault();
-        setContactStatus({ loading: true, success: null, error: null });
-
-        try {
-            await axios.post('http://localhost:8080/api/v1/contact/save/contact/details', contactForm);
-            setContactStatus({ loading: false, success: 'Message sent successfully!', error: null });
-            setContactForm({ name: '', email: '', subject: '', message: '' });
-        } catch (err) {
-            setContactStatus({ loading: false, success: null, error: 'Failed to send message. Please try again.' });
-            console.log(err);
-        }
-    };
-
-    // Signup form state
-    const [signupForm, setSignupForm] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-        termsAccepted: false
-    });
-    const [signupStatus, setSignupStatus] = useState({
-        loading: false,
-        success: null,
-        error: null
-    });
-    const [passwordErrors, setPasswordErrors] = useState({
-        match: false,
-        length: false,
-        complexity: false
-    });
-
-    // Signup form handlers
-    const handleSignupChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        setSignupForm({ 
-            ...signupForm, 
-            [name]: type === 'checkbox' ? checked : value 
-        });
-        
-        // Real-time password validation
-        if (name === 'password' || name === 'confirmPassword') {
-            validatePasswords(
-                name === 'password' ? value : signupForm.password,
-                name === 'confirmPassword' ? value : signupForm.confirmPassword
-            );
-        }
-    };    const validatePasswords = (password, confirmPassword) => {
-        setPasswordErrors({
-            match: confirmPassword !== '' && password !== confirmPassword,
-            length: password.length > 0 && password.length < 8,
-            complexity: password.length > 0 && !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(password)
-        });
-    };
-
-    const handleSignupSubmit = async (e) => {
-        e.preventDefault();
-        
-        // Check if terms are accepted
-        if (!signupForm.termsAccepted) {
-            setSignupStatus({ loading: false, success: null, error: 'You must accept the Terms of Service and Privacy Policy to create an account!' });
-            return;
-        }
-        
-        // Final validation
-        if (signupForm.password !== signupForm.confirmPassword) {
-            setSignupStatus({ loading: false, success: null, error: 'Passwords do not match!' });
-            return;
-        }        if (signupForm.password.length < 8) {
-            setSignupStatus({ loading: false, success: null, error: 'Password must be at least 8 characters long!' });
-            return;
-        }
-
-        if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(signupForm.password)) {
-            setSignupStatus({ loading: false, success: null, error: 'Password must contain at least one uppercase letter, one lowercase letter, and one number!' });
-            return;
-        }
-
-        setSignupStatus({ loading: true, success: null, error: null });
-
-        try {
-            // Prepare data for API (exclude confirmPassword)
-            const userData = {
-                firstName: signupForm.firstName,
-                lastName: signupForm.lastName,
-                email: signupForm.email,
-                password: signupForm.password
-            };
-
-            await axios.post('http://localhost:8080/api/v1/user/save/user', userData);
-            setSignupStatus({ loading: false, success: 'Account created successfully! Please sign in.', error: null });
-
-            // Reset form
-            setSignupForm({
-                firstName: '',
-                lastName: '',
-                email: '',
-                password: '',
-                confirmPassword: '',
-                termsAccepted: false
-            });
-
-            // Switch to signin modal after 2 seconds
-            setTimeout(() => {
-                setIsSignUp(false);
-                setSignupStatus({ loading: false, success: null, error: null });
-            }, 2000);
-
-        } catch (err) {
-            setSignupStatus({
-                loading: false,
-                success: null,
-                error: err.response?.data?.message || 'Failed to create account. Please try again.'
-            });
-        }
-    };
-
-    return (
-        <div className="landing-page">
-
-            {/* Navigation */}
-            <nav className="navbar navbar-expand-lg navbar-light fixed-top navbar-modern">
-                <div className="container">
-                    <a className="navbar-brand fw-bold" href="#" style={{ fontSize: '1.8rem' }}>
-                        <span className="text-gradient">
-                            <i className="fas fa-leaf me-2"></i>
-                            Grow & Swap
-                        </span>
-                    </a>
-                    <button className="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className="navbar-nav ms-auto align-items-center">
-                            <li className="nav-item">
-                                <a className="nav-link fw-500 mx-2" href="#hero" style={{ color: '#2d5016' }}>Home</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link fw-500 mx-2" href="#features" style={{ color: '#2d5016' }}>Features</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link fw-500 mx-2" href="#how-it-works" style={{ color: '#2d5016' }}>How It Works</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link fw-500 mx-2" href="#community" style={{ color: '#2d5016' }}>Community</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link fw-500 mx-2" href="#testimonials" style={{ color: '#2d5016' }}>Testimonials</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link fw-500 mx-2" href="#contact" style={{ color: '#2d5016' }}>Contact</a>
-                            </li>
-                        </ul>
-                    </div>
+  return (
+    <div className="modern-landing">
+      {/* Hero Section */}
+      <section id="home" className="hero-minimal">
+        <div className="container-fluid hero-padding-180">
+          <div className="row align-items-center min-vh-100 hero-wrapper">
+            <div className="col-12 col-lg-6 order-2 order-lg-1">
+              <div className="hero-content-minimal">
+                <div className="animated-badge d-inline-flex align-items-center">
+                  <div className="badge-dot"></div>
+                  <span className="d-none d-sm-inline">Welcome to the Future of Urban Gardening</span>
+                  <span className="d-sm-none">Urban Gardening Revolution</span>
                 </div>
-            </nav>
-
-            {/* Section 1: Hero Section */}
-            <section id="hero" className="hero-gradient text-white section-padding" style={{ marginTop: '76px', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
-                <div className="container">
-                    <div className="row align-items-center">
-                        <div className="col-lg-6">
-                            <div className="mb-4">
-                                <span className="badge bg-white text-dark px-3 py-2 rounded-pill fw-bold mb-3" style={{ fontSize: '0.9rem' }}>
-                                    🌱 #1 Urban Gardening Platform
-                                </span>
-                            </div>
-                            <h1 className="display-3 fw-bold mb-4 lh-1">
-                                Grow Together,<br />
-                                <span style={{ color: '#a8d5ba' }}>Swap Smart</span>
-                            </h1>
-                            <p className="lead mb-5 opacity-90" style={{ fontSize: '1.3rem', lineHeight: '1.6' }}>
-                                Transform your urban space into a thriving garden. Connect with neighbors,
-                                exchange fresh produce, and build sustainable communities.
-                            </p>
-                            <div className="d-flex gap-4 mb-5 flex-wrap">
-                                <button className="btn btn-light btn-lg btn-modern text-dark" onClick={() => setShowModal(true)}>
-                                    <i className="fas fa-rocket me-2"></i>
-                                    Start Your Journey
-                                </button>
-                                <button className="btn btn-outline-light btn-lg btn-modern">
-                                    <i className="fas fa-play me-2"></i>
-                                    Watch Demo
-                                </button>
-                            </div>
-                            <div className="row text-center mt-5">
-                                <div className="col-4">
-                                    <h3 className="fw-bold mb-1">15K+</h3>
-                                    <p className="mb-0 opacity-80">Active Members</p>
-                                </div>
-                                <div className="col-4">
-                                    <h3 className="fw-bold mb-1">75K+</h3>
-                                    <p className="mb-0 opacity-80">Successful Swaps</p>
-                                </div>
-                                <div className="col-4">
-                                    <h3 className="fw-bold mb-1">150+</h3>
-                                    <p className="mb-0 opacity-80">Cities Worldwide</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-6">
-                            <div className="position-relative">
-                                <img
-                                    src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=700&h=500&fit=crop&crop=center"
-                                    alt="Urban Garden"
-                                    className="img-fluid rounded-4 shadow-lg"
-                                    style={{ transform: 'rotate(2deg)' }}
-                                />
-                                <div className="position-absolute top-0 end-0 bg-white rounded-4 p-4 shadow-lg me-4 mt-4" style={{ transform: 'rotate(-5deg)' }}>
-                                    <div className="d-flex align-items-center">
-                                        <div className="bg-success rounded-circle p-2 me-3">
-                                            <i className="fas fa-leaf text-white"></i>
-                                        </div>
-                                        <div>
-                                            <h6 className="mb-0 fw-bold text-dark">Fresh Today</h6>
-                                            <small className="text-muted">3 new swaps nearby</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                
+                <h1 className="hero-title-minimal">
+                  <span className="word-animate d-block d-sm-inline" data-delay="0">Grow</span>
+                  <span className="word-animate d-block d-sm-inline" data-delay="200">Together,</span>
+                  <br className="d-none d-sm-block" />
+                  <span className="word-animate gradient-text d-block d-sm-inline" data-delay="400">Share</span>
+                  <span className="word-animate gradient-text d-block d-sm-inline" data-delay="600">Forever</span>
+                </h1>
+                
+                <p className="hero-description-minimal">
+                  <span className="typing-text">
+                    Connect with urban gardeners worldwide. Share knowledge, exchange fresh produce, 
+                    and build sustainable communities that thrive in harmony with nature.
+                  </span>
+                </p>
+                
+                <div className="hero-actions-minimal d-flex flex-column flex-sm-row gap-3">
+                  <button className="btn-primary-hero d-flex align-items-center justify-content-center">
+                    <span>Start Your Journey</span>
+                    <div className="btn-arrow">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
                     </div>
+                  </button>
+                  
+                  <button className="btn-outline-hero d-flex align-items-center justify-content-center">
+                    <div className="play-icon">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                        <polygon points="5,3 19,12 5,21" fill="currentColor"/>
+                      </svg>
+                    </div>
+                    <span>Watch Demo</span>
+                  </button>
                 </div>
-            </section>
-
-            {/* Section 2: Key Features */}
-            <section id="features" className="section-padding" style={{ background: '#f8fffe' }}>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12 text-center mb-5">
-                            <span className="badge bg-light text-dark px-3 py-2 rounded-pill fw-bold mb-3" style={{ fontSize: '0.9rem', color: '#2d5016 !important' }}>
-                                ✨ Platform Features
-                            </span>
-                            <h2 className="display-4 fw-bold mb-4">
-                                <span className="text-gradient">Everything You Need</span><br />
-                                to Grow & Share
-                            </h2>
-                            <p className="lead text-muted mx-auto" style={{ maxWidth: '600px' }}>
-                                Our comprehensive platform provides all the tools you need for successful
-                                urban gardening and vibrant community building.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="row g-4">
-                        <div className="col-md-6 col-lg-4">
-                            <div className="card h-100 border-0 shadow-lg card-hover" style={{ background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)' }}>
-                                <div className="card-body text-center p-5">
-                                    <div className="position-relative mb-4">
-                                        <div className="bg-gradient rounded-4 d-inline-flex align-items-center justify-content-center"
-                                            style={{ width: '90px', height: '90px', background: 'linear-gradient(135deg, #2d5016, #4a7c59)' }}>
-                                            <i className="fas fa-user-circle fa-2x" style={{ color: '#a8d5ba' }}></i>
-                                        </div>
-                                    </div>
-                                    <h5 className="fw-bold mb-3" style={{ color: '#2d5016' }}>Smart Profiles</h5>
-                                    <p className="text-muted mb-0" style={{ lineHeight: '1.6' }}>
-                                        Create detailed profiles with your location, garden details, and growing
-                                        preferences to connect with the right community members.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-4">
-                            <div className="card h-100 border-0 shadow-lg card-hover" style={{ background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)' }}>
-                                <div className="card-body text-center p-5">
-                                    <div className="position-relative mb-4">
-                                        <div className="bg-gradient rounded-4 d-inline-flex align-items-center justify-content-center"
-                                            style={{ width: '90px', height: '90px', background: 'linear-gradient(135deg, #2d5016, #4a7c59)' }}>
-                                            <i className="fas fa-seedling fa-2x" style={{ color: '#a8d5ba' }}></i>
-                                        </div>
-                                    </div>
-                                    <h5 className="fw-bold mb-3" style={{ color: '#2d5016' }}>Crop Management</h5>
-                                    <p className="text-muted mb-0" style={{ lineHeight: '1.6' }}>
-                                        Easily track your garden inventory with photos, manage availability,
-                                        and showcase your homegrown produce to the community.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-4">
-                            <div className="card h-100 border-0 shadow-lg card-hover" style={{ background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)' }}>
-                                <div className="card-body text-center p-5">
-                                    <div className="position-relative mb-4">
-                                        <div className="bg-gradient rounded-4 d-inline-flex align-items-center justify-content-center"
-                                            style={{ width: '90px', height: '90px', background: 'linear-gradient(135deg, #2d5016, #4a7c59)' }}>
-                                            <i className="fas fa-map-marked-alt fa-2x" style={{ color: '#a8d5ba' }}></i>
-                                        </div>
-                                    </div>
-                                    <h5 className="fw-bold mb-3" style={{ color: '#2d5016' }}>Location-Based Search</h5>
-                                    <p className="text-muted mb-0" style={{ lineHeight: '1.6' }}>
-                                        Find nearby gardeners and available produce using our interactive
-                                        maps and radius-based search functionality.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-4">
-                            <div className="card h-100 border-0 shadow-lg card-hover" style={{ background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)' }}>
-                                <div className="card-body text-center p-5">
-                                    <div className="position-relative mb-4">
-                                        <div className="bg-gradient rounded-4 d-inline-flex align-items-center justify-content-center"
-                                            style={{ width: '90px', height: '90px', background: 'linear-gradient(135deg, #2d5016, #4a7c59)' }}>
-                                            <i className="fas fa-exchange-alt fa-2x" style={{ color: '#a8d5ba' }}></i>
-                                        </div>
-                                    </div>
-                                    <h5 className="fw-bold mb-3" style={{ color: '#2d5016' }}>Smart Swapping</h5>
-                                    <p className="text-muted mb-0" style={{ lineHeight: '1.6' }}>
-                                        Make swap requests and offers with built-in messaging system
-                                        to coordinate exchanges seamlessly.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-4">
-                            <div className="card h-100 border-0 shadow-lg card-hover" style={{ background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)' }}>
-                                <div className="card-body text-center p-5">
-                                    <div className="position-relative mb-4">
-                                        <div className="bg-gradient rounded-4 d-inline-flex align-items-center justify-content-center"
-                                            style={{ width: '90px', height: '90px', background: 'linear-gradient(135deg, #2d5016, #4a7c59)' }}>
-                                            <i className="fas fa-trophy fa-2x" style={{ color: '#a8d5ba' }}></i>
-                                        </div>
-                                    </div>
-                                    <h5 className="fw-bold mb-3" style={{ color: '#2d5016' }}>Rewards System</h5>
-                                    <p className="text-muted mb-0" style={{ lineHeight: '1.6' }}>
-                                        Earn points and badges for active participation, successful swaps,
-                                        and helping build the community.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-4">
-                            <div className="card h-100 border-0 shadow-lg card-hover" style={{ background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)' }}>
-                                <div className="card-body text-center p-5">
-                                    <div className="position-relative mb-4">
-                                        <div className="bg-gradient rounded-4 d-inline-flex align-items-center justify-content-center"
-                                            style={{ width: '90px', height: '90px', background: 'linear-gradient(135deg, #2d5016, #4a7c59)' }}>
-                                            <i className="fas fa-blog fa-2x" style={{ color: '#a8d5ba' }}></i>
-                                        </div>
-                                    </div>
-                                    <h5 className="fw-bold mb-3" style={{ color: '#2d5016' }}>Knowledge Hub</h5>
-                                    <p className="text-muted mb-0" style={{ lineHeight: '1.6' }}>
-                                        Access gardening guides, recipes, seasonal tips, and community
-                                        events to enhance your urban gardening journey.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                
+                <div className="hero-stats-minimal">
+                  <div className="stats-inline d-flex flex-column flex-md-row align-items-start align-items-md-center">
+                    <span className="stat-item-inline mb-2 mb-md-0">
+                      <strong>{stats.gardeners.toLocaleString()}+</strong> Active Gardeners
+                    </span>
+                    <span className="stat-separator d-none d-md-inline">•</span>
+                    <span className="stat-item-inline mb-2 mb-md-0">
+                      <strong>{stats.swaps.toLocaleString()}+</strong> Successful Swaps
+                    </span>
+                    <span className="stat-separator d-none d-md-inline">•</span>
+                    <span className="stat-item-inline">
+                      <strong>{stats.cities}+</strong> Cities Worldwide
+                    </span>
+                  </div>
                 </div>
-            </section>
-
-            {/* Section 3: How It Works */}
-            <section id="how-it-works" className="section-padding">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12 text-center mb-5">
-                            <span className="badge bg-light text-dark px-3 py-2 rounded-pill fw-bold mb-3" style={{ fontSize: '0.9rem', color: '#2d5016 !important' }}>
-                                🚀 Getting Started
-                            </span>
-                            <h2 className="display-4 fw-bold mb-4">
-                                <span className="text-gradient">How Grow & Swap</span><br />
-                                Works for You
-                            </h2>
-                            <p className="lead text-muted mx-auto" style={{ maxWidth: '600px' }}>
-                                Join thousands of urban gardeners in just three simple steps and
-                                start building your sustainable community today.
-                            </p>
-                        </div>
+              </div>
+            </div>
+            
+            <div className="col-12 col-lg-6 order-1 order-lg-2 mb-4 mb-lg-0">
+              <div className="hero-visual-minimal d-flex justify-content-center justify-content-lg-end">
+                <div className="floating-elements">
+                  <div className="element-1">
+                    <div className="icon-wrapper">
+                      <i className="fas fa-leaf"></i>
                     </div>
-                    <div className="row g-5 align-items-center">
-                        <div className="col-lg-4">
-                            <div className="text-center position-relative">
-                                <div className="position-relative d-inline-block">
-                                    <div className="rounded-circle d-inline-flex align-items-center justify-content-center text-white fw-bold mb-4 shadow-lg"
-                                        style={{ width: '120px', height: '120px', fontSize: '2.5rem', background: 'linear-gradient(135deg, #2d5016, #4a7c59)' }}>
-                                        1
-                                    </div>
-                                    <div className="position-absolute top-0 end-0 bg-warning rounded-circle p-2 shadow-sm">
-                                        <i className="fas fa-user-plus text-white" style={{ fontSize: '1.2rem' }}></i>
-                                    </div>
-                                </div>
-                                <h4 className="fw-bold mb-3 mt-4" style={{ color: '#2d5016' }}>Create Your Profile</h4>
-                                <p className="text-muted mb-4" style={{ lineHeight: '1.6' }}>
-                                    Sign up and create your personalized gardener profile. Add your location,
-                                    garden space details, and showcase what you love to grow.
-                                </p>
-                                <div className="position-relative">
-                                    <img
-                                        src="https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg?auto=compress&cs=tinysrgb&w=350&h=250"
-                                        alt="Create Profile"
-                                        className="img-fluid rounded-4 shadow-lg"
-                                    />
-                                    <div className="position-absolute bottom-0 start-0 bg-white rounded-3 p-3 shadow-lg ms-3 mb-3">
-                                        <div className="d-flex align-items-center">
-                                            <i className="fas fa-check-circle text-success me-2"></i>
-                                            <small className="fw-bold">Profile Complete!</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4">
-                            <div className="text-center position-relative">
-                                <div className="position-relative d-inline-block">
-                                    <div className="rounded-circle d-inline-flex align-items-center justify-content-center text-white fw-bold mb-4 shadow-lg"
-                                        style={{ width: '120px', height: '120px', fontSize: '2.5rem', background: 'linear-gradient(135deg, #2d5016, #4a7c59)' }}>
-                                        2
-                                    </div>
-                                    <div className="position-absolute top-0 end-0 bg-info rounded-circle p-2 shadow-sm">
-                                        <i className="fas fa-seedling text-white" style={{ fontSize: '1.2rem' }}></i>
-                                    </div>
-                                </div>
-                                <h4 className="fw-bold mb-3 mt-4" style={{ color: '#2d5016' }}>List Your Produce</h4>
-                                <p className="text-muted mb-4" style={{ lineHeight: '1.6' }}>
-                                    Add your homegrown fruits, vegetables, and herbs to your inventory.
-                                    Include beautiful photos and availability dates.
-                                </p>
-                                <div className="position-relative">
-                                    <img
-                                        src="https://images.pexels.com/photos/1300972/pexels-photo-1300972.jpeg?auto=compress&cs=tinysrgb&w=350&h=250"
-                                        alt="List Produce"
-                                        className="img-fluid rounded-4 shadow-lg"
-                                    />
-                                    <div className="position-absolute top-0 end-0 bg-white rounded-3 p-3 shadow-lg me-3 mt-3">
-                                        <div className="d-flex align-items-center">
-                                            <i className="fas fa-camera text-info me-2"></i>
-                                            <small className="fw-bold">5 Items Added</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4">
-                            <div className="text-center position-relative">
-                                <div className="position-relative d-inline-block">
-                                    <div className="rounded-circle d-inline-flex align-items-center justify-content-center text-white fw-bold mb-4 shadow-lg"
-                                        style={{ width: '120px', height: '120px', fontSize: '2.5rem', background: 'linear-gradient(135deg, #2d5016, #4a7c59)' }}>
-                                        3
-                                    </div>
-                                    <div className="position-absolute top-0 end-0 bg-success rounded-circle p-2 shadow-sm">
-                                        <i className="fas fa-exchange-alt text-white" style={{ fontSize: '1.2rem' }}></i>
-                                    </div>
-                                </div>
-                                <h4 className="fw-bold mb-3 mt-4" style={{ color: '#2d5016' }}>Start Swapping</h4>
-                                <p className="text-muted mb-4" style={{ lineHeight: '1.6' }}>
-                                    Browse nearby gardens, make swap requests, and coordinate exchanges.
-                                    Build lasting community connections!
-                                </p>
-                                <div className="position-relative">
-                                    <img
-                                        src="https://images.pexels.com/photos/1327838/pexels-photo-1327838.jpeg?auto=compress&cs=tinysrgb&w=350&h=250"
-                                        alt="Start Swapping"
-                                        className="img-fluid rounded-4 shadow-lg"
-                                    />
-                                    <div className="position-absolute bottom-0 start-0 bg-white rounded-3 p-3 shadow-lg ms-3 mb-3">
-                                        <div className="d-flex align-items-center">
-                                            <i className="fas fa-heart text-danger me-2"></i>
-                                            <small className="fw-bold">First Swap Done!</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                  </div>
+                  
+                  <div className="element-2">
+                    <div className="icon-wrapper">
+                      <i className="fas fa-seedling"></i>
                     </div>
-                    <div className="row mt-5">
-                        <div className="col-12 text-center">
-                            <button className="btn btn-lg btn-modern" style={{ background: 'linear-gradient(135deg, #2d5016, #4a7c59)', border: 'none', color: 'white' }} onClick={() => setShowModal(true)}>
-                                <i className="fas fa-rocket me-2"></i>
-                                Get Started Today - It's Free!
-                            </button>
-                        </div>
+                  </div>
+                  
+                  <div className="element-3">
+                    <div className="icon-wrapper">
+                      <i className="fas fa-users"></i>
                     </div>
+                  </div>
+                  
+                  <div className="element-4">
+                    <div className="icon-wrapper">
+                      <i className="fas fa-heart"></i>
+                    </div>
+                  </div>
+                  
+                  <div className="element-5">
+                    <div className="icon-wrapper">
+                      <i className="fas fa-globe"></i>
+                    </div>
+                  </div>
                 </div>
-            </section>
-
-            {/* Section 4: Community Impact */}
-            <section id="community" className="section-padding hero-gradient text-white">
-                <div className="container">
-                    <div className="row align-items-center">
-                        <div className="col-lg-6 mb-5 mb-lg-0">
-                            <span className="badge bg-white text-dark px-3 py-2 rounded-pill fw-bold mb-3" style={{ fontSize: '0.9rem' }}>
-                                🌍 Impact & Community
-                            </span>
-                            <h2 className="display-4 fw-bold mb-4 lh-1">
-                                Building Sustainable<br />
-                                <span style={{ color: '#a8d5ba' }}>Communities</span>
-                            </h2>
-                            <p className="lead mb-5 opacity-90" style={{ fontSize: '1.2rem', lineHeight: '1.6' }}>
-                                Grow & Swap is more than just a trading platform - we're building a movement
-                                towards sustainable urban living and stronger neighborhood connections.
-                            </p>
-                            <div className="row g-4">
-                                <div className="col-md-6">
-                                    <div className="d-flex align-items-start">
-                                        <div className="bg-white bg-opacity-30 rounded-3 p-3 me-3">
-                                            <i className="fas fa-leaf fa-2x" style={{ color: '#2d5016' }}></i>
-                                        </div>
-                                        <div>
-                                            <h5 className="fw-bold mb-2">Reduce Food Waste</h5>
-                                            <p className="opacity-90 mb-0" style={{ fontSize: '0.95rem' }}>
-                                                Share surplus instead of throwing away
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="d-flex align-items-start">
-                                        <div className="bg-white bg-opacity-30 rounded-3 p-3 me-3">
-                                            <i className="fas fa-hands-helping fa-2x" style={{ color: '#2d5016' }}></i>
-                                        </div>
-                                        <div>
-                                            <h5 className="fw-bold mb-2">Build Connections</h5>
-                                            <p className="opacity-90 mb-0" style={{ fontSize: '0.95rem' }}>
-                                                Meet like-minded neighbors
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="d-flex align-items-start">
-                                        <div className="bg-white bg-opacity-30 rounded-3 p-3 me-3">
-                                            <i className="fas fa-recycle fa-2x" style={{ color: '#2d5016' }}></i>
-                                        </div>
-                                        <div>
-                                            <h5 className="fw-bold mb-2">Promote Sustainability</h5>
-                                            <p className="opacity-90 mb-0" style={{ fontSize: '0.95rem' }}>
-                                                Reduce carbon footprint locally
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="d-flex align-items-start">
-                                        <div className="bg-white bg-opacity-30 rounded-3 p-3 me-3">
-                                            <i className="fas fa-graduation-cap fa-2x" style={{ color: '#2d5016' }}></i>
-                                        </div>
-                                        <div>
-                                            <h5 className="fw-bold mb-2">Learn Together</h5>
-                                            <p className="opacity-90 mb-0" style={{ fontSize: '0.95rem' }}>
-                                                Share knowledge and techniques
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-6">
-                            <div className="position-relative">
-                                <img
-                                    src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600&h=400&fit=crop"
-                                    alt="Community Garden"
-                                    className="img-fluid rounded-4 shadow-lg"
-                                />
-                                <div className="position-absolute bottom-0 end-0 bg-white rounded-4 p-4 shadow-lg me-4 mb-4">
-                                    <div className="text-center">
-                                        <h4 className="fw-bold mb-2 text-dark">2,500 lbs</h4>
-                                        <p className="text-muted mb-0" style={{ fontSize: '0.9rem' }}>
-                                            Food waste prevented<br />this month
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                
+                <div className="animated-lines">
+                  <div className="line line-1"></div>
+                  <div className="line line-2"></div>
+                  <div className="line line-3"></div>
                 </div>
-            </section>
-
-            {/* Section 5: Testimonials */}
-            <section id="testimonials" className="section-padding" style={{ background: '#f8fffe' }}>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12 text-center mb-5">
-                            <span className="badge bg-light text-dark px-3 py-2 rounded-pill fw-bold mb-3" style={{ fontSize: '0.9rem', color: '#2d5016 !important' }}>
-                                ⭐ Success Stories
-                            </span>
-                            <h2 className="display-4 fw-bold mb-4">
-                                What Our <span className="text-gradient">Community</span><br />
-                                Says About Us
-                            </h2>
-                            <p className="lead text-muted mx-auto" style={{ maxWidth: '600px' }}>
-                                Join thousands of satisfied urban gardeners who've transformed their neighborhoods
-                                and built lasting connections through sustainable sharing.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="row g-4">
-                        <div className="col-md-6 col-lg-4">
-                            <div className="testimonial-card card h-100 card-hover">
-                                <div className="card-body p-5">
-                                    <div className="mb-4">
-                                        <div className="d-flex mb-3">
-                                            <i className="fas fa-star text-warning me-1"></i>
-                                            <i className="fas fa-star text-warning me-1"></i>
-                                            <i className="fas fa-star text-warning me-1"></i>
-                                            <i className="fas fa-star text-warning me-1"></i>
-                                            <i className="fas fa-star text-warning"></i>
-                                        </div>
-                                    </div>
-                                    <p className="mb-4 fst-italic" style={{ lineHeight: '1.7', fontSize: '1.1rem' }}>
-                                        "I've swapped my excess tomatoes for fresh herbs and made amazing friends in my neighborhood.
-                                        This platform has completely changed how I think about urban gardening!"
-                                    </p>
-                                    <div className="d-flex align-items-center">
-                                        <img
-                                            src="https://randomuser.me/api/portraits/women/44.jpg"
-                                            alt="Sarah Martinez"
-                                            className="rounded-circle me-3 shadow-sm"
-                                            style={{ width: '60px', height: '60px' }}
-                                        />
-                                        <div>
-                                            <h6 className="fw-bold mb-1" style={{ color: '#2d5016' }}>Sarah Martinez</h6>
-                                            <small className="text-muted">Urban Gardener • Brooklyn, NY</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-4">
-                            <div className="testimonial-card card h-100 card-hover">
-                                <div className="card-body p-5">
-                                    <div className="mb-4">
-                                        <div className="d-flex mb-3">
-                                            <i className="fas fa-star text-warning me-1"></i>
-                                            <i className="fas fa-star text-warning me-1"></i>
-                                            <i className="fas fa-star text-warning me-1"></i>
-                                            <i className="fas fa-star text-warning me-1"></i>
-                                            <i className="fas fa-star text-warning"></i>
-                                        </div>
-                                    </div>
-                                    <p className="mb-4 fst-italic" style={{ lineHeight: '1.7', fontSize: '1.1rem' }}>
-                                        "The knowledge sharing aspect is incredible. I've learned so much from experienced gardeners
-                                        and my small balcony garden is now more productive than ever!"
-                                    </p>
-                                    <div className="d-flex align-items-center">
-                                        <img
-                                            src="https://randomuser.me/api/portraits/men/32.jpg"
-                                            alt="Mike Chen"
-                                            className="rounded-circle me-3 shadow-sm"
-                                            style={{ width: '60px', height: '60px' }}
-                                        />
-                                        <div>
-                                            <h6 className="fw-bold mb-1" style={{ color: '#2d5016' }}>Mike Chen</h6>
-                                            <small className="text-muted">Balcony Gardener • San Francisco, CA</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-4">
-                            <div className="testimonial-card card h-100 card-hover">
-                                <div className="card-body p-5">
-                                    <div className="mb-4">
-                                        <div className="d-flex mb-3">
-                                            <i className="fas fa-star text-warning me-1"></i>
-                                            <i className="fas fa-star text-warning me-1"></i>
-                                            <i className="fas fa-star text-warning me-1"></i>
-                                            <i className="fas fa-star text-warning me-1"></i>
-                                            <i className="fas fa-star text-warning"></i>
-                                        </div>
-                                    </div>
-                                    <p className="mb-4 fst-italic" style={{ lineHeight: '1.7', fontSize: '1.1rem' }}>
-                                        "As a beginner, the community support has been amazing. I've reduced my food waste
-                                        by 80% and my kids love participating in local garden swaps!"
-                                    </p>
-                                    <div className="d-flex align-items-center">
-                                        <img
-                                            src="https://randomuser.me/api/portraits/women/68.jpg"
-                                            alt="Emily Rodriguez"
-                                            className="rounded-circle me-3 shadow-sm"
-                                            style={{ width: '60px', height: '60px' }}
-                                        />
-                                        <div>
-                                            <h6 className="fw-bold mb-1" style={{ color: '#2d5016' }}>Emily Rodriguez</h6>
-                                            <small className="text-muted">Community Organizer • Austin, TX</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                
+                <div className="pulse-circles">
+                  <div className="pulse-circle pulse-1"></div>
+                  <div className="pulse-circle pulse-2"></div>
+                  <div className="pulse-circle pulse-3"></div>
                 </div>
-            </section>
-
-            {/* Section 6: Contact/CTA */}
-            <section id="contact" className="section-padding" style={{ background: 'linear-gradient(135deg, #1a3d0a 0%, #2d5016 50%, #4a7c59 100%)' }}>
-                <div className="container">
-                    <div className="row align-items-center">
-                        <div className="col-lg-7 mb-5 mb-lg-0">
-                            <span className="badge bg-white text-dark px-3 py-2 rounded-pill fw-bold mb-3" style={{ fontSize: '0.9rem' }}>
-                                🚀 Join the Movement
-                            </span>
-                            <h2 className="display-4 fw-bold mb-4 text-white lh-1">
-                                Ready to Transform<br />
-                                Your <span style={{ color: '#a8d5ba' }}>Urban Space?</span>
-                            </h2>
-                            <p className="lead mb-5 text-white opacity-90" style={{ fontSize: '1.2rem', lineHeight: '1.6' }}>
-                                Join thousands of gardeners building sustainable communities one swap at a time.
-                                Start your journey today - it's completely free to join!
-                            </p>
-                            <div className="row text-white mb-4">
-                                <div className="col-md-6 mb-4">
-                                    <div className="d-flex align-items-center">
-                                        <div className="bg-white bg-opacity-30 rounded-3 p-3 me-3">
-                                            <i className="fas fa-envelope fa-xl" style={{ color: '#2d5016' }}></i>
-                                        </div>
-                                        <div>
-                                            <h6 className="fw-bold mb-1">Email Support</h6>
-                                            <p className="mb-0 opacity-90">hello@growandswap.com</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-6 mb-4">
-                                    <div className="d-flex align-items-center">
-                                        <div className="bg-white bg-opacity-30 rounded-3 p-3 me-3">
-                                            <i className="fas fa-phone fa-xl" style={{ color: '#2d5016' }}></i>
-                                        </div>
-                                        <div>
-                                            <h6 className="fw-bold mb-1">Call Us</h6>
-                                            <p className="mb-0 opacity-90">+1 (555) 123-GROW</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-5">
-                            <div className="bg-white rounded-4 p-5 shadow-lg">
-                                <h4 className="fw-bold mb-4 text-center" style={{ color: '#2d5016' }}>
-                                    📧 Contact Us
-                                </h4>
-                                <form onSubmit={handleContactSubmit}>
-                                    <div className="mb-4">
-                                        <label className="form-label fw-bold text-muted">Name</label>
-                                        <input
-                                            type="text"
-                                            className="form-control form-control-lg border-0 shadow-sm"
-                                            placeholder="Enter your full name"
-                                            style={{ backgroundColor: '#f8f9fa', fontSize: '14px', height: '45px' }}
-                                            name="name"
-                                            value={contactForm.name}
-                                            onChange={handleContactChange}
-                                            required
-                                        />
-                                    </div>
-                                    <div className="mb-4">
-                                        <label className="form-label fw-bold text-muted">Email Address</label>
-                                        <input
-                                            type="email"
-                                            className="form-control form-control-lg border-0 shadow-sm"
-                                            placeholder="Enter your email address"
-                                            style={{ backgroundColor: '#f8f9fa', fontSize: '14px', height: '45px' }}
-                                            name="email"
-                                            value={contactForm.email}
-                                            onChange={handleContactChange}
-                                            required
-                                        />
-                                    </div>
-                                    <div className="mb-4">
-                                        <label className="form-label fw-bold text-muted">Subject</label>
-                                        <input
-                                            type="text"
-                                            className="form-control form-control-lg border-0 shadow-sm"
-                                            placeholder="What's this about?"
-                                            style={{ backgroundColor: '#f8f9fa', fontSize: '14px', height: '45px' }}
-                                            name="subject"
-                                            value={contactForm.subject}
-                                            onChange={handleContactChange}
-                                            required
-                                        />
-                                    </div>
-                                    <div className="mb-4">
-                                        <label className="form-label fw-bold text-muted">Message</label>
-                                        <textarea
-                                            className="form-control border-0 shadow-sm"
-                                            rows="5"
-                                            placeholder="Tell us more about your inquiry..."
-                                            style={{ backgroundColor: '#f8f9fa', fontSize: '14px' }}
-                                            name="message"
-                                            value={contactForm.message}
-                                            onChange={handleContactChange}
-                                            required
-                                        ></textarea>
-                                    </div>
-                                    <button type="submit" className="btn btn-lg w-100 btn-modern text-white mb-3" style={{ background: 'linear-gradient(135deg, #2d5016, #4a7c59)', border: 'none' }} disabled={contactStatus.loading}>
-                                        {contactStatus.loading ? (
-                                            <>
-                                                <span className="spinner-border spinner-border-sm me-2"></span>
-                                                Sending...
-                                            </>
-                                        ) : (
-                                            <>
-                                                <i className="fas fa-paper-plane me-2"></i>
-                                                Send Message
-                                            </>
-                                        )}
-                                    </button>
-                                    {contactStatus.success && (
-                                        <div className="alert alert-success text-center py-2 mb-3">{contactStatus.success}</div>
-                                    )}
-                                    {contactStatus.error && (
-                                        <div className="alert alert-danger text-center py-2 mb-3">{contactStatus.error}</div>
-                                    )}
-                                </form>
-                                <div className="text-center">
-                                    <small className="text-muted">
-                                        <i className="fas fa-clock me-1"></i>
-                                        We'll get back to you within 24 hours
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Footer */}
-            <footer className="py-5" style={{ background: '#1a3d0a' }}>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-4 mb-4">
-                            <div className="d-flex align-items-center mb-3">
-                                <i className="fas fa-leaf fa-2x text-white me-3"></i>
-                                <div>
-                                    <h5 className="fw-bold mb-0 text-white">Grow & Swap</h5>
-                                    <small className="text-white opacity-75">Growing communities, one swap at a time</small>
-                                </div>
-                            </div>
-                            <p className="text-white opacity-75 mb-4">
-                                Empowering urban gardeners to build sustainable communities through
-                                the power of sharing and collaboration.
-                            </p>
-                            <div className="d-flex">
-                                <a href="#" className="text-white me-4 opacity-75">
-                                    <i className="fab fa-facebook-f fa-xl"></i>
-                                </a>
-                                <a href="#" className="text-white me-4 opacity-75">
-                                    <i className="fab fa-twitter fa-xl"></i>
-                                </a>
-                                <a href="#" className="text-white me-4 opacity-75">
-                                    <i className="fab fa-instagram fa-xl"></i>
-                                </a>
-                                <a href="#" className="text-white opacity-75">
-                                    <i className="fab fa-linkedin fa-xl"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-3 mb-4">
-                            <h6 className="fw-bold text-white mb-3">Platform</h6>
-                            <ul className="list-unstyled">
-                                <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">How it Works</a></li>
-                                <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">Features</a></li>
-                                <li className="mb-2"><Link to="/pricing" className="text-white opacity-75 text-decoration-none">Pricing</Link></li>
-                                <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">Mobile App</a></li>
-                            </ul>
-                        </div>
-                        <div className="col-lg-2 col-md-3 mb-4">
-                            <h6 className="fw-bold text-white mb-3">Community</h6>
-                            <ul className="list-unstyled">
-                                <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">Success Stories</a></li>
-                                <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">Events</a></li>
-                                <li className="mb-2"><Link to="/blogs" className="text-white opacity-75 text-decoration-none">Blog</Link></li>
-                                <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">Newsletter</a></li>
-                            </ul>
-                        </div>
-                        <div className="col-lg-2 col-md-3 mb-4">
-                            <h6 className="fw-bold text-white mb-3">Support</h6>
-                            <ul className="list-unstyled">
-                                <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">Help Center</a></li>
-                                <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">Contact Us</a></li>
-                                <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">Privacy Policy</a></li>
-                                <li className="mb-2"><a href="#" className="text-white opacity-75 text-decoration-none">Terms of Service</a></li>
-                            </ul>
-                        </div>
-                        <div className="col-lg-2 col-md-3 mb-4">
-                            <h6 className="fw-bold text-white mb-3">Company</h6>
-                            <ul className="list-unstyled">
-                                <li className="mb-2"><Link to="/about" className="text-white opacity-75 text-decoration-none">About Us</Link></li>
-                                <li className="mb-2"><Link to="/career" className="text-white opacity-75 text-decoration-none">Careers</Link></li>
-                                <li className="mb-2"><Link to="/press" className="text-white opacity-75 text-decoration-none">Press</Link></li>
-                                <li className="mb-2"><Link to="/partners" className="text-white opacity-75 text-decoration-none">Partners</Link></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <hr className="my-4 opacity-25" />
-                    <div className="row align-items-center">
-                        <div className="col-md-6">
-                            <small className="text-white opacity-75">
-                                &copy; 2025 Grow & Swap. All rights reserved. Made with 💚 for urban gardeners worldwide.
-                            </small>
-                        </div>
-                        <div className="col-md-6 text-md-end mt-3 mt-md-0">
-                            <small className="text-white opacity-75">
-                                Sustainable • Community-Driven • Carbon Neutral
-                            </small>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-
-            {/* Authentication Modal */}
-            {showModal && (
-                <div className="modal fade show auth-modal" style={{ display: 'block' }} tabIndex="-1">
-                    <div className="modal-dialog modal-dialog-centered">
-                        <div className="modal-content">
-                            <div className="modal-header border-0 pb-0">
-                                <div className="w-100 text-center">
-                                    <h4 className="modal-title fw-bold text-gradient mb-0">
-                                        <i className="fas fa-leaf me-2"></i>
-                                        Grow & Swap
-                                    </h4>
-                                </div>
-                                <button
-                                    type="button"
-                                    className="btn-close"
-                                    onClick={() => setShowModal(false)}
-                                ></button>
-                            </div>
-                            <div className="modal-body px-4 pb-4">
-                                {/* Tab Navigation */}
-                                <div className="text-center mb-4">
-                                    <button
-                                        className={`auth-tab me-4 ${!isSignUp ? 'active' : ''}`}
-                                        onClick={() => setIsSignUp(false)}
-                                    >
-                                        Sign In
-                                    </button>
-                                    <button
-                                        className={`auth-tab ${isSignUp ? 'active' : ''}`}
-                                        onClick={() => setIsSignUp(true)}
-                                    >
-                                        Sign Up
-                                    </button>
-                                </div>
-
-                                {/* Sign In Form */}
-                                {!isSignUp ? (
-                                    <div>
-                                        <h5 className="text-center mb-4" style={{ color: '#2d5016' }}>
-                                            Welcome Back!
-                                        </h5>
-                                        <form>
-                                            <div className="mb-3">
-                                                <label htmlFor="signInEmail" className="form-label fw-600" style={{ color: '#2d5016' }}>
-                                                    Email Address
-                                                </label>
-                                                <input
-                                                    type="email"
-                                                    className="form-control"
-                                                    id="signInEmail"
-                                                    placeholder="Enter your email"
-                                                />
-                                            </div>
-                                            <div className="mb-4">
-                                                <label htmlFor="signInPassword" className="form-label fw-600" style={{ color: '#2d5016' }}>
-                                                    Password
-                                                </label>
-                                                <input
-                                                    type="password"
-                                                    className="form-control"
-                                                    id="signInPassword"
-                                                    placeholder="Enter your password"
-                                                />
-                                            </div>
-                                            <div className="d-flex justify-content-between align-items-center mb-4">
-                                                <div className="form-check">
-                                                    <input className="form-check-input" type="checkbox" id="rememberMe" />
-                                                    <label className="form-check-label text-muted" htmlFor="rememberMe">
-                                                        Remember me
-                                                    </label>
-                                                </div>
-                                                <Link to="/forget/password" className="text-decoration-none" style={{ color: '#4a7c59' }}>
-                                                    Forgot Password?
-                                                </Link>
-                                            </div>
-                                            <button type="submit" className="btn btn-success w-100 btn-modern mb-3" style={{ backgroundColor: '#2d5016', borderColor: '#2d5016' }}>
-                                                <i className="fas fa-sign-in-alt me-2"></i>
-                                                Sign In
-                                            </button>
-                                        </form>
-
-                                        <div className="text-center mb-4">
-                                            <span className="text-muted">or continue with</span>
-                                        </div>
-
-                                        <div className="d-grid gap-2 mb-4">
-                                            <button className="btn btn-outline-dark btn-google">
-                                                <i className="fab fa-google me-2"></i>
-                                                Continue with Google
-                                            </button>
-                                        </div>
-                                    </div>
-                                ) : (
-                                    /* Sign Up Form */
-                                    <div>
-                                        <h5 className="text-center mb-4" style={{ color: '#2d5016' }}>
-                                            Join Our Community!
-                                        </h5>
-                                        <form onSubmit={handleSignupSubmit}>
-                                            <div className="row">
-                                                <div className="col-md-6 mb-3">
-                                                    <label htmlFor="firstName" className="form-label fw-600" style={{ color: '#2d5016' }}>
-                                                        First Name
-                                                    </label>
-                                                    <input
-                                                        type="text"
-                                                        className="form-control"
-                                                        id="firstName"
-                                                        name="firstName"
-                                                        placeholder="First name"
-                                                        value={signupForm.firstName}
-                                                        onChange={handleSignupChange}
-                                                        required
-                                                    />
-                                                </div>
-                                                <div className="col-md-6 mb-3">
-                                                    <label htmlFor="lastName" className="form-label fw-600" style={{ color: '#2d5016' }}>
-                                                        Last Name
-                                                    </label>
-                                                    <input
-                                                        type="text"
-                                                        className="form-control"
-                                                        id="lastName"
-                                                        name="lastName"
-                                                        placeholder="Last name"
-                                                        value={signupForm.lastName}
-                                                        onChange={handleSignupChange}
-                                                        required
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="mb-3">
-                                                <label htmlFor="signUpEmail" className="form-label fw-600" style={{ color: '#2d5016' }}>
-                                                    Email Address
-                                                </label>
-                                                <input
-                                                    type="email"
-                                                    className="form-control"
-                                                    id="signUpEmail"
-                                                    name="email"
-                                                    placeholder="Enter your email"
-                                                    value={signupForm.email}
-                                                    onChange={handleSignupChange}
-                                                    required
-                                                />
-                                            </div>
-                                            <div className="mb-3">
-                                                <label htmlFor="signUpPassword" className="form-label fw-600" style={{ color: '#2d5016' }}>
-                                                    Password
-                                                </label>
-                                                <input
-                                                    type="password"
-                                                    className={`form-control ${passwordErrors.length || passwordErrors.complexity ? 'is-invalid' : signupForm.password && !passwordErrors.length && !passwordErrors.complexity ? 'is-valid' : ''}`}
-                                                    id="signUpPassword"
-                                                    name="password"
-                                                    placeholder="Create a password"
-                                                    value={signupForm.password}
-                                                    onChange={handleSignupChange}
-                                                    required
-                                                />
-                                                {passwordErrors.length && (
-                                                    <div className="invalid-feedback">
-                                                        Password must be at least 8 characters long.
-                                                    </div>
-                                                )}
-                                                {passwordErrors.complexity && !passwordErrors.length && (
-                                                    <div className="invalid-feedback">
-                                                        Password must contain uppercase, lowercase, and number.
-                                                    </div>
-                                                )}
-                                                {signupForm.password && !passwordErrors.length && !passwordErrors.complexity && (
-                                                    <div className="valid-feedback">
-                                                        Password looks good!
-                                                    </div>
-                                                )}
-                                                <small className="form-text text-muted">
-                                                    Password must be at least 8 characters with uppercase, lowercase, and number.
-                                                </small>
-                                            </div>
-                                            <div className="mb-4">
-                                                <label htmlFor="confirmPassword" className="form-label fw-600" style={{ color: '#2d5016' }}>
-                                                    Confirm Password
-                                                </label>
-                                                <input
-                                                    type="password"
-                                                    className={`form-control ${passwordErrors.match ? 'is-invalid' : signupForm.confirmPassword && !passwordErrors.match ? 'is-valid' : ''}`}
-                                                    id="confirmPassword"
-                                                    name="confirmPassword"
-                                                    placeholder="Confirm your password"
-                                                    value={signupForm.confirmPassword}
-                                                    onChange={handleSignupChange}
-                                                    required
-                                                />
-                                                {passwordErrors.match && (
-                                                    <div className="invalid-feedback">
-                                                        Passwords do not match.
-                                                    </div>
-                                                )}
-                                                {signupForm.confirmPassword && !passwordErrors.match && (
-                                                    <div className="valid-feedback">
-                                                        Passwords match!
-                                                    </div>
-                                                )}
-                                            </div>
-                                            <div className="form-check mb-4">
-                                                <input 
-                                                    className="form-check-input" 
-                                                    type="checkbox" 
-                                                    id="termsCheck"
-                                                    name="termsAccepted"
-                                                    checked={signupForm.termsAccepted}
-                                                    onChange={handleSignupChange}
-                                                    required
-                                                />
-                                                <label className="form-check-label text-muted" htmlFor="termsCheck">
-                                                    I agree to the <Link to="/terms/and/conditions" style={{ color: '#4a7c59' }}>Terms of Service</Link> and <Link to="/terms/and/conditions" style={{ color: '#4a7c59' }}>Privacy Policy</Link>
-                                                </label>
-                                            </div>
-                                            <button
-                                                type="submit"
-                                                className="btn btn-success w-100 btn-modern mb-3"
-                                                style={{ backgroundColor: '#2d5016', borderColor: '#2d5016' }}
-                                                disabled={signupStatus.loading || passwordErrors.match || passwordErrors.length || passwordErrors.complexity || !signupForm.termsAccepted}
-                                            >
-                                                {signupStatus.loading ? (
-                                                    <>
-                                                        <span className="spinner-border spinner-border-sm me-2"></span>
-                                                        Creating Account...
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        <i className="fas fa-user-plus me-2"></i>
-                                                        Create Account
-                                                    </>
-                                                )}
-                                            </button>
-                                            {signupStatus.success && (
-                                                <div className="alert alert-success text-center py-2 mb-3">{signupStatus.success}</div>
-                                            )}
-                                            {signupStatus.error && (
-                                                <div className="alert alert-danger text-center py-2 mb-3">{signupStatus.error}</div>
-                                            )}
-                                        </form>
-
-                                        <div className="text-center mb-4">
-                                            <span className="text-muted">or sign up with</span>
-                                        </div>
-
-                                        <div className="d-grid gap-2 mb-4">
-                                            <button className="btn btn-outline-dark btn-google">
-                                                <i className="fab fa-google me-2"></i>
-                                                Sign up with Google
-                                            </button>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {/* Modal Backdrop */}
-            {showModal && (
-                <div
-                    className="modal-backdrop fade show"
-                    onClick={() => setShowModal(false)}
-                ></div>
-            )}
+              </div>
+            </div>
+          </div>
         </div>
-    );
-};
+      </section>
 
-export default LandingPage;
+      {/* About Section */}
+      <section id="about" className="about-modern">
+        <div className="container">
+          <div className="section-header">
+            <div className="section-badge">
+              <span>🌿 About Us</span>
+            </div>
+            <h2 className="section-title">
+              Revolutionizing <span className="gradient-text">Urban Gardening</span>
+            </h2>
+            <p className="section-description">
+              We connect passionate urban gardeners, enabling them to share knowledge, 
+              exchange fresh produce, and build thriving sustainable communities.
+            </p>
+          </div>
+          
+          <div className="about-content">
+            <div className="about-visual">
+              <div className="about-image-stack">
+                <img 
+                  src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600&h=400&fit=crop" 
+                  alt="Urban Garden" 
+                  className="about-image primary"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&h=300&fit=crop" 
+                  alt="Community" 
+                  className="about-image secondary"
+                />
+              </div>
+            </div>
+            
+            <div className="about-info">
+              <div className="mission-card">
+                <h3>Our Mission</h3>
+                <p>To create a world where every urban space blooms with life, 
+                   connecting communities through the simple joy of growing and sharing.</p>
+              </div>
+              
+              <div className="impact-metrics">
+                <div className="metric">
+                  <div className="metric-icon">
+                    <i className="fas fa-recycle"></i>
+                  </div>
+                  <div className="metric-content">
+                    <div className="metric-number">95%</div>
+                    <div className="metric-label">Food Waste Reduced</div>
+                  </div>
+                </div>
+                
+                <div className="metric">
+                  <div className="metric-icon">
+                    <i className="fas fa-users"></i>
+                  </div>
+                  <div className="metric-content">
+                    <div className="metric-number">2.5M+</div>
+                    <div className="metric-label">Connections Made</div>
+                  </div>
+                </div>
+                
+                <div className="metric">
+                  <div className="metric-icon">
+                    <i className="fas fa-leaf"></i>
+                  </div>
+                  <div className="metric-content">
+                    <div className="metric-number">500K+</div>
+                    <div className="metric-label">Plants Grown</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="features-modern">
+        <div className="container">
+          <div className="section-header">
+            <div className="section-badge">
+              <span>✨ Features</span>
+            </div>
+            <h2 className="section-title">
+              Everything You Need to <span className="gradient-text">Grow & Connect</span>
+            </h2>
+            <p className="section-description">
+              Powerful tools designed to make urban gardening social, sustainable, and successful.
+            </p>
+          </div>
+          
+          <div className="features-grid">
+            <div className="feature-card spotlight">
+              <div className="feature-visual">
+                <div className="feature-icon large primary">
+                  <i className="fas fa-users"></i>
+                </div>
+                <div className="feature-glow"></div>
+              </div>
+              <h3>Smart Matching</h3>
+              <p>AI-powered algorithm connects you with nearby gardeners based on what you grow and what you need.</p>
+              <div className="feature-highlight">
+                <span className="highlight-text">Most Popular</span>
+              </div>
+            </div>
+            
+            <div className="feature-card">
+              <div className="feature-icon success">
+                <i className="fas fa-seedling"></i>
+              </div>
+              <h3>Crop Tracking</h3>
+              <p>Monitor your garden's progress with photo logs, growth tracking, and harvest predictions.</p>
+            </div>
+            
+            <div className="feature-card">
+              <div className="feature-icon warning">
+                <i className="fas fa-map-marker-alt"></i>
+              </div>
+              <h3>Local Discovery</h3>
+              <p>Find fresh produce and gardening supplies within walking distance of your location.</p>
+            </div>
+            
+            <div className="feature-card">
+              <div className="feature-icon info">
+                <i className="fas fa-exchange-alt"></i>
+              </div>
+              <h3>Easy Swapping</h3>
+              <p>Simple, secure exchange system with built-in messaging and rating system.</p>
+            </div>
+            
+            <div className="feature-card">
+              <div className="feature-icon danger">
+                <i className="fas fa-trophy"></i>
+              </div>
+              <h3>Rewards System</h3>
+              <p>Earn points, unlock achievements, and get recognized for your community contributions.</p>
+            </div>
+            
+            <div className="feature-card">
+              <div className="feature-icon secondary">
+                <i className="fas fa-book-open"></i>
+              </div>
+              <h3>Learning Hub</h3>
+              <p>Access expert guides, seasonal tips, and learn from experienced community gardeners.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section id="how-it-works" className="how-it-works-modern">
+        <div className="container">
+          <div className="section-header">
+            <div className="section-badge">
+              <span>🚀 How It Works</span>
+            </div>
+            <h2 className="section-title">
+              Get Started in <span className="gradient-text">3 Simple Steps</span>
+            </h2>
+            <p className="section-description">
+              Join thousands of urban gardeners and start building your sustainable community today.
+            </p>
+          </div>
+          
+          <div className="steps-container">
+            <div className="step-item">
+              <div className="step-number">01</div>
+              <div className="step-content">
+                <div className="step-icon">
+                  <i className="fas fa-user-plus"></i>
+                </div>
+                <h3>Create Your Profile</h3>
+                <p>Set up your gardener profile with location, growing space details, and what you love to cultivate.</p>
+              </div>
+              <div className="step-connector"></div>
+            </div>
+            
+            <div className="step-item">
+              <div className="step-number">02</div>
+              <div className="step-content">
+                <div className="step-icon">
+                  <i className="fas fa-search"></i>
+                </div>
+                <h3>Discover & Connect</h3>
+                <p>Find nearby gardeners, browse available produce, and start building meaningful relationships.</p>
+              </div>
+              <div className="step-connector"></div>
+            </div>
+            
+            <div className="step-item">
+              <div className="step-number">03</div>
+              <div className="step-content">
+                <div className="step-icon">
+                  <i className="fas fa-handshake"></i>
+                </div>
+                <h3>Start Swapping</h3>
+                <p>Make your first exchange, share your harvest, and become part of a thriving community.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Community Section */}
+      <section id="community" className="community-modern">
+        <div className="container">
+          <div className="section-header">
+            <div className="section-badge">
+              <span>🌍 Our Community</span>
+            </div>
+            <h2 className="section-title">
+              Join a <span className="gradient-text">Global Movement</span>
+            </h2>
+            <p className="section-description">
+              Be part of a worldwide community that's transforming urban spaces and lives through gardening.
+            </p>
+          </div>
+          
+          <div className="community-showcase">
+            <div className="community-visual">
+              <img 
+                src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&h=500&fit=crop" 
+                alt="Community Garden" 
+                className="community-image"
+              />
+              <div className="community-overlay">
+                <div className="community-stats">
+                  <div className="stat-bubble">
+                    <div className="stat-value">{stats.gardeners.toLocaleString()}+</div>
+                    <div className="stat-text">Gardeners</div>
+                  </div>
+                  <div className="stat-bubble">
+                    <div className="stat-value">{stats.cities}+</div>
+                    <div className="stat-text">Cities</div>
+                  </div>
+                  <div className="stat-bubble">
+                    <div className="stat-value">{stats.waste}%</div>
+                    <div className="stat-text">Less Waste</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="community-testimonials">
+              <div className="testimonial-card active">
+                <div className="testimonial-content">
+                  <div className="quote-icon">
+                    <i className="fas fa-quote-left"></i>
+                  </div>
+                  <p>"GrowSwap transformed my tiny balcony into a thriving garden. I've met amazing neighbors and my family now enjoys fresh vegetables year-round!"</p>
+                  <div className="testimonial-author">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=60&h=60&fit=crop&crop=face" alt="Sarah" />
+                    <div>
+                      <div className="author-name">Sarah Johnson</div>
+                      <div className="author-location">Seattle, WA</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="testimonial-card">
+                <div className="testimonial-content">
+                  <div className="quote-icon">
+                    <i className="fas fa-quote-left"></i>
+                  </div>
+                  <p>"The community support is incredible. From beginner tips to advanced techniques, there's always someone willing to help you grow better."</p>
+                  <div className="testimonial-author">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face" alt="Mike" />
+                    <div>
+                      <div className="author-name">Mike Chen</div>
+                      <div className="author-location">Portland, OR</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact & CTA Section */}
+      <section id="contact" className="contact-modern">
+        <div className="container">
+          <div className="contact-wrapper">
+            <div className="contact-info">
+              <div className="section-badge">
+                <span>🌿 Get in Touch</span>
+              </div>
+              <h2 className="contact-title">
+                Ready to Start Your <span className="gradient-text">Garden Journey?</span>
+              </h2>
+              <p className="contact-description">
+                Join thousands of urban gardeners who are already growing, sharing, 
+                and building sustainable communities.
+              </p>
+              
+              <div className="contact-features">
+                <div className="contact-feature">
+                  <div className="feature-icon-small">
+                    <i className="fas fa-rocket"></i>
+                  </div>
+                  <span>Quick setup in under 5 minutes</span>
+                </div>
+                <div className="contact-feature">
+                  <div className="feature-icon-small">
+                    <i className="fas fa-shield-alt"></i>
+                  </div>
+                  <span>Safe and secure community</span>
+                </div>
+                <div className="contact-feature">
+                  <div className="feature-icon-small">
+                    <i className="fas fa-heart"></i>
+                  </div>
+                  <span>Free to start, always</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="contact-form-wrapper">
+              <form className="contact-form-modern">
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Full Name</label>
+                    <input type="text" className="form-input" placeholder="Enter your name" />
+                  </div>
+                  <div className="form-group">
+                    <label>Email Address</label>
+                    <input type="email" className="form-input" placeholder="your@email.com" />
+                  </div>
+                </div>
+                
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>City</label>
+                    <input type="text" className="form-input" placeholder="Where are you located?" />
+                  </div>
+                  <div className="form-group">
+                    <label>Garden Type</label>
+                    <select className="form-input">
+                      <option>Balcony Garden</option>
+                      <option>Indoor Garden</option>
+                      <option>Backyard Garden</option>
+                      <option>Community Garden</option>
+                      <option>Rooftop Garden</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div className="form-group">
+                  <label>What would you like to grow?</label>
+                  <textarea className="form-input" rows="4" placeholder="Tell us about your gardening goals and interests..."></textarea>
+                </div>
+                
+                <button type="submit" className="btn-primary large full-width">
+                  <span>Join Our Garden Community</span>
+                  <i className="fas fa-arrow-right"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="footer-modern">
+        <div className="container">
+          <div className="footer-content">
+            <div className="footer-brand">
+              <div className="brand-logo">
+                <div className="logo-icon">
+                  <i className="fas fa-leaf"></i>
+                </div>
+                <span className="brand-text">GrowSwap</span>
+              </div>
+              <p>Connecting urban gardeners worldwide to build sustainable communities through sharing and growing.</p>
+              <div className="social-links">
+                <a href="#" className="social-link">
+                  <i className="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" className="social-link">
+                  <i className="fab fa-twitter"></i>
+                </a>
+                <a href="#" className="social-link">
+                  <i className="fab fa-instagram"></i>
+                </a>
+                <a href="#" className="social-link">
+                  <i className="fab fa-linkedin-in"></i>
+                </a>
+              </div>
+            </div>
+            
+            <div className="footer-links">
+              <div className="link-group">
+                <h4>Platform</h4>
+                <a href="#">How It Works</a>
+                <a href="#">Features</a>
+                <a href="#">Pricing</a>
+                <a href="#">Mobile App</a>
+              </div>
+              
+              <div className="link-group">
+                <h4>Community</h4>
+                <a href="#">Find Gardeners</a>
+                <a href="#">Success Stories</a>
+                <a href="#">Events</a>
+                <a href="#">Blog</a>
+              </div>
+              
+              <div className="link-group">
+                <h4>Resources</h4>
+                <a href="#">Garden Guides</a>
+                <a href="#">Plant Library</a>
+                <a href="#">Seasonal Tips</a>
+                <a href="#">Help Center</a>
+              </div>
+              
+              <div className="link-group">
+                <h4>Company</h4>
+                <a href="#">About Us</a>
+                <a href="#">Careers</a>
+                <a href="#">Press</a>
+                <a href="#">Contact</a>
+              </div>
+            </div>
+          </div>
+          
+          <div className="footer-bottom">
+            <p>&copy; 2024 GrowSwap. All rights reserved. Built with 💚 for urban gardeners everywhere.</p>
+            <div className="footer-bottom-links">
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms of Service</a>
+              <a href="#">Cookie Policy</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
