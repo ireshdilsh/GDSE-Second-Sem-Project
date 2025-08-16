@@ -11,9 +11,9 @@ export default function LandingPage() {
     waste: 0
   });
   const [isLoaded, setIsLoaded] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
 
   // Handle initial load
   useEffect(() => {
@@ -27,15 +27,17 @@ export default function LandingPage() {
 
       // Get all sections
       const sections = ['home', 'about', 'features', 'how-it-works', 'community', 'contact'];
-      const scrollPosition = window.scrollY + 100; // Offset for navbar height
-
-      // Find which section is currently in view
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = document.getElementById(sections[i]);
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(sections[i]);
-          break;
+      const current = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
         }
+        return false;
+      });
+
+      if (current) {
+        setActiveSection(current);
       }
     };
 
@@ -101,8 +103,13 @@ export default function LandingPage() {
               <a href="#contact" className={`nav-link ${activeSection === 'contact' ? 'active' : ''}`} onClick={closeMobileMenu}>Contact</a>
             </div>
             
-            {/* CTA Button & Mobile Menu */}
-            <div className="navbar-actions d-flex align-items-center gap-3">              
+            {/* Sign In & Mobile Menu */}
+            <div className="navbar-actions d-flex align-items-center gap-3">
+              <Link to="/signin" className="btn-signin d-none d-md-flex">
+                <i className="fas fa-user"></i>
+                <span>Sign In</span>
+              </Link>
+              
               {/* Mobile Menu Toggle */}
               <button className="mobile-menu-toggle d-lg-none" onClick={toggleMobileMenu}>
                 <span></span>
@@ -121,11 +128,15 @@ export default function LandingPage() {
               <a href="#how-it-works" className={`mobile-nav-link ${activeSection === 'how-it-works' ? 'active' : ''}`} onClick={closeMobileMenu}>How It Works</a>
               <a href="#community" className={`mobile-nav-link ${activeSection === 'community' ? 'active' : ''}`} onClick={closeMobileMenu}>Community</a>
               <a href="#contact" className={`mobile-nav-link ${activeSection === 'contact' ? 'active' : ''}`} onClick={closeMobileMenu}>Contact</a>
+              <Link to="/signin" className="btn-mobile-signin" onClick={closeMobileMenu}>
+                <i className="fas fa-user"></i>
+                <span>Sign In</span>
+              </Link>
             </div>
           </div>
         </div>
-  </nav>
-      
+      </nav>
+
       {/* Hero Section */}
       <section id="home" className="hero-minimal">
         <div className="container-fluid hero-padding-180">
@@ -147,19 +158,21 @@ export default function LandingPage() {
                 </h1>
                 
                 <p className="hero-description-minimal">
-                  Connect with urban gardeners worldwide. Share knowledge, exchange fresh produce, 
-                  and build sustainable communities that thrive in harmony with nature.
+                  <span className="typing-text">
+                    Connect with urban gardeners worldwide. Share knowledge, exchange fresh produce, 
+                    and build sustainable communities that thrive in harmony with nature.
+                  </span>
                 </p>
                 
                 <div className="hero-actions-minimal d-flex flex-column flex-sm-row gap-3">
-                  <button className="btn-primary-hero d-flex align-items-center justify-content-center">
-                    <span>Start Your Journey</span>
+                  <Link to="/signup" className="btn-primary-hero d-flex align-items-center justify-content-center">
+                    <span>Get Started</span>
                     <div className="btn-arrow">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                         <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </div>
-                  </button>
+                  </Link>
                   
                   <button className="btn-outline-hero d-flex align-items-center justify-content-center">
                     <div className="play-icon">
