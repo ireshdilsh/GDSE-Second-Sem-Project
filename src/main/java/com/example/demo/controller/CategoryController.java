@@ -51,7 +51,7 @@ public class CategoryController {
         return new ResponseEntity<>(new APIResponse(200, "success", dtos), HttpStatus.OK);
     }
 
-    @DeleteMapping("path")
+    @DeleteMapping("/delete/category")
     public String deleteMethod(@RequestParam String param) {
         return new String();
     }
