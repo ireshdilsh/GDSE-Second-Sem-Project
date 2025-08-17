@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../styles/EventsPage.css';
 
 export default function EventsPage() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+//   const [selectedDate, setSelectedDate] = useState(new Date());
   const [viewType, setViewType] = useState('upcoming');
 
   const events = [

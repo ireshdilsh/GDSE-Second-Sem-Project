@@ -8,22 +8,6 @@ export default function BlogPage() {
 
   const blogPosts = [
     {
-      id: 1,
-      title: '10 Vegetables That Thrive in Small Spaces',
-      author: 'Emily Chen',
-      date: '2024-03-20',
-      readTime: '6 min read',
-      category: 'Small Space Gardening',
-      tags: ['Container Gardening', 'Vegetables', 'Beginner Tips'],
-      image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&h=400&fit=crop',
-      excerpt: 'Discover which vegetables pack the biggest punch in the smallest spaces. From cherry tomatoes to microgreens, maximize your harvest without the acreage.',
-      content: 'Living in an apartment or having a tiny backyard doesn\'t mean you can\'t grow your own food...',
-      featured: true,
-      views: 2847,
-      likes: 156,
-      comments: 23
-    },
-    {
       id: 2,
       title: 'The Science of Companion Planting: What Really Works',
       author: 'Dr. Marcus Rivera',

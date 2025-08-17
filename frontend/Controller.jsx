@@ -9,6 +9,7 @@ import PricingPage from './src/pages/PricingPage'
 import SuccessStoriesPage from './src/pages/SuccessStoriesPage'
 import EventsPage from './src/pages/EventsPage'
 import BlogPage from './src/pages/BlogPage'
+import CustomerDashboard from './src/pages/CustomerDashboard'
 
 export default function Controller() {
   return (
