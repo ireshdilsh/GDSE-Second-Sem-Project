@@ -6,6 +6,9 @@ import SignUpPage from './src/pages/SignUpPage'
 import TermsAndConditions from './src/pages/TermsAndConditions'
 import PrivacyPolicy from './src/pages/PrivacyPolicy'
 import PricingPage from './src/pages/PricingPage'
+import SuccessStoriesPage from './src/pages/SuccessStoriesPage'
+import EventsPage from './src/pages/EventsPage'
+import BlogPage from './src/pages/BlogPage'
 
 export default function Controller() {
   return (
@@ -18,6 +21,9 @@ export default function Controller() {
           <Route path='/terms' element={<TermsAndConditions />}></Route>
           <Route path='/privacy' element={<PrivacyPolicy />}></Route>
           <Route path='/pricing' element={<PricingPage />}></Route>
+          <Route path='/success-stories' element={<SuccessStoriesPage />}></Route>
+          <Route path='/events' element={<EventsPage />}></Route>
+          <Route path='/blog' element={<BlogPage />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

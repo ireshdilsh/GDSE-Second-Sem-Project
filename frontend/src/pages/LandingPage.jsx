@@ -668,10 +668,9 @@ export default function LandingPage() {
               
               <div className="link-group">
                 <h4>Community</h4>
-                <a href="#">Find Gardeners</a>
-                <a href="#">Success Stories</a>
-                <a href="#">Events</a>
-                <a href="#">Blog</a>
+                <Link to="/success-stories">Success Stories</Link>
+                <Link to="/events">Events</Link>
+                <Link to="/blog">Blog</Link>
               </div>
               
               <div className="link-group">
