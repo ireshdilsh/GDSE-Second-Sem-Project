@@ -11,7 +11,6 @@ export default function LandingPage() {
     waste: 0
   });
   const [isLoaded, setIsLoaded] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -20,25 +19,10 @@ export default function LandingPage() {
     setIsLoaded(true);
   }, []);
 
-  // Handle navbar scroll effect and active section detection
+  // Handle navbar scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-
-      // Get all sections
-      const sections = ['home', 'about', 'features', 'how-it-works', 'community', 'contact'];
-      const current = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-
-      if (current) {
-        setActiveSection(current);
-      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -95,19 +79,19 @@ export default function LandingPage() {
             
             {/* Navigation Links */}
             <div className="navbar-links d-none d-lg-flex">
-              <a href="#home" className={`nav-link ${activeSection === 'home' ? 'active' : ''}`} onClick={closeMobileMenu}>Home</a>
-              <a href="#about" className={`nav-link ${activeSection === 'about' ? 'active' : ''}`} onClick={closeMobileMenu}>About</a>
-              <a href="#features" className={`nav-link ${activeSection === 'features' ? 'active' : ''}`} onClick={closeMobileMenu}>Features</a>
-              <a href="#how-it-works" className={`nav-link ${activeSection === 'how-it-works' ? 'active' : ''}`} onClick={closeMobileMenu}>How It Works</a>
-              <a href="#community" className={`nav-link ${activeSection === 'community' ? 'active' : ''}`} onClick={closeMobileMenu}>Community</a>
-              <a href="#contact" className={`nav-link ${activeSection === 'contact' ? 'active' : ''}`} onClick={closeMobileMenu}>Contact</a>
+              <a href="#home" className="nav-link active" onClick={closeMobileMenu}>Home</a>
+              <a href="#about" className="nav-link" onClick={closeMobileMenu}>About</a>
+              <a href="#features" className="nav-link" onClick={closeMobileMenu}>Features</a>
+              <a href="#how-it-works" className="nav-link" onClick={closeMobileMenu}>How It Works</a>
+              <a href="#community" className="nav-link" onClick={closeMobileMenu}>Community</a>
+              <a href="#contact" className="nav-link" onClick={closeMobileMenu}>Contact</a>
             </div>
             
-            {/* Sign In & Mobile Menu */}
+            {/* CTA Button & Mobile Menu */}
             <div className="navbar-actions d-flex align-items-center gap-3">
-              <Link to="/signin" className="btn-signin d-none d-md-flex">
-                <i className="fas fa-user"></i>
+              <Link to="/signin" className="btn-navbar-cta d-none d-md-flex" onClick={closeMobileMenu}>
                 <span>Sign In</span>
+                <i className="fas fa-sign-in-alt"></i>
               </Link>
               
               {/* Mobile Menu Toggle */}
@@ -122,21 +106,18 @@ export default function LandingPage() {
           {/* Mobile Menu */}
           <div className={`mobile-menu ${isMenuOpen ? 'show' : ''}`}>
             <div className="mobile-menu-content">
-              <a href="#home" className={`mobile-nav-link ${activeSection === 'home' ? 'active' : ''}`} onClick={closeMobileMenu}>Home</a>
-              <a href="#about" className={`mobile-nav-link ${activeSection === 'about' ? 'active' : ''}`} onClick={closeMobileMenu}>About</a>
-              <a href="#features" className={`mobile-nav-link ${activeSection === 'features' ? 'active' : ''}`} onClick={closeMobileMenu}>Features</a>
-              <a href="#how-it-works" className={`mobile-nav-link ${activeSection === 'how-it-works' ? 'active' : ''}`} onClick={closeMobileMenu}>How It Works</a>
-              <a href="#community" className={`mobile-nav-link ${activeSection === 'community' ? 'active' : ''}`} onClick={closeMobileMenu}>Community</a>
-              <a href="#contact" className={`mobile-nav-link ${activeSection === 'contact' ? 'active' : ''}`} onClick={closeMobileMenu}>Contact</a>
-              <Link to="/signin" className="btn-mobile-signin" onClick={closeMobileMenu}>
-                <i className="fas fa-user"></i>
-                <span>Sign In</span>
-              </Link>
+              <a href="#home" className="mobile-nav-link" onClick={closeMobileMenu}>Home</a>
+              <a href="#about" className="mobile-nav-link" onClick={closeMobileMenu}>About</a>
+              <a href="#features" className="mobile-nav-link" onClick={closeMobileMenu}>Features</a>
+              <a href="#how-it-works" className="mobile-nav-link" onClick={closeMobileMenu}>How It Works</a>
+              <a href="#community" className="mobile-nav-link" onClick={closeMobileMenu}>Community</a>
+              <a href="#contact" className="mobile-nav-link" onClick={closeMobileMenu}>Contact</a>
+              <Link to="/signin" className="mobile-nav-link signin-link" onClick={closeMobileMenu}>Sign In</Link>
             </div>
           </div>
         </div>
-      </nav>
-
+  </nav>
+      
       {/* Hero Section */}
       <section id="home" className="hero-minimal">
         <div className="container-fluid hero-padding-180">
@@ -164,7 +145,7 @@ export default function LandingPage() {
                 
                 <div className="hero-actions-minimal d-flex flex-column flex-sm-row gap-3">
                   <Link to="/signup" className="btn-primary-hero d-flex align-items-center justify-content-center">
-                    <span>Get Started</span>
+                    <span>Start Your Journey</span>
                     <div className="btn-arrow">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                         <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -611,6 +592,18 @@ export default function LandingPage() {
                   <textarea className="form-input" rows="4" placeholder="Tell us about your gardening goals and interests..."></textarea>
                 </div>
                 
+                <div className="form-group">
+                  <div className="checkbox-wrapper">
+                    <label className="checkbox-label">
+                      <input type="checkbox" className="form-checkbox" required />
+                      <span className="checkmark"></span>
+                      <span className="checkbox-text">
+                        I agree to the <Link to="/terms" className="legal-link">Terms and Conditions</Link> and <Link to="/privacy" className="legal-link">Privacy Policy</Link>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                
                 <div className="form-submit-wrapper">
                   <button type="submit" className="btn-contact-primary">
                     <div className="btn-content">
@@ -626,7 +619,7 @@ export default function LandingPage() {
                   
                   <p className="form-privacy-text">
                     <i className="fas fa-lock"></i>
-                    We respect your privacy and never share your information
+                    We respect your privacy and never share your information. Read our <Link to="/privacy" className="legal-link">Privacy Policy</Link>.
                   </p>
                 </div>
               </form>
@@ -701,8 +694,8 @@ export default function LandingPage() {
           <div className="footer-bottom">
             <p>&copy; 2024 GrowSwap. All rights reserved. Built with 💚 for urban gardeners everywhere.</p>
             <div className="footer-bottom-links">
-              <a href="#">Privacy Policy</a>
-              <a href="#">Terms of Service</a>
+              <Link to="/privacy">Privacy Policy</Link>
+              <Link to="/terms">Terms of Service</Link>
               <a href="#">Cookie Policy</a>
             </div>
           </div>
