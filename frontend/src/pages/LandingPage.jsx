@@ -13,16 +13,29 @@ export default function LandingPage() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   // Handle initial load
   useEffect(() => {
     setIsLoaded(true);
   }, []);
 
-  // Handle navbar scroll effect
+  // Handle navbar scroll effect and scroll spy
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      
+      // Scroll spy logic
+      const sections = ['home', 'about', 'features', 'how-it-works', 'community', 'contact'];
+      const scrollPosition = window.scrollY + 100; // Offset for better UX
+      
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const element = document.getElementById(sections[i]);
+        if (element && element.offsetTop <= scrollPosition) {
+          setActiveSection(sections[i]);
+          break;
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -79,12 +92,12 @@ export default function LandingPage() {
             
             {/* Navigation Links */}
             <div className="navbar-links d-none d-lg-flex">
-              <a href="#home" className="nav-link active" onClick={closeMobileMenu}>Home</a>
-              <a href="#about" className="nav-link" onClick={closeMobileMenu}>About</a>
-              <a href="#features" className="nav-link" onClick={closeMobileMenu}>Features</a>
-              <a href="#how-it-works" className="nav-link" onClick={closeMobileMenu}>How It Works</a>
-              <a href="#community" className="nav-link" onClick={closeMobileMenu}>Community</a>
-              <a href="#contact" className="nav-link" onClick={closeMobileMenu}>Contact</a>
+              <a href="#home" className={`nav-link ${activeSection === 'home' ? 'active' : ''}`} onClick={closeMobileMenu}>Home</a>
+              <a href="#about" className={`nav-link ${activeSection === 'about' ? 'active' : ''}`} onClick={closeMobileMenu}>About</a>
+              <a href="#features" className={`nav-link ${activeSection === 'features' ? 'active' : ''}`} onClick={closeMobileMenu}>Features</a>
+              <a href="#how-it-works" className={`nav-link ${activeSection === 'how-it-works' ? 'active' : ''}`} onClick={closeMobileMenu}>How It Works</a>
+              <a href="#community" className={`nav-link ${activeSection === 'community' ? 'active' : ''}`} onClick={closeMobileMenu}>Community</a>
+              <a href="#contact" className={`nav-link ${activeSection === 'contact' ? 'active' : ''}`} onClick={closeMobileMenu}>Contact</a>
             </div>
             
             {/* CTA Button & Mobile Menu */}
@@ -106,12 +119,12 @@ export default function LandingPage() {
           {/* Mobile Menu */}
           <div className={`mobile-menu ${isMenuOpen ? 'show' : ''}`}>
             <div className="mobile-menu-content">
-              <a href="#home" className="mobile-nav-link" onClick={closeMobileMenu}>Home</a>
-              <a href="#about" className="mobile-nav-link" onClick={closeMobileMenu}>About</a>
-              <a href="#features" className="mobile-nav-link" onClick={closeMobileMenu}>Features</a>
-              <a href="#how-it-works" className="mobile-nav-link" onClick={closeMobileMenu}>How It Works</a>
-              <a href="#community" className="mobile-nav-link" onClick={closeMobileMenu}>Community</a>
-              <a href="#contact" className="mobile-nav-link" onClick={closeMobileMenu}>Contact</a>
+              <a href="#home" className={`mobile-nav-link ${activeSection === 'home' ? 'active' : ''}`} onClick={closeMobileMenu}>Home</a>
+              <a href="#about" className={`mobile-nav-link ${activeSection === 'about' ? 'active' : ''}`} onClick={closeMobileMenu}>About</a>
+              <a href="#features" className={`mobile-nav-link ${activeSection === 'features' ? 'active' : ''}`} onClick={closeMobileMenu}>Features</a>
+              <a href="#how-it-works" className={`mobile-nav-link ${activeSection === 'how-it-works' ? 'active' : ''}`} onClick={closeMobileMenu}>How It Works</a>
+              <a href="#community" className={`mobile-nav-link ${activeSection === 'community' ? 'active' : ''}`} onClick={closeMobileMenu}>Community</a>
+              <a href="#contact" className={`mobile-nav-link ${activeSection === 'contact' ? 'active' : ''}`} onClick={closeMobileMenu}>Contact</a>
               <Link to="/signin" className="mobile-nav-link signin-link" onClick={closeMobileMenu}>Sign In</Link>
             </div>
           </div>

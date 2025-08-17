@@ -1,6 +1,11 @@
 /* Ultra Modern Landing Page Design */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   /* Color Palette */
   --primary-color: #10B981;
@@ -289,6 +294,14 @@ body {
   color: var(--primary-color);
   text-decoration: none;
   padding-left: 1rem;
+}
+
+.mobile-nav-link.active {
+  color: var(--primary-color);
+  background-color: var(--gray-50);
+  padding-left: 1rem;
+  border-left: 3px solid var(--primary-color);
+  font-weight: 600;
 }
 
 .mobile-nav-link.signin-link {
