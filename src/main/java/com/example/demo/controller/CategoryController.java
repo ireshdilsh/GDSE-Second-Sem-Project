@@ -54,7 +54,6 @@ public class CategoryController {
     @DeleteMapping("path")
     public String deleteMethod(@RequestParam String param) {
         return new String();
-
     }
 
     @PutMapping("path/{id}")
