@@ -605,18 +605,6 @@ export default function LandingPage() {
                   <textarea className="form-input" rows="4" placeholder="Tell us about your gardening goals and interests..."></textarea>
                 </div>
                 
-                <div className="form-group">
-                  <div className="checkbox-wrapper">
-                    <label className="checkbox-label">
-                      <input type="checkbox" className="form-checkbox" required />
-                      <span className="checkmark"></span>
-                      <span className="checkbox-text">
-                        I agree to the <Link to="/terms" className="legal-link">Terms and Conditions</Link> and <Link to="/privacy" className="legal-link">Privacy Policy</Link>
-                      </span>
-                    </label>
-                  </div>
-                </div>
-                
                 <div className="form-submit-wrapper">
                   <button type="submit" className="btn-contact-primary">
                     <div className="btn-content">
@@ -632,7 +620,7 @@ export default function LandingPage() {
                   
                   <p className="form-privacy-text">
                     <i className="fas fa-lock"></i>
-                    We respect your privacy and never share your information. Read our <Link to="/privacy" className="legal-link">Privacy Policy</Link>.
+                    We respect your privacy and never share your information.
                   </p>
                 </div>
               </form>
@@ -674,7 +662,7 @@ export default function LandingPage() {
                 <h4>Platform</h4>
                 <a href="#">How It Works</a>
                 <a href="#">Features</a>
-                <a href="#">Pricing</a>
+                <Link to="/pricing">Pricing</Link>
                 <a href="#">Mobile App</a>
               </div>
               

@@ -1777,6 +1777,7 @@ section {
   border-radius: var(--radius-xl);
   padding: 2rem;
   box-shadow: var(--shadow-xl);
+  margin-top: -10px;
 }
 
 .contact-form-modern {
@@ -1909,7 +1910,7 @@ section {
   gap: 0.5rem;
   font-size: 0.85rem;
   color: var(--gray-500);
-  margin: 0;
+  margin: 15px 0 0 0;
 }
 
 .form-privacy-text i {

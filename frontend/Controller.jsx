@@ -5,6 +5,7 @@ import SignInPage from './src/pages/SignInPage'
 import SignUpPage from './src/pages/SignUpPage'
 import TermsAndConditions from './src/pages/TermsAndConditions'
 import PrivacyPolicy from './src/pages/PrivacyPolicy'
+import PricingPage from './src/pages/PricingPage'
 
 export default function Controller() {
   return (
@@ -16,6 +17,7 @@ export default function Controller() {
           <Route path='/signup' element={<SignUpPage />}></Route>
           <Route path='/terms' element={<TermsAndConditions />}></Route>
           <Route path='/privacy' element={<PrivacyPolicy />}></Route>
+          <Route path='/pricing' element={<PricingPage />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
