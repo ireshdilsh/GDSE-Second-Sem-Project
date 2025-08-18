@@ -35,7 +35,7 @@ public class ItemServiceImpl implements ItemService {
     private ModelMapper modelMapper;
 
     private static final Logger logger = LoggerFactory.getLogger(ItemServiceImpl.class);
-    private final String uploadDir = "uploads/";
+    private final String uploadDir = "uploads/products/";
 
 
     @Override
