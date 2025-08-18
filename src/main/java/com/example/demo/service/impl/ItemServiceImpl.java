@@ -37,6 +37,7 @@ public class ItemServiceImpl implements ItemService {
     private static final Logger logger = LoggerFactory.getLogger(ItemServiceImpl.class);
     private final String uploadDir = "uploads/";
 
+
     @Override
     public ItemDto createItem(ItemDto itemDto, MultipartFile imageFile) {
         logger.info("Creating item: {}", itemDto);
