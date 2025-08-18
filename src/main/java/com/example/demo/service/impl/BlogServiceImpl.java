@@ -5,6 +5,7 @@ import com.example.demo.entity.Blog;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.BlogRepository;
 import com.example.demo.service.BlogService;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class BlogServiceImpl implements BlogService {
 
     private final BlogRepository blogRepository;
@@ -27,11 +29,6 @@ public class BlogServiceImpl implements BlogService {
 
     private static final Logger logger = LoggerFactory.getLogger(BlogServiceImpl.class);
     private final String uploadDir = "uploads/blogs/";
-
-    public BlogServiceImpl(BlogRepository blogRepository, ModelMapper modelMapper) {
-        this.blogRepository = blogRepository;
-        this.modelMapper = modelMapper;
-    }
 
     @Override
     public BlogDto createBlog(BlogDto blogDto) {
