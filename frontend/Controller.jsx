@@ -9,6 +9,7 @@ import PricingPage from './src/pages/PricingPage'
 import SuccessStoriesPage from './src/pages/SuccessStoriesPage'
 import EventsPage from './src/pages/EventsPage'
 import BlogPage from './src/pages/BlogPage'
+import AdminPage from './src/pages/AdminPage'
 
 export default function Controller() {
   return (
@@ -24,6 +25,7 @@ export default function Controller() {
           <Route path='/success-stories' element={<SuccessStoriesPage />}></Route>
           <Route path='/events' element={<EventsPage />}></Route>
           <Route path='/blog' element={<BlogPage />}></Route>
+          <Route path='/admin' element={<AdminPage />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

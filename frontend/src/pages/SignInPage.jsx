@@ -40,7 +40,7 @@ export default function SignInPage() {
             <div className="auth-wave auth-wave-3"></div>
             <div className="auth-wave auth-wave-4"></div>
           </div>
-          
+
           <div className="visual-overlay">
             <div className="visual-content">
               <div className="brand-logo">
@@ -51,7 +51,7 @@ export default function SignInPage() {
               </div>
               <h2>Welcome Back!</h2>
               <p>Continue your journey in building sustainable urban communities through gardening and sharing.</p>
-              
+
               <div className="visual-stats">
                 <div className="stat-item">
                   <div className="stat-number">50K+</div>
@@ -156,7 +156,7 @@ export default function SignInPage() {
 
             <div className="auth-footer">
               <p>
-                Don't have an account? 
+                Don't have an account?
                 <Link to="/signup" className="auth-link"> Sign up here</Link>
               </p>
             </div>

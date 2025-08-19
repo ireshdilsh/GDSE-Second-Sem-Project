@@ -53,8 +53,15 @@
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(5deg); }
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
 }
 
 /* Container */
@@ -523,7 +530,8 @@
   transform: translateY(-1px);
 }
 
-.btn-save, .btn-share {
+.btn-save,
+.btn-share {
   background: #F3F4F6;
   color: #6B7280;
   border: none;
@@ -536,7 +544,8 @@
   justify-content: center;
 }
 
-.btn-save:hover, .btn-share:hover {
+.btn-save:hover,
+.btn-share:hover {
   background: #E5E7EB;
   color: #374151;
 }
