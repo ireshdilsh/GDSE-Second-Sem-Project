@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/AdminPage.css';
+import axios from 'axios';
 
 const AdminPage = () => {
+  const [productCategoryFilter, setProductCategoryFilter] = useState("");
+  const [productSearch, setProductSearch] = useState("");
+  const [productCategory, setProductCategory] = useState("");
   const [activeTab, setActiveTab] = useState('dashboard');
   const [animatedStats, setAnimatedStats] = useState({
     users: 0,
@@ -28,6 +32,34 @@ const AdminPage = () => {
     { id: 4, name: 'David Wilson', email: 'david@example.com', joinDate: '2024-01-12', status: 'Inactive' }
   ];
 
+
+  // This is Add Product Function
+  const saveProduc = async (e) => {
+    e.preventDefault();
+
+    const data = {
+
+    }
+
+    try {
+      const response = await axios.post("http://localhost:8080/api/v1/item/add/new/product", data);
+      console.log(response.data);
+      clearProductFields();
+    } catch (error) {
+      console.log(error);
+    }
+
+    
+  }
+
+  const clearProductFields = () => {
+    // Clear all input fields in the add product modal
+    const form = document.querySelector('.product-modal form');
+    if (form) {
+      form.reset();
+    }
+    setProductCategory("");
+  }
 
 
   // Animated stats effect
@@ -86,13 +118,6 @@ const AdminPage = () => {
     { id: '#ORD002', customer: 'Bob Smith', date: '2024-01-19', total: 156.78, status: 'Processing', items: 2 },
     { id: '#ORD003', customer: 'Carol Davis', date: '2024-01-18', total: 234.50, status: 'Shipped', items: 4 },
     { id: '#ORD004', customer: 'David Wilson', date: '2024-01-17', total: 67.89, status: 'Pending', items: 1 }
-  ];
-
-  const productsData = [
-    { id: 'PRD001', name: 'Urban Compost Bin', category: 'Composting', price: 49.99, stock: 12, status: 'Active', description: 'Eco-friendly compost bin for urban homes.' },
-    { id: 'PRD002', name: 'Vertical Garden Kit', category: 'Gardening', price: 89.99, stock: 8, status: 'Active', description: 'Grow your own greens in small spaces.' },
-    { id: 'PRD003', name: 'Organic Fertilizer', category: 'Soil', price: 19.99, stock: 30, status: 'Active', description: 'Natural fertilizer for healthy plants.' },
-    { id: 'PRD004', name: 'Smart Irrigation', category: 'Technology', price: 159.99, stock: 5, status: 'Low Stock', description: 'Automated irrigation system for gardens.' }
   ];
 
   const eventsData = [
@@ -252,72 +277,46 @@ const AdminPage = () => {
           <i className="fas fa-plus me-2"></i>Add Product
         </button>
       </div>
-
-      <div className="row g-4">
-        {productsData.map(product => (
-          <div key={product.id} className="col-xl-4 col-lg-6 col-md-6">
-            <div className="admin-card product-card h-100">
-              <div className="product-image-container">
-                <img 
-                  src={`https://via.placeholder.com/300x200/28a745/ffffff?text=${encodeURIComponent(product.name)}`}
-                  alt={product.name}
-                  className="product-image"
-                />
-                <div className="product-status-badge">
-                  <span className={`badge ${getStatusBadge(product.status)}`}>
-                    {product.status}
-                  </span>
-                </div>
-              </div>
-              <div className="card-body d-flex flex-column">
-                <div className="product-header mb-3">
-                  <h5 className="product-title mb-1">{product.name}</h5>
-                  <p className="product-category text-muted mb-0">{product.category}</p>
-                </div>
-                <div className="product-details mb-3">
-                  <div className="d-flex justify-content-between align-items-center mb-2">
-                    <span className="text-muted">Product ID:</span>
-                    <span className="fw-semibold">{product.id}</span>
-                  </div>
-                  <div className="d-flex justify-content-between align-items-center mb-2">
-                    <span className="text-muted">Price:</span>
-                    <span className="fw-bold text-success">${product.price}</span>
-                  </div>
-                  <div className="d-flex justify-content-between align-items-center mb-2">
-                    <span className="text-muted">Stock:</span>
-                    <span className={`fw-semibold ${product.stock < 20 ? 'text-danger' : 'text-primary'}`}>
-                      {product.stock} units
-                    </span>
-                  </div>
-                </div>
-                <div className="product-actions mt-auto">
-                  <div className="d-grid gap-2">
-                    <div className="d-flex gap-2">
-                      <button className="btn btn-outline-primary btn-sm flex-fill" onClick={() => setViewProduct(product)}>
-                        <i className="fas fa-eye me-1"></i>View
-                      </button>
-                      <button className="btn btn-outline-success btn-sm flex-fill">
-                        <i className="fas fa-edit me-1"></i>Edit
-                      </button>
-                      <button className="btn btn-outline-danger btn-sm flex-fill">
-                        <i className="fas fa-trash me-1"></i>Delete
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-
+      <div className="mb-3 d-flex gap-2" style={{ maxWidth: 600 }}>
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Search product"
+          value={productSearch}
+          onChange={e => setProductSearch(e.target.value)}
+          style={{ maxWidth: 250 }}
+        />
+        <select
+          className="form-select"
+          value={productCategoryFilter}
+          onChange={e => setProductCategoryFilter(e.target.value)}
+          style={{ maxWidth: 200 }}
+        >
+          <option value="">All Categories</option>
+          <option value="Composting">Composting</option>
+          <option value="Gardening">Gardening</option>
+          <option value="Soil">Soil</option>
+          <option value="Technology">Technology</option>
+        </select>
       </div>
+      {/* ...existing code... */}
       {/* Add Product Modal */}
       {showAddModal && (
-        <div className="product-modal-overlay" style={{position:'fixed',top:0,left:0,width:'100vw',height:'100vh',background:'rgba(0,0,0,0.4)',zIndex:9999,display:'flex',alignItems:'center',justifyContent:'center'}}>
-          <div className="product-modal" style={{background:'#fff',padding:'2rem',borderRadius:'10px',maxWidth:'400px',width:'100%',boxShadow:'0 2px 16px rgba(0,0,0,0.2)',position:'relative'}}>
-            <button onClick={() => setShowAddModal(false)} style={{position:'absolute',top:'10px',right:'10px',background:'none',border:'none',fontSize:'1.5rem',cursor:'pointer'}}>&times;</button>
+        <div className="product-modal-overlay" style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.4)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div className="product-modal" style={{ background: '#fff', padding: '2rem', borderRadius: '10px', maxWidth: '400px', width: '100%', boxShadow: '0 2px 16px rgba(0,0,0,0.2)', position: 'relative', maxHeight: '80vh', overflowY: 'auto' }}>
+            <button onClick={() => setShowAddModal(false)} style={{ position: 'absolute', top: '10px', right: '10px', background: 'none', border: 'none', fontSize: '1.5rem', cursor: 'pointer' }}>&times;</button>
             <h4 className="mb-3">Add Product</h4>
             <form>
+              <div className="mb-3">
+                <label className="form-label">Category</label>
+                <select className="form-control" value={productCategory} onChange={e => setProductCategory(e.target.value)}>
+                  <option value="">Select category</option>
+                  <option value="Composting">Composting</option>
+                  <option value="Gardening">Gardening</option>
+                  <option value="Soil">Soil</option>
+                  <option value="Technology">Technology</option>
+                </select>
+              </div>
               <div className="mb-3">
                 <label className="form-label">Name</label>
                 <input type="text" className="form-control" placeholder="Enter product name" />
@@ -338,7 +337,7 @@ const AdminPage = () => {
                 <label className="form-label">Qty</label>
                 <input type="number" className="form-control" placeholder="Enter quantity" min="0" step="1" />
               </div>
-              <button type="submit" className="btn btn-warning w-100">Add Product</button>
+              <button type="submit" className="btn btn-warning w-100" onClick={saveProduc}>Add Product</button>
             </form>
           </div>
         </div>
@@ -346,11 +345,11 @@ const AdminPage = () => {
 
       {/* Product Details Modal/Section */}
       {viewProduct && (
-        <div className="product-modal-overlay" style={{position:'fixed',top:0,left:0,width:'100vw',height:'100vh',background:'rgba(0,0,0,0.4)',zIndex:9999,display:'flex',alignItems:'center',justifyContent:'center'}}>
-          <div className="product-modal" style={{background:'#fff',padding:'2rem',borderRadius:'10px',maxWidth:'400px',width:'100%',boxShadow:'0 2px 16px rgba(0,0,0,0.2)',position:'relative'}}>
-            <button onClick={() => setViewProduct(null)} style={{position:'absolute',top:'10px',right:'10px',background:'none',border:'none',fontSize:'1.5rem',cursor:'pointer'}}>&times;</button>
+        <div className="product-modal-overlay" style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.4)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div className="product-modal" style={{ background: '#fff', padding: '2rem', borderRadius: '10px', maxWidth: '400px', width: '100%', boxShadow: '0 2px 16px rgba(0,0,0,0.2)', position: 'relative' }}>
+            <button onClick={() => setViewProduct(null)} style={{ position: 'absolute', top: '10px', right: '10px', background: 'none', border: 'none', fontSize: '1.5rem', cursor: 'pointer' }}>&times;</button>
             <h4 className="mb-3">Product Details</h4>
-            <img src={`https://via.placeholder.com/300x200/28a745/ffffff?text=${encodeURIComponent(viewProduct.name)}`} alt={viewProduct.name} style={{width:'100%',borderRadius:'8px',marginBottom:'1rem'}} />
+            <img src={`https://via.placeholder.com/300x200/28a745/ffffff?text=${encodeURIComponent(viewProduct.name)}`} alt={viewProduct.name} style={{ width: '100%', borderRadius: '8px', marginBottom: '1rem' }} />
             <h5>{viewProduct.name}</h5>
             <p className="text-muted mb-1">{viewProduct.category}</p>
             <p>{viewProduct.description}</p>
@@ -572,7 +571,7 @@ const AdminPage = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="col-xl-3 col-lg-6">
           <div className="stat-card swaps-stat">
             <div className="stat-icon">
@@ -588,7 +587,7 @@ const AdminPage = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="col-xl-3 col-lg-6">
           <div className="stat-card revenue-stat">
             <div className="stat-icon">
@@ -604,7 +603,7 @@ const AdminPage = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="col-xl-3 col-lg-6">
           <div className="stat-card satisfaction-stat">
             <div className="stat-icon">
@@ -813,11 +812,10 @@ const AdminPage = () => {
                 {notifications.map(notification => (
                   <div key={notification.id} className="activity-item">
                     <div className={`activity-icon activity-${notification.type}`}>
-                      <i className={`fas ${
-                        notification.type === 'success' ? 'fa-check' :
-                        notification.type === 'warning' ? 'fa-exclamation' :
-                        'fa-info'
-                      }`}></i>
+                      <i className={`fas ${notification.type === 'success' ? 'fa-check' :
+                          notification.type === 'warning' ? 'fa-exclamation' :
+                            'fa-info'
+                        }`}></i>
                     </div>
                     <div className="activity-content">
                       <p className="activity-message">{notification.message}</p>
@@ -927,49 +925,49 @@ const AdminPage = () => {
           <h3>UrbanGreen Admin</h3>
         </div>
         <nav className="admin-nav">
-          <button 
+          <button
             className={`admin-nav-item ${activeTab === 'dashboard' ? 'active' : ''}`}
             onClick={() => setActiveTab('dashboard')}
           >
             <i className="fas fa-tachometer-alt"></i>
             <span>Dashboard</span>
           </button>
-          <button 
+          <button
             className={`admin-nav-item ${activeTab === 'customers' ? 'active' : ''}`}
             onClick={() => setActiveTab('customers')}
           >
             <i className="fas fa-users"></i>
             <span>Customers</span>
           </button>
-          <button 
+          <button
             className={`admin-nav-item ${activeTab === 'orders' ? 'active' : ''}`}
             onClick={() => setActiveTab('orders')}
           >
             <i className="fas fa-shopping-cart"></i>
             <span>Orders</span>
           </button>
-          <button 
+          <button
             className={`admin-nav-item ${activeTab === 'products' ? 'active' : ''}`}
             onClick={() => setActiveTab('products')}
           >
             <i className="fas fa-box"></i>
             <span>Products</span>
           </button>
-          <button 
+          <button
             className={`admin-nav-item ${activeTab === 'analytics' ? 'active' : ''}`}
             onClick={() => setActiveTab('analytics')}
           >
             <i className="fas fa-chart-line"></i>
             <span>Analytics</span>
           </button>
-          <button 
+          <button
             className={`admin-nav-item ${activeTab === 'events' ? 'active' : ''}`}
             onClick={() => setActiveTab('events')}
           >
             <i className="fas fa-calendar-alt"></i>
             <span>Events</span>
           </button>
-          <button 
+          <button
             className={`admin-nav-item ${activeTab === 'blogs' ? 'active' : ''}`}
             onClick={() => setActiveTab('blogs')}
           >
