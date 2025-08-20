@@ -18,6 +18,7 @@ export default function Event() {
   const [eventList, setEvents] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [menuOpenId, setMenuOpenId] = useState(null);
 
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
@@ -99,6 +100,29 @@ export default function Event() {
     setSelectedEvent(null);
   };
 
+  const handleDelete = async (id) => {
+    try {
+      const resp = await axios.delete(`http://localhost:8080/api/v1/event/delete/${id}`);
+      console.log(resp);
+      Swal.fire({
+        icon: 'success',
+        title: 'Deleted!',
+        text: 'Event deleted successfully.',
+        timer: 1500,
+        showConfirmButton: false
+      });
+      fetchAllEvents();
+
+    } catch (err) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: err.response?.data?.message || 'Failed to delete event.'
+      });
+    }
+    setMenuOpenId(null);
+  };
+
   return (
     <div className="event-page-container">
       <button className="btn btn-link event-back-btn" onClick={() => window.history.back()}>
@@ -117,12 +141,33 @@ export default function Event() {
       {/* Event Cards Grid - now using eventList */}
       <div className="event-card-grid">
         {Array.isArray(eventList) && eventList.map(event => (
-          <div key={event.id} className="event-card">
+          <div key={event.id} className="event-card" style={{ position: 'relative' }}>
+            {/* 3-dots menu */}
+            <div style={{ position: 'absolute', top: 16, right: 16, zIndex: 2 }}>
+              <button
+                className="btn btn-link p-0"
+                style={{ fontSize: 22, color: '#888', background: 'none', border: 'none' }}
+                onClick={() => setMenuOpenId(menuOpenId === event.id ? null : event.id)}
+                aria-label="Open menu"
+              >
+                &#8942;
+              </button>
+              {menuOpenId === event.id && (
+                <div style={{ position: 'absolute', top: 28, right: 0, background: '#fff', border: '1px solid #eee', borderRadius: 6, boxShadow: '0 2px 8px rgba(0,0,0,0.08)', padding: '6px 0', minWidth: 100 }}>
+                  <button
+                    className="dropdown-item text-danger"
+                    style={{ width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '8px 16px', fontWeight: 500, fontSize: 15, cursor: 'pointer' }}
+                    onClick={() => handleDelete(event.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              )}
+            </div>
             <div>
               <h3 className="event-card-title">{event.title}</h3>
               <div className="event-card-location-date">{event.location} &middot; {event.date}</div>
               <div className="event-card-attendees">
-                {/* this maxAttendance = users enrolls count of event */}
                 <span>{event.maxAttendance}</span>
                 <span style={{ color: '#a0aec0', fontWeight: 400 }}> / {event.maxAttendance} Attendees</span>
               </div>
@@ -133,8 +178,7 @@ export default function Event() {
             </div>
             <div className="event-card-actions">
               <button className="btn-view" onClick={() => handleView(event)}>View</button>
-              <button className="btn-edit" 
-              style={{ background: 'linear-gradient(90deg, #f6d365 0%, #fda085 100%)', border: 'none',color:'#fff' }}>Edit</button>
+              <button className="btn-edit">Edit</button>
             </div>
           </div>
         ))}
@@ -200,8 +244,8 @@ export default function Event() {
             <h3 className="event-modal-title event-modal-title-margin">{selectedEvent.title}</h3>
             <div className="event-modal-location-date">{selectedEvent.location} &middot; {selectedEvent.date}</div>
             <div className="event-modal-attendees">
-              <span>{selectedEvent.attendees}</span>
-              <span style={{ color: '#a0aec0', fontWeight: 400 }}> / {selectedEvent.maxAttendees} Attendees</span>
+              <span>{selectedEvent.maxAttendance}</span>
+              <span style={{ color: '#a0aec0', fontWeight: 400 }}> / {selectedEvent.maxAttendance} Attendees</span>
             </div>
             <span className={`event-modal-status${selectedEvent.status === 'Upcoming' ? ' upcoming' : ''}`}>{selectedEvent.status}</span>
             <div className="event-modal-description">
