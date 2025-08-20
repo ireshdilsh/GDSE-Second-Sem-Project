@@ -10,6 +10,11 @@ import SuccessStoriesPage from './src/pages/SuccessStoriesPage'
 import EventsPage from './src/pages/EventsPage'
 import BlogPage from './src/pages/BlogPage'
 import AdminPage from './src/pages/AdminPage'
+import Blog from './src/pages/admin/pages/Blog'
+import Customer from './src/pages/admin/pages/Customer'
+import Order from './src/pages/admin/pages/Order'
+import Product from './src/pages/admin/pages/Product'
+import Event from './src/pages/admin/pages/Event'
 
 export default function Controller() {
   return (
@@ -26,6 +31,13 @@ export default function Controller() {
           <Route path='/events' element={<EventsPage />}></Route>
           <Route path='/blog' element={<BlogPage />}></Route>
           <Route path='/admin' element={<AdminPage />}></Route>
+
+          {/* Admin for page paths */}
+          <Route path='/admin/event' element={<Event />}></Route>
+          <Route path='/admin/customer' element={<Customer />}></Route>
+          <Route path='/admin/blog' element = {<Blog/>}></Route>
+          <Route path='/admin/orders' element={<Order />}></Route>
+          <Route path='/admin/product' element={<Product />}></Route>
 
         </Routes>
       </BrowserRouter>

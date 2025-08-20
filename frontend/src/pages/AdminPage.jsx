@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/AdminPage.css';
 
 const AdminPage = () => {
@@ -71,6 +71,8 @@ const AdminPage = () => {
     }
   };
 
+  const navigate = useNavigate();
+
   return (
     <div className="admin-dashboard">
       <div className="admin-sidebar">
@@ -80,28 +82,28 @@ const AdminPage = () => {
         <nav className="admin-nav">
           <button 
             className={`admin-nav-item ${activeTab === 'dashboard' ? 'active' : ''}`}
-            onClick={() => setActiveTab('dashboard')}
+            onClick={() => navigate('/admin')}
           >
             <i className="fas fa-tachometer-alt"></i>
             <span>Dashboard</span>
           </button>
           <button 
             className={`admin-nav-item ${activeTab === 'customers' ? 'active' : ''}`}
-            onClick={() => setActiveTab('customers')}
+            onClick={() => navigate('/admin/customer')}
           >
             <i className="fas fa-users"></i>
             <span>Customers</span>
           </button>
           <button 
             className={`admin-nav-item ${activeTab === 'orders' ? 'active' : ''}`}
-            onClick={() => setActiveTab('orders')}
+            onClick={() => navigate('/admin/orders')}
           >
             <i className="fas fa-shopping-cart"></i>
             <span>Orders</span>
           </button>
           <button 
             className={`admin-nav-item ${activeTab === 'products' ? 'active' : ''}`}
-            onClick={() => setActiveTab('products')}
+            onClick={() => navigate('/admin/product')}
           >
             <i className="fas fa-box"></i>
             <span>Products</span>
@@ -115,14 +117,14 @@ const AdminPage = () => {
           </button>
           <button 
             className={`admin-nav-item ${activeTab === 'events' ? 'active' : ''}`}
-            onClick={() => setActiveTab('events')}
+            onClick={() => navigate('/admin/event')}
           >
             <i className="fas fa-calendar-alt"></i>
             <span>Events</span>
           </button>
           <button 
             className={`admin-nav-item ${activeTab === 'blogs' ? 'active' : ''}`}
-            onClick={() => setActiveTab('blogs')}
+            onClick={() => navigate('/admin/blog')}
           >
             <i className="fas fa-blog"></i>
             <span>Blogs</span>
@@ -240,7 +242,7 @@ const AdminPage = () => {
                   </div>
                 </div>
                 <div className="management-actions">
-                  <button className="btn btn-outline-primary btn-sm" onClick={() => setActiveTab('customers')}>
+                  <button className="btn btn-outline-primary btn-sm" onClick={() => navigate('/admin/customer')}>
                     Manage Customers
                   </button>
                 </div>
@@ -269,7 +271,7 @@ const AdminPage = () => {
                   </div>
                 </div>
                 <div className="management-actions">
-                  <button className="btn btn-outline-success btn-sm" onClick={() => setActiveTab('orders')}>
+                  <button className="btn btn-outline-success btn-sm" onClick={() => navigate('/admin/orders')}>
                     Manage Orders
                   </button>
                 </div>
@@ -298,7 +300,7 @@ const AdminPage = () => {
                   </div>
                 </div>
                 <div className="management-actions">
-                  <button className="btn btn-outline-warning btn-sm" onClick={() => setActiveTab('products')}>
+                  <button className="btn btn-outline-warning btn-sm" onClick={() => navigate('/admin/product')}>
                     Manage Products
                   </button>
                 </div>
@@ -356,7 +358,7 @@ const AdminPage = () => {
                   </div>
                 </div>
                 <div className="management-actions">
-                  <button className="btn btn-outline-secondary btn-sm" onClick={() => setActiveTab('events')}>
+                  <button className="btn btn-outline-secondary btn-sm" onClick={() => navigate('/admin/event')}>
                     Manage Events
                   </button>
                 </div>
@@ -385,7 +387,7 @@ const AdminPage = () => {
                   </div>
                 </div>
                 <div className="management-actions">
-                  <button className="btn btn-outline-dark btn-sm" onClick={() => setActiveTab('blogs')}>
+                  <button className="btn btn-outline-dark btn-sm" onClick={() => navigate('/admin/blog')}>
                     Manage Blogs
                   </button>
                 </div>
@@ -432,19 +434,19 @@ const AdminPage = () => {
                 </div>
                 <div className="card-body">
                   <div className="quick-actions">
-                    <button className="quick-action-btn" onClick={() => setActiveTab('customers')}>
+                    <button className="quick-action-btn" onClick={() => navigate('/admin/customer')}>
                       <i className="fas fa-user-plus"></i>
                       <span>Add Customer</span>
                     </button>
-                    <button className="quick-action-btn" onClick={() => setActiveTab('products')}>
+                    <button className="quick-action-btn" onClick={() => navigate('/admin/product')}>
                       <i className="fas fa-plus-circle"></i>
                       <span>Add Product</span>
                     </button>
-                    <button className="quick-action-btn" onClick={() => setActiveTab('events')}>
+                    <button className="quick-action-btn" onClick={() => navigate('/admin/event')}>
                       <i className="fas fa-calendar-plus"></i>
                       <span>Create Event</span>
                     </button>
-                    <button className="quick-action-btn" onClick={() => setActiveTab('blogs')}>
+                    <button className="quick-action-btn" onClick={() => navigate('/admin/blog')}>
                       <i className="fas fa-edit"></i>
                       <span>Write Blog</span>
                     </button>
