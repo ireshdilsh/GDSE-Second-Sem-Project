@@ -26,6 +26,7 @@ export default function Controller() {
           <Route path='/events' element={<EventsPage />}></Route>
           <Route path='/blog' element={<BlogPage />}></Route>
           <Route path='/admin' element={<AdminPage />}></Route>
+
         </Routes>
       </BrowserRouter>
     </div>
