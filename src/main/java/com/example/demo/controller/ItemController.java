@@ -27,6 +27,7 @@ public class ItemController {
             @RequestParam("name") String name,
             @RequestParam("description") String description,
             @RequestParam("price") Double price,
+            @RequestParam("qty") int qty,
             @RequestParam("categoryId") Long categoryId,
             @RequestPart(value = "imageFile", required = false) MultipartFile imageFile) {
 
@@ -34,6 +35,7 @@ public class ItemController {
         itemDto.setName(name);
         itemDto.setDescription(description);
         itemDto.setPrice(price);
+        itemDto.setQty(qty);
         itemDto.setCategoryId(categoryId);
 
         logger.info("Request to create item: {}", itemDto);
@@ -65,6 +67,7 @@ public class ItemController {
             @RequestParam("name") String name,
             @RequestParam("description") String description,
             @RequestParam("price") Double price,
+            @RequestParam("qty") int qty,
             @RequestParam("categoryId") Long categoryId,
             @RequestPart(value = "imageFile", required = false) MultipartFile imageFile) {
 
@@ -72,6 +75,7 @@ public class ItemController {
         itemDto.setName(name);
         itemDto.setDescription(description);
         itemDto.setPrice(price);
+        itemDto.setQty(qty);
         itemDto.setCategoryId(categoryId);
 
         logger.info("Request to update item with ID: {}", id);

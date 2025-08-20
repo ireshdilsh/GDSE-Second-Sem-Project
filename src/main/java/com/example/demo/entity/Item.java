@@ -17,6 +17,7 @@ public class Item {
     private String name;
     private String description;
     private Double price;
+    private int qty;
     private String imageUrl; // Store image path or URL
 
     @ManyToOne(fetch = FetchType.LAZY)
