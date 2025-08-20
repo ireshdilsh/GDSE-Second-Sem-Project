@@ -122,8 +122,9 @@ export default function Event() {
               <h3 className="event-card-title">{event.title}</h3>
               <div className="event-card-location-date">{event.location} &middot; {event.date}</div>
               <div className="event-card-attendees">
-                <span>{event.attendees}</span>
-                <span style={{ color: '#a0aec0', fontWeight: 400 }}> / {event.maxAttendees} Attendees</span>
+                {/* this maxAttendance = users enrolls count of event */}
+                <span>{event.maxAttendance}</span>
+                <span style={{ color: '#a0aec0', fontWeight: 400 }}> / {event.maxAttendance} Attendees</span>
               </div>
               <span className={`event-card-status${event.status === 'Upcoming' ? ' upcoming' : ''}`}>{event.status}</span>
               <div className="event-card-description">
@@ -132,7 +133,8 @@ export default function Event() {
             </div>
             <div className="event-card-actions">
               <button className="btn-view" onClick={() => handleView(event)}>View</button>
-              <button className="btn-edit">Edit</button>
+              <button className="btn-edit" 
+              style={{ background: 'linear-gradient(90deg, #f6d365 0%, #fda085 100%)', border: 'none',color:'#fff' }}>Edit</button>
             </div>
           </div>
         ))}
