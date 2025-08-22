@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../../styles/BlogPage.css';
+import axios from 'axios';
 
 const mockBlogs = [
   {
@@ -36,53 +37,53 @@ export default function Blog() {
   const [blogList, setBlogList] = useState(mockBlogs);
   const [showModal, setShowModal] = useState(false);
   const [menuOpenId, setMenuOpenId] = useState(null);
+
   const [title, setTitle] = useState("");
-  const [date, setDate] = useState("");
   const [author, setAuthor] = useState("");
   const [imageFile, setImageFile] = useState(null);
   const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+
   const [headerText, setHeaderText] = useState("");
   const [showViewModal, setShowViewModal] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState(null);
-  const [category, setCategory] = useState("");
-  const categories = ["Tech", "Design", "Business", "AI", "Career"];
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImageFile(reader.result);
-      };
-      reader.readAsDataURL(file);
-    } else {
-      setImageFile(null);
-    }
+    setImageFile(file || null);
   };
 
   const clearFields = () => {
     setTitle("");
-    setDate("");
     setAuthor("");
     setImageFile(null);
     setDescription("");
     setCategory("");
   };
 
-  const addNewBlog = (e) => {
+  const addNewBlog = async (e) => {
     e.preventDefault();
-    const newBlog = {
-      id: Date.now(),
-      title,
-      date,
-      author,
-      image: imageFile,
-      description,
-      category
-    };
-    setBlogList([newBlog, ...blogList]);
-    setShowModal(false);
-    clearFields();
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("content", description); // backend expects 'content'
+    formData.append("author", author);
+    if (imageFile) {
+      formData.append("imageFile", imageFile);
+    }
+
+    try {
+      const resp = await axios.post(
+        "http://localhost:8080/api/v1/blog/create/with-image",
+        formData,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+      const createdBlog = resp.data.data;
+      setBlogList([{ ...createdBlog, description, category, image: createdBlog.imageUrl || createdBlog.image }, ...blogList]);
+      setShowModal(false);
+      clearFields();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleDelete = (id) => {
@@ -178,10 +179,6 @@ export default function Blog() {
                   <input type="text" onChange={e => setTitle(e.target.value)} value={title} className="form-control" id="blogTitle" placeholder="Enter blog title" required />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="blogDate" className="form-label">Date</label>
-                  <input type="date" onChange={e => setDate(e.target.value)} value={date} className="form-control" id="blogDate" required />
-                </div>
-                <div className="mb-3">
                   <label htmlFor="blogAuthor" className="form-label">Author</label>
                   <input type="text" onChange={e => setAuthor(e.target.value)} value={author} className="form-control" id="blogAuthor" placeholder="Enter author name" required />
                 </div>
@@ -192,21 +189,6 @@ export default function Blog() {
                 <div className="mb-3">
                   <label htmlFor="blogDescription" className="form-label">Description</label>
                   <textarea className="form-control" onChange={e => setDescription(e.target.value)} value={description} id="blogDescription" rows="3" placeholder="Enter blog description" required></textarea>
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="blogCategory" className="form-label">Category</label>
-                  <select
-                    id="blogCategory"
-                    className="form-control"
-                    value={category}
-                    onChange={e => setCategory(e.target.value)}
-                    required
-                  >
-                    <option value="" disabled>Choose category</option>
-                    {categories.map(cat => (
-                      <option key={cat} value={cat}>{cat}</option>
-                    ))}
-                  </select>
                 </div>
                 <button type="submit" className="btn btn-primary w-100"
                   style={{ background: 'linear-gradient(90deg, #f6d365 0%, #fda085 100%)', border: 'none' }}>
