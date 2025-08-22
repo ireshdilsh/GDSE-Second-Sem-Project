@@ -25,20 +25,6 @@ public class BlogController {
         this.blogService = blogService;
     }
 
-    // Create blog without image (JSON body)
-    @PostMapping("/create")
-    public ResponseEntity<APIResponse> createBlog(@RequestBody BlogDto blogDto) {
-        logger.info("Request to create blog without image: {}", blogDto.getTitle());
-        try {
-            BlogDto created = blogService.createBlog(blogDto);
-            logger.info("Blog created successfully: {}", created.getId());
-            return new ResponseEntity<>(new APIResponse(201, "Blog created successfully", created), HttpStatus.CREATED);
-        } catch (Exception e) {
-            logger.error("Error creating blog: ", e);
-            return new ResponseEntity<>(new APIResponse(500, "Error creating blog: " + e.getMessage(), null), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
     // Create blog with image (form-data)
     @PostMapping("/create/with-image")
     public ResponseEntity<APIResponse> createBlogWithImage(

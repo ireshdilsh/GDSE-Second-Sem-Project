@@ -19,7 +19,7 @@ public class Event {
     private String title;
 
     @Column(nullable = false)
-    private LocalDate date;
+    private String date;
 
     @Column(nullable = false)
     private String location;
