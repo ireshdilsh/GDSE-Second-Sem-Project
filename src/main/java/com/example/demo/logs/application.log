@@ -1,21 +1,84 @@
-[2025-08-22 10:18:09] - Starting DemoApplication using Java 21.0.4 with PID 6752 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
-[2025-08-22 10:18:09] - No active profile set, falling back to 1 default profile: "default"
-[2025-08-22 10:18:40] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-[2025-08-22 10:18:41] - Finished Spring Data repository scanning in 501 ms. Found 6 JPA repository interfaces.
-[2025-08-22 10:18:47] - Tomcat initialized with port 8080 (http)
-[2025-08-22 10:18:47] - Initializing ProtocolHandler ["http-nio-8080"]
-[2025-08-22 10:18:47] - Starting service [Tomcat]
-[2025-08-22 10:18:47] - Starting Servlet engine: [Apache Tomcat/10.1.41]
-[2025-08-22 10:18:47] - Initializing Spring embedded WebApplicationContext
-[2025-08-22 10:18:47] - Root WebApplicationContext: initialization completed in 37306 ms
-[2025-08-22 10:18:50] - HHH000204: Processing PersistenceUnitInfo [name: default]
-[2025-08-22 10:18:52] - HHH000412: Hibernate ORM core version 6.6.15.Final
-[2025-08-22 10:18:53] - HHH000026: Second-level cache disabled
-[2025-08-22 10:19:00] - No LoadTimeWeaver setup: ignoring JPA class transformer
-[2025-08-22 10:19:00] - HikariPool-1 - Starting...
-[2025-08-22 10:19:06] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6e4e60f5
-[2025-08-22 10:19:06] - HikariPool-1 - Start completed.
-[2025-08-22 10:19:08] - HHH10001005: Database info:
+[2025-08-22 11:51:55] - Fetched 2 blogs
+[2025-08-22 11:51:55] - Request to get all blogs
+[2025-08-22 11:51:55] - Fetching all blogs
+[2025-08-22 11:51:55] - Fetched 2 blogs
+[2025-08-22 11:55:59] - Request to get all blogs
+[2025-08-22 11:55:59] - Fetching all blogs
+[2025-08-22 11:55:59] - Fetched 2 blogs
+[2025-08-22 11:55:59] - Request to get all blogs
+[2025-08-22 11:55:59] - Fetching all blogs
+[2025-08-22 11:56:00] - Fetched 2 blogs
+[2025-08-22 11:56:33] - Request to get all blogs
+[2025-08-22 11:56:33] - Fetching all blogs
+[2025-08-22 11:56:33] - Fetched 2 blogs
+[2025-08-22 11:56:33] - Request to get all blogs
+[2025-08-22 11:56:33] - Fetching all blogs
+[2025-08-22 11:56:33] - Fetched 2 blogs
+[2025-08-22 11:57:32] - Request to get all blogs
+[2025-08-22 11:57:32] - Fetching all blogs
+[2025-08-22 11:57:33] - Fetched 2 blogs
+[2025-08-22 11:57:33] - Request to get all blogs
+[2025-08-22 11:57:33] - Fetching all blogs
+[2025-08-22 11:57:33] - Fetched 2 blogs
+[2025-08-22 12:00:48] - Request to get all blogs
+[2025-08-22 12:00:48] - Fetching all blogs
+[2025-08-22 12:00:48] - Fetched 2 blogs
+[2025-08-22 12:00:48] - Request to get all blogs
+[2025-08-22 12:00:48] - Fetching all blogs
+[2025-08-22 12:00:48] - Fetched 2 blogs
+[2025-08-22 12:01:45] - Request to get all blogs
+[2025-08-22 12:01:45] - Fetching all blogs
+[2025-08-22 12:01:45] - Fetched 2 blogs
+[2025-08-22 12:01:45] - Request to get all blogs
+[2025-08-22 12:01:45] - Fetching all blogs
+[2025-08-22 12:01:45] - Fetched 2 blogs
+[2025-08-22 12:04:44] - Request to get all blogs
+[2025-08-22 12:04:44] - Fetching all blogs
+[2025-08-22 12:04:44] - Fetched 2 blogs
+[2025-08-22 12:04:44] - Request to get all blogs
+[2025-08-22 12:04:44] - Fetching all blogs
+[2025-08-22 12:04:44] - Fetched 2 blogs
+[2025-08-22 12:04:58] - Request to get all blogs
+[2025-08-22 12:04:58] - Fetching all blogs
+[2025-08-22 12:04:58] - Fetched 2 blogs
+[2025-08-22 12:04:58] - Request to get all blogs
+[2025-08-22 12:04:58] - Fetching all blogs
+[2025-08-22 12:04:58] - Fetched 2 blogs
+[2025-08-22 12:09:25] - Request to get all blogs
+[2025-08-22 12:09:25] - Fetching all blogs
+[2025-08-22 12:09:25] - Fetched 2 blogs
+[2025-08-22 12:09:25] - Request to get all blogs
+[2025-08-22 12:09:25] - Fetching all blogs
+[2025-08-22 12:09:25] - Fetched 2 blogs
+[2025-08-22 12:09:37] - Request to get all blogs
+[2025-08-22 12:09:37] - Fetching all blogs
+[2025-08-22 12:09:37] - Fetched 2 blogs
+[2025-08-22 12:09:37] - Request to get all blogs
+[2025-08-22 12:09:37] - Fetching all blogs
+[2025-08-22 12:09:37] - Fetched 2 blogs
+[2025-08-22 12:10:15] - Commencing graceful shutdown. Waiting for active requests to complete
+[2025-08-22 12:10:15] - Graceful shutdown complete
+[2025-08-22 12:10:15] - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2025-08-22 12:10:15] - HikariPool-1 - Shutdown initiated...
+[2025-08-22 12:10:15] - HikariPool-1 - Shutdown completed.
+[2025-08-22 12:13:54] - Starting DemoApplication using Java 17.0.11 with PID 6488 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
+[2025-08-22 12:13:54] - No active profile set, falling back to 1 default profile: "default"
+[2025-08-22 12:13:59] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-08-22 12:14:00] - Finished Spring Data repository scanning in 229 ms. Found 6 JPA repository interfaces.
+[2025-08-22 12:14:01] - Tomcat initialized with port 8080 (http)
+[2025-08-22 12:14:01] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-08-22 12:14:01] - Starting service [Tomcat]
+[2025-08-22 12:14:01] - Starting Servlet engine: [Apache Tomcat/10.1.41]
+[2025-08-22 12:14:01] - Initializing Spring embedded WebApplicationContext
+[2025-08-22 12:14:01] - Root WebApplicationContext: initialization completed in 7094 ms
+[2025-08-22 12:14:02] - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-08-22 12:14:03] - HHH000412: Hibernate ORM core version 6.6.15.Final
+[2025-08-22 12:14:03] - HHH000026: Second-level cache disabled
+[2025-08-22 12:14:04] - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-08-22 12:14:04] - HikariPool-1 - Starting...
+[2025-08-22 12:14:05] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3d59933
+[2025-08-22 12:14:05] - HikariPool-1 - Start completed.
+[2025-08-22 12:14:05] - HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 9.0.1
@@ -23,63 +86,11 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-[2025-08-22 10:19:14] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[2025-08-22 10:19:15] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[2025-08-22 10:19:22] - Hibernate is in classpath; If applicable, HQL parser will be used.
-[2025-08-22 10:19:36] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-[2025-08-22 10:19:37] - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-[2025-08-22 10:19:42] - Starting ProtocolHandler ["http-nio-8080"]
-[2025-08-22 10:19:42] - Tomcat started on port 8080 (http) with context path '/'
-[2025-08-22 10:19:42] - Started DemoApplication in 98.563 seconds (process running for 119.942)
-[2025-08-22 10:25:25] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-[2025-08-22 10:25:25] - Initializing Servlet 'dispatcherServlet'
-[2025-08-22 10:25:25] - Completed initialization in 0 ms
-[2025-08-22 10:25:26] - Request to create blog with image: First Blog
-[2025-08-22 10:25:26] - Creating blog with image: First Blog
-[2025-08-22 10:25:26] - Image saved for blog: uploads\blogs\1755838526800_WhatsApp Image 2025-08-01 at 12.04.28 PM.jpeg
-[2025-08-22 10:25:28] - Blog created with ID: 2
-[2025-08-22 10:25:28] - Blog created successfully with image: 2
-[2025-08-22 11:13:13] - Starting DemoApplication using Java 21.0.4 with PID 16312 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
-[2025-08-22 11:13:13] - No active profile set, falling back to 1 default profile: "default"
-[2025-08-22 11:13:15] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-[2025-08-22 11:13:16] - Finished Spring Data repository scanning in 227 ms. Found 6 JPA repository interfaces.
-[2025-08-22 11:13:17] - Tomcat initialized with port 8080 (http)
-[2025-08-22 11:13:17] - Initializing ProtocolHandler ["http-nio-8080"]
-[2025-08-22 11:13:17] - Starting service [Tomcat]
-[2025-08-22 11:13:17] - Starting Servlet engine: [Apache Tomcat/10.1.41]
-[2025-08-22 11:13:17] - Initializing Spring embedded WebApplicationContext
-[2025-08-22 11:13:17] - Root WebApplicationContext: initialization completed in 3416 ms
-[2025-08-22 11:13:17] - HHH000204: Processing PersistenceUnitInfo [name: default]
-[2025-08-22 11:13:17] - HHH000412: Hibernate ORM core version 6.6.15.Final
-[2025-08-22 11:13:17] - HHH000026: Second-level cache disabled
-[2025-08-22 11:13:19] - No LoadTimeWeaver setup: ignoring JPA class transformer
-[2025-08-22 11:13:19] - HikariPool-1 - Starting...
-[2025-08-22 11:13:20] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4ba13fed
-[2025-08-22 11:13:20] - HikariPool-1 - Start completed.
-[2025-08-22 11:13:20] - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 9.0.1
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-[2025-08-22 11:13:22] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[2025-08-22 11:13:22] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[2025-08-22 11:13:23] - Hibernate is in classpath; If applicable, HQL parser will be used.
-[2025-08-22 11:13:24] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-[2025-08-22 11:13:24] - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-[2025-08-22 11:13:25] - Starting ProtocolHandler ["http-nio-8080"]
-[2025-08-22 11:13:25] - Tomcat started on port 8080 (http) with context path '/'
-[2025-08-22 11:13:25] - Started DemoApplication in 12.945 seconds (process running for 21.111)
-[2025-08-22 11:15:27] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-[2025-08-22 11:15:27] - Initializing Servlet 'dispatcherServlet'
-[2025-08-22 11:15:27] - Completed initialization in 0 ms
-[2025-08-22 11:15:27] - Request to get all blogs
-[2025-08-22 11:15:27] - Fetching all blogs
-[2025-08-22 11:15:27] - Fetched 2 blogs
-[2025-08-22 11:16:52] - Commencing graceful shutdown. Waiting for active requests to complete
-[2025-08-22 11:16:52] - Graceful shutdown complete
-[2025-08-22 11:16:52] - Closing JPA EntityManagerFactory for persistence unit 'default'
-[2025-08-22 11:16:52] - HikariPool-1 - Shutdown initiated...
-[2025-08-22 11:16:53] - HikariPool-1 - Shutdown completed.
+[2025-08-22 12:14:08] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-08-22 12:14:08] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-08-22 12:14:09] - Hibernate is in classpath; If applicable, HQL parser will be used.
+[2025-08-22 12:14:11] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-08-22 12:14:12] - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+[2025-08-22 12:14:13] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-08-22 12:14:13] - Tomcat started on port 8080 (http) with context path '/'
+[2025-08-22 12:14:14] - Started DemoApplication in 21.308 seconds (process running for 23.277)
