@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import com.example.demo.dto.EventDto;
 import com.example.demo.service.EventService;
 import com.example.demo.utils.APIResponse;
-import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

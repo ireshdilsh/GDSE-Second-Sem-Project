@@ -94,3 +94,12 @@
 [2025-08-22 12:14:13] - Starting ProtocolHandler ["http-nio-8080"]
 [2025-08-22 12:14:13] - Tomcat started on port 8080 (http) with context path '/'
 [2025-08-22 12:14:14] - Started DemoApplication in 21.308 seconds (process running for 23.277)
+[2025-08-22 12:14:43] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-08-22 12:14:43] - Initializing Servlet 'dispatcherServlet'
+[2025-08-22 12:14:43] - Completed initialization in 5 ms
+[2025-08-22 12:14:43] - Request to get all blogs
+[2025-08-22 12:14:43] - Fetching all blogs
+[2025-08-22 12:14:44] - Fetched 2 blogs
+[2025-08-22 12:14:44] - Request to get all blogs
+[2025-08-22 12:14:44] - Fetching all blogs
+[2025-08-22 12:14:44] - Fetched 2 blogs
