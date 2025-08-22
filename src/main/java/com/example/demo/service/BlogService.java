@@ -6,8 +6,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 public interface BlogService {
-    // Create blog without image
-    BlogDto createBlog(BlogDto blogDto);
     
     // Create blog with image
     BlogDto createBlogWithImage(BlogDto blogDto, MultipartFile imageFile);

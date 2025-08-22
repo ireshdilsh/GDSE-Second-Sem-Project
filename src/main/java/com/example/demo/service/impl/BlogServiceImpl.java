@@ -31,15 +31,6 @@ public class BlogServiceImpl implements BlogService {
     private final String uploadDir = "uploads/blogs/";
 
     @Override
-    public BlogDto createBlog(BlogDto blogDto) {
-        logger.info("Creating blog without image: {}", blogDto.getTitle());
-        Blog blog = modelMapper.map(blogDto, Blog.class);
-        Blog saved = blogRepository.save(blog);
-        logger.info("Blog created with ID: {}", saved.getId());
-        return modelMapper.map(saved, BlogDto.class);
-    }
-
-    @Override
     public BlogDto createBlogWithImage(BlogDto blogDto, MultipartFile imageFile) {
         logger.info("Creating blog with image: {}", blogDto.getTitle());
         Blog blog = modelMapper.map(blogDto, Blog.class);
