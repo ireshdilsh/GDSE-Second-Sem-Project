@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,6 +41,9 @@ public class BlogServiceImpl implements BlogService {
             String imageUrl = saveImage(imageFile);
             blog.setImageUrl(imageUrl);
             logger.info("Image saved for blog: {}", imageUrl);
+        }
+        if (blog.getCreatedAt() == null) {
+            blog.setCreatedAt(LocalDate.now());
         }
 
         Blog saved = blogRepository.save(blog);
@@ -153,19 +158,19 @@ public class BlogServiceImpl implements BlogService {
                 .collect(Collectors.toList());
     }
 
-   private String saveImage(MultipartFile imageFile) {
-    try {
-        Files.createDirectories(Paths.get(uploadDir));
-        String fileName = System.currentTimeMillis() + "_" + imageFile.getOriginalFilename();
-        Path filePath = Paths.get(uploadDir, fileName);
-        imageFile.transferTo(filePath);
-        // Return the relative URL for frontend
-        return "/uploads/blogs/" + fileName;
-    } catch (IOException e) {
-        logger.error("Failed to save blog image", e);
-        throw new RuntimeException("Failed to save blog image", e);
+    private String saveImage(MultipartFile imageFile) {
+        try {
+            Files.createDirectories(Paths.get(uploadDir));
+            String fileName = System.currentTimeMillis() + "_" + imageFile.getOriginalFilename();
+            Path filePath = Paths.get(uploadDir, fileName);
+            imageFile.transferTo(filePath);
+            // Return the relative URL for frontend
+            return "/uploads/blogs/" + fileName;
+        } catch (IOException e) {
+            logger.error("Failed to save blog image", e);
+            throw new RuntimeException("Failed to save blog image", e);
+        }
     }
-}
 
     private void deleteImageFile(String imageUrl) {
         try {
