@@ -136,7 +136,7 @@ export default function Blog() {
                 )}
               </div>
               <div>
-                 <img src={blog.imageUrl ? `http://localhost:8080${blog.imageUrl}` : ""}
+                <img src={blog.imageUrl ? `http://localhost:8080${blog.imageUrl}` : ""}
                   alt={blog.title}
                   style={{ width: '100%', height: 180, objectFit: 'cover', borderRadius: 12, marginBottom: 12 }}
                 />
@@ -144,7 +144,7 @@ export default function Blog() {
                 <div className="event-card-location-date">
                   By {blog.author} <br />{blog.createdAt}
                 </div>
-                <div className="event-card-description" style={{ minHeight: 60, textAlign:'justify' }}>
+                <div className="event-card-description" style={{ minHeight: 60, textAlign: 'justify' }}>
                   {blog.content}
                 </div>
               </div>
@@ -199,7 +199,7 @@ export default function Blog() {
         {/* Blog Details Modal */}
         {showViewModal && selectedBlog && (
           <div className="event-modal-backdrop">
-            <div className="event-modal">
+            <div className="event-modal" style={{ padding: '20px' }}>
               <button
                 onClick={() => { setShowViewModal(false); setSelectedBlog(null); }}
                 className="event-modal-close"
@@ -210,14 +210,12 @@ export default function Blog() {
               <h3 className="event-modal-title event-modal-title-margin">{selectedBlog.title}</h3>
               <div className="event-modal-location-date">
                 By {selectedBlog.author} &middot; {selectedBlog.date}
-                {selectedBlog.category && (
-                  <span style={{ marginLeft: 8, color: '#10B981', fontWeight: 600 }}>| {selectedBlog.category}</span>
-                )}
               </div>
-              <img src={selectedBlog.image} alt={selectedBlog.title} style={{ width: '100%', height: 220, objectFit: 'cover', borderRadius: 12, margin: '18px 0' }} />
-              <div className="event-modal-description">
+              <img src={selectedBlog.imageUrl ? `http://localhost:8080${selectedBlog.imageUrl}` : ""}
+                style={{ width: '100%', height: 180, objectFit: 'cover', borderRadius: 12, marginBottom: 12 }}
+              />              <div className="event-modal-description">
                 {selectedBlog.content}
-                <br />
+                <br /><br />
                 {selectedBlog.createdAt}
               </div>
             </div>
