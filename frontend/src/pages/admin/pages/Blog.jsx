@@ -1,40 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../../styles/BlogPage.css';
 import axios from 'axios';
-
-const mockBlogs = [
-  {
-    id: 1,
-    title: 'How AI is Transforming the Future',
-    date: '2025-08-18',
-    author: 'Jane Doe',
-    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80',
-    description: 'Artificial Intelligence is rapidly changing the way we live and work. Discover the latest trends and how you can stay ahead.',
-    category: 'AI'
-  },
-  {
-    id: 2,
-    title: 'Design Systems for Modern Web Apps',
-    date: '2025-08-15',
-    author: 'John Smith',
-    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80',
-    description: 'A practical guide to building scalable and beautiful design systems for your next web project.',
-    category: 'Design'
-  },
-  {
-    id: 3,
-    title: 'Top 10 Tech Trends in 2025',
-    date: '2025-08-10',
-    author: 'Alice Lee',
-    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80',
-    description: 'Stay ahead of the curve with these top technology trends that are shaping the world in 2025.',
-    category: 'Tech'
-  },
-];
+import Swal from 'sweetalert2';
 
 export default function Blog() {
-  const [blogList, setBlogList] = useState(mockBlogs);
+  const [blogList, setBlogList] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [menuOpenId, setMenuOpenId] = useState(null);
 
@@ -42,11 +13,14 @@ export default function Blog() {
   const [author, setAuthor] = useState("");
   const [imageFile, setImageFile] = useState(null);
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
 
   const [headerText, setHeaderText] = useState("");
   const [showViewModal, setShowViewModal] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState(null);
+
+  useEffect(() => {
+    getAllBlogs();
+  }, []);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -58,8 +32,20 @@ export default function Blog() {
     setAuthor("");
     setImageFile(null);
     setDescription("");
-    setCategory("");
   };
+
+  const getAllBlogs = async () => {
+    try {
+      const resp = await axios.get("http://localhost:8080/api/v1/blog/get/all");
+      if (resp.data && resp.data.data) {
+        setBlogList(resp.data.data);
+      }
+    } catch (error) {
+      console.log("Error fetching blogs:", error);
+    }
+  };
+
+
 
   const addNewBlog = async (e) => {
     e.preventDefault();
@@ -67,6 +53,7 @@ export default function Blog() {
     formData.append("title", title);
     formData.append("content", description); // backend expects 'content'
     formData.append("author", author);
+
     if (imageFile) {
       formData.append("imageFile", imageFile);
     }
@@ -77,12 +64,24 @@ export default function Blog() {
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
-      const createdBlog = resp.data.data;
-      setBlogList([{ ...createdBlog, description, category, image: createdBlog.imageUrl || createdBlog.image }, ...blogList]);
+      getAllBlogs();
+      console.log("Blog created successfully:", resp.data);
+      Swal.fire({
+        icon: 'success',
+        title: 'Created!',
+        text: 'Blog Successfully Published !',
+        timer: 1500,
+        showConfirmButton: false
+      });
       setShowModal(false);
       clearFields();
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: error.response?.data?.message || 'Failed to create blog.'
+      });
     }
   };
 
@@ -137,21 +136,20 @@ export default function Blog() {
                 )}
               </div>
               <div>
-                <img src={blog.image} alt={blog.title} style={{ width: '100%', height: 180, objectFit: 'cover', borderRadius: 12, marginBottom: 12 }} />
+                 <img src={blog.imageUrl ? `http://localhost:8080${blog.imageUrl}` : ""}
+                  alt={blog.title}
+                  style={{ width: '100%', height: 180, objectFit: 'cover', borderRadius: 12, marginBottom: 12 }}
+                />
                 <h3 className="event-card-title">{blog.title}</h3>
                 <div className="event-card-location-date">
-                  By {blog.author} &middot; {blog.date}
-                  {blog.category && (
-                    <span style={{ marginLeft: 8, color: '#10B981', fontWeight: 600 }}>| {blog.category}</span>
-                  )}
+                  By {blog.author} <br />{blog.createdAt}
                 </div>
-                <div className="event-card-description" style={{ minHeight: 60 }}>
-                  {blog.description}
+                <div className="event-card-description" style={{ minHeight: 60, textAlign:'justify' }}>
+                  {blog.content}
                 </div>
               </div>
               <div className="event-card-actions">
                 <button className="btn-view" onClick={() => { setSelectedBlog(blog); setShowViewModal(true); }}>View</button>
-                <button className="btn-edit">Edit</button>
               </div>
             </div>
           ))}
@@ -218,7 +216,9 @@ export default function Blog() {
               </div>
               <img src={selectedBlog.image} alt={selectedBlog.title} style={{ width: '100%', height: 220, objectFit: 'cover', borderRadius: 12, margin: '18px 0' }} />
               <div className="event-modal-description">
-                {selectedBlog.description}
+                {selectedBlog.content}
+                <br />
+                {selectedBlog.createdAt}
               </div>
             </div>
           </div>
@@ -227,3 +227,5 @@ export default function Blog() {
     </div>
   );
 }
+
+
