@@ -23,6 +23,7 @@ public class BlogController {
     private BlogService blogService;
     
     private static final Logger logger = LoggerFactory.getLogger(BlogController.class);
+
     // Create blog with image (form-data)
     @PostMapping("/create/with-image")
     public ResponseEntity<APIResponse> createBlogWithImage(
