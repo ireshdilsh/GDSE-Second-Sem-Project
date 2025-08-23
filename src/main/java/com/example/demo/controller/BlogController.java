@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.dto.BlogDto;
 import com.example.demo.service.BlogService;
 import com.example.demo.utils.APIResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +19,10 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class BlogController {
 
-    private final BlogService blogService;
+    @Autowired
+    private BlogService blogService;
+    
     private static final Logger logger = LoggerFactory.getLogger(BlogController.class);
-
-    public BlogController(BlogService blogService) {
-        this.blogService = blogService;
-    }
 
     // Create blog with image (form-data)
     @PostMapping("/create/with-image")
