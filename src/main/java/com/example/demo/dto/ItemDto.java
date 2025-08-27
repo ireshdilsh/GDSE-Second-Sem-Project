@@ -15,4 +15,5 @@ public class ItemDto {
     private int qty;
     private Long categoryId;
     private String imageUrl;
+    // private String image; // Base64 encoded image data
 }

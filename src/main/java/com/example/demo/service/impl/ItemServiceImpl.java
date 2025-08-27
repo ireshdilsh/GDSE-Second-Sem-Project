@@ -36,42 +36,22 @@ public class ItemServiceImpl implements ItemService {
     private static final Logger logger = LoggerFactory.getLogger(ItemServiceImpl.class);
     private final String uploadDir = "uploads/products/";
 
-
-    @Override
-    public ItemDto createItem(ItemDto itemDto, MultipartFile imageFile) {
+     @Override
+     public ItemDto createItem(ItemDto itemDto, MultipartFile imageFile) {
         logger.info("Creating item: {}", itemDto);
         Item item = modelMapper.map(itemDto, Item.class);
         Category category = categoryRepository.findById(itemDto.getCategoryId())
                 .orElseThrow(() -> new RuntimeException("Category not found"));
         item.setCategory(category);
         if (imageFile != null && !imageFile.isEmpty()) {
-            String imageUrl = saveImage(imageFile);
-            item.setImageUrl(imageUrl);
+           String imageUrl = saveImage(imageFile);
+           item.setImageUrl(imageUrl);
+           logger.info("Image saved for item: {}", imageUrl);
         }
         Item saved = itemRepository.save(item);
         logger.info("Item created with ID: {}", saved.getId());
         return modelMapper.map(saved, ItemDto.class);
-    }
-
-    @Override
-    public ItemDto getItemById(Long id) {
-        logger.info("Fetching item by ID: {}", id);
-        Item item = itemRepository.findById(id).orElseThrow(() -> new RuntimeException("Item not found"));
-        return modelMapper.map(item, ItemDto.class);
-    }
-
-    @Override
-    public List<ItemDto> getAllItems() {
-        logger.info("Fetching all items");
-        List<Item> items = itemRepository.findAll();
-        if (items.isEmpty()) {
-            logger.warn("No items found in the database");
-            throw new ResourceNotFoundException("No items found");
-        }
-        return items.stream()
-                .map(item -> modelMapper.map(item, ItemDto.class))
-                .collect(Collectors.toList());
-    }
+     }
 
     @Override
     public ItemDto updateItem(Long id, ItemDto itemDto, MultipartFile imageFile) {
@@ -84,10 +64,31 @@ public class ItemServiceImpl implements ItemService {
         if (imageFile != null && !imageFile.isEmpty()) {
             String imageUrl = saveImage(imageFile);
             item.setImageUrl(imageUrl);
+            logger.info("Image saved for item: {}", imageUrl);
         }
         Item updated = itemRepository.save(item);
         logger.info("Item updated with ID: {}", updated.getId());
         return modelMapper.map(updated, ItemDto.class);
+    }
+
+    @Override
+    public ItemDto getItemById(Long id) {
+        logger.info("Fetching item by ID: {}", id);
+    Item item = itemRepository.findById(id).orElseThrow(() -> new RuntimeException("Item not found"));
+    return modelMapper.map(item, ItemDto.class);
+    }
+
+    @Override
+    public List<ItemDto> getAllItems() {
+        logger.info("Fetching all items");
+        List<Item> items = itemRepository.findAll();
+        if (items.isEmpty()) {
+            logger.warn("No items found in the database");
+            throw new ResourceNotFoundException("No items found");
+        }
+    return items.stream()
+        .map(item -> modelMapper.map(item, ItemDto.class))
+        .collect(Collectors.toList());
     }
 
     @Override
@@ -102,7 +103,8 @@ public class ItemServiceImpl implements ItemService {
             String fileName = System.currentTimeMillis() + "_" + imageFile.getOriginalFilename();
             Path filePath = Paths.get(uploadDir, fileName);
             imageFile.transferTo(filePath);
-            return filePath.toString();
+            // Return the relative URL for frontend
+            return "/uploads/products/" + fileName;
         } catch (IOException e) {
             logger.error("Failed to save image", e);
             throw new RuntimeException("Failed to save image", e);
