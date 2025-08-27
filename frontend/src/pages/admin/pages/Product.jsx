@@ -1,3 +1,4 @@
+// ...existing code...
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../../styles/BlogPage.css';
@@ -6,6 +7,8 @@ import Swal from 'sweetalert2';
 
 export default function Product() {
   const [showModal, setShowModal] = useState(false);
+  const [showViewModal, setShowViewModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -13,9 +16,11 @@ export default function Product() {
   const [categoryId, setCategoryId] = useState("");
 
   const [categories, setCategories] = useState([])
+  const [products, setProducts] = useState([])
 
   useEffect(() => {
     getAllCategories()
+    getAllProducts()
   }, []);
 
   const [imageFile, setImageFile] = useState(null);
@@ -24,8 +29,18 @@ export default function Product() {
   const getAllCategories = async () => {
     try {
       const resp = await axios.get("http://localhost:8080/api/v1/category/get/all/categories");
-      console.log(resp);
+      console.log(resp.data);
       setCategories(resp.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const getAllProducts = async () => {
+    try {
+      const resp = await axios.get("http://localhost:8080/api/v1/item/get/all/items");
+      console.log(resp.data);
+      setProducts(resp.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -47,7 +62,7 @@ export default function Product() {
     setImageFileName(file ? file.name : "");
   };
 
-  const handleAddProduct = (e) => {
+  const handleAddProduct = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
@@ -57,10 +72,10 @@ export default function Product() {
     formData.append("qty", qty);
     formData.append("categoryId", categoryId);
     if (imageFile) {
-      formData.append("image", imageFile);
+      formData.append("imageFile", imageFile);
     }
 
-    axios.post("http://localhost:8080/api/v1/product/create", formData)
+    await axios.post("http://localhost:8080/api/v1/item/add/new/product", formData)
       .then(response => {
         console.log(response);
         clearFields();
@@ -70,6 +85,7 @@ export default function Product() {
           title: 'Product Added',
           text: 'The product has been added successfully!',
         });
+        getAllProducts();
       })
       .catch(error => {
         console.log(error);
@@ -100,6 +116,88 @@ export default function Product() {
             + Add Product
           </button>
         </div>
+        {/* Product Card Grid */}
+        <div className="event-card-grid">
+          {Array.isArray(products) && products.map(product => (
+            <div key={product.id || product.productId} className="event-card" style={{ position: 'relative' }}>
+              {/* Category badge */}
+              {product.category && (
+                <span style={{
+                  position: 'absolute',
+                  top: 12,
+                  left: 12,
+                  background: '#36d1c4',
+                  color: '#fff',
+                  borderRadius: 8,
+                  padding: '4px 12px',
+                  fontWeight: 600,
+                  fontSize: 14,
+                  zIndex: 2
+                }}>{product.category.cateName || product.category.name || product.category.categoryName || product.category}</span>
+              )}
+              <div>
+                <img
+                  src={
+                    product.imageUrl
+                      ? `http://localhost:8080${product.imageUrl}`
+                      : product.image
+                        ? `http://localhost:8080${product.image}`
+                        : ''
+                  }
+                  alt={product.name}
+                  style={{ width: '100%', height: 180, objectFit: 'cover', borderRadius: 12, marginBottom: 12 }}
+                />
+                <h3 className="event-card-title">{product.name}</h3>
+                <div className="event-card-location-date">
+                  Price: <span style={{ color: '#36d1c4', fontWeight: 600 }}>${product.price}</span> &nbsp;|&nbsp; Qty: {product.qty}
+                </div>
+                <div className="event-card-description" style={{ minHeight: 60, textAlign: 'justify' }}>
+                  {product.description}
+                </div>
+                <div style={{ marginTop: 10, textAlign: 'right' }}>
+                  <button className="btn btn-outline-info btn-sm" onClick={() => { setSelectedProduct(product); setShowViewModal(true); }}>View</button>
+                </div>
+              </div>
+            </div>
+          ))}
+          {(Array.isArray(products) && products.length === 0) && (
+            <div className="text-center text-secondary p-4" style={{ fontSize: 18 }}>
+              No products found.
+            </div>
+          )}
+        </div>
+        {/* Product Details Modal */}
+        {showViewModal && selectedProduct && (
+          <div className="event-modal-backdrop">
+            <div className="event-modal" style={{ padding: '20px', maxWidth: 600 }}>
+              <button
+                onClick={() => { setShowViewModal(false); setSelectedProduct(null); }}
+                className="event-modal-close"
+                aria-label="Close"
+              >
+                &times;
+              </button>
+              <h3 className="event-modal-title event-modal-title-margin">{selectedProduct.name}</h3>
+              <div className="event-modal-location-date">
+                Category: <span style={{ color: '#36d1c4', fontWeight: 600 }}>{selectedProduct.category?.cateName || selectedProduct.category?.name || selectedProduct.category?.categoryName || selectedProduct.category}</span>
+              </div>
+              {(selectedProduct.imageUrl || selectedProduct.image) && (
+                <img
+                  src={selectedProduct.imageUrl ? `http://localhost:8080${selectedProduct.imageUrl}` : selectedProduct.image ? `http://localhost:8080${selectedProduct.image}` : ''}
+                  alt={selectedProduct.name}
+                  style={{ width: '100%', height: 220, objectFit: 'cover', borderRadius: 12, margin: '18px 0' }}
+                />
+              )}
+              <div className="event-modal-description">
+                <strong>Description:</strong> {selectedProduct.description}
+                <br /><br />
+                <strong>Price:</strong> ${selectedProduct.price}
+                <br />
+                <strong>Quantity:</strong> {selectedProduct.qty}
+              </div>
+            </div>
+          </div>
+        )}
         {/* Modal */}
         {showModal && (
           <div className="event-modal-backdrop">
