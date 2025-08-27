@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../../styles/BlogPage.css';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default function Product() {
   const [showModal, setShowModal] = useState(false);
@@ -11,7 +12,7 @@ export default function Product() {
   const [qty, setQty] = useState("");
   const [categoryId, setCategoryId] = useState("");
 
-  const [categories,setCategories] = useState([])
+  const [categories, setCategories] = useState([])
 
   useEffect(() => {
     getAllCategories()
@@ -20,7 +21,7 @@ export default function Product() {
   const [imageFile, setImageFile] = useState(null);
   const [imageFileName, setImageFileName] = useState("");
 
-  const getAllCategories = async() => {
+  const getAllCategories = async () => {
     try {
       const resp = await axios.get("http://localhost:8080/api/v1/category/get/all/categories");
       console.log(resp);
@@ -48,9 +49,37 @@ export default function Product() {
 
   const handleAddProduct = (e) => {
     e.preventDefault();
-    // Add submit logic here, use imageFile for upload
-    clearFields();
-    setShowModal(false);
+
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("description", description);
+    formData.append("price", price);
+    formData.append("qty", qty);
+    formData.append("categoryId", categoryId);
+    if (imageFile) {
+      formData.append("image", imageFile);
+    }
+
+    axios.post("http://localhost:8080/api/v1/product/create", formData)
+      .then(response => {
+        console.log(response);
+        clearFields();
+        setShowModal(false);
+        Swal.fire({
+          icon: 'success',
+          title: 'Product Added',
+          text: 'The product has been added successfully!',
+        });
+      })
+      .catch(error => {
+        console.log(error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'There was an error adding the product.',
+        });
+      });
+
   };
 
   return (
