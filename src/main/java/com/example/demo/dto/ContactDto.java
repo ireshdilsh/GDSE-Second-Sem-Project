@@ -11,6 +11,7 @@ public class ContactDto {
     private Long id;
     private String name;
     private String email;
-    private String subject;
+    private String city;
+    private String type;
     private String message;
 }
