@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../../styles/BlogPage.css';
+import axios from 'axios';
 
 export default function Product() {
   const [showModal, setShowModal] = useState(false);
@@ -9,15 +10,25 @@ export default function Product() {
   const [price, setPrice] = useState("");
   const [qty, setQty] = useState("");
   const [categoryId, setCategoryId] = useState("");
-  const categories = [
-    { id: "1", name: "Vegetables" },
-    { id: "2", name: "Fruits" },
-    { id: "3", name: "Herbs" },
-    { id: "4", name: "Flowers" },
-    { id: "5", name: "Other" }
-  ];
+
+  const [categories,setCategories] = useState([])
+
+  useEffect(() => {
+    getAllCategories()
+  }, []);
+
   const [imageFile, setImageFile] = useState(null);
   const [imageFileName, setImageFileName] = useState("");
+
+  const getAllCategories = async() => {
+    try {
+      const resp = await axios.get("http://localhost:8080/api/v1/category/get/all/categories");
+      console.log(resp);
+      setCategories(resp.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const clearFields = () => {
     setName("");
@@ -87,8 +98,10 @@ export default function Product() {
                       <label className="form-label">Category</label>
                       <select className="form-control" value={categoryId} onChange={e => setCategoryId(e.target.value)} required>
                         <option value="" disabled>Choose category</option>
-                        {categories.map(cat => (
-                          <option key={cat.id} value={cat.id}>{cat.name}</option>
+                        {categories && Array.isArray(categories) && categories.map(cat => (
+                          <option key={cat.id || cat.categoryId} value={cat.id || cat.categoryId}>
+                            {cat.name || cat.categoryName || cat.cateName || 'Unnamed Category'}
+                          </option>
                         ))}
                       </select>
                     </div>
