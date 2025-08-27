@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/LandingPage.css';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 export default function LandingPage() {
 
@@ -34,6 +36,14 @@ export default function LandingPage() {
     setMsg(e.target.value)
   }
 
+  const clearFields = () => {
+    setName("")
+    setEmail("")
+    setCity("")
+    setType("")
+    setMsg("")
+  }
+
   const sendCotactForm = async (e) => {
     e.preventDefault()
 
@@ -53,13 +63,14 @@ export default function LandingPage() {
         timer: 1500,
         showConfirmButton: false
       });
+      clearFields()
       console.log(resp.data)
     } catch (erorr) {
       console.log(erorr)
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: error.response?.data?.message || 'Failed to send message. Please try gain later !'
+        text: erorr.response?.data?.message || 'Failed to send message. Please try gain later !'
       });
     }
   }
@@ -635,22 +646,22 @@ export default function LandingPage() {
                 <div className="form-row">
                   <div className="form-group">
                     <label>Full Name</label>
-                    <input type="text" onChange={handleName} className="form-input" placeholder="Enter your name" />
+                    <input type="text" value={name} onChange={handleName} className="form-input" placeholder="Enter your name" />
                   </div>
                   <div className="form-group">
                     <label>Email Address</label>
-                    <input type="email" onChange={handleEmail} className="form-input" placeholder="your@email.com" />
+                    <input type="email" value={email} onChange={handleEmail} className="form-input" placeholder="your@email.com" />
                   </div>
                 </div>
 
                 <div className="form-row">
                   <div className="form-group">
                     <label>City</label>
-                    <input type="text" className="form-input" onChange={handleCity} placeholder="Where are you located?" />
+                    <input type="text" className="form-input" value={city} onChange={handleCity} placeholder="Where are you located?" />
                   </div>
                   <div className="form-group">
                     <label>Garden Type</label>
-                    <select className="form-input" onChange={handleType}>
+                    <select className="form-input" value={type} onChange={handleType}>
                       <option>Balcony Garden</option>
                       <option>Indoor Garden</option>
                       <option>Backyard Garden</option>
@@ -662,7 +673,7 @@ export default function LandingPage() {
 
                 <div className="form-group">
                   <label>What would you like to grow?</label>
-                  <textarea className="form-input" onChange={handleMsg} rows="4" placeholder="Tell us about your gardening goals and interests..."></textarea>
+                  <textarea className="form-input" value={msg} onChange={handleMsg} rows="4" placeholder="Tell us about your gardening goals and interests..."></textarea>
                 </div>
 
                 <div className="form-submit-wrapper">
