@@ -6,6 +6,8 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 export default function Product() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -19,9 +21,21 @@ export default function Product() {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-    getAllCategories()
-    getAllProducts()
+    getAllCategories();
+    getAllProducts();
   }, []);
+
+  useEffect(() => {
+    if (!searchTerm) {
+      setFilteredProducts(products);
+    } else {
+      setFilteredProducts(
+        products.filter(product =>
+          product.name && product.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      );
+    }
+  }, [searchTerm, products]);
 
   const [imageFile, setImageFile] = useState(null);
   const [imageFileName, setImageFileName] = useState("");
@@ -110,6 +124,8 @@ export default function Product() {
               className="form-control mt-2"
               placeholder="Search product..."
               style={{ maxWidth: 400 }}
+              value={searchTerm}
+              onChange={e => setSearchTerm(e.target.value)}
             />
           </div>
           <button className="event-add-btn" style={{ background: 'linear-gradient(90deg, #36d1c4 0%, #5b86e5 100%)', color: '#fff' }} onClick={() => setShowModal(true)}>
@@ -118,7 +134,7 @@ export default function Product() {
         </div>
         {/* Product Card Grid */}
         <div className="event-card-grid">
-          {Array.isArray(products) && products.map(product => (
+          {Array.isArray(filteredProducts) && filteredProducts.map(product => (
             <div key={product.id || product.productId} className="event-card" style={{ position: 'relative' }}>
               {/* Category badge */}
               {product.category && (
@@ -160,7 +176,7 @@ export default function Product() {
               </div>
             </div>
           ))}
-          {(Array.isArray(products) && products.length === 0) && (
+          {(Array.isArray(filteredProducts) && filteredProducts.length === 0) && (
             <div className="text-center text-secondary p-4" style={{ fontSize: 18 }}>
               No products found.
             </div>
