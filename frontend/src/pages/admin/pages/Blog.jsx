@@ -5,6 +5,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 export default function Blog() {
+  const [filteredBlogs, setFilteredBlogs] = useState([]);
   const [blogList, setBlogList] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [menuOpenId, setMenuOpenId] = useState(null);
@@ -21,6 +22,18 @@ export default function Blog() {
   useEffect(() => {
     getAllBlogs();
   }, []);
+
+  useEffect(() => {
+    if (!headerText) {
+      setFilteredBlogs(blogList);
+    } else {
+      setFilteredBlogs(
+        blogList.filter(blog =>
+          blog.title && blog.title.toLowerCase().includes(headerText.toLowerCase())
+        )
+      );
+    }
+  }, [headerText, blogList]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -111,7 +124,7 @@ export default function Blog() {
           </button>
         </div>
         <div className="event-card-grid">
-          {Array.isArray(blogList) && blogList.map(blog => (
+          {Array.isArray(filteredBlogs) && filteredBlogs.map(blog => (
             <div key={blog.id} className="event-card" style={{ position: 'relative' }}>
               {/* 3-dots menu */}
               <div style={{ position: 'absolute', top: 16, right: 16, zIndex: 2 }}>
@@ -153,7 +166,7 @@ export default function Blog() {
               </div>
             </div>
           ))}
-          {(Array.isArray(blogList) && blogList.length === 0) && (
+          {(Array.isArray(filteredBlogs) && filteredBlogs.length === 0) && (
             <div className="text-center text-secondary p-4" style={{ fontSize: 18 }}>
               No blogs found.
             </div>
