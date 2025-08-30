@@ -61,6 +61,38 @@ export default function LandingPage() {
         <p id='sub-title'>Achieve Your Goal With SkillGrow</p>
         <p id='description'>when an unknown printer took a galley of type and scrambled make <br />
           specimen book has survived not only five centuries</p>
+        <div className="cards">
+          <div className="card-1">
+            <div className="title">
+              <div className="card-1-logo">
+                <img src="https://img.icons8.com/?size=100&id=79387&format=png&color=fcfcfc" alt="" />
+              </div>
+              <p>Expert Tutors</p>
+            </div>
+            <p id="description">when an unknown printer took a galley offe
+              type and scrambled makes.</p>
+          </div>
+          <div className="card-2">
+            <div className="title">
+             <div className="card-2-logo">
+                <img src="https://img.icons8.com/?size=100&id=59739&format=png&color=fcfcfc" alt="" />
+              </div>
+              <p>Effective Courses</p>
+            </div>
+            <p id="description">when an unknown printer took a galley offe
+              type and scrambled makes.</p>
+          </div>
+          <div className="card-3">
+            <div className="title">
+              <div className="card-3-logo">
+                <img src="https://img.icons8.com/?size=100&id=9oUOrI5mCb9u&format=png&color=fcfcfc" alt="" />
+              </div>
+              <p>Earn Certificate</p>
+            </div>
+            <p id="description">when an unknown printer took a galley offe
+              type and scrambled makes.</p>
+          </div>
+        </div>
       </section>
     </div>
   )

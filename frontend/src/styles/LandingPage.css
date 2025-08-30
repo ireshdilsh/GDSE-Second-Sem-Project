@@ -3,7 +3,6 @@ nav{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
 }
 
 nav .logo img{
@@ -203,4 +202,103 @@ nav .signup-btn button{
   font-size: 13px;
   margin-top: -15px;
   color: var(--text-color);
+}
+
+#features .cards{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+#features .cards .card-1,
+#features .cards .card-2,
+#features .cards .card-3{
+  padding: 20px;
+  display: flex;
+  justify-content: left;
+  align-items: flex-start;
+  flex-direction: column;
+  border-radius: 15px;
+  height: 150px;
+}
+
+#features .cards .card-1{
+  border: 1px solid #C9E4E9;
+  box-shadow: #c9e4e97a 8px 8px 0px;
+}
+
+#features .cards .card-2{
+  border: 1px solid #C8C1ED;
+  box-shadow: #c8c1ed76 8px 8px 0px;
+}
+
+#features .cards .card-3{
+  border: 1px solid #EBE0C4;
+  box-shadow: #ebe0c46e 8px 8px 0px;
+}
+
+#features .cards .card-1 .title,
+#features .cards .card-2 .title,
+#features .cards .card-3 .title{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+#features .cards .card-1 .title p,
+#features .cards .card-2 .title p,
+#features .cards .card-3 .title p{
+  font-weight: 600;
+}
+
+#features .cards .card-1 #description,
+#features .cards .card-2 #description,
+#features .cards .card-3 #description{
+  margin-top: 10px;
+  color: #161439;
+  text-align: justify;
+}
+
+#features .cards .card-1{
+  background-color: var(--light-green);
+}
+
+#features .cards .card-2{
+  background-color: var(--light-purple);
+}
+
+#features .cards .card-3{
+  background-color: var(--light-yellow);
+}
+
+.card-1-logo,
+.card-3-logo,
+.card-2-logo{
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-1-logo{
+  background-color: #1BCBE3;
+}
+                
+.card-2-logo{
+  background-color: var(--accent-color)
+}
+
+.card-3-logo{
+  background-color: var(--title-card);
+}
+
+.card-1-logo img,
+.card-2-logo img,
+.card-3-logo img{
+  height: 30px;
+  width: 30px;
 }
