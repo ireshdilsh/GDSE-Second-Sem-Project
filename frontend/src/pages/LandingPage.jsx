@@ -63,6 +63,7 @@ export default function LandingPage() {
           specimen book has survived not only five centuries</p>
         <div className="cards">
           <div className="card-1">
+            <img src="https://img.icons8.com/?size=100&id=tDtvWzs979he&format=png&color=fcfcfc" alt="" id='star' />
             <div className="title">
               <div className="card-1-logo">
                 <img src="https://img.icons8.com/?size=100&id=79387&format=png&color=fcfcfc" alt="" />
@@ -73,8 +74,9 @@ export default function LandingPage() {
               type and scrambled makes.</p>
           </div>
           <div className="card-2">
+            <img src="https://img.icons8.com/?size=100&id=tDtvWzs979he&format=png&color=fcfcfc" alt="" id='star' />
             <div className="title">
-             <div className="card-2-logo">
+              <div className="card-2-logo">
                 <img src="https://img.icons8.com/?size=100&id=59739&format=png&color=fcfcfc" alt="" />
               </div>
               <p>Effective Courses</p>
@@ -83,6 +85,7 @@ export default function LandingPage() {
               type and scrambled makes.</p>
           </div>
           <div className="card-3">
+            <img src="https://img.icons8.com/?size=100&id=tDtvWzs979he&format=png&color=fcfcfc" alt="" id='star' />
             <div className="title">
               <div className="card-3-logo">
                 <img src="https://img.icons8.com/?size=100&id=9oUOrI5mCb9u&format=png&color=fcfcfc" alt="" />

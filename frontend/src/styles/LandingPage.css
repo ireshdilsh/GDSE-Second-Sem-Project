@@ -220,7 +220,7 @@ nav .signup-btn button{
   align-items: flex-start;
   flex-direction: column;
   border-radius: 15px;
-  height: 150px;
+  position: relative;
 }
 
 #features .cards .card-1{
@@ -301,4 +301,11 @@ nav .signup-btn button{
 .card-3-logo img{
   height: 30px;
   width: 30px;
+}
+
+#star{
+  height: 40px;
+  aspect-ratio: 1/1;
+  position: absolute;
+  right: 25px;
 }
