@@ -309,3 +309,44 @@ nav .signup-btn button{
   position: absolute;
   right: 25px;
 }
+
+#features .next-section{
+  margin-top: 100px;
+  display: flex;
+  gap: 150px;
+}
+
+#features .next-section .left-side img{
+  height: 520px;
+  width: 100%;
+  object-fit: cover;
+}
+
+#features.next-section .right-side{
+  display: flex;
+  justify-content: left;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+#features .next-section .right-side #next-title{
+  background-color: var(--title-card-color);
+  color: var(--accent-color);
+  width: 160px;
+  padding: 4px 15px;
+  border-radius: 50px;
+  font-size: 13px;
+}
+
+#next-sub-title{
+  margin-top: 10px;
+  font-size: 38px;
+  font-weight: 700;
+}
+
+#next-sub-title span{
+  background-color: var(--title-card);
+  color: #fcfcfc;
+  padding: 5px 16px;
+  border-radius: 20px;
+}

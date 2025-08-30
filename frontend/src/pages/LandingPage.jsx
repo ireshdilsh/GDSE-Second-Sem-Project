@@ -2,6 +2,7 @@ import React from 'react'
 import logo from "../assets/logo.png"
 import hero_card_img from '../assets/hero-card-img.png'
 import '../styles/LandingPage.css'
+import feature_img from '../assets/feature-img.png'
 import { Form } from 'react-router-dom'
 
 export default function LandingPage() {
@@ -58,7 +59,7 @@ export default function LandingPage() {
       {/* features Section */}
       <section id='features'>
         <p id='title'>Our Top Features</p>
-        <p id='sub-title'>Achieve Your Goal With SkillGrow</p>
+        <p id='sub-title'>Achieve Your Goal With EduSpark</p>
         <p id='description'>when an unknown printer took a galley of type and scrambled make <br />
           specimen book has survived not only five centuries</p>
         <div className="cards">
@@ -94,6 +95,18 @@ export default function LandingPage() {
             </div>
             <p id="description">when an unknown printer took a galley offe
               type and scrambled makes.</p>
+          </div>
+        </div>
+        <div className="next-section">
+          <div className="left-side">
+            <img src={feature_img} alt="featre-section-img" />
+          </div>
+          <div className="right-side">
+            <p id="next-title">Get More About Us</p>
+            <p id="next-sub-title">
+              Thousand Of Top <span>Courses </span> <br />
+              Now in One Place
+            </p>
           </div>
         </div>
       </section>
