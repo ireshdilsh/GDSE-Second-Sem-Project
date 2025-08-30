@@ -107,6 +107,12 @@ export default function LandingPage() {
               Thousand Of Top <span>Courses </span> <br />
               Now in One Place
             </p>
+            <p id="next-description">
+              Groove’s intuitive shared inbox makes it easy for team members to <br />
+              organize, prioritize and.In this episode of the Smashing Pod we’re <br />
+              talking about Web Platform Baseline.
+            </p>
+            <button>Start Free Trial <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
           </div>
         </div>
       </section>
