@@ -1,26 +1,26 @@
-nav{
+nav {
   padding: 15px 150px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-nav .logo img{
+nav .logo img {
   width: 160px;
 }
 
-nav .links{
+nav .links {
   display: flex;
   gap: 20px;
 }
 
-nav .links a{
+nav .links a {
   text-decoration: none;
   font-size: 14px;
   position: relative;
 }
 
-nav .links a::after{
+nav .links a::after {
   content: '';
   position: absolute;
   width: 100%;
@@ -32,11 +32,11 @@ nav .links a::after{
   transform: scaleX(0);
 }
 
-nav .links a:hover::after{
+nav .links a:hover::after {
   transform: scaleX(1);
 }
 
-nav .signup-btn button{
+nav .signup-btn button {
   padding: 10px 35px;
   border: none;
   border-radius: 5px;
@@ -46,39 +46,42 @@ nav .signup-btn button{
   cursor: pointer;
 }
 
-#hero{
+#hero {
   padding: 80px 150px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(to right,var(--gradient-one),var(--gradient-two));
+  background: linear-gradient(to right, var(--gradient-one), var(--gradient-two));
 }
 
-#hero h4,#hero p,#hero span{
+#hero h4,
+#hero p,
+#hero span {
   color: #fcfcfc;
 }
 
-#hero #sub-title,#hero #sub-title span{
+#hero #sub-title,
+#hero #sub-title span {
   font-size: 48px;
   font-weight: 600;
 }
 
-#hero #title{
+#hero #title {
   font-weight: 500;
 }
 
-#hero #sub-title span{
+#hero #sub-title span {
   background-color: var(--title-card);
   padding: 5px 16px;
   border-radius: 15px;
 }
 
-#hero #description{
+#hero #description {
   font-size: 13px;
   margin-top: 10px;
 }
 
-#hero .btns{
+#hero .btns {
   display: flex;
   justify-content: left;
   align-items: center;
@@ -86,7 +89,7 @@ nav .signup-btn button{
   margin-top: 35px;
 }
 
-#hero #signin-btn{
+#hero #signin-btn {
   padding: 10px 35px;
   border: none;
   border-radius: 50px;
@@ -96,7 +99,7 @@ nav .signup-btn button{
   cursor: pointer;
 }
 
-#hero #demo-btn{
+#hero #demo-btn {
   padding: 0px 35px;
   font-size: 14px;
   color: #fcfcfc;
@@ -106,7 +109,7 @@ nav .signup-btn button{
   cursor: pointer;
 }
 
-#hero .play-btn{
+#hero .play-btn {
   height: 45px;
   width: 45px;
   background-color: var(--title-card);
@@ -120,13 +123,13 @@ nav .signup-btn button{
   cursor: pointer;
 }
 
-#hero .play-btn img{
+#hero .play-btn img {
   height: 25px;
   aspect-ratio: 1/1;
 }
 
 #hero .right-side .bar-1,
-#hero .right-side .bar-2{
+#hero .right-side .bar-2 {
   height: 110px;
   width: 380px;
   rotate: 25deg;
@@ -134,16 +137,16 @@ nav .signup-btn button{
   background-color: var(--title-card);
 }
 
-#hero .right-side .bar-2{
+#hero .right-side .bar-2 {
   margin-top: 30px;
   margin-left: -65px;
 }
 
-#hero .right-side{
+#hero .right-side {
   position: relative;
 }
 
-#hero .right-side img{
+#hero .right-side img {
   position: absolute;
   width: 350px;
   z-index: 1;
@@ -151,7 +154,7 @@ nav .signup-btn button{
   left: -20px;
 }
 
-#hero .right-side .card-1{
+#hero .right-side .card-1 {
   background-color: #fff;
   padding: 10px;
   border-radius: 10px;
@@ -162,19 +165,19 @@ nav .signup-btn button{
   z-index: 1;
 }
 
-#hero .right-side .card-1 p{
+#hero .right-side .card-1 p {
   color: #161439;
   font-size: 14px;
   font-weight: 500;
 }
 
-#hero .right-side .card-1 span{
+#hero .right-side .card-1 span {
   color: var(--accent-color);
   font-weight: 700;
   font-size: 22px;
 }
 
-#features{
+#features {
   padding: 80px 150px;
   display: flex;
   justify-content: center;
@@ -183,7 +186,7 @@ nav .signup-btn button{
   gap: 20px;
 }
 
-#features #title{
+#features #title {
   font-size: 13px;
   color: var(--accent-color);
   background-color: var(--title-card-color);
@@ -191,20 +194,20 @@ nav .signup-btn button{
   border-radius: 50px;
 }
 
-#features #sub-title{
+#features #sub-title {
   font-size: 38px;
   font-weight: 600;
   margin-top: -15px;
 }
 
-#features #description{
+#features #description {
   text-align: center;
   font-size: 13px;
   margin-top: -15px;
   color: var(--text-color);
 }
 
-#features .cards{
+#features .cards {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -213,7 +216,7 @@ nav .signup-btn button{
 
 #features .cards .card-1,
 #features .cards .card-2,
-#features .cards .card-3{
+#features .cards .card-3 {
   padding: 20px;
   display: flex;
   justify-content: left;
@@ -222,29 +225,30 @@ nav .signup-btn button{
   border-radius: 15px;
   position: relative;
   transition: 0.5s;
-  &:hover{
+
+  &:hover {
     transform: scale(1.02);
   }
 }
 
-#features .cards .card-1{
+#features .cards .card-1 {
   border: 1px solid #C9E4E9;
   box-shadow: #c9e4e97a 8px 8px 0px;
 }
 
-#features .cards .card-2{
+#features .cards .card-2 {
   border: 1px solid #C8C1ED;
   box-shadow: #c8c1ed76 8px 8px 0px;
 }
 
-#features .cards .card-3{
+#features .cards .card-3 {
   border: 1px solid #EBE0C4;
   box-shadow: #ebe0c46e 8px 8px 0px;
 }
 
 #features .cards .card-1 .title,
 #features .cards .card-2 .title,
-#features .cards .card-3 .title{
+#features .cards .card-3 .title {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -253,33 +257,33 @@ nav .signup-btn button{
 
 #features .cards .card-1 .title p,
 #features .cards .card-2 .title p,
-#features .cards .card-3 .title p{
+#features .cards .card-3 .title p {
   font-weight: 600;
 }
 
 #features .cards .card-1 #description,
 #features .cards .card-2 #description,
-#features .cards .card-3 #description{
+#features .cards .card-3 #description {
   margin-top: 10px;
   color: #161439;
   text-align: justify;
 }
 
-#features .cards .card-1{
+#features .cards .card-1 {
   background-color: var(--light-green);
 }
 
-#features .cards .card-2{
+#features .cards .card-2 {
   background-color: var(--light-purple);
 }
 
-#features .cards .card-3{
+#features .cards .card-3 {
   background-color: var(--light-yellow);
 }
 
 .card-1-logo,
 .card-3-logo,
-.card-2-logo{
+.card-2-logo {
   height: 50px;
   width: 50px;
   border-radius: 100%;
@@ -288,52 +292,52 @@ nav .signup-btn button{
   align-items: center;
 }
 
-.card-1-logo{
+.card-1-logo {
   background-color: #1BCBE3;
 }
-                
-.card-2-logo{
+
+.card-2-logo {
   background-color: var(--accent-color)
 }
 
-.card-3-logo{
+.card-3-logo {
   background-color: var(--title-card);
 }
 
 .card-1-logo img,
 .card-2-logo img,
-.card-3-logo img{
+.card-3-logo img {
   height: 30px;
   width: 30px;
 }
 
-#star{
+#star {
   height: 40px;
   aspect-ratio: 1/1;
   position: absolute;
   right: 25px;
 }
 
-#features .next-section{
+#features .next-section {
   margin-top: 70px;
   display: flex;
   gap: 150px;
 }
 
-#features .next-section .left-side img{
+#features .next-section .left-side img {
   height: 520px;
   width: 100%;
   object-fit: cover;
 }
 
-#features.next-section .right-side{
+#features.next-section .right-side {
   display: flex;
   justify-content: left;
   align-items: flex-start;
   flex-direction: column;
 }
 
-#features .next-section .right-side #next-title{
+#features .next-section .right-side #next-title {
   background-color: var(--title-card-color);
   color: var(--accent-color);
   width: 160px;
@@ -342,26 +346,26 @@ nav .signup-btn button{
   font-size: 13px;
 }
 
-#next-sub-title{
+#next-sub-title {
   margin-top: 10px;
   font-size: 38px;
   font-weight: 700;
 }
 
-#next-sub-title span{
+#next-sub-title span {
   background-color: var(--title-card);
   color: #fcfcfc;
   padding: 5px 16px;
   border-radius: 20px;
 }
 
-#next-description{
+#next-description {
   margin-top: 10px;
   color: var(--text-color);
   font-size: 13px;
 }
 
-#features .next-section .right-side button{
+#features .next-section .right-side button {
   border: none;
   outline: none;
   background-color: var(--accent-color);
@@ -378,7 +382,7 @@ nav .signup-btn button{
   box-shadow: #c8c1ed76 6px 6px 0px;
 }
 
-#features .next-section .right-side button img{
+#features .next-section .right-side button img {
   height: 20px;
   aspect-ratio: 1/1;
 }
