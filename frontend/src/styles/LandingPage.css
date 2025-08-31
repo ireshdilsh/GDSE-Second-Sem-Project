@@ -1,13 +1,12 @@
 #pricing {
   padding: 80px 150px;
-  background: linear-gradient(to right, var(--gradient-one), var(--gradient-two));
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 #pricing #title {
-  background-color: var(--light-purple);
+  background-color: var(--title-card-color);
   color: var(--accent-color);
   font-size: 13px;
   padding: 4px 12px;
@@ -15,21 +14,25 @@
   margin-bottom: 10px;
 }
 #pricing #sub-title {
-  color: #fcfcfc;
   font-size: 38px;
   font-weight: 600;
-  margin-bottom: 40px;
 }
+
+#pricing #description{
+  font-size: 13px;
+  color: var(--text-color);
+}
+
 .pricing-cards {
   display: flex;
   gap: 32px;
   justify-content: center;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 40px;
   flex-wrap: wrap;
 }
 .pricing-card {
-  background: #fcfcfc;
+  background: #fff;
   border-radius: 18px;
   box-shadow: 0 4px 24px 0 rgba(34,3,89,0.08);
   padding: 40px 32px 36px 32px;
@@ -89,20 +92,20 @@
 }
 .plan-features li {
   color: var(--text-color);
-  font-size: 15px;
+  font-size: 14px;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 .plan-btn {
-  background: var(--gradient-two);
+  background: var(--accent-color);
   color: #fff;
   border: none;
-  border-radius: 8px;
-  padding: 10px 32px;
+  border-radius: 20px;
+  padding: 8px 28px;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
   transition: background 0.18s;
   box-shadow: 0 2px 8px 0 rgba(34,3,89,0.08);

@@ -304,7 +304,8 @@ export default function LandingPage() {
       {/* Pricing Section */}
       <section id="pricing">
         <p id="title">Pricing Plans</p>
-        <p id="sub-title">Choose the plan that fits your learning journey</p>
+  <p id="sub-title">Choose the plan that fits your learning journey</p>
+  <p id="description">Choose the plan under that fits your learning journey. Unlock more features and flexibility as you upgrade.</p>
         <div className="pricing-cards">
           <div className="pricing-card">
             <div className="plan-name">Starter</div>
@@ -313,6 +314,9 @@ export default function LandingPage() {
               <li>Access to free courses</li>
               <li>Community support</li>
               <li>Basic resources</li>
+              <li>Mobile app access</li>
+              <li>Weekly newsletter</li>
+              <li>Limited quizzes</li>
             </ul>
             <button className="plan-btn">Get Started</button>
           </div>
@@ -325,6 +329,9 @@ export default function LandingPage() {
               <li>Unlimited course access</li>
               <li>Downloadable resources</li>
               <li>Priority support</li>
+              <li>Certificate of completion</li>
+              <li>Exclusive webinars</li>
+              <li>Practice projects</li>
             </ul>
             <button className="plan-btn">Start Free Trial</button>
           </div>
@@ -336,6 +343,9 @@ export default function LandingPage() {
               <li>Team analytics</li>
               <li>Admin dashboard</li>
               <li>Custom onboarding</li>
+              <li>Dedicated account manager</li>
+              <li>Team collaboration tools</li>
+              <li>Bulk enrollment discounts</li>
             </ul>
             <button className="plan-btn">Contact Sales</button>
           </div>
