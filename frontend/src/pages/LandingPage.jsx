@@ -198,7 +198,6 @@ export default function LandingPage() {
                 <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
                 <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
               </div>
-              <hr />
               <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{height:'15px',width:'15px'}} /></button>
             </div>
             <div className="card-2">
@@ -217,7 +216,7 @@ export default function LandingPage() {
                 <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
                 <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
               </div>
-              <hr />
+            
               <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{height:'15px',width:'15px'}} /></button>
             </div>
             <div className="card-3">
@@ -236,7 +235,7 @@ export default function LandingPage() {
                 <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
                 <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
               </div>
-              <hr />
+              
               <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{height:'15px',width:'15px'}} /></button>
             </div>
           </div>
@@ -257,7 +256,7 @@ export default function LandingPage() {
                 <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
                 <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
               </div>
-              <hr />
+             
               <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{height:'15px',width:'15px'}} /></button>
             </div>
             <div className="card-2">
@@ -276,7 +275,7 @@ export default function LandingPage() {
                 <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
                 <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
               </div>
-              <hr />
+             
               <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{height:'15px',width:'15px'}} /></button>
             </div>
             <div className="card-3">
@@ -295,7 +294,7 @@ export default function LandingPage() {
                 <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
                 <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
               </div>
-              <hr />
+             
               <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{height:'15px',width:'15px'}} /></button>
             </div>
           </div>
@@ -317,6 +316,8 @@ export default function LandingPage() {
               <li>Mobile app access</li>
               <li>Weekly newsletter</li>
               <li>Limited quizzes</li>
+              <li>Access on any device</li>
+              <li>Course progress tracking</li>
             </ul>
             <button className="plan-btn">Get Started</button>
           </div>
@@ -332,6 +333,9 @@ export default function LandingPage() {
               <li>Certificate of completion</li>
               <li>Exclusive webinars</li>
               <li>Practice projects</li>
+              <li>Offline access</li>
+              <li>Early access to new courses</li>
+              <li>Ad-free experience</li>
             </ul>
             <button className="plan-btn">Start Free Trial</button>
           </div>
@@ -346,6 +350,9 @@ export default function LandingPage() {
               <li>Dedicated account manager</li>
               <li>Team collaboration tools</li>
               <li>Bulk enrollment discounts</li>
+              <li>Custom team training</li>
+              <li>Advanced reporting</li>
+              <li>API access</li>
             </ul>
             <button className="plan-btn">Contact Sales</button>
           </div>
