@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import logo from "../assets/logo.png"
 import hero_card_img from '../assets/hero-card-img.png'
 import course_card_img from '../assets/Link.png'
@@ -6,6 +6,19 @@ import '../styles/LandingPage.css'
 import feature_img from '../assets/feature-img.png'
 
 export default function LandingPage() {
+  // Category popup state and outside click handler
+  const [showCats, setShowCats] = useState(false);
+  const catRef = useRef(null);
+  useEffect(() => {
+    function handleClick(e) {
+      if (catRef.current && !catRef.current.contains(e.target)) {
+        setShowCats(false);
+      }
+    }
+    if (showCats) document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [showCats]);
+
   return (
     <div>
       <nav>
@@ -16,7 +29,33 @@ export default function LandingPage() {
           <a href="#home">Home</a>
           <a href="#features">Features</a>
           <a href="#courses">Courses</a>
-          <a href="">Categories</a>
+          <div className="nav-categories" ref={catRef}>
+            <a
+              href="#"
+              className="categories-link"
+              onClick={e => {
+                e.preventDefault();
+                setShowCats(v => !v);
+              }}
+            >Categories</a>
+            <div
+              className="categories-popup"
+              style={{
+                display: showCats ? 'grid' : 'none',
+                opacity: showCats ? 1 : 0,
+                pointerEvents: showCats ? 'auto' : 'none'
+              }}
+            >
+              {[
+                'Web Development', 'Mobile Apps', 'UI/UX', 'Data Science', 'AI & ML', 'Cloud', 'Cybersecurity',
+                'Business', 'Marketing', 'Finance', 'Photography', 'Music', 'Language', 'Health',
+                'Personal Dev', 'Productivity', 'Design', 'Animation', 'Game Dev', 'Engineering', 'Math',
+                'Science', 'Cooking', 'Fitness', 'Writing', 'Test Prep', 'Kids', 'Other'
+              ].map((cat, i) => (
+                <span className="category-item" key={i}>{cat}</span>
+              ))}
+            </div>
+          </div>
           <a href="#pricing">Pricing</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
@@ -143,11 +182,163 @@ export default function LandingPage() {
         <p id='description'>Find the right course for you from our extensive library of options.</p>
         <div className="cards">
           <div className="set-1">
-            <div className="card-1"></div>
-            <div className="card-2"></div>
-            <div className="card-3"></div>
+            <div className="card-1">
+              <img src={course_card_img} alt="card-1-img" />
+              <div className="cate-and-price">
+                <p id='category'>Development</p>
+                <p id='price'>$19.99</p>
+              </div>
+              <p id='card-title'>Learning JavaScript With
+                Imagination</p>
+              <p id='overview'>
+                Discover JavaScript in a fun and creative way! Learn coding concepts through imagination, real-world examples, and interactive exercises that make learning enjoyable and easy.
+              </p>
+              <p id='name'>Iresh Dilshan</p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+                <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
+                <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
+              </div>
+              <hr />
+              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{height:'15px',width:'15px'}} /></button>
+            </div>
+            <div className="card-2">
+              <img src={course_card_img} alt="card-1-img" />
+              <div className="cate-and-price">
+                <p id='category'>Development</p>
+                <p id='price'>$19.99</p>
+              </div>
+              <p id='card-title'>Learning JavaScript With
+                Imagination</p>
+              <p id='overview'>
+                Discover JavaScript in a fun and creative way! Learn coding concepts through imagination, real-world examples, and interactive exercises that make learning enjoyable and easy.
+              </p>
+              <p id='name'>Iresh Dilshan</p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+                <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
+                <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
+              </div>
+              <hr />
+              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{height:'15px',width:'15px'}} /></button>
+            </div>
+            <div className="card-3">
+              <img src={course_card_img} alt="card-1-img" />
+              <div className="cate-and-price">
+                <p id='category'>Development</p>
+                <p id='price'>$19.99</p>
+              </div>
+              <p id='card-title'>Learning JavaScript With
+                Imagination</p>
+              <p id='overview'>
+                Discover JavaScript in a fun and creative way! Learn coding concepts through imagination, real-world examples, and interactive exercises that make learning enjoyable and easy.
+              </p>
+              <p id='name'>Iresh Dilshan</p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+                <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
+                <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
+              </div>
+              <hr />
+              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{height:'15px',width:'15px'}} /></button>
+            </div>
           </div>
-          <div className="set-2"></div>
+          <div className="set-2">
+            <div className="card-1">
+              <img src={course_card_img} alt="card-1-img" />
+              <div className="cate-and-price">
+                <p id='category'>Development</p>
+                <p id='price'>$19.99</p>
+              </div>
+              <p id='card-title'>Learning JavaScript With
+                Imagination</p>
+              <p id='overview'>
+                Discover JavaScript in a fun and creative way! Learn coding concepts through imagination, real-world examples, and interactive exercises that make learning enjoyable and easy.
+              </p>
+              <p id='name'>Iresh Dilshan</p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+                <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
+                <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
+              </div>
+              <hr />
+              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{height:'15px',width:'15px'}} /></button>
+            </div>
+            <div className="card-2">
+              <img src={course_card_img} alt="card-1-img" />
+              <div className="cate-and-price">
+                <p id='category'>Development</p>
+                <p id='price'>$19.99</p>
+              </div>
+              <p id='card-title'>Learning JavaScript With
+                Imagination</p>
+              <p id='overview'>
+                Discover JavaScript in a fun and creative way! Learn coding concepts through imagination, real-world examples, and interactive exercises that make learning enjoyable and easy.
+              </p>
+              <p id='name'>Iresh Dilshan</p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+                <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
+                <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
+              </div>
+              <hr />
+              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{height:'15px',width:'15px'}} /></button>
+            </div>
+            <div className="card-3">
+              <img src={course_card_img} alt="card-1-img" />
+              <div className="cate-and-price">
+                <p id='category'>Development</p>
+                <p id='price'>$19.99</p>
+              </div>
+              <p id='card-title'>Learning JavaScript With
+                Imagination</p>
+              <p id='overview'>
+                Discover JavaScript in a fun and creative way! Learn coding concepts through imagination, real-world examples, and interactive exercises that make learning enjoyable and easy.
+              </p>
+              <p id='name'>Iresh Dilshan</p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+                <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
+                <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
+              </div>
+              <hr />
+              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{height:'15px',width:'15px'}} /></button>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Pricing Section */}
+      <section id="pricing">
+        <p id="title">Pricing Plans</p>
+        <p id="sub-title">Choose the plan that fits your learning journey</p>
+        <div className="pricing-cards">
+          <div className="pricing-card">
+            <div className="plan-name">Starter</div>
+            <div className="plan-price">$0<span>/mo</span></div>
+            <ul className="plan-features">
+              <li>Access to free courses</li>
+              <li>Community support</li>
+              <li>Basic resources</li>
+            </ul>
+            <button className="plan-btn">Get Started</button>
+          </div>
+          <div className="pricing-card popular">
+            <div className="plan-badge">Most Popular</div>
+            <div className="plan-name">Pro</div>
+            <div className="plan-price">$19<span>/mo</span></div>
+            <ul className="plan-features">
+              <li>All Starter features</li>
+              <li>Unlimited course access</li>
+              <li>Downloadable resources</li>
+              <li>Priority support</li>
+            </ul>
+            <button className="plan-btn">Start Free Trial</button>
+          </div>
+          <div className="pricing-card">
+            <div className="plan-name">Team</div>
+            <div className="plan-price">$49<span>/mo</span></div>
+            <ul className="plan-features">
+              <li>All Pro features</li>
+              <li>Team analytics</li>
+              <li>Admin dashboard</li>
+              <li>Custom onboarding</li>
+            </ul>
+            <button className="plan-btn">Contact Sales</button>
+          </div>
         </div>
       </section>
     </div>
