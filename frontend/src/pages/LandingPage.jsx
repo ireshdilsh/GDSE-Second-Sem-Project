@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import logo from "../assets/logo.png"
 import hero_card_img from '../assets/hero-card-img.png'
 import course_card_img from '../assets/Link.png'
+import about_img from '../assets/aboutus-img.png'
 import '../styles/LandingPage.css'
 import feature_img from '../assets/feature-img.png'
 
@@ -198,7 +199,7 @@ export default function LandingPage() {
                 <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
                 <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
               </div>
-              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{height:'15px',width:'15px'}} /></button>
+              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
             </div>
             <div className="card-2">
               <img src={course_card_img} alt="card-1-img" />
@@ -216,8 +217,8 @@ export default function LandingPage() {
                 <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
                 <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
               </div>
-            
-              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{height:'15px',width:'15px'}} /></button>
+
+              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
             </div>
             <div className="card-3">
               <img src={course_card_img} alt="card-1-img" />
@@ -235,8 +236,8 @@ export default function LandingPage() {
                 <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
                 <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
               </div>
-              
-              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{height:'15px',width:'15px'}} /></button>
+
+              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
             </div>
           </div>
           <div className="set-2">
@@ -256,8 +257,8 @@ export default function LandingPage() {
                 <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
                 <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
               </div>
-             
-              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{height:'15px',width:'15px'}} /></button>
+
+              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
             </div>
             <div className="card-2">
               <img src={course_card_img} alt="card-1-img" />
@@ -275,8 +276,8 @@ export default function LandingPage() {
                 <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
                 <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
               </div>
-             
-              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{height:'15px',width:'15px'}} /></button>
+
+              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
             </div>
             <div className="card-3">
               <img src={course_card_img} alt="card-1-img" />
@@ -294,8 +295,8 @@ export default function LandingPage() {
                 <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
                 <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
               </div>
-             
-              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{height:'15px',width:'15px'}} /></button>
+
+              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
             </div>
           </div>
         </div>
@@ -303,8 +304,8 @@ export default function LandingPage() {
       {/* Pricing Section */}
       <section id="pricing">
         <p id="title">Pricing Plans</p>
-  <p id="sub-title">Choose the plan that fits your learning journey</p>
-  <p id="description">Choose the plan under that fits your learning journey. Unlock more features and flexibility as you upgrade.</p>
+        <p id="sub-title">Choose the plan that fits your learning journey</p>
+        <p id="description">Choose the plan under that fits your learning journey. Unlock more features and flexibility as you upgrade.</p>
         <div className="pricing-cards">
           <div className="pricing-card">
             <div className="plan-name">Starter</div>
@@ -356,6 +357,72 @@ export default function LandingPage() {
             </ul>
             <button className="plan-btn">Contact Sales</button>
           </div>
+        </div>
+      </section>
+      {/* About Us Section */}
+      <section id="about" className="about-section">
+        <p className="about-title">About Us</p>
+        <p className="about-sub-title">Empowering Learners Everywhere</p>
+        <div className="about-desc">
+          EduSpark is dedicated to making high-quality education accessible to everyone. Our platform brings together expert instructors, engaging content, and a supportive community to help you achieve your learning goals. Whether you're advancing your career, exploring new interests, or upskilling your team, EduSpark is your trusted partner on the journey to success.
+        </div>
+        <div className="about-highlights">
+          <div className="about-highlight-card">
+            <img src="https://img.icons8.com/?size=100&id=60671&format=png&color=6366f1" alt="icon" className="about-icon" />
+            <div className="about-highlight-value">20,000+</div>
+            <div className="about-highlight-label">Active Learners</div>
+          </div>
+          <div className="about-highlight-card">
+            <img src="https://img.icons8.com/?size=100&id=79387&format=png&color=6366f1" alt="icon" className="about-icon" />
+            <div className="about-highlight-value">150+</div>
+            <div className="about-highlight-label">Expert Instructors</div>
+          </div>
+          <div className="about-highlight-card">
+            <img src="https://img.icons8.com/?size=100&id=9oUOrI5mCb9u&format=png&color=6366f1" alt="icon" className="about-icon" />
+            <div className="about-highlight-value">1,200+</div>
+            <div className="about-highlight-label">Courses Offered</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Wrorkshop section */}
+      <section id='worksop'>
+        <div className="left-side">
+          <img src={about_img} alt="" />
+        </div>
+        <div className="right-side">
+          <div className="top">
+            <p id="title">Free Workshop</p>
+            <p id="sub-title">Join Our Free Workshops</p>
+            <p id="description">Edhen an unknown printer took a galley of type and scrambled it to make a <br />
+              type specimen bookas survived not only five centuries.Edhen an unknown <br />
+              printer took a galley of type and scrambled.</p>
+          </div>
+          <div className="bottom">
+            <div className="left-side">
+              <div className="logo-and-title">
+                <div className="logo">
+                  <img src="" alt="" />
+                </div>
+                <p id='title'>Smooth Virtual Live <br />
+                  Classes</p>
+              </div>
+              <p id='bottom-txt'>Edhen an unknown printer Rtook <br />
+                galley of type scrambled.</p>
+            </div>
+            <div className="right-side">
+              <div className="logo-and-title">
+                <div className="logo">
+                  <img src="" alt="" />
+                </div>
+                <p id='title'>99% Graduation <br />
+                  Complete</p>
+              </div>
+              <p id='bottom-txt'>Edhen an unknown printer Rtook <br />
+                galley of type scrambled.</p>
+            </div>
+          </div>
+          <button>Quick Join Now  <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
         </div>
       </section>
     </div>
