@@ -38,7 +38,7 @@ export default function LandingPage() {
             <div className="play-btn">
               <img src="https://img.icons8.com/?size=100&id=fjx0LfGCNuZb&format=png&color=fcfcfc" alt="playbtn-icn" />
             </div>
-            <button id='signin-btn'>Get Free Trial</button>
+            <button id='signin-btn'>Get Free Trial <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
             <button id='demo-btn'>Watch Our
               <br /> Class Demo</button>
           </div>
@@ -112,8 +112,42 @@ export default function LandingPage() {
               organize, prioritize and.In this episode of the Smashing Pod we’re <br />
               talking about Web Platform Baseline.
             </p>
+            <div className="details">
+              <div className="details-1">
+                <div className="circle">
+                  <img src="https://img.icons8.com/?size=100&id=60671&format=png&color=161439" alt="" />
+                </div>
+                <p>The Most World Class Instructors</p>
+              </div>
+              <div className="details-2">
+                <div className="circle">
+                  <img src="https://img.icons8.com/?size=100&id=60671&format=png&color=161439" alt="" />
+                </div>
+                <p>Access Your Class anywhere</p>
+              </div>
+              <div className="details-3">
+                <div className="circle">
+                  <img src="https://img.icons8.com/?size=100&id=60671&format=png&color=161439" alt="" />
+                </div>
+                <p>Flexible Course Plan</p>
+              </div>
+            </div>
             <button>Start Free Trial <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
           </div>
+        </div>
+      </section>
+
+      <section id='courses'>
+        <p id='title'>Top Class Courses</p>
+        <p id='sub-title'>Explore Our World's Best Courses</p>
+        <p id='description'>Find the right course for you from our extensive library of options.</p>
+        <div className="cards">
+          <div className="set-1">
+            <div className="card-1"></div>
+            <div className="card-2"></div>
+            <div className="card-3"></div>
+          </div>
+          <div className="set-2"></div>
         </div>
       </section>
     </div>
