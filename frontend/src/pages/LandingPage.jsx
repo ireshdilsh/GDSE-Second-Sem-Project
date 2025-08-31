@@ -1,9 +1,9 @@
 import React from 'react'
 import logo from "../assets/logo.png"
 import hero_card_img from '../assets/hero-card-img.png'
+import course_card_img from '../assets/Link.png'
 import '../styles/LandingPage.css'
 import feature_img from '../assets/feature-img.png'
-import { Form } from 'react-router-dom'
 
 export default function LandingPage() {
   return (
