@@ -402,7 +402,7 @@ export default function LandingPage() {
             <div className="left-side">
               <div className="logo-and-title">
                 <div className="logo">
-                  <img src="" alt="" />
+                  <img src="https://img.icons8.com/?size=100&id=oZ0ORHGX8aeH&format=png&color=fcfcfc" alt="" />
                 </div>
                 <p id='title'>Smooth Virtual Live <br />
                   Classes</p>
@@ -413,7 +413,7 @@ export default function LandingPage() {
             <div className="right-side">
               <div className="logo-and-title">
                 <div className="logo">
-                  <img src="" alt="" />
+                  <img src="https://img.icons8.com/?size=100&id=79387&format=png&color=fcfcfc" alt="" />
                 </div>
                 <p id='title'>99% Graduation <br />
                   Complete</p>
