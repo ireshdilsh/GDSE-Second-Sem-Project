@@ -1133,6 +1133,7 @@ nav .signup-btn button {
   color: #fcfcfc;
   font-size: 14px;
   margin-top: 20px;
+  box-shadow: #c8c1ed76 6px 6px 0px;
 }
 
 #events .left-side button img{
