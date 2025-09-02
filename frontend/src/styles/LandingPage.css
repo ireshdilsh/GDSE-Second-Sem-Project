@@ -1080,8 +1080,8 @@ nav .signup-btn button {
 #count-card svg{
   position: absolute;
   right: 10px;
-  top: 18px;
-  height: 350px;
+  top: -13px;
+  height: 390px;
   aspect-ratio: 1/1;
   z-index: 0;
 }
