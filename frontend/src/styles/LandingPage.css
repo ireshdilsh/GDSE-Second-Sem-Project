@@ -1091,5 +1091,51 @@ nav .signup-btn button {
   right: 50px;
   top: 20px;
   height: 350px;
-  
+}
+
+#events{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 150px;
+  margin-top: 40px;
+}
+
+#events .left-side #title{
+  background-color: var(--title-card-color);
+  color: var(--accent-color);
+  font-size: 13px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  width: 140px;
+}
+
+#events .left-side #sub-title{
+  font-size: 38px;
+  font-weight: 600;
+}
+
+#events .left-side #description{
+  font-size: 13px;
+  color: var(--text-color);
+}
+
+#events .left-side button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 8px 18px;
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  background-color: var(--accent-color);
+  color: #fcfcfc;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+#events .left-side button img{
+  height: 18px;
+  aspect-ratio: 1/1;
 }
