@@ -960,7 +960,7 @@ nav .signup-btn button {
   background-color: var(--accent-color);
   color: #fcfcfc;
   width: 200px;
-  padding: 8px 15px;
+  padding: 10px 15px;
   border-radius: 20px;
   border: none;
   outline: none;
@@ -1033,4 +1033,55 @@ nav .signup-btn button {
 #worksop .right-side .bottom .right-side .logo-and-title .logo img{
   height: 25px;
   aspect-ratio: 1/1;
+}
+
+#count-card{
+  margin: 20px 150px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right,var(--gradient-one),var(--gradient-two));
+  border-radius: 25px;
+  padding: 20px 50px 0px;
+  position: relative;
+}
+
+#count-card p,#count-card span{
+  color: #fcfcfc;
+}
+
+#count-card p{
+  font-size: 30px;
+  font-weight: 600;
+}
+
+#count-card p span{
+  padding: 4px 8px;
+  border-radius: 5px;
+  background-color: var(--title-card);
+}
+
+#count-card hr{
+  border: none;
+  border-radius: 50px;
+  height: 120px;
+  border: 2px solid #fcfcfc;
+}
+
+#count-card .middle span,
+#count-card .right span{
+  font-size: 13px;
+}
+
+#count-card img{
+  z-index: 1;
+}
+
+#count-card svg{
+  position: absolute;
+  right: 10px;
+  top: 18px;
+  height: 350px;
+  aspect-ratio: 1/1;
+  z-index: 0;
 }

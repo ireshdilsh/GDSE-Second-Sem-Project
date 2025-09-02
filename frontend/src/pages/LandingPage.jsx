@@ -3,6 +3,7 @@ import logo from "../assets/logo.png"
 import hero_card_img from '../assets/hero-card-img.png'
 import course_card_img from '../assets/Link.png'
 import about_img from '../assets/aboutus-img.png'
+import count_card from '../assets/count-card.png'
 import '../styles/LandingPage.css'
 import feature_img from '../assets/feature-img.png'
 
@@ -424,6 +425,26 @@ export default function LandingPage() {
           </div>
           <button>Quick Join Now  <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
         </div>
+      </section>
+
+      <section id='count-card'>
+        <p>Thousands of <span> Courses </span> <br />
+          authored by industry <br />
+          experts</p>
+        <div className="middle">
+          <p id='count'>45k+</p>
+          <span>Active Students</span>
+        </div>
+        <hr />
+        <div className="right">
+          <p id='count'>328+</p>
+          <span>Best Instructors</span>
+        </div>
+        <img src={count_card} alt="count-card" />
+        {/* blob */}
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#6366F1" d="M46.1,-48.6C58.5,-33.7,66.6,-16.8,65.2,-1.3C63.9,14.2,53.3,28.4,40.8,39.4C28.4,50.4,14.2,58.1,1,57.1C-12.2,56.1,-24.4,46.4,-34.2,35.4C-44,24.4,-51.4,12.2,-55.9,-4.5C-60.4,-21.3,-62.1,-42.5,-52.3,-57.4C-42.5,-72.4,-21.3,-80.9,-2.2,-78.7C16.8,-76.5,33.7,-63.5,46.1,-48.6Z" transform="translate(100 100)" />
+        </svg>
       </section>
     </div>
   )
