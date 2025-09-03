@@ -1065,7 +1065,7 @@ nav .signup-btn button {
   border: none;
   border-radius: 50px;
   height: 120px;
-  border: 2px solid #fcfcfc;
+  border: 1px solid #fcfcfc;
 }
 
 #count-card .middle span,
@@ -1139,4 +1139,70 @@ nav .signup-btn button {
 #events .left-side button img{
   height: 18px;
   aspect-ratio: 1/1;
+}
+
+#events .right-side{
+  position: relative;
+}
+
+#events .right-side .box{
+  height: 250px;
+  width: 650px;
+  border-radius: 20px;
+  background-color: #fafafa;
+}
+
+#events .right-side .events-cards{
+  position: absolute;
+  top: 30px;
+  left: -110px;
+  display: flex;
+  gap: 5px;
+}
+
+#events .right-side .events-cards .card-1,
+#events .right-side .events-cards .card-2,
+#events .right-side .events-cards .card-3 {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 15px 20px;
+  box-shadow: 0 2px 8px rgba(34,3,89,0.1);
+  width: 250px;
+}
+
+.event-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--gradient-one);
+  margin-bottom: 5px;
+}
+
+.event-date {
+  font-size: 12px;
+  color: var(--accent-color);
+  margin-bottom: 8px;
+}
+
+.event-details {
+  font-size: 13px;
+  color: var(--text-color);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.event-location {
+  font-size: 11px;
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+
+.enroll-btn {
+  background: var(--accent-color);
+  color: #fcfcfc;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 15px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
 }
