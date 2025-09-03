@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import logo from "../assets/logo.png"
 import hero_card_img from '../assets/hero-card-img.png'
 import course_card_img from '../assets/Link.png'
@@ -8,6 +9,17 @@ import '../styles/LandingPage.css'
 import feature_img from '../assets/feature-img.png'
 
 export default function LandingPage() {
+  const navigate = useNavigate();
+  
+  // Navigation handlers
+  const handleHelpCenterClick = () => {
+    navigate('/help');
+  };
+
+  const handlePrivacyPolicyClick = () => {
+    navigate('/privacy');
+  };
+
   // Category popup state and outside click handler
   const [showCats, setShowCats] = useState(false);
   const catRef = useRef(null);
@@ -618,7 +630,7 @@ export default function LandingPage() {
               <div className="footer-logo">
                 <img src={logo} alt="eduspark-logo" />
               </div>
-              <p className="footer-description">
+              <p className="footer-description" style={{fontSize: '14px'}}>
                 Empowering learners worldwide with cutting-edge courses and expert-led training programs. Join thousands of students achieving their career goals.
               </p>
               <div className="social-links">
@@ -664,9 +676,9 @@ export default function LandingPage() {
             <div className="footer-column">
               <h4>Support</h4>
               <ul>
-                <li><a href="#">Help Center</a></li>
+                <li><a href="#" onClick={handleHelpCenterClick}>Help Center</a></li>
                 <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#" onClick={handlePrivacyPolicyClick}>Privacy Policy</a></li>
                 <li><a href="#">Terms of Service</a></li>
                 <li><a href="#">Refund Policy</a></li>
                 <li><a href="#">FAQs</a></li>
@@ -699,7 +711,7 @@ export default function LandingPage() {
             <div className="footer-bottom-content">
               <p>&copy; 2025 EduSpark. All rights reserved.</p>
               <div className="footer-bottom-links">
-                <a href="#">Privacy</a>
+                <a href="#" onClick={handlePrivacyPolicyClick}>Privacy</a>
                 <a href="#">Terms</a>
                 <a href="#">Cookies</a>
               </div>
