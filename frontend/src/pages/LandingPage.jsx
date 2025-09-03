@@ -11,6 +11,17 @@ export default function LandingPage() {
   // Category popup state and outside click handler
   const [showCats, setShowCats] = useState(false);
   const catRef = useRef(null);
+  
+  // Contact modal state
+  const [showContactModal, setShowContactModal] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
+
   useEffect(() => {
     function handleClick(e) {
       if (catRef.current && !catRef.current.contains(e.target)) {
@@ -20,6 +31,32 @@ export default function LandingPage() {
     if (showCats) document.addEventListener('mousedown', handleClick);
     return () => document.removeEventListener('mousedown', handleClick);
   }, [showCats]);
+
+  // Handle form input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    // Here you would typically send the data to your backend
+    alert('Thank you for your message! We\'ll get back to you soon.');
+    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    setShowContactModal(false);
+  };
+
+  // Close modal when clicking outside
+  const handleModalClose = (e) => {
+    if (e.target.classList.contains('modal-overlay')) {
+      setShowContactModal(false);
+    }
+  };
 
   return (
     <div>
@@ -60,7 +97,15 @@ export default function LandingPage() {
           </div>
           <a href="#pricing">Pricing</a>
           <a href="#about">About</a>
-          <a href="#contact">Contact</a>
+          <a 
+            href="#contact" 
+            onClick={(e) => {
+              e.preventDefault();
+              setShowContactModal(true);
+            }}
+          >
+            Contact
+          </a>
         </div>
         <div className="signup-btn">
           <button>Register</button>
@@ -661,6 +706,116 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
+
+      {/* Contact Modal */}
+      {showContactModal && (
+        <div className="modal-overlay" onClick={handleModalClose}>
+          <div className="contact-modal">
+            <div className="modal-header">
+              <div className="modal-logo">
+                <img src={logo} alt="EduSpark Logo" />
+              </div>
+              <button 
+                className="modal-close-btn"
+                onClick={() => setShowContactModal(false)}
+              >
+                <img src="https://img.icons8.com/?size=100&id=6483&format=png&color=666666" alt="close" />
+              </button>
+            </div>
+            
+            <div className="modal-content">
+              <div className="modal-title">
+                <h2>Get in Touch</h2>
+                <p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+              </div>
+              
+              <form className="contact-form" onSubmit={handleSubmit}>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="name">Full Name *</label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      placeholder="Enter your full name"
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="email">Email Address *</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="Enter your email address"
+                      required
+                    />
+                  </div>
+                </div>
+                
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="phone">Phone Number</label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder="Enter your phone number"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="subject">Subject *</label>
+                    <select
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleInputChange}
+                      required
+                    >
+                      <option value="">Select a subject</option>
+                      <option value="course-inquiry">Course Inquiry</option>
+                      <option value="technical-support">Technical Support</option>
+                      <option value="billing">Billing & Payment</option>
+                      <option value="partnership">Partnership</option>
+                      <option value="feedback">Feedback</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div className="form-group full-width">
+                  <label htmlFor="message">Message *</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    placeholder="Tell us how we can help you..."
+                    rows={5}
+                    required
+                  ></textarea>
+                </div>
+                
+                <div className="form-actions">
+                  <button type="button" className="cancel-btn" onClick={() => setShowContactModal(false)}>
+                    Cancel
+                  </button>
+                  <button type="submit" className="submit-btn">
+                    Send Message
+                    <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=ffffff" alt="send" />
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
