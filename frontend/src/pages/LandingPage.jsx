@@ -324,6 +324,7 @@ export default function LandingPage() {
               </div>
 
               <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
+
             </div>
             <div className="card-3">
               <img src={course_card_img} alt="card-1-img" />
@@ -366,7 +367,7 @@ export default function LandingPage() {
               <li>Access on any device</li>
               <li>Course progress tracking</li>
             </ul>
-            <button className="plan-btn">Get Started</button>
+            <button className="plan-btn" >Get Started</button>
           </div>
           <div className="pricing-card popular">
             <div className="plan-badge">Most Popular</div>
@@ -384,7 +385,7 @@ export default function LandingPage() {
               <li>Early access to new courses</li>
               <li>Ad-free experience</li>
             </ul>
-            <button className="plan-btn">Start Free Trial</button>
+            <button className="plan-btn" >Start Free Trial</button>
           </div>
           <div className="pricing-card">
             <div className="plan-name">Team</div>
@@ -401,7 +402,7 @@ export default function LandingPage() {
               <li>Advanced reporting</li>
               <li>API access</li>
             </ul>
-            <button className="plan-btn">Contact Sales</button>
+            <button className="plan-btn" >Contact Sales</button>
           </div>
         </div>
       </section>
@@ -514,21 +515,21 @@ export default function LandingPage() {
               <div className="event-date">Sep 15, 2025</div>
               <div className="event-details">Learn React fundamentals and build modern web applications</div>
               <div className="event-location">Online - Zoom</div>
-              <button className="enroll-btn">Enroll Now</button>
+              <button className="enroll-btn" >Enroll Now</button>
             </div>
             <div className="card-2">
               <div className="event-title">UI/UX Design Bootcamp</div>
               <div className="event-date">Sep 22, 2025</div>
               <div className="event-details">Master design principles and create stunning user interfaces</div>
               <div className="event-location">New York, NY</div>
-              <button className="enroll-btn">Enroll Now</button>
+              <button className="enroll-btn" >Enroll Now</button>
             </div>
             <div className="card-3">
               <div className="event-title">JavaScript Masterclass</div>
               <div className="event-date">Sep 29, 2025</div>
               <div className="event-details">Advanced JavaScript concepts and modern ES6+ features</div>
               <div className="event-location">San Francisco, CA</div>
-              <button className="enroll-btn">Enroll Now</button>
+              <button className="enroll-btn" >Enroll Now</button>
             </div>
           </div>
         </div>
