@@ -488,6 +488,81 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* Blog Section */}
+      <section id="blog">
+        <p id="title">Our Blog</p>
+        <p id="sub-title">Latest News & Articles</p>
+        <p id="description">Stay updated with the latest trends, tips, and insights from our expert community</p>
+        <div className="blog-cards">
+          <div className="blog-card">
+            <img src="https://images.unsplash.com/photo-1593720213428-28a5b9e94613?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="JavaScript Development" className="blog-img" />
+            <div className="blog-category">Web Development</div>
+            <div className="blog-title">10 JavaScript Tips Every Developer Should Know</div>
+            <div className="blog-excerpt">Discover essential JavaScript techniques that will boost your productivity and code quality...</div>
+            <div className="blog-meta">
+              <span className="blog-date">Sep 1, 2025</span>
+              <span className="blog-author">By John Doe</span>
+            </div>
+            <button className="blog-btn">Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
+          </div>
+          <div className="blog-card">
+            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="UI/UX Design" className="blog-img" />
+            <div className="blog-category">Design</div>
+            <div className="blog-title">The Future of UI/UX Design in 2025</div>
+            <div className="blog-excerpt">Explore upcoming design trends and how they will shape user experiences in the coming year...</div>
+            <div className="blog-meta">
+              <span className="blog-date">Aug 28, 2025</span>
+              <span className="blog-author">By Jane Smith</span>
+            </div>
+            <button className="blog-btn">Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
+          </div>
+          <div className="blog-card">
+            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI and Machine Learning" className="blog-img" />
+            <div className="blog-category">Technology</div>
+            <div className="blog-title">AI and Machine Learning: A Beginner's Guide</div>
+            <div className="blog-excerpt">Learn the fundamentals of artificial intelligence and how to get started with ML projects...</div>
+            <div className="blog-meta">
+              <span className="blog-date">Aug 25, 2025</span>
+              <span className="blog-author">By Mike Johnson</span>
+            </div>
+            <button className="blog-btn">Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
+          </div>
+          <div className="blog-card">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Data Science" className="blog-img" />
+            <div className="blog-category">Data Science</div>
+            <div className="blog-title">Data Visualization Best Practices</div>
+            <div className="blog-excerpt">Master the art of presenting data effectively with these proven visualization techniques...</div>
+            <div className="blog-meta">
+              <span className="blog-date">Aug 22, 2025</span>
+              <span className="blog-author">By Sarah Chen</span>
+            </div>
+            <button className="blog-btn">Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
+          </div>
+          <div className="blog-card">
+            <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Mobile Development" className="blog-img" />
+            <div className="blog-category">Mobile Development</div>
+            <div className="blog-title">Building Your First Mobile App</div>
+            <div className="blog-excerpt">Step-by-step guide to creating mobile applications using modern development frameworks...</div>
+            <div className="blog-meta">
+              <span className="blog-date">Aug 19, 2025</span>
+              <span className="blog-author">By Alex Rodriguez</span>
+            </div>
+            <button className="blog-btn">Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
+          </div>
+          <div className="blog-card">
+            <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Cloud Computing" className="blog-img" />
+            <div className="blog-category">Cloud Computing</div>
+            <div className="blog-title">AWS vs Azure vs Google Cloud: Which to Choose?</div>
+            <div className="blog-excerpt">Compare the top cloud platforms and find the best solution for your next project...</div>
+            <div className="blog-meta">
+              <span className="blog-date">Aug 16, 2025</span>
+              <span className="blog-author">By David Wilson</span>
+            </div>
+            <button className="blog-btn">Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

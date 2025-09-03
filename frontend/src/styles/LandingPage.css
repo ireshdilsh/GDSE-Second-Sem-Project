@@ -1005,7 +1005,7 @@ nav .signup-btn button {
 }
 
 #worksop .right-side .bottom .left-side .logo-and-title #title,
-#worksop .right-side .bottom .right-side .logo-and-title #title{
+#worksop .right-side .bottom .right-side .logo-and-title #title {
   font-size: 18px;
   width: 100%;
   background-color: #fff;
@@ -1030,38 +1030,39 @@ nav .signup-btn button {
 }
 
 #worksop .right-side .bottom .left-side .logo-and-title .logo img,
-#worksop .right-side .bottom .right-side .logo-and-title .logo img{
+#worksop .right-side .bottom .right-side .logo-and-title .logo img {
   height: 25px;
   aspect-ratio: 1/1;
 }
 
-#count-card{
+#count-card {
   margin: 20px 150px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(to right,var(--gradient-one),var(--gradient-two));
+  background: linear-gradient(to right, var(--gradient-one), var(--gradient-two));
   border-radius: 25px;
   padding: 20px 50px 0px;
   position: relative;
 }
 
-#count-card p,#count-card span{
+#count-card p,
+#count-card span {
   color: #fcfcfc;
 }
 
-#count-card p{
+#count-card p {
   font-size: 30px;
   font-weight: 600;
 }
 
-#count-card p span{
+#count-card p span {
   padding: 4px 8px;
   border-radius: 5px;
   background-color: var(--title-card);
 }
 
-#count-card hr{
+#count-card hr {
   border: none;
   border-radius: 50px;
   height: 120px;
@@ -1069,15 +1070,15 @@ nav .signup-btn button {
 }
 
 #count-card .middle span,
-#count-card .right span{
+#count-card .right span {
   font-size: 13px;
 }
 
-#count-card img{
+#count-card img {
   z-index: 1;
 }
 
-#count-card svg{
+#count-card svg {
   position: absolute;
   right: 10px;
   top: -13px;
@@ -1086,14 +1087,14 @@ nav .signup-btn button {
   z-index: 0;
 }
 
-#count-card #second-blob{
+#count-card #second-blob {
   position: absolute;
   right: 50px;
   top: 20px;
   height: 350px;
 }
 
-#events{
+#events {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1101,7 +1102,7 @@ nav .signup-btn button {
   margin-top: 40px;
 }
 
-#events .left-side #title{
+#events .left-side #title {
   background-color: var(--title-card-color);
   color: var(--accent-color);
   font-size: 13px;
@@ -1110,17 +1111,17 @@ nav .signup-btn button {
   width: 140px;
 }
 
-#events .left-side #sub-title{
+#events .left-side #sub-title {
   font-size: 38px;
   font-weight: 600;
 }
 
-#events .left-side #description{
+#events .left-side #description {
   font-size: 13px;
   color: var(--text-color);
 }
 
-#events .left-side button{
+#events .left-side button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1136,23 +1137,23 @@ nav .signup-btn button {
   box-shadow: #c8c1ed76 6px 6px 0px;
 }
 
-#events .left-side button img{
+#events .left-side button img {
   height: 18px;
   aspect-ratio: 1/1;
 }
 
-#events .right-side{
+#events .right-side {
   position: relative;
 }
 
-#events .right-side .box{
+#events .right-side .box {
   height: 250px;
   width: 650px;
   border-radius: 20px;
   background-color: #fafafa;
 }
 
-#events .right-side .events-cards{
+#events .right-side .events-cards {
   position: absolute;
   top: 30px;
   left: -110px;
@@ -1166,7 +1167,7 @@ nav .signup-btn button {
   background-color: #fff;
   border-radius: 12px;
   padding: 15px 20px;
-  box-shadow: 0 2px 8px rgba(34,3,89,0.1);
+  box-shadow: 0 2px 8px rgba(34, 3, 89, 0.1);
   width: 250px;
 }
 
@@ -1205,4 +1206,128 @@ nav .signup-btn button {
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
+}
+
+/* Blog Section */
+#blog {
+  padding: 80px 150px;
+  background: linear-gradient(to right, var(--gradient-one), var(--gradient-two));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#blog #title {
+  background: var(--title-card-color);
+  color: var(--accent-color);
+  font-size: 13px;
+  padding: 4px 12px;
+  border-radius: 25px;
+}
+
+#blog #sub-title {
+  color: #fcfcfc;
+  font-size: 38px;
+  font-weight: 600;
+}
+
+#blog #description {
+  color: #fcfcfc;
+  font-size: 13px;
+  text-align: center;
+  margin-bottom: 40px;
+  max-width: 600px;
+}
+
+.blog-cards {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.blog-card {
+  background: var(--title-card-color);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px 0 rgba(34, 3, 89, 0.08);
+  padding: 24px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+
+.blog-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 8px 32px 0 rgba(34, 3, 89, 0.16);
+}
+
+.blog-img {
+  height: 180px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 18px;
+}
+
+.blog-category {
+  background: var(--light-purple);
+  color: var(--accent-color);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 15px;
+  width: fit-content;
+  margin-bottom: 12px;
+}
+
+.blog-title {
+  color: var(--gradient-one);
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.blog-excerpt {
+  color: var(--text-color);
+  font-size: 13px;
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+
+.blog-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.blog-date,
+.blog-author {
+  color: var(--text-color);
+  font-size: 11px;
+}
+
+.blog-btn {
+  background: var(--accent-color);
+  color: #fcfcfc;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.18s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: #c8c1ed76 6px 6px 0px;
+}
+
+.blog-btn img {
+  height: 15px;
+  width: 15px;
 }
