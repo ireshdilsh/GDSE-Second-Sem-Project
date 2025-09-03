@@ -563,6 +563,104 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* Footer Section */}
+      <div className="footer-container">
+        <div className="footer-content">
+          <div className="footer-top">
+            <div className="footer-column">
+              <div className="footer-logo">
+                <img src={logo} alt="eduspark-logo" />
+              </div>
+              <p className="footer-description">
+                Empowering learners worldwide with cutting-edge courses and expert-led training programs. Join thousands of students achieving their career goals.
+              </p>
+              <div className="social-links">
+                <a href="#" className="social-link">
+                  <img src="https://img.icons8.com/?size=100&id=8824&format=png&color=ffffff" alt="facebook" />
+                </a>
+                <a href="#" className="social-link">
+                  <img src="https://img.icons8.com/?size=100&id=5MQ0gPAYYx7a&format=png&color=ffffff" alt="twitter" />
+                </a>
+                <a href="#" className="social-link">
+                  <img src="https://img.icons8.com/?size=100&id=xuvGCOXi8Wyg&format=png&color=ffffff" alt="linkedin" />
+                </a>
+                <a href="#" className="social-link">
+                  <img src="https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png&color=ffffff" alt="instagram" />
+                </a>
+              </div>
+            </div>
+            
+            <div className="footer-column">
+              <h4>Quick Links</h4>
+              <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#blog">Blog</a></li>
+              </ul>
+            </div>
+            
+            <div className="footer-column">
+              <h4>Categories</h4>
+              <ul>
+                <li><a href="#">Web Development</a></li>
+                <li><a href="#">Mobile Apps</a></li>
+                <li><a href="#">Data Science</a></li>
+                <li><a href="#">UI/UX Design</a></li>
+                <li><a href="#">Digital Marketing</a></li>
+                <li><a href="#">Business</a></li>
+              </ul>
+            </div>
+            
+            <div className="footer-column">
+              <h4>Support</h4>
+              <ul>
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Refund Policy</a></li>
+                <li><a href="#">FAQs</a></li>
+              </ul>
+            </div>
+            
+            <div className="footer-column">
+              <h4>Newsletter</h4>
+              <p className="newsletter-text">Subscribe to our newsletter for the latest updates and exclusive offers.</p>
+              <div className="newsletter-form">
+                <input type="email" placeholder="Enter your email" className="newsletter-input" />
+                <button className="newsletter-btn">
+                  <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="subscribe" />
+                </button>
+              </div>
+              <div className="contact-info">
+                <div className="contact-item">
+                  <img src="https://img.icons8.com/?size=100&id=9659&format=png&color=ffffff" alt="email" />
+                  <span>support@eduspark.com</span>
+                </div>
+                <div className="contact-item">
+                  <img src="https://img.icons8.com/?size=100&id=9730&format=png&color=ffffff" alt="phone" />
+                  <span>+1 (555) 123-4567</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="footer-bottom">
+            <div className="footer-bottom-content">
+              <p>&copy; 2025 EduSpark. All rights reserved.</p>
+              <div className="footer-bottom-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Cookies</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
