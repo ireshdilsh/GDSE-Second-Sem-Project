@@ -20,6 +20,18 @@ export default function LandingPage() {
     navigate('/privacy');
   };
 
+  const handleTermsClick = () => {
+    navigate('/terms');
+  };
+
+  const handleRefundClick = () => {
+    navigate('/refund');
+  };
+
+  const handleFAQsClick = () => {
+    navigate('/faqs');
+  };
+
   // Category popup state and outside click handler
   const [showCats, setShowCats] = useState(false);
   const catRef = useRef(null);
@@ -679,15 +691,15 @@ export default function LandingPage() {
                 <li><a href="#" onClick={handleHelpCenterClick}>Help Center</a></li>
                 <li><a href="#">Contact Us</a></li>
                 <li><a href="#" onClick={handlePrivacyPolicyClick}>Privacy Policy</a></li>
-                <li><a href="#">Terms of Service</a></li>
-                <li><a href="#">Refund Policy</a></li>
-                <li><a href="#">FAQs</a></li>
+                <li><a href="#" onClick={handleTermsClick}>Terms of Service</a></li>
+                <li><a href="#" onClick={handleRefundClick}>Refund Policy</a></li>
+                <li><a href="#" onClick={handleFAQsClick}>FAQs</a></li>
               </ul>
             </div>
             
             <div className="footer-column">
               <h4>Newsletter</h4>
-              <p className="newsletter-text">Subscribe to our newsletter for the latest updates and exclusive offers.</p>
+              <p className="newsletter-text" style={{fontSize: '14px'}}>Subscribe to our newsletter for the latest updates and exclusive offers.</p>
               <div className="newsletter-form">
                 <input type="email" placeholder="Enter your email" className="newsletter-input" />
                 <button className="newsletter-btn">
@@ -712,7 +724,7 @@ export default function LandingPage() {
               <p>&copy; 2025 EduSpark. All rights reserved.</p>
               <div className="footer-bottom-links">
                 <a href="#" onClick={handlePrivacyPolicyClick}>Privacy</a>
-                <a href="#">Terms</a>
+                <a href="#" onClick={handleTermsClick}>Terms</a>
                 <a href="#">Cookies</a>
               </div>
             </div>

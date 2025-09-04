@@ -341,7 +341,7 @@ export default function HelpCenter() {
             
             <div className="footer-column">
               <h4>Newsletter</h4>
-              <p className="newsletter-text">Subscribe to our newsletter for the latest updates and exclusive offers.</p>
+              <p className="newsletter-text" style={{fontSize: '14px'}}>Subscribe to our newsletter for the latest updates and exclusive offers.</p>
               <div className="newsletter-form">
                 <input type="email" placeholder="Enter your email" className="newsletter-input" />
                 <button className="newsletter-btn">
