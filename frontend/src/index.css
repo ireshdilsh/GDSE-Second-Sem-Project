@@ -3,11 +3,14 @@
   --gradient-two : #4906BF;
   --title-card : #FFC224;
   --accent-color : #6366f1;
+  --accent-hover : #5855eb;
   --light-purple : #C8C1ED;
   --light-yellow : #EBE0C4;
   --light-green : #C9E4E9;
   --title-card-color : #EFEEFE;
   --text-color : #6D6C80;
+  --text-primary : #161439;
+  --text-secondary : #6D6C80;
 }
 
 *{

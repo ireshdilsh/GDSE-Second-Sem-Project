@@ -1841,3 +1841,245 @@ nav .signup-btn button {
   }
 }
 
+/* Sign In Modal Styles */
+.auth-modal {
+  max-width: 450px;
+  width: 90%;
+  padding: 0;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-modal-content {
+  padding: 30px;
+  overflow-y: auto;
+  flex: 1;
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for auth modal */
+.auth-modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.auth-modal-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.auth-modal-content::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.auth-modal-content::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+.auth-form {
+  min-height: fit-content;
+}
+
+.auth-form .form-group {
+  margin-bottom: 20px;
+}
+
+.auth-form .form-group label {
+  display: block;
+  color: var(--text-color);
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.auth-form .form-group input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background: #fff;
+}
+
+.auth-form .form-group input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.1);
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.remember-me input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent-color);
+}
+
+.remember-me span {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.forgot-password {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.3s ease;
+}
+
+.forgot-password:hover {
+  opacity: 0.8;
+}
+
+.auth-btn {
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  margin-bottom: 16px;
+}
+
+.auth-btn.primary {
+  background: linear-gradient(135deg, var(--accent-color), #7c3aed);
+  color: #fff;
+  border: none;
+}
+
+.auth-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(168, 85, 247, 0.3);
+}
+
+.auth-btn.google {
+  background: #fff;
+  border: 2px solid #e5e7eb;
+  color: var(--text-color);
+}
+
+.auth-btn.google:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+}
+
+.auth-btn img {
+  width: 18px;
+  height: 18px;
+}
+
+.divider {
+  text-align: center;
+  margin: 20px 0;
+  position: relative;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #e5e7eb;
+  z-index: 1;
+}
+
+.divider span {
+  background: #fff;
+  padding: 0 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+.auth-footer a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-footer a:hover {
+  opacity: 0.8;
+}
+
+/* Close Button Styling for Auth Modal */
+.auth-modal .close-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-modal .close-btn:hover {
+  background-color: #f3f4f6;
+}
+
+.auth-modal .close-btn img {
+  height: 20px;
+  width: 20px;
+}
+
+/* Mobile Responsiveness for Auth Modal */
+@media (max-width: 768px) {
+  .auth-modal {
+    max-width: 90%;
+    margin: 20px;
+    max-height: 85vh;
+  }
+  
+  .auth-modal-content {
+    padding: 20px;
+  }
+  
+  .modal-header h2 {
+    font-size: 20px;
+  }
+
+  .auth-form .form-group {
+    margin-bottom: 16px;
+  }
+
+  .auth-form .form-group input {
+    padding: 10px 14px;
+  }
+}
+

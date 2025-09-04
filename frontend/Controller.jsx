@@ -6,6 +6,8 @@ import PrivacyPolicy from './src/pages/PrivacyPolicy'
 import TermsOfService from './src/pages/TermsOfService'
 import RefundPolicy from './src/pages/RefundPolicy'
 import FAQs from './src/pages/FAQs'
+import SignInPage from './src/pages/SignInPage'
+import SignUpPage from './src/pages/SignUpPage'
 import './src/index.css'
 
 export default function Controller() {
@@ -19,6 +21,8 @@ export default function Controller() {
           <Route path='/terms' element={<TermsOfService />}></Route>
           <Route path='/refund' element={<RefundPolicy />}></Route>
           <Route path='/faqs' element={<FAQs />}></Route>
+          <Route path='/signin' element={<SignInPage />}></Route>
+          <Route path='/signup' element={<SignUpPage />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

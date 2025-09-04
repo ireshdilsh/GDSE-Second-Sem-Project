@@ -15,6 +15,13 @@ export default function LandingPage() {
   
   // Contact modal state
   const [showContactModal, setShowContactModal] = useState(false);
+  
+  // Sign In modal state
+  const [showSignInModal, setShowSignInModal] = useState(false);
+  
+  // Sign Up modal state
+  const [showSignUpModal, setShowSignUpModal] = useState(false);
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -22,6 +29,19 @@ export default function LandingPage() {
     subject: '',
     message: ''
   });
+
+  // Sign up form state
+  const [signUpData, setSignUpData] = useState({
+    fullName: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
+
+  // Password validation state
+  const [passwordError, setPasswordError] = useState('');
+  const [isPasswordValid, setIsPasswordValid] = useState(true);
+  const [passwordSuccess, setPasswordSuccess] = useState('');
 
   useEffect(() => {
     function handleClick(e) {
@@ -42,6 +62,92 @@ export default function LandingPage() {
     }));
   };
 
+  // Handle signup form input changes
+  const handleSignUpInputChange = (e) => {
+    const { name, value } = e.target;
+    setSignUpData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+
+    // Password validation
+    if (name === 'password' || name === 'confirmPassword') {
+      const currentPassword = name === 'password' ? value : signUpData.password;
+      const currentConfirmPassword = name === 'confirmPassword' ? value : signUpData.confirmPassword;
+      
+      // Check password length (minimum 8 characters)
+      if (name === 'password' && value && value.length < 8) {
+        setPasswordError('Password must be at least 8 characters long');
+        setIsPasswordValid(false);
+        setPasswordSuccess('');
+        return;
+      }
+      
+      // Check if passwords match
+      if (currentConfirmPassword && currentPassword && currentPassword !== currentConfirmPassword) {
+        setPasswordError('Passwords do not match');
+        setIsPasswordValid(false);
+        setPasswordSuccess('');
+      } else if (currentConfirmPassword && currentPassword && currentPassword === currentConfirmPassword && currentPassword.length >= 8) {
+        setPasswordError('');
+        setIsPasswordValid(true);
+        setPasswordSuccess('Passwords match!');
+      } else {
+        setPasswordError('');
+        setIsPasswordValid(true);
+        setPasswordSuccess('');
+      }
+    }
+  };
+
+  // Handle signup form submission
+  const handleSignUpSubmit = (e) => {
+    e.preventDefault();
+    
+    // Check if password is not empty
+    if (!signUpData.password) {
+      setPasswordError('Password is required');
+      setIsPasswordValid(false);
+      return;
+    }
+
+    // Check password length
+    if (signUpData.password.length < 8) {
+      setPasswordError('Password must be at least 8 characters long');
+      setIsPasswordValid(false);
+      return;
+    }
+    
+    // Check if passwords match
+    if (signUpData.password !== signUpData.confirmPassword) {
+      setPasswordError('Passwords do not match');
+      setIsPasswordValid(false);
+      return;
+    }
+
+    console.log('Sign Up data:', signUpData);
+    alert('Account created successfully! Welcome to EduSpark!');
+    setShowSignUpModal(false);
+    setSignUpData({
+      fullName: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
+    });
+    // Reset password validation
+    setPasswordError('');
+    setIsPasswordValid(true);
+    setPasswordSuccess('');
+  };
+
+  // Handle signin form submission
+  const handleSignInSubmit = (e) => {
+    e.preventDefault();
+    console.log('Sign In submitted');
+    alert('Welcome back to EduSpark!');
+    setShowSignInModal(false);
+  };
+
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -56,7 +162,63 @@ export default function LandingPage() {
   const handleModalClose = (e) => {
     if (e.target.classList.contains('modal-overlay')) {
       setShowContactModal(false);
+      setShowSignInModal(false);
+      setShowSignUpModal(false);
     }
+  };
+
+  // Open Sign In Modal for all registration/enrollment buttons
+  const handleOpenSignIn = () => {
+    setShowSignInModal(true);
+  };
+
+  // Open Sign Up Modal
+  const handleOpenSignUp = () => {
+    setShowSignUpModal(true);
+  };
+
+  // Switch from Sign In to Sign Up modal
+  const handleSwitchToSignUp = () => {
+    setShowSignInModal(false);
+    setShowSignUpModal(true);
+  };
+
+  // Switch from Sign Up to Sign In modal
+  const handleSwitchToSignIn = () => {
+    setShowSignUpModal(false);
+    setShowSignInModal(true);
+  };
+
+  // Button handlers for different actions
+  const handleGetFreeTrial = () => {
+    handleOpenSignIn();
+  };
+
+  const handleStartFreeTrial = () => {
+    handleOpenSignIn();
+  };
+
+  const handleEnrollNow = () => {
+    handleOpenSignIn();
+  };
+
+  const handleQuickJoinNow = () => {
+    handleOpenSignIn();
+  };
+
+  const handleReadMore = () => {
+    handleOpenSignIn();
+  };
+
+  const handleSeeAllEvents = () => {
+    handleOpenSignIn();
+  };
+
+  // Function to handle Google authentication
+  const handleGoogleAuth = () => {
+    // Add Google authentication logic here
+    console.log('Google authentication clicked');
+    // For now, you can redirect to Google OAuth or handle Google sign-in
   };
 
   return (
@@ -109,7 +271,7 @@ export default function LandingPage() {
           </a>
         </div>
         <div className="signup-btn">
-          <button>Register</button>
+          <button onClick={handleOpenSignUp}>Register</button>
         </div>
       </nav>
 
@@ -125,7 +287,7 @@ export default function LandingPage() {
             <div className="play-btn">
               <img src="https://img.icons8.com/?size=100&id=fjx0LfGCNuZb&format=png&color=fcfcfc" alt="playbtn-icn" />
             </div>
-            <button id='signin-btn'>Get Free Trial <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
+            <button id='signin-btn' onClick={handleGetFreeTrial}>Get Free Trial <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
             <button id='demo-btn'>Watch Our
               <br /> Class Demo</button>
           </div>
@@ -219,7 +381,7 @@ export default function LandingPage() {
                 <p>Flexible Course Plan</p>
               </div>
             </div>
-            <button>Start Free Trial <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
+            <button onClick={handleStartFreeTrial}>Start Free Trial <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
           </div>
         </div>
       </section>
@@ -246,7 +408,7 @@ export default function LandingPage() {
                 <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
                 <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
               </div>
-              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
+              <button onClick={handleEnrollNow}>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
             </div>
             <div className="card-2">
               <img src={course_card_img} alt="card-1-img" />
@@ -265,7 +427,7 @@ export default function LandingPage() {
                 <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
               </div>
 
-              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
+              <button onClick={handleEnrollNow}>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
             </div>
             <div className="card-3">
               <img src={course_card_img} alt="card-1-img" />
@@ -284,7 +446,7 @@ export default function LandingPage() {
                 <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
               </div>
 
-              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
+              <button onClick={handleEnrollNow}>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
             </div>
           </div>
           <div className="set-2">
@@ -305,7 +467,7 @@ export default function LandingPage() {
                 <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
               </div>
 
-              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
+              <button onClick={handleEnrollNow}>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
             </div>
             <div className="card-2">
               <img src={course_card_img} alt="card-1-img" />
@@ -324,7 +486,7 @@ export default function LandingPage() {
                 <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
               </div>
 
-              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
+              <button onClick={handleEnrollNow}>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
 
             </div>
             <div className="card-3">
@@ -344,7 +506,7 @@ export default function LandingPage() {
                 <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
               </div>
 
-              <button>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
+              <button onClick={handleEnrollNow}>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
             </div>
           </div>
         </div>
@@ -386,7 +548,7 @@ export default function LandingPage() {
               <li>Early access to new courses</li>
               <li>Ad-free experience</li>
             </ul>
-            <button className="plan-btn" >Start Free Trial</button>
+            <button className="plan-btn" onClick={handleStartFreeTrial}>Start Free Trial</button>
           </div>
           <div className="pricing-card">
             <div className="plan-name">Team</div>
@@ -470,7 +632,7 @@ export default function LandingPage() {
                 galley of type scrambled.</p>
             </div>
           </div>
-          <button>Quick Join Now  <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
+          <button onClick={handleQuickJoinNow}>Quick Join Now  <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
         </div>
       </section>
 
@@ -506,7 +668,7 @@ export default function LandingPage() {
           <p id='description'>Edhen an unknown printer took a galley acrambled <br />
             make a type specimen bookas centuries.Edhen <br />
             anderely unknown printer took a galley.</p>
-            <button>See All Events <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
+            <button onClick={handleSeeAllEvents}>See All Events <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
         </div>
         <div className="right-side">
           <div className="box"></div>
@@ -516,21 +678,21 @@ export default function LandingPage() {
               <div className="event-date">Sep 15, 2025</div>
               <div className="event-details">Learn React fundamentals and build modern web applications</div>
               <div className="event-location">Online - Zoom</div>
-              <button className="enroll-btn" >Enroll Now</button>
+              <button className="enroll-btn" onClick={handleEnrollNow}>Enroll Now</button>
             </div>
             <div className="card-2">
               <div className="event-title">UI/UX Design Bootcamp</div>
               <div className="event-date">Sep 22, 2025</div>
               <div className="event-details">Master design principles and create stunning user interfaces</div>
               <div className="event-location">New York, NY</div>
-              <button className="enroll-btn" >Enroll Now</button>
+              <button className="enroll-btn" onClick={handleEnrollNow}>Enroll Now</button>
             </div>
             <div className="card-3">
               <div className="event-title">JavaScript Masterclass</div>
               <div className="event-date">Sep 29, 2025</div>
               <div className="event-details">Advanced JavaScript concepts and modern ES6+ features</div>
               <div className="event-location">San Francisco, CA</div>
-              <button className="enroll-btn" >Enroll Now</button>
+              <button className="enroll-btn" onClick={handleEnrollNow}>Enroll Now</button>
             </div>
           </div>
         </div>
@@ -551,7 +713,7 @@ export default function LandingPage() {
               <span className="blog-date">Sep 1, 2025</span>
               <span className="blog-author">By John Doe</span>
             </div>
-            <button className="blog-btn">Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
+            <button className="blog-btn" onClick={handleReadMore}>Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
           </div>
           <div className="blog-card">
             <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="UI/UX Design" className="blog-img" />
@@ -562,7 +724,7 @@ export default function LandingPage() {
               <span className="blog-date">Aug 28, 2025</span>
               <span className="blog-author">By Jane Smith</span>
             </div>
-            <button className="blog-btn">Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
+            <button className="blog-btn" onClick={handleReadMore}>Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
           </div>
           <div className="blog-card">
             <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI and Machine Learning" className="blog-img" />
@@ -573,7 +735,7 @@ export default function LandingPage() {
               <span className="blog-date">Aug 25, 2025</span>
               <span className="blog-author">By Mike Johnson</span>
             </div>
-            <button className="blog-btn">Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
+            <button className="blog-btn" onClick={handleReadMore}>Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
           </div>
           <div className="blog-card">
             <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Data Science" className="blog-img" />
@@ -584,7 +746,7 @@ export default function LandingPage() {
               <span className="blog-date">Aug 22, 2025</span>
               <span className="blog-author">By Sarah Chen</span>
             </div>
-            <button className="blog-btn">Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
+            <button className="blog-btn" onClick={handleReadMore}>Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
           </div>
           <div className="blog-card">
             <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Mobile Development" className="blog-img" />
@@ -595,7 +757,7 @@ export default function LandingPage() {
               <span className="blog-date">Aug 19, 2025</span>
               <span className="blog-author">By Alex Rodriguez</span>
             </div>
-            <button className="blog-btn">Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
+            <button className="blog-btn" onClick={handleReadMore}>Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
           </div>
           <div className="blog-card">
             <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Cloud Computing" className="blog-img" />
@@ -606,7 +768,7 @@ export default function LandingPage() {
               <span className="blog-date">Aug 16, 2025</span>
               <span className="blog-author">By David Wilson</span>
             </div>
-            <button className="blog-btn">Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
+            <button className="blog-btn" onClick={handleReadMore}>Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
           </div>
         </div>
       </section>
@@ -708,6 +870,163 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
+
+      {/* Sign In Modal */}
+      {showSignInModal && (
+        <div className="modal-overlay" onClick={handleModalClose}>
+          <div className="modal-content auth-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>Sign In to EduSpark</h2>
+              <button className="close-btn" onClick={() => setShowSignInModal(false)}>
+                <img src="https://img.icons8.com/?size=100&id=8112&format=png&color=666666" alt="close" style={{ height: '20px', width: '20px' }} />
+              </button>
+            </div>
+            <div className="auth-modal-content">
+              <form className="auth-form" onSubmit={handleSignInSubmit}>
+                <div className="form-group">
+                  <label htmlFor="signInEmail">Email Address</label>
+                  <input
+                    type="email"
+                    id="signInEmail"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="signInPassword">Password</label>
+                  <input
+                    type="password"
+                    id="signInPassword"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                  />
+                </div>
+                <div className="form-options">
+                  <label className="remember-me">
+                    <input type="checkbox" name="remember" />
+                    <span>Remember me</span>
+                  </label>
+                  <a href="#" className="forgot-password">Forgot Password?</a>
+                </div>
+                <button type="submit" className="auth-btn primary">
+                  Sign In
+                  <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=ffffff" alt="arrow" />
+                </button>
+                <div className="divider">
+                  <span>or</span>
+                </div>
+                <button type="button" className="auth-btn google" onClick={handleGoogleAuth}>
+                  <img src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000" alt="google" />
+                  Continue with Google
+                </button>
+                <div className="auth-footer">
+                  <p>Don't have an account? <a href="#" onClick={(e) => {e.preventDefault(); handleSwitchToSignUp();}}>Sign Up</a></p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Sign Up Modal */}
+      {showSignUpModal && (
+        <div className="modal-overlay" onClick={handleModalClose}>
+          <div className="modal-content auth-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>Join EduSpark</h2>
+              <button className="close-btn" onClick={() => setShowSignUpModal(false)}>
+                <img src="https://img.icons8.com/?size=100&id=8112&format=png&color=666666" alt="close" style={{ height: '20px', width: '20px' }} />
+              </button>
+            </div>
+            <div className="auth-modal-content">
+              <form className="auth-form" onSubmit={handleSignUpSubmit}>
+                <div className="form-group">
+                  <label htmlFor="signUpFullName">Full Name</label>
+                  <input
+                    type="text"
+                    id="signUpFullName"
+                    name="fullName"
+                    value={signUpData.fullName}
+                    onChange={handleSignUpInputChange}
+                    placeholder="Enter your full name"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="signUpEmail">Email Address</label>
+                  <input
+                    type="email"
+                    id="signUpEmail"
+                    name="email"
+                    value={signUpData.email}
+                    onChange={handleSignUpInputChange}
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="signUpPassword">Password</label>
+                  <input
+                    type="password"
+                    id="signUpPassword"
+                    name="password"
+                    value={signUpData.password}
+                    onChange={handleSignUpInputChange}
+                    placeholder="Create a password"
+                    required
+                    className={!isPasswordValid && passwordError ? 'error' : ''}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="signUpConfirmPassword">Confirm Password</label>
+                  <input
+                    type="password"
+                    id="signUpConfirmPassword"
+                    name="confirmPassword"
+                    value={signUpData.confirmPassword}
+                    onChange={handleSignUpInputChange}
+                    placeholder="Confirm your password"
+                    required
+                    className={!isPasswordValid && passwordError ? 'error' : ''}
+                  />
+                  {passwordError && (
+                    <div className="password-error">
+                      {passwordError}
+                    </div>
+                  )}
+                  {passwordSuccess && !passwordError && (
+                    <div className="password-success">
+                      {passwordSuccess}
+                    </div>
+                  )}
+                </div>
+                <div className="form-options">
+                  <label className="remember-me">
+                    <input type="checkbox" name="terms" />
+                    <span>I agree to the Terms of Service and Privacy Policy</span>
+                  </label>
+                </div>
+                <button type="submit" className="auth-btn primary">
+                  Create Account
+                  <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=ffffff" alt="arrow" />
+                </button>
+                <div className="divider">
+                  <span>or</span>
+                </div>
+                <button type="button" className="auth-btn google" onClick={handleGoogleAuth}>
+                  <img src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000" alt="google" />
+                  Continue with Google
+                </button>
+                <div className="auth-footer">
+                  <p>Already have an account? <a href="#" onClick={(e) => {e.preventDefault(); handleSwitchToSignIn();}}>Sign In</a></p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Contact Modal */}
       {showContactModal && (
