@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import logo from "../assets/logo.png"
 import '../styles/LegalPages.css'
 
@@ -16,18 +16,6 @@ export default function FAQs() {
 
   const handleHelpCenterClick = () => {
     navigate('/help');
-  };
-
-  const handlePrivacyPolicyClick = () => {
-    navigate('/privacy');
-  };
-
-  const handleTermsClick = () => {
-    navigate('/terms');
-  };
-
-  const handleRefundClick = () => {
-    navigate('/refund');
   };
 
   const toggleFaq = (faqId) => {
@@ -546,12 +534,12 @@ export default function FAQs() {
             <div className="footer-column">
               <h4>Support</h4>
               <ul>
-                <li><a href="#" onClick={handleHelpCenterClick}>Help Center</a></li>
+                <li><Link to="/help">Help Center</Link></li>
                 <li><a href="#">Contact Us</a></li>
-                <li><a href="#" onClick={handlePrivacyPolicyClick}>Privacy Policy</a></li>
-                <li><a href="#" onClick={handleTermsClick}>Terms of Service</a></li>
-                <li><a href="#" onClick={handleRefundClick}>Refund Policy</a></li>
-                <li><a href="#">FAQs</a></li>
+                <li><Link to="/privacy">Privacy Policy</Link></li>
+                <li><Link to="/terms">Terms of Service</Link></li>
+                <li><Link to="/refund">Refund Policy</Link></li>
+                <li><Link to="/faqs">FAQs</Link></li>
               </ul>
             </div>
             
@@ -581,8 +569,8 @@ export default function FAQs() {
             <div className="footer-bottom-content">
               <p>&copy; 2025 EduSpark. All rights reserved.</p>
               <div className="footer-bottom-links">
-                <a href="#" onClick={handlePrivacyPolicyClick}>Privacy</a>
-                <a href="#" onClick={handleTermsClick}>Terms</a>
+                <Link to="/privacy">Privacy</Link>
+                <Link to="/terms">Terms</Link>
                 <a href="#">Cookies</a>
               </div>
             </div>

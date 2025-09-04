@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import logo from "../assets/logo.png"
 import hero_card_img from '../assets/hero-card-img.png'
 import course_card_img from '../assets/Link.png'
@@ -9,29 +9,6 @@ import '../styles/LandingPage.css'
 import feature_img from '../assets/feature-img.png'
 
 export default function LandingPage() {
-  const navigate = useNavigate();
-  
-  // Navigation handlers
-  const handleHelpCenterClick = () => {
-    navigate('/help');
-  };
-
-  const handlePrivacyPolicyClick = () => {
-    navigate('/privacy');
-  };
-
-  const handleTermsClick = () => {
-    navigate('/terms');
-  };
-
-  const handleRefundClick = () => {
-    navigate('/refund');
-  };
-
-  const handleFAQsClick = () => {
-    navigate('/faqs');
-  };
-
   // Category popup state and outside click handler
   const [showCats, setShowCats] = useState(false);
   const catRef = useRef(null);
@@ -688,12 +665,12 @@ export default function LandingPage() {
             <div className="footer-column">
               <h4>Support</h4>
               <ul>
-                <li><a href="#" onClick={handleHelpCenterClick}>Help Center</a></li>
+                <li><Link to="/help">Help Center</Link></li>
                 <li><a href="#">Contact Us</a></li>
-                <li><a href="#" onClick={handlePrivacyPolicyClick}>Privacy Policy</a></li>
-                <li><a href="#" onClick={handleTermsClick}>Terms of Service</a></li>
-                <li><a href="#" onClick={handleRefundClick}>Refund Policy</a></li>
-                <li><a href="#" onClick={handleFAQsClick}>FAQs</a></li>
+                <li><Link to="/privacy">Privacy Policy</Link></li>
+                <li><Link to="/terms">Terms of Service</Link></li>
+                <li><Link to="/refund">Refund Policy</Link></li>
+                <li><Link to="/faqs">FAQs</Link></li>
               </ul>
             </div>
             
@@ -723,8 +700,8 @@ export default function LandingPage() {
             <div className="footer-bottom-content">
               <p>&copy; 2025 EduSpark. All rights reserved.</p>
               <div className="footer-bottom-links">
-                <a href="#" onClick={handlePrivacyPolicyClick}>Privacy</a>
-                <a href="#" onClick={handleTermsClick}>Terms</a>
+                <Link to="/privacy">Privacy</Link>
+                <Link to="/terms">Terms</Link>
                 <a href="#">Cookies</a>
               </div>
             </div>

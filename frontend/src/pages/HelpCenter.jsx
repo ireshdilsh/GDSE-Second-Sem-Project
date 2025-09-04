@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import logo from "../assets/logo.png"
 import '../styles/HelpCenter.css'
 
@@ -12,10 +12,6 @@ export default function HelpCenter() {
   // Navigation handlers
   const handleHomeClick = () => {
     navigate('/');
-  };
-
-  const handlePrivacyPolicyClick = () => {
-    navigate('/privacy');
   };
 
   const categories = [
@@ -330,12 +326,12 @@ export default function HelpCenter() {
             <div className="footer-column">
               <h4>Support</h4>
               <ul>
-                <li><a href="#">Help Center</a></li>
+                <li><Link to="/help">Help Center</Link></li>
                 <li><a href="#">Contact Us</a></li>
-                <li><a href="#" onClick={handlePrivacyPolicyClick}>Privacy Policy</a></li>
-                <li><a href="#">Terms of Service</a></li>
-                <li><a href="#">Refund Policy</a></li>
-                <li><a href="#">FAQs</a></li>
+                <li><Link to="/privacy">Privacy Policy</Link></li>
+                <li><Link to="/terms">Terms of Service</Link></li>
+                <li><Link to="/refund">Refund Policy</Link></li>
+                <li><Link to="/faqs">FAQs</Link></li>
               </ul>
             </div>
             
@@ -365,8 +361,8 @@ export default function HelpCenter() {
             <div className="footer-bottom-content">
               <p>&copy; 2025 EduSpark. All rights reserved.</p>
               <div className="footer-bottom-links">
-                <a href="#" onClick={handlePrivacyPolicyClick}>Privacy</a>
-                <a href="#">Terms</a>
+                <Link to="/privacy">Privacy</Link>
+                <Link to="/terms">Terms</Link>
                 <a href="#">Cookies</a>
               </div>
             </div>
