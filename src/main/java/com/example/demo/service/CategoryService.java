@@ -1,16 +1,15 @@
 package com.example.demo.service;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import com.example.demo.dto.CategoryDto;
 
-@Service
+import java.util.List;
+
 public interface CategoryService {
-
-    CategoryDto postMethod(CategoryDto dto);
-
-    List<CategoryDto> getMethod();
-
+    CategoryDto createCategory(CategoryDto categoryDto);
+    CategoryDto getCategoryById(Long id);
+    CategoryDto getCategoryByName(String name);
+    List<CategoryDto> getAllCategories();
+    CategoryDto updateCategory(Long id, CategoryDto categoryDto);
+    void deleteCategory(Long id);
+    boolean existsByName(String name);
 }

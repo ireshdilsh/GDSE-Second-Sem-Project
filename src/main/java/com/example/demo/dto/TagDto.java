@@ -4,14 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
+import java.time.LocalDateTime;
+
 @AllArgsConstructor
-public class EventDto {
+@NoArgsConstructor
+@Data
+public class TagDto {
     private Long id;
-    private String title;
-    private String date;
-    private String location;
-    private Integer maxAttendance;
+    private String name;
     private String description;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }

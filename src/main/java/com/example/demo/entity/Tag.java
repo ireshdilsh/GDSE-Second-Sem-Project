@@ -11,11 +11,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "categories")
+@Table(name = "tags")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Category {
+public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,7 +24,6 @@ public class Category {
     private String name;
 
     private String description;
-    private String color; // For UI styling
 
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -32,6 +31,6 @@ public class Category {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "tags", fetch = FetchType.LAZY)
     private List<Article> articles;
 }
