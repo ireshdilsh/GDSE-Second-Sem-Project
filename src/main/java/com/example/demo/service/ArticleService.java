@@ -10,7 +10,6 @@ import java.util.List;
 public interface ArticleService {
     ArticleDto createArticle(ArticleDto articleDto, MultipartFile featuredImage);
     ArticleDto getArticleById(Long id);
-    ArticleDto getArticleBySlug(String slug);
     Page<ArticleDto> getAllPublishedArticles(Pageable pageable);
     Page<ArticleDto> getArticlesByCategory(Long categoryId, Pageable pageable);
     Page<ArticleDto> searchArticles(String keyword, Pageable pageable);

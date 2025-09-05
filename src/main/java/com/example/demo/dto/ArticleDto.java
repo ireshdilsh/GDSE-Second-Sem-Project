@@ -26,7 +26,6 @@ public class ArticleDto {
     // Author information
     private Long authorId;
     private String authorUsername;
-    private String authorName;
     private String authorProfileImage;
     
     // Category information

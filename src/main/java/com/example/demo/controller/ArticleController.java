@@ -36,6 +36,15 @@ public class ArticleController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
+    @PostMapping("/create")
+    public ResponseEntity<APIResponse> createArticleJson(@RequestBody ArticleDto articleDto) {
+        logger.info("Creating article (JSON): {}", articleDto.getTitle());
+        ArticleDto created = articleService.createArticle(articleDto, null);
+        APIResponse response = new APIResponse(201, "Article created successfully", created);
+        logger.info("Article created successfully with ID: {}", created.getId());
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
     @GetMapping("/get/article/{id}")
     public ResponseEntity<APIResponse> getArticleById(@PathVariable Long id) {
         logger.info("Fetching article by ID: {}", id);

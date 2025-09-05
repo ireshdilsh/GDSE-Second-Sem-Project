@@ -80,13 +80,6 @@ public class ArticleServiceImpl implements ArticleService {
         return convertToDto(article);
     }
 
-    @Override
-    public ArticleDto getArticleBySlug(String slug) {
-        logger.info("Fetching article by slug: {}", slug);
-        Article article = articleRepository.findBySlug(slug)
-                .orElseThrow(() -> new ResourceNotFoundException("Article not found with slug: " + slug));
-        return convertToDto(article);
-    }
 
     @Override
     public Page<ArticleDto> getAllPublishedArticles(Pageable pageable) {
@@ -227,7 +220,6 @@ public class ArticleServiceImpl implements ArticleService {
         // Set author information
         dto.setAuthorId(article.getAuthor().getId());
         dto.setAuthorUsername(article.getAuthor().getUsername());
-        dto.setAuthorName(article.getAuthor().getFirstName() + " " + article.getAuthor().getLastName());
         dto.setAuthorProfileImage(article.getAuthor().getProfileImage());
         
         // Set category information
@@ -240,13 +232,6 @@ public class ArticleServiceImpl implements ArticleService {
         dto.setCommentCount(0); // Placeholder
         
         return dto;
-    }
-
-    private String generateSlug(String title) {
-        return title.toLowerCase()
-                .replaceAll("[^a-z0-9\\s]", "")
-                .replaceAll("\\s+", "-")
-                .trim();
     }
 
     private Integer calculateReadTime(String content) {

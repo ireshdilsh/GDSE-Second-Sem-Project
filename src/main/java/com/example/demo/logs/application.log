@@ -1,82 +1,14 @@
-[2025-08-28 09:22:54] - Fetching all items
-[2025-08-28 09:22:54] - Fetched 4 items
-[2025-08-28 09:22:54] - Items: [ItemDto(id=1, name=First Product, description=This is testing product for add product card., price=150.0, qty=50, categoryId=1, imageUrl=/uploads/products/1756314350452_coding-2.jpg), ItemDto(id=2, name=Second Product, description=This is testing product for products cards., price=1500.0, qty=1000, categoryId=2, imageUrl=/uploads/products/1756314671232_culture-of-japan-hd-wallpaper-wallpaper-preview.jpg), ItemDto(id=3, name=Third Product, description=o ouu  iouiuoiuyi uttit uitiutiut i utiu tiuiyiuuuiu iuyfyfyfyufy f yf uyfyf yuf tu uy fy fy iugggu ugui gu gug ui gu  u gu g fyu ftydtdfhfhfhyuu t uyf ytddfjf  iu iu i  yyuyy uyfuyf yfyuf fyyf yfyuf uyff yf fy fff y fy fyf f  fyuyf  fyf   , price=49.99, qty=200, categoryId=3, imageUrl=/uploads/products/1756316276176_133886445041230465.jpg), ItemDto(id=4, name=Forth Product, description=dfsd sdfl,sdm md.,fm .m.,d.,sd,f ., as df;d fs dsd kfl;sdfm ;lmsdflm ;lmlsdl;flm mlml lms mdl;fml;sdml;fm ml mmsdl;mfl;smd lml;m ;lmsl;mdflmlmdflmsd;m m; ml  , price=150.0, qty=100, categoryId=2, imageUrl=/uploads/products/1756353173785_coding-2.jpg)]
-[2025-08-28 09:23:20] - Commencing graceful shutdown. Waiting for active requests to complete
-[2025-08-28 09:23:20] - Graceful shutdown complete
-[2025-08-28 09:23:20] - Closing JPA EntityManagerFactory for persistence unit 'default'
-[2025-08-28 09:23:20] - HikariPool-1 - Shutdown initiated...
-[2025-08-28 09:23:20] - HikariPool-1 - Shutdown completed.
-[2025-08-28 09:31:20] - Starting DemoApplication using Java 17.0.11 with PID 4364 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
-[2025-08-28 09:31:20] - No active profile set, falling back to 1 default profile: "default"
-[2025-08-28 09:31:24] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-[2025-08-28 09:31:25] - Finished Spring Data repository scanning in 361 ms. Found 6 JPA repository interfaces.
-[2025-08-28 09:31:27] - Tomcat initialized with port 8080 (http)
-[2025-08-28 09:31:27] - Initializing ProtocolHandler ["http-nio-8080"]
-[2025-08-28 09:31:27] - Starting service [Tomcat]
-[2025-08-28 09:31:27] - Starting Servlet engine: [Apache Tomcat/10.1.41]
-[2025-08-28 09:31:28] - Initializing Spring embedded WebApplicationContext
-[2025-08-28 09:31:28] - Root WebApplicationContext: initialization completed in 7762 ms
-[2025-08-28 09:31:29] - HHH000204: Processing PersistenceUnitInfo [name: default]
-[2025-08-28 09:31:29] - HHH000412: Hibernate ORM core version 6.6.15.Final
-[2025-08-28 09:31:29] - HHH000026: Second-level cache disabled
-[2025-08-28 09:31:30] - No LoadTimeWeaver setup: ignoring JPA class transformer
-[2025-08-28 09:31:30] - HikariPool-1 - Starting...
-[2025-08-28 09:31:31] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5bf523e3
-[2025-08-28 09:31:31] - HikariPool-1 - Start completed.
-[2025-08-28 09:31:31] - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 9.0.1
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-[2025-08-28 09:31:34] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[2025-08-28 09:31:35] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[2025-08-28 09:31:36] - Hibernate is in classpath; If applicable, HQL parser will be used.
-[2025-08-28 09:31:40] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-[2025-08-28 09:31:40] - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-[2025-08-28 09:31:41] - Starting ProtocolHandler ["http-nio-8080"]
-[2025-08-28 09:31:41] - Tomcat started on port 8080 (http) with context path '/'
-[2025-08-28 09:31:41] - Started DemoApplication in 25.315 seconds (process running for 26.934)
-[2025-08-28 09:33:18] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-[2025-08-28 09:33:18] - Initializing Servlet 'dispatcherServlet'
-[2025-08-28 09:33:18] - Completed initialization in 17 ms
-[2025-08-28 09:33:19] - Request to get all items
-[2025-08-28 09:33:19] - Received GET /get/all/categories
-[2025-08-28 09:33:19] - Fetching all items
-[2025-08-28 09:33:19] - Processing get all categories in service
-[2025-08-28 09:33:19] - Successfully processed get all categories [CategoryDto(id=1, cateName=Seeds & Plants), CategoryDto(id=2, cateName=Books), CategoryDto(id=3, cateName=Tools)] : 
-[2025-08-28 09:33:19] - Fetched 4 items
-[2025-08-28 09:33:19] - Items: [ItemDto(id=1, name=First Product, description=This is testing product for add product card., price=150.0, qty=50, categoryId=1, imageUrl=/uploads/products/1756314350452_coding-2.jpg), ItemDto(id=2, name=Second Product, description=This is testing product for products cards., price=1500.0, qty=1000, categoryId=2, imageUrl=/uploads/products/1756314671232_culture-of-japan-hd-wallpaper-wallpaper-preview.jpg), ItemDto(id=3, name=Third Product, description=o ouu  iouiuoiuyi uttit uitiutiut i utiu tiuiyiuuuiu iuyfyfyfyufy f yf uyfyf yuf tu uy fy fy iugggu ugui gu gug ui gu  u gu g fyu ftydtdfhfhfhyuu t uyf ytddfjf  iu iu i  yyuyy uyfuyf yfyuf fyyf yfyuf uyff yf fy fff y fy fyf f  fyuyf  fyf   , price=49.99, qty=200, categoryId=3, imageUrl=/uploads/products/1756316276176_133886445041230465.jpg), ItemDto(id=4, name=Forth Product, description=dfsd sdfl,sdm md.,fm .m.,d.,sd,f ., as df;d fs dsd kfl;sdfm ;lmsdflm ;lmlsdl;flm mlml lms mdl;fml;sdml;fm ml mmsdl;mfl;smd lml;m ;lmsl;mdflmlmdflmsd;m m; ml  , price=150.0, qty=100, categoryId=2, imageUrl=/uploads/products/1756353173785_coding-2.jpg)]
-[2025-08-28 09:33:19] - Received GET /get/all/categories
-[2025-08-28 09:33:19] - Request to get all items
-[2025-08-28 09:33:19] - Processing get all categories in service
-[2025-08-28 09:33:19] - Fetching all items
-[2025-08-28 09:33:19] - Successfully processed get all categories [CategoryDto(id=1, cateName=Seeds & Plants), CategoryDto(id=2, cateName=Books), CategoryDto(id=3, cateName=Tools)] : 
-[2025-08-28 09:33:19] - Fetched 4 items
-[2025-08-28 09:33:19] - Items: [ItemDto(id=1, name=First Product, description=This is testing product for add product card., price=150.0, qty=50, categoryId=1, imageUrl=/uploads/products/1756314350452_coding-2.jpg), ItemDto(id=2, name=Second Product, description=This is testing product for products cards., price=1500.0, qty=1000, categoryId=2, imageUrl=/uploads/products/1756314671232_culture-of-japan-hd-wallpaper-wallpaper-preview.jpg), ItemDto(id=3, name=Third Product, description=o ouu  iouiuoiuyi uttit uitiutiut i utiu tiuiyiuuuiu iuyfyfyfyufy f yf uyfyf yuf tu uy fy fy iugggu ugui gu gug ui gu  u gu g fyu ftydtdfhfhfhyuu t uyf ytddfjf  iu iu i  yyuyy uyfuyf yfyuf fyyf yfyuf uyff yf fy fff y fy fyf f  fyuyf  fyf   , price=49.99, qty=200, categoryId=3, imageUrl=/uploads/products/1756316276176_133886445041230465.jpg), ItemDto(id=4, name=Forth Product, description=dfsd sdfl,sdm md.,fm .m.,d.,sd,f ., as df;d fs dsd kfl;sdfm ;lmsdflm ;lmlsdl;flm mlml lms mdl;fml;sdml;fm ml mmsdl;mfl;smd lml;m ;lmsl;mdflmlmdflmsd;m m; ml  , price=150.0, qty=100, categoryId=2, imageUrl=/uploads/products/1756353173785_coding-2.jpg)]
-[2025-08-28 09:36:01] - Request to get all blogs
-[2025-08-28 09:36:01] - Fetching all blogs
-[2025-08-28 09:36:01] - Fetched 4 blogs
-[2025-08-28 09:36:01] - Request to get all blogs
-[2025-08-28 09:36:01] - Fetching all blogs
-[2025-08-28 09:36:01] - Fetched 4 blogs
-[2025-08-28 09:36:11] - Request to get all blogs
-[2025-08-28 09:36:11] - Fetching all blogs
-[2025-08-28 09:36:11] - Fetched 4 blogs
-[2025-08-28 09:37:30] - Request to get all blogs
-[2025-08-28 09:37:30] - Fetching all blogs
-[2025-08-28 09:37:30] - Fetched 4 blogs
-[2025-08-28 09:37:30] - Request to get all blogs
-[2025-08-28 09:37:30] - Fetching all blogs
-[2025-08-28 09:37:30] - Fetched 4 blogs
-[2025-08-28 09:53:04] - Request to get all blogs
-[2025-08-28 09:53:04] - Fetching all blogs
-[2025-08-28 09:53:04] - Fetched 4 blogs
-[2025-08-28 09:53:43] - Request to get all blogs
-[2025-08-28 09:53:43] - Fetching all blogs
-[2025-08-28 09:53:44] - Fetched 4 blogs
-[2025-08-28 09:53:44] - Request to get all blogs
-[2025-08-28 09:53:44] - Fetching all blogs
-[2025-08-28 09:53:44] - Fetched 4 blogs
+[2025-09-06 00:23:11] - Creating user: john_doe
+[2025-09-06 00:23:11] - Creating user: john_doe
+[2025-09-06 00:23:20] - Creating user: john_doe1223
+[2025-09-06 00:23:20] - Creating user: john_doe1223
+[2025-09-06 00:23:27] - Creating user: john_doe1223
+[2025-09-06 00:23:27] - Creating user: john_doe1223
+[2025-09-06 00:23:28] - User created with ID: 2
+[2025-09-06 00:23:28] - User created successfully with ID: 2
+[2025-09-06 00:24:36] - Creating category: null
+[2025-09-06 00:24:36] - Creating category: null
+[2025-09-06 00:24:46] - Creating category: category two
+[2025-09-06 00:24:46] - Creating category: category two
+[2025-09-06 00:24:46] - Category created with ID: 2
+[2025-09-06 00:24:46] - Category created successfully with ID: 2

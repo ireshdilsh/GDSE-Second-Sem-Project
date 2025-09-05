@@ -10,11 +10,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Long> {
-    Optional<Article> findBySlug(String slug);
     
     List<Article> findByAuthor(User author);
     
