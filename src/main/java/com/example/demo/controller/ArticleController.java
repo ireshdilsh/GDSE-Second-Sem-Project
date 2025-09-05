@@ -2,7 +2,10 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.ArticleDto;
 import com.example.demo.service.ArticleService;
+import com.example.demo.utils.APIResponse;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,115 +22,141 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class ArticleController {
     private final ArticleService articleService;
+    private static final Logger logger = LoggerFactory.getLogger(ArticleController.class);
 
     @PostMapping
-    public ResponseEntity<ArticleDto> createArticle(
+    public ResponseEntity<APIResponse> createArticle(
             @RequestPart("article") ArticleDto articleDto,
-            @RequestPart(value = "featuredImage", required = false) MultipartFile featuredImage) {
+            @RequestPart(value = "featuredImage", required = false) 
+            MultipartFile featuredImage) {
+        logger.info("Creating article: {}", articleDto.getTitle());
         ArticleDto created = articleService.createArticle(articleDto, featuredImage);
-        return new ResponseEntity<>(created, HttpStatus.CREATED);
+        APIResponse response = new APIResponse(201, "Article created successfully", created);
+        logger.info("Article created successfully with ID: {}", created.getId());
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ArticleDto> getArticleById(@PathVariable Long id) {
+    public ResponseEntity<APIResponse> getArticleById(@PathVariable Long id) {
+        logger.info("Fetching article by ID: {}", id);
         ArticleDto article = articleService.getArticleById(id);
-        return ResponseEntity.ok(article);
+        APIResponse response = new APIResponse(200, "Article retrieved successfully", article);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/slug/{slug}")
-    public ResponseEntity<ArticleDto> getArticleBySlug(@PathVariable String slug) {
+    public ResponseEntity<APIResponse> getArticleBySlug(@PathVariable String slug) {
+        logger.info("Fetching article by slug: {}", slug);
         ArticleDto article = articleService.getArticleBySlug(slug);
-        return ResponseEntity.ok(article);
+        APIResponse response = new APIResponse(200, "Article retrieved successfully", article);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping
-    public ResponseEntity<Page<ArticleDto>> getAllPublishedArticles(
+    public ResponseEntity<APIResponse> getAllPublishedArticles(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
+        logger.info("Fetching all published articles - page: {}, size: {}", page, size);
         Pageable pageable = PageRequest.of(page, size);
         Page<ArticleDto> articles = articleService.getAllPublishedArticles(pageable);
-        return ResponseEntity.ok(articles);
+        APIResponse response = new APIResponse(200, "Articles retrieved successfully", articles);
+        logger.info("Retrieved {} articles", articles.getNumberOfElements());
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/category/{categoryId}")
-    public ResponseEntity<Page<ArticleDto>> getArticlesByCategory(
+    public ResponseEntity<APIResponse> getArticlesByCategory(
             @PathVariable Long categoryId,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
+        logger.info("Fetching articles by category: {}", categoryId);
         Pageable pageable = PageRequest.of(page, size);
         Page<ArticleDto> articles = articleService.getArticlesByCategory(categoryId, pageable);
-        return ResponseEntity.ok(articles);
-    }
-
-    @GetMapping("/tag/{tagName}")
-    public ResponseEntity<Page<ArticleDto>> getArticlesByTag(
-            @PathVariable String tagName,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        Page<ArticleDto> articles = articleService.getArticlesByTag(tagName, pageable);
-        return ResponseEntity.ok(articles);
+        APIResponse response = new APIResponse(200, "Articles retrieved successfully", articles);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/search")
-    public ResponseEntity<Page<ArticleDto>> searchArticles(
+    public ResponseEntity<APIResponse> searchArticles(
             @RequestParam String keyword,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
+        logger.info("Searching articles with keyword: {}", keyword);
         Pageable pageable = PageRequest.of(page, size);
         Page<ArticleDto> articles = articleService.searchArticles(keyword, pageable);
-        return ResponseEntity.ok(articles);
+        APIResponse response = new APIResponse(200, "Search results retrieved successfully", articles);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/author/{authorId}")
-    public ResponseEntity<List<ArticleDto>> getArticlesByAuthor(@PathVariable Long authorId) {
+    public ResponseEntity<APIResponse> getArticlesByAuthor(@PathVariable Long authorId) {
+        logger.info("Fetching articles by author: {}", authorId);
         List<ArticleDto> articles = articleService.getArticlesByAuthor(authorId);
-        return ResponseEntity.ok(articles);
+        APIResponse response = new APIResponse(200, "Author articles retrieved successfully", articles);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/popular")
-    public ResponseEntity<List<ArticleDto>> getPopularArticles(
+    public ResponseEntity<APIResponse> getPopularArticles(
             @RequestParam(defaultValue = "5") int limit) {
+        logger.info("Fetching popular articles with limit: {}", limit);
         List<ArticleDto> articles = articleService.getPopularArticles(limit);
-        return ResponseEntity.ok(articles);
+        APIResponse response = new APIResponse(200, "Popular articles retrieved successfully", articles);
+        return ResponseEntity.ok(response);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ArticleDto> updateArticle(
+    public ResponseEntity<APIResponse> updateArticle(
             @PathVariable Long id,
             @RequestPart("article") ArticleDto articleDto,
             @RequestPart(value = "featuredImage", required = false) MultipartFile featuredImage) {
+        logger.info("Updating article with ID: {}", id);
         ArticleDto updated = articleService.updateArticle(id, articleDto, featuredImage);
-        return ResponseEntity.ok(updated);
+        APIResponse response = new APIResponse(200, "Article updated successfully", updated);
+        logger.info("Article updated successfully with ID: {}", id);
+        return ResponseEntity.ok(response);
     }
 
     @PutMapping("/{id}/publish")
-    public ResponseEntity<ArticleDto> publishArticle(@PathVariable Long id) {
+    public ResponseEntity<APIResponse> publishArticle(@PathVariable Long id) {
+        logger.info("Publishing article with ID: {}", id);
         ArticleDto published = articleService.publishArticle(id);
-        return ResponseEntity.ok(published);
+        APIResponse response = new APIResponse(200, "Article published successfully", published);
+        logger.info("Article published successfully with ID: {}", id);
+        return ResponseEntity.ok(response);
     }
 
     @PutMapping("/{id}/archive")
-    public ResponseEntity<ArticleDto> archiveArticle(@PathVariable Long id) {
+    public ResponseEntity<APIResponse> archiveArticle(@PathVariable Long id) {
+        logger.info("Archiving article with ID: {}", id);
         ArticleDto archived = articleService.archiveArticle(id);
-        return ResponseEntity.ok(archived);
+        APIResponse response = new APIResponse(200, "Article archived successfully", archived);
+        logger.info("Article archived successfully with ID: {}", id);
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteArticle(@PathVariable Long id) {
+    public ResponseEntity<APIResponse> deleteArticle(@PathVariable Long id) {
+        logger.info("Deleting article with ID: {}", id);
         articleService.deleteArticle(id);
-        return ResponseEntity.noContent().build();
+        APIResponse response = new APIResponse(200, "Article deleted successfully", null);
+        logger.info("Article deleted successfully with ID: {}", id);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/{id}/view")
-    public ResponseEntity<ArticleDto> incrementViewCount(@PathVariable Long id) {
+    public ResponseEntity<APIResponse> incrementViewCount(@PathVariable Long id) {
+        logger.info("Incrementing view count for article: {}", id);
         ArticleDto updated = articleService.incrementViewCount(id);
-        return ResponseEntity.ok(updated);
+        APIResponse response = new APIResponse(200, "View count incremented", updated);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/{id}/like")
-    public ResponseEntity<ArticleDto> incrementLikeCount(@PathVariable Long id) {
+    public ResponseEntity<APIResponse> incrementLikeCount(@PathVariable Long id) {
+        logger.info("Incrementing like count for article: {}", id);
         ArticleDto updated = articleService.incrementLikeCount(id);
-        return ResponseEntity.ok(updated);
+        APIResponse response = new APIResponse(200, "Like count incremented", updated);
+        return ResponseEntity.ok(response);
     }
 }

@@ -13,7 +13,6 @@ public interface ArticleService {
     ArticleDto getArticleBySlug(String slug);
     Page<ArticleDto> getAllPublishedArticles(Pageable pageable);
     Page<ArticleDto> getArticlesByCategory(Long categoryId, Pageable pageable);
-    Page<ArticleDto> getArticlesByTag(String tagName, Pageable pageable);
     Page<ArticleDto> searchArticles(String keyword, Pageable pageable);
     List<ArticleDto> getArticlesByAuthor(Long authorId);
     List<ArticleDto> getPopularArticles(int limit);

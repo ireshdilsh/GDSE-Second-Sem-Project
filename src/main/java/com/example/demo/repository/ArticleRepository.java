@@ -25,9 +25,6 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query("SELECT a FROM Article a WHERE a.status = :status AND (a.title LIKE %:keyword% OR a.content LIKE %:keyword%)")
     Page<Article> findByStatusAndKeyword(@Param("status") Article.ArticleStatus status, @Param("keyword") String keyword, Pageable pageable);
     
-    @Query("SELECT a FROM Article a JOIN a.tags t WHERE t.name = :tagName AND a.status = :status")
-    Page<Article> findByTagNameAndStatus(@Param("tagName") String tagName, @Param("status") Article.ArticleStatus status, Pageable pageable);
-    
     @Query("SELECT a FROM Article a WHERE a.status = 'PUBLISHED' ORDER BY a.viewCount DESC")
     List<Article> findPopularArticles(Pageable pageable);
 }

@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -34,9 +33,6 @@ public class ArticleDto {
     // Category information
     private Long categoryId;
     private String categoryName;
-    
-    // Tags
-    private List<TagDto> tags;
     
     // Comment count
     private Integer commentCount;

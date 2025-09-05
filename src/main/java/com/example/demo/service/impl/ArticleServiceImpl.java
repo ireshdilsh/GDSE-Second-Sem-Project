@@ -1,15 +1,12 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.dto.ArticleDto;
-import com.example.demo.dto.TagDto;
 import com.example.demo.entity.Article;
 import com.example.demo.entity.Category;
-import com.example.demo.entity.Tag;
 import com.example.demo.entity.User;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.ArticleRepository;
 import com.example.demo.repository.CategoryRepository;
-import com.example.demo.repository.TagRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.ArticleService;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +34,6 @@ public class ArticleServiceImpl implements ArticleService {
     private final ArticleRepository articleRepository;
     private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;
-    private final TagRepository tagRepository;
     private final ModelMapper modelMapper;
     
     private static final Logger logger = LoggerFactory.getLogger(ArticleServiceImpl.class);
@@ -110,14 +106,6 @@ public class ArticleServiceImpl implements ArticleService {
         logger.info("Fetching articles by category: {}", categoryId);
         Page<Article> articles = articleRepository.findByCategoryIdAndStatus(
                 categoryId, Article.ArticleStatus.PUBLISHED, pageable);
-        return articles.map(this::convertToDto);
-    }
-
-    @Override
-    public Page<ArticleDto> getArticlesByTag(String tagName, Pageable pageable) {
-        logger.info("Fetching articles by tag: {}", tagName);
-        Page<Article> articles = articleRepository.findByTagNameAndStatus(
-                tagName, Article.ArticleStatus.PUBLISHED, pageable);
         return articles.map(this::convertToDto);
     }
 
@@ -248,14 +236,6 @@ public class ArticleServiceImpl implements ArticleService {
         if (article.getCategory() != null) {
             dto.setCategoryId(article.getCategory().getId());
             dto.setCategoryName(article.getCategory().getName());
-        }
-        
-        // Set tags
-        if (article.getTags() != null) {
-            List<TagDto> tagDtos = article.getTags().stream()
-                    .map(tag -> modelMapper.map(tag, TagDto.class))
-                    .collect(Collectors.toList());
-            dto.setTags(tagDtos);
         }
         
         // Set comment count (you might want to implement this based on your needs)
