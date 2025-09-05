@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.controller.CategoryController;
 import com.example.demo.dto.CategoryDto;
 import com.example.demo.entity.Category;
 import com.example.demo.exception.ExistsByCategoryNameException;

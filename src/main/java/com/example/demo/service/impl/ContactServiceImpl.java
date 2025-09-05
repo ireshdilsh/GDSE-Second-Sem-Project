@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.controller.ContactController;
 import com.example.demo.dto.ContactDto;
 import com.example.demo.entity.Contact;
 import com.example.demo.exception.ResourceNotFoundException;
