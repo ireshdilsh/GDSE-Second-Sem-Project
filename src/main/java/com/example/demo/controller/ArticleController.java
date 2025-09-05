@@ -17,14 +17,14 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/articles")
+@RequestMapping("/api/v1/articles")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class ArticleController {
     private final ArticleService articleService;
     private static final Logger logger = LoggerFactory.getLogger(ArticleController.class);
 
-    @PostMapping
+    @PostMapping("/create/article")
     public ResponseEntity<APIResponse> createArticle(
             @RequestPart("article") ArticleDto articleDto,
             @RequestPart(value = "featuredImage", required = false) 
@@ -36,18 +36,10 @@ public class ArticleController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/article/{id}")
     public ResponseEntity<APIResponse> getArticleById(@PathVariable Long id) {
         logger.info("Fetching article by ID: {}", id);
         ArticleDto article = articleService.getArticleById(id);
-        APIResponse response = new APIResponse(200, "Article retrieved successfully", article);
-        return ResponseEntity.ok(response);
-    }
-
-    @GetMapping("/slug/{slug}")
-    public ResponseEntity<APIResponse> getArticleBySlug(@PathVariable String slug) {
-        logger.info("Fetching article by slug: {}", slug);
-        ArticleDto article = articleService.getArticleBySlug(slug);
         APIResponse response = new APIResponse(200, "Article retrieved successfully", article);
         return ResponseEntity.ok(response);
     }

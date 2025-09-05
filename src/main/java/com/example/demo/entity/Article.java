@@ -28,9 +28,6 @@ public class Article {
     private String content;
 
     private String featuredImage;
-    
-    @Column(nullable = false)
-    private String slug; // URL-friendly version of title
 
     private Integer readTime; // Estimated reading time in minutes
     

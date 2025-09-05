@@ -14,14 +14,14 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class UserController {
     private final UserService userService;
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    @PostMapping
+    @PostMapping("/create/account")
     public ResponseEntity<APIResponse> createUser(@RequestBody UserDto userDto) {
         logger.info("Creating user: {}", userDto.getUsername());
         UserDto created = userService.createUser(userDto);
@@ -30,7 +30,7 @@ public class UserController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("get/user/{id}")
     public ResponseEntity<APIResponse> getUserById(@PathVariable Long id) {
         logger.info("Fetching user by ID: {}", id);
         UserDto user = userService.getUserById(id);
@@ -63,7 +63,7 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/user/{id}")
     public ResponseEntity<APIResponse> updateUser(@PathVariable Long id, @RequestBody UserDto userDto) {
         logger.info("Updating user with ID: {}", id);
         UserDto updated = userService.updateUser(id, userDto);
@@ -72,7 +72,7 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping("/{id}/profile")
+    @PutMapping("/update/user/{id}/profile")
     public ResponseEntity<APIResponse> updateUserProfile(
             @PathVariable Long id,
             @RequestPart("user") UserDto userDto,
@@ -84,7 +84,7 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/user/{id}")
     public ResponseEntity<APIResponse> deleteUser(@PathVariable Long id) {
         logger.info("Deleting user with ID: {}", id);
         userService.deleteUser(id);

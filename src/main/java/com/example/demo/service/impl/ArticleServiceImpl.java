@@ -47,7 +47,6 @@ public class ArticleServiceImpl implements ArticleService {
         article.setTitle(articleDto.getTitle());
         article.setSubtitle(articleDto.getSubtitle());
         article.setContent(articleDto.getContent());
-        article.setSlug(generateSlug(articleDto.getTitle()));
         article.setReadTime(calculateReadTime(articleDto.getContent()));
         
         // Set author
@@ -143,7 +142,6 @@ public class ArticleServiceImpl implements ArticleService {
         article.setTitle(articleDto.getTitle());
         article.setSubtitle(articleDto.getSubtitle());
         article.setContent(articleDto.getContent());
-        article.setSlug(generateSlug(articleDto.getTitle()));
         article.setReadTime(calculateReadTime(articleDto.getContent()));
         
         // Update category if provided

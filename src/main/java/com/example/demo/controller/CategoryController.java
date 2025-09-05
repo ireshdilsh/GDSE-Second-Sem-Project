@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/categories")
+@RequestMapping("/api/v1/categories")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class CategoryController {
     private final CategoryService categoryService;
     private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
 
-    @PostMapping
+    @PostMapping("/create/category")
     public ResponseEntity<APIResponse> createCategory(@RequestBody CategoryDto categoryDto) {
         logger.info("Creating category: {}", categoryDto.getName());
         CategoryDto created = categoryService.createCategory(categoryDto);
@@ -29,7 +29,7 @@ public class CategoryController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/category/{id}")
     public ResponseEntity<APIResponse> getCategoryById(@PathVariable Long id) {
         logger.info("Fetching category by ID: {}", id);
         CategoryDto category = categoryService.getCategoryById(id);
@@ -45,7 +45,7 @@ public class CategoryController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping
+    @GetMapping("/get/all/categories")
     public ResponseEntity<APIResponse> getAllCategories() {
         logger.info("Fetching all categories");
         List<CategoryDto> categories = categoryService.getAllCategories();
@@ -54,7 +54,7 @@ public class CategoryController {
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/category/{id}")
     public ResponseEntity<APIResponse> updateCategory(@PathVariable Long id, @RequestBody CategoryDto categoryDto) {
         logger.info("Updating category with ID: {}", id);
         CategoryDto updated = categoryService.updateCategory(id, categoryDto);
@@ -63,7 +63,7 @@ public class CategoryController {
         return ResponseEntity.ok(response);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/category/{id}")
     public ResponseEntity<APIResponse> deleteCategory(@PathVariable Long id) {
         logger.info("Deleting category with ID: {}", id);
         categoryService.deleteCategory(id);

@@ -24,7 +24,6 @@ public class Category {
     private String name;
 
     private String description;
-    private String color; // For UI styling
 
     @CreationTimestamp
     private LocalDateTime createdAt;

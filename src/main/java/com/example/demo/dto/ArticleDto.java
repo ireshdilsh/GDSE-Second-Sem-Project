@@ -15,7 +15,6 @@ public class ArticleDto {
     private String subtitle;
     private String content;
     private String featuredImage;
-    private String slug;
     private Integer readTime;
     private String status;
     private Integer viewCount;

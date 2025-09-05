@@ -69,7 +69,6 @@ public class CategoryServiceImpl implements CategoryService {
         
         category.setName(categoryDto.getName());
         category.setDescription(categoryDto.getDescription());
-        category.setColor(categoryDto.getColor());
         
         Category updated = categoryRepository.save(category);
         logger.info("Category updated with ID: {}", updated.getId());

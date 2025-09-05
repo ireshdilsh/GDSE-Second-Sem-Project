@@ -47,6 +47,6 @@ public class User {
     private List<Article> articles;
 
     public enum UserRole {
-        USER, ADMIN, MODERATOR
+        USER, ADMIN
     }
 }
