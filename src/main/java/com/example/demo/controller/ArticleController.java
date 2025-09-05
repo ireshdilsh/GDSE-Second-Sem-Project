@@ -53,7 +53,7 @@ public class ArticleController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<APIResponse> getAllPublishedArticles(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
@@ -62,6 +62,15 @@ public class ArticleController {
         Page<ArticleDto> articles = articleService.getAllPublishedArticles(pageable);
         APIResponse response = new APIResponse(200, "Articles retrieved successfully", articles);
         logger.info("Retrieved {} articles", articles.getNumberOfElements());
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/all/drafts")
+    public ResponseEntity<APIResponse> getAllArticlesByAuthor(@RequestParam Long authorId) {
+        logger.info("Fetching all articles by author: {} (including drafts)", authorId);
+        List<ArticleDto> articles = articleService.getArticlesByAuthor(authorId);
+        APIResponse response = new APIResponse(200, "Author articles retrieved successfully", articles);
+        logger.info("Retrieved {} total articles for author", articles.size());
         return ResponseEntity.ok(response);
     }
 
@@ -89,6 +98,7 @@ public class ArticleController {
         return ResponseEntity.ok(response);
     }
 
+    // get draft articles by author
     @GetMapping("/author/{authorId}")
     public ResponseEntity<APIResponse> getArticlesByAuthor(@PathVariable Long authorId) {
         logger.info("Fetching articles by author: {}", authorId);

@@ -1,14 +1,40 @@
-[2025-09-06 00:23:11] - Creating user: john_doe
-[2025-09-06 00:23:11] - Creating user: john_doe
-[2025-09-06 00:23:20] - Creating user: john_doe1223
-[2025-09-06 00:23:20] - Creating user: john_doe1223
-[2025-09-06 00:23:27] - Creating user: john_doe1223
-[2025-09-06 00:23:27] - Creating user: john_doe1223
-[2025-09-06 00:23:28] - User created with ID: 2
-[2025-09-06 00:23:28] - User created successfully with ID: 2
-[2025-09-06 00:24:36] - Creating category: null
-[2025-09-06 00:24:36] - Creating category: null
-[2025-09-06 00:24:46] - Creating category: category two
-[2025-09-06 00:24:46] - Creating category: category two
-[2025-09-06 00:24:46] - Category created with ID: 2
-[2025-09-06 00:24:46] - Category created successfully with ID: 2
+[2025-09-06 00:33:04] - Fetching all published articles - page: 0, size: 10
+[2025-09-06 00:33:04] - Fetching all published articles
+[2025-09-06 00:33:05] - Retrieved 0 articles
+[2025-09-06 00:33:05] - Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+
+[2025-09-06 00:33:42] - Fetching all published articles - page: 0, size: 10
+[2025-09-06 00:33:42] - Fetching all published articles
+[2025-09-06 00:33:42] - Retrieved 0 articles
+[2025-09-06 00:36:43] - Fetching all users
+[2025-09-06 00:36:43] - Fetching all users
+[2025-09-06 00:36:43] - Retrieved 2 users
+[2025-09-06 00:37:00] - Fetching all categories
+[2025-09-06 00:37:00] - Fetching all categories
+[2025-09-06 00:37:00] - Retrieved 2 categories
+[2025-09-06 00:37:34] - Fetching all published articles - page: 0, size: 10
+[2025-09-06 00:37:34] - Fetching all published articles
+[2025-09-06 00:37:34] - Retrieved 0 articles
+[2025-09-06 00:38:25] - Fetching articles by author: 1
+[2025-09-06 00:38:25] - Fetching articles by author: 1
+[2025-09-06 00:39:25] - Fetching all published articles - page: 0, size: 10
+[2025-09-06 00:39:25] - Fetching all published articles
+[2025-09-06 00:39:25] - Retrieved 0 articles
+[2025-09-06 00:42:15] - Fetching articles by author: 1
+[2025-09-06 00:42:15] - Fetching articles by author: 1
+[2025-09-06 00:44:10] - Publishing article with ID: 1
+[2025-09-06 00:44:10] - Publishing article with ID: 1
+[2025-09-06 00:44:10] - Article published with ID: 1
+[2025-09-06 00:44:10] - Article published successfully with ID: 1
+[2025-09-06 00:44:55] - Fetching all published articles - page: 0, size: 10
+[2025-09-06 00:44:55] - Fetching all published articles
+[2025-09-06 00:44:55] - Retrieved 1 articles
+[2025-09-06 00:45:06] - Publishing article with ID: 2
+[2025-09-06 00:45:06] - Publishing article with ID: 2
+[2025-09-06 00:45:06] - Article published with ID: 2
+[2025-09-06 00:45:06] - Article published successfully with ID: 2
+[2025-09-06 00:45:11] - Fetching all published articles - page: 0, size: 10
+[2025-09-06 00:45:11] - Fetching all published articles
+[2025-09-06 00:45:11] - Retrieved 2 articles

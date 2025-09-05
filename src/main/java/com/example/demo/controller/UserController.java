@@ -54,7 +54,7 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<APIResponse> getAllUsers() {
         logger.info("Fetching all users");
         List<UserDto> users = userService.getAllUsers();

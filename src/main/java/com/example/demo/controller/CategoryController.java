@@ -45,7 +45,7 @@ public class CategoryController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/get/all/categories")
+    @GetMapping("/all")
     public ResponseEntity<APIResponse> getAllCategories() {
         logger.info("Fetching all categories");
         List<CategoryDto> categories = categoryService.getAllCategories();
