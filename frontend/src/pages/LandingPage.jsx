@@ -1,30 +1,17 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import '../styles/LandingPage.css'
+import React, { useState } from 'react'
+import '../styles/LandingPageMedium.css'
 
 export default function LandingPage() {
-  // Category popup state and outside click handler
-  const [showCats, setShowCats] = useState(false);
-  const catRef = useRef(null);
-  
-  // Contact modal state
-  const [showContactModal, setShowContactModal] = useState(false);
-  
-  // Sign In modal state
+  // Authentication modal states
   const [showSignInModal, setShowSignInModal] = useState(false);
-  
-  // Sign Up modal state
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   
-  const [formData, setFormData] = useState({
-    name: '',
+  // Form states
+  const [signInData, setSignInData] = useState({
     email: '',
-    phone: '',
-    subject: '',
-    message: ''
+    password: ''
   });
 
-  // Sign up form state
   const [signUpData, setSignUpData] = useState({
     fullName: '',
     email: '',
@@ -37,39 +24,53 @@ export default function LandingPage() {
   const [isPasswordValid, setIsPasswordValid] = useState(true);
   const [passwordSuccess, setPasswordSuccess] = useState('');
 
-  useEffect(() => {
-    function handleClick(e) {
-      if (catRef.current && !catRef.current.contains(e.target)) {
-        setShowCats(false);
-      }
-    }
-    if (showCats) document.addEventListener('mousedown', handleClick);
-    return () => document.removeEventListener('mousedown', handleClick);
-  }, [showCats]);
-
-  // Handle form input changes
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+  // Modal handlers
+  const handleOpenSignIn = () => {
+    setShowSignInModal(true);
+    setShowSignUpModal(false);
   };
 
-  // Handle signup form input changes
+  const handleOpenSignUp = () => {
+    setShowSignUpModal(true);
+    setShowSignInModal(false);
+  };
+
+  const handleCloseModals = () => {
+    setShowSignInModal(false);
+    setShowSignUpModal(false);
+    // Reset forms
+    setSignInData({ email: '', password: '' });
+    setSignUpData({ fullName: '', email: '', password: '', confirmPassword: '' });
+    setPasswordError('');
+    setIsPasswordValid(true);
+    setPasswordSuccess('');
+  };
+
+  const handleSwitchToSignUp = () => {
+    setShowSignInModal(false);
+    setShowSignUpModal(true);
+  };
+
+  const handleSwitchToSignIn = () => {
+    setShowSignUpModal(false);
+    setShowSignInModal(true);
+  };
+
+  // Form handlers
+  const handleSignInInputChange = (e) => {
+    const { name, value } = e.target;
+    setSignInData(prev => ({ ...prev, [name]: value }));
+  };
+
   const handleSignUpInputChange = (e) => {
     const { name, value } = e.target;
-    setSignUpData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setSignUpData(prev => ({ ...prev, [name]: value }));
 
     // Password validation
     if (name === 'password' || name === 'confirmPassword') {
       const currentPassword = name === 'password' ? value : signUpData.password;
       const currentConfirmPassword = name === 'confirmPassword' ? value : signUpData.confirmPassword;
       
-      // Check password length (minimum 8 characters)
       if (name === 'password' && value && value.length < 8) {
         setPasswordError('Password must be at least 8 characters long');
         setIsPasswordValid(false);
@@ -77,7 +78,6 @@ export default function LandingPage() {
         return;
       }
       
-      // Check if passwords match
       if (currentConfirmPassword && currentPassword && currentPassword !== currentConfirmPassword) {
         setPasswordError('Passwords do not match');
         setIsPasswordValid(false);
@@ -94,125 +94,42 @@ export default function LandingPage() {
     }
   };
 
-  // Handle signup form submission
+  const handleSignInSubmit = (e) => {
+    e.preventDefault();
+    console.log('Sign In submitted');
+    alert('Welcome back!');
+    handleCloseModals();
+  };
+
   const handleSignUpSubmit = (e) => {
     e.preventDefault();
     
-    // Check if password is not empty
     if (!signUpData.password) {
       setPasswordError('Password is required');
       setIsPasswordValid(false);
       return;
     }
 
-    // Check password length
     if (signUpData.password.length < 8) {
       setPasswordError('Password must be at least 8 characters long');
       setIsPasswordValid(false);
       return;
     }
     
-    // Check if passwords match
     if (signUpData.password !== signUpData.confirmPassword) {
       setPasswordError('Passwords do not match');
       setIsPasswordValid(false);
       return;
     }
 
-    console.log('Sign Up data:', signUpData);
-    alert('Account created successfully! Welcome to EduSpark!');
-    setShowSignUpModal(false);
-    setSignUpData({
-      fullName: '',
-      email: '',
-      password: '',
-      confirmPassword: ''
-    });
-    // Reset password validation
-    setPasswordError('');
-    setIsPasswordValid(true);
-    setPasswordSuccess('');
+    console.log('Sign Up submitted');
+    alert('Account created successfully!');
+    handleCloseModals();
   };
 
-  // Handle signin form submission
-  const handleSignInSubmit = (e) => {
-    e.preventDefault();
-    console.log('Sign In submitted');
-    alert('Welcome back to EduSpark!');
-    setShowSignInModal(false);
-  };
-
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Here you would typically send the data to your backend
-    alert('Thank you for your message! We\'ll get back to you soon.');
-    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-    setShowContactModal(false);
-  };
-
-  // Close modal when clicking outside
-  const handleModalClose = (e) => {
-    if (e.target.classList.contains('modal-overlay')) {
-      setShowContactModal(false);
-      setShowSignInModal(false);
-      setShowSignUpModal(false);
-    }
-  };
-
-  // Open Sign In Modal for all registration/enrollment buttons
-  const handleOpenSignIn = () => {
-    setShowSignInModal(true);
-  };
-
-  // Open Sign Up Modal
-  const handleOpenSignUp = () => {
-    setShowSignUpModal(true);
-  };
-
-  // Switch from Sign In to Sign Up modal
-  const handleSwitchToSignUp = () => {
-    setShowSignInModal(false);
-    setShowSignUpModal(true);
-  };
-
-  // Switch from Sign Up to Sign In modal
-  const handleSwitchToSignIn = () => {
-    setShowSignUpModal(false);
-    setShowSignInModal(true);
-  };
-
-  // Button handlers for different actions
-  const handleGetFreeTrial = () => {
-    handleOpenSignIn();
-  };
-
-  const handleStartFreeTrial = () => {
-    handleOpenSignIn();
-  };
-
-  const handleEnrollNow = () => {
-    handleOpenSignIn();
-  };
-
-  const handleQuickJoinNow = () => {
-    handleOpenSignIn();
-  };
-
-  const handleReadMore = () => {
-    handleOpenSignIn();
-  };
-
-  const handleSeeAllEvents = () => {
-    handleOpenSignIn();
-  };
-
-  // Function to handle Google authentication
   const handleGoogleAuth = () => {
-    // Add Google authentication logic here
     console.log('Google authentication clicked');
-    // For now, you can redirect to Google OAuth or handle Google sign-in
+    alert('Google authentication would be implemented here');
   };
 
   return (
@@ -263,654 +180,250 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-        <div className="left-side">
-          <h4 id='title'>Welcome to EduSpark</h4>
-          <p id='sub-title'>Learning is <span> What you </span> <br />
-            Make of it. Make it Yours
-            at VideoEditing.</p>
-          <p id='description'>Discover expert-led courses designed to fit your goals. Learn at your own pace, master new skills, <br /> and take control of your future with VideoEditing.</p>
-          <div className="btns">
-            <div className="play-btn">
-              <img src="https://img.icons8.com/?size=100&id=fjx0LfGCNuZb&format=png&color=fcfcfc" alt="playbtn-icn" />
-            </div>
-            <button id='signin-btn' onClick={handleGetFreeTrial}>Get Free Trial <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
-            <button id='demo-btn'>Watch Our
-              <br /> Class Demo</button>
-          </div>
-        </div>
-        <div className="right-side">
-          <img src={hero_card_img} alt="hero-card-img" />
 
-          <div className="card-1">
-            <p>Total Students <br /> <span>15K</span></p>
+      {/* Trending Section */}
+      <section className="trending-section">
+        <div className="trending-container">
+          <div className="trending-header">
+            <div className="trending-icon">📈</div>
+            <span className="trending-text">Trending on EduSpark</span>
           </div>
-          <div className="card-2"></div>
-
-          <div className="bar-1"></div>
-          <div className="bar-2"></div>
-        </div>
-     
-
-      {/* features Section */}
-      <section id='features'>
-        <p id='title'>Our Top Features</p>
-        <p id='sub-title'>Achieve Your Goal With EduSpark</p>
-        <p id='description'>when an unknown printer took a galley of type and scrambled make <br />
-          specimen book has survived not only five centuries</p>
-        <div className="cards">
-          <div className="card-1">
-            <img src="https://img.icons8.com/?size=100&id=tDtvWzs979he&format=png&color=fcfcfc" alt="" id='star' />
-            <div className="title">
-              <div className="card-1-logo">
-                <img src="https://img.icons8.com/?size=100&id=79387&format=png&color=fcfcfc" alt="" />
-              </div>
-              <p>Expert Tutors</p>
-            </div>
-            <p id="description">when an unknown printer took a galley offe
-              type and scrambled makes.</p>
-          </div>
-          <div className="card-2">
-            <img src="https://img.icons8.com/?size=100&id=tDtvWzs979he&format=png&color=fcfcfc" alt="" id='star' />
-            <div className="title">
-              <div className="card-2-logo">
-                <img src="https://img.icons8.com/?size=100&id=59739&format=png&color=fcfcfc" alt="" />
-              </div>
-              <p>Effective Courses</p>
-            </div>
-            <p id="description">when an unknown printer took a galley offe
-              type and scrambled makes.</p>
-          </div>
-          <div className="card-3">
-            <img src="https://img.icons8.com/?size=100&id=tDtvWzs979he&format=png&color=fcfcfc" alt="" id='star' />
-            <div className="title">
-              <div className="card-3-logo">
-                <img src="https://img.icons8.com/?size=100&id=9oUOrI5mCb9u&format=png&color=fcfcfc" alt="" />
-              </div>
-              <p>Earn Certificate</p>
-            </div>
-            <p id="description">when an unknown printer took a galley offe
-              type and scrambled makes.</p>
-          </div>
-        </div>
-        <div className="next-section">
-          <div className="left-side">
-            <img src={feature_img} alt="featre-section-img" />
-          </div>
-          <div className="right-side">
-            <p id="next-title">Get More About Us</p>
-            <p id="next-sub-title">
-              Thousand Of Top <span>Courses </span> <br />
-              Now in One Place
-            </p>
-            <p id="next-description">
-              Groove’s intuitive shared inbox makes it easy for team members to <br />
-              organize, prioritize and.In this episode of the Smashing Pod we’re <br />
-              talking about Web Platform Baseline.
-            </p>
-            <div className="details">
-              <div className="details-1">
-                <div className="circle">
-                  <img src="https://img.icons8.com/?size=100&id=60671&format=png&color=161439" alt="" />
+          <div className="trending-grid">
+            {[1, 2, 3, 4, 5, 6].map((item) => (
+              <article key={item} className="trending-article">
+                <div className="trending-number">0{item}</div>
+                <div className="trending-content">
+                  <div className="author-info">
+                    <img 
+                      src={`https://images.unsplash.com/photo-${item === 1 ? '1472099645785-5658abf4ff4e' : item === 2 ? '1507003211169-0a1dd7228f2d' : item === 3 ? '1494790108755-2616c5e90aaf' : item === 4 ? '1507833423370-a126b89d394b' : item === 5 ? '1438761681033-6461ffad8d80' : '1500648767791-00dcc994a43e'}?w=32&h=32&fit=crop&crop=face`} 
+                      alt="Author" 
+                      className="author-avatar"
+                    />
+                    <span className="author-name">John Doe</span>
+                  </div>
+                  <h3 className="trending-title">
+                    {item === 1 && "The Future of Learning: How AI is Transforming Education"}
+                    {item === 2 && "5 Essential Skills Every Developer Should Master in 2025"}
+                    {item === 3 && "Building Resilience in Remote Work Environments"}
+                    {item === 4 && "The Psychology Behind Effective Team Communication"}
+                    {item === 5 && "Sustainable Technology: Green Solutions for Modern Problems"}
+                    {item === 6 && "Understanding Data Privacy in the Digital Age"}
+                  </h3>
+                  <div className="article-meta">
+                    <span className="read-time">{3 + item} min read</span>
+                    <button onClick={handleOpenSignIn} className="read-more-btn">Read More</button>
+                  </div>
                 </div>
-                <p>The Most World Class Instructors</p>
-              </div>
-              <div className="details-2">
-                <div className="circle">
-                  <img src="https://img.icons8.com/?size=100&id=60671&format=png&color=161439" alt="" />
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <section className="main-content">
+        <div className="content-container">
+          <div className="articles-feed">
+            {[1, 2, 3, 4, 5].map((article) => (
+              <article key={article} className="article-card">
+                <div className="article-content">
+                  <div className="author-info">
+                    <img 
+                      src={`https://images.unsplash.com/photo-${article === 1 ? '1535713875002-d1d0cf227877' : article === 2 ? '1580489944761-15a19d654956' : article === 3 ? '1522202176988-66273c2fd55f' : article === 4 ? '1506794778202-cad84cf45f1d' : '1519085360753-af0119f7c6d0'}?w=40&h=40&fit=crop&crop=face`} 
+                      alt="Author" 
+                      className="author-avatar"
+                    />
+                    <div className="author-details">
+                      <span className="author-name">Jane Smith</span>
+                      <span className="publish-date">Dec {article + 1}</span>
+                    </div>
+                  </div>
+                  <h2 className="article-title">
+                    {article === 1 && "How to Build a Successful Career in Tech Without a Computer Science Degree"}
+                    {article === 2 && "The Art of Writing Clean Code: Best Practices Every Developer Should Know"}
+                    {article === 3 && "Remote Work Revolution: Adapting to the New Normal in Professional Life"}
+                    {article === 4 && "Understanding Machine Learning: A Beginner's Guide to AI Fundamentals"}
+                    {article === 5 && "The Future of Web Development: Trends and Technologies to Watch"}
+                  </h2>
+                  <p className="article-excerpt">
+                    {article === 1 && "Breaking into tech without a traditional computer science background is challenging but entirely possible. Here's how to navigate your journey..."}
+                    {article === 2 && "Clean code is not just about making your code work; it's about making it readable, maintainable, and scalable. Learn the essential practices..."}
+                    {article === 3 && "The shift to remote work has fundamentally changed how we approach professional relationships and productivity..."}
+                    {article === 4 && "Machine learning might seem complex, but understanding its core concepts can open doors to exciting career opportunities..."}
+                    {article === 5 && "Web development continues to evolve rapidly. Stay ahead by understanding these emerging trends and technologies..."}
+                  </p>
+                  <div className="article-tags">
+                    <span className="tag">Programming</span>
+                    <span className="tag">Career</span>
+                    <span className="tag">Technology</span>
+                  </div>
+                  <div className="article-meta">
+                    <span className="read-time">{4 + article} min read</span>
+                    <div className="article-actions">
+                      <button className="action-btn" onClick={handleOpenSignIn}>
+                        ❤️
+                      </button>
+                      <button className="action-btn" onClick={handleOpenSignIn}>
+                        💬
+                      </button>
+                      <button className="action-btn" onClick={handleOpenSignUp}>
+                        🔖
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <p>Access Your Class anywhere</p>
-              </div>
-              <div className="details-3">
-                <div className="circle">
-                  <img src="https://img.icons8.com/?size=100&id=60671&format=png&color=161439" alt="" />
+                <div className="article-image">
+                  <img 
+                    src={`https://images.unsplash.com/photo-${article === 1 ? '1581091226825-a5a50b7d3c5b' : article === 2 ? '1555949963-aa79dcb4c6e0' : article === 3 ? '1521737604893-d14cc237f11d' : article === 4 ? '1527474305487-b87b222841cc' : '1498050108023-c5d6532b407b'}?w=300&h=200&fit=crop`} 
+                    alt="Article thumbnail" 
+                  />
                 </div>
-                <p>Flexible Course Plan</p>
+              </article>
+            ))}
+          </div>
+
+          <aside className="sidebar">
+            <div className="sidebar-section">
+              <h3 className="sidebar-title">Staff Picks</h3>
+              <div className="staff-picks">
+                {[1, 2, 3].map((pick) => (
+                  <div key={pick} className="staff-pick" onClick={handleOpenSignIn}>
+                    <div className="pick-author">
+                      <img 
+                        src={`https://images.unsplash.com/photo-${pick === 1 ? '1607346256330-dee7af15f7c5' : pick === 2 ? '1511367461989-f85a21fda167' : '1494790108755-2616c5e90aaf'}?w=32&h=32&fit=crop&crop=face`} 
+                        alt="Author" 
+                        className="pick-avatar"
+                      />
+                      <span className="pick-author-name">Editor's Choice</span>
+                    </div>
+                    <h4 className="pick-title">
+                      {pick === 1 && "The Hidden Costs of Free Software"}
+                      {pick === 2 && "Why Every Team Needs a Designer"}
+                      {pick === 3 && "The Psychology of User Experience"}
+                    </h4>
+                  </div>
+                ))}
               </div>
             </div>
-            <button onClick={handleStartFreeTrial}>Start Free Trial <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
-          </div>
+
+            <div className="sidebar-section">
+              <h3 className="sidebar-title">Recommended topics</h3>
+              <div className="topics-grid">
+                {['Programming', 'Technology', 'Startup', 'Productivity', 'Design', 'Data Science', 'Machine Learning', 'Career'].map((topic) => (
+                  <button key={topic} className="topic-tag" onClick={handleOpenSignIn}>
+                    {topic}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="sidebar-section">
+              <h3 className="sidebar-title">Who to follow</h3>
+              <div className="follow-suggestions">
+                {[1, 2, 3].map((user) => (
+                  <div key={user} className="follow-suggestion">
+                    <img 
+                      src={`https://images.unsplash.com/photo-${user === 1 ? '1438761681033-6461ffad8d80' : user === 2 ? '1507003211169-0a1dd7228f2d' : '1517841905240-472988babdf9'}?w=40&h=40&fit=crop&crop=face`} 
+                      alt="User" 
+                      className="suggestion-avatar"
+                    />
+                    <div className="suggestion-info">
+                      <h5 className="suggestion-name">Sarah Johnson</h5>
+                      <p className="suggestion-bio">Frontend Developer & UI/UX Designer</p>
+                    </div>
+                    <button className="follow-btn" onClick={handleOpenSignUp}>Follow</button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </aside>
         </div>
       </section>
 
-      <section id='courses'>
-        <p id='title'>Top Class Courses</p>
-        <p id='sub-title'>Explore Our World's Best Courses</p>
-        <p id='description'>Find the right course for you from our extensive library of options.</p>
-        <div className="cards">
-          <div className="set-1">
-            <div className="card-1">
-              <img src={course_card_img} alt="card-1-img" />
-              <div className="cate-and-price">
-                <p id='category'>Development</p>
-                <p id='price'>$19.99</p>
-              </div>
-              <p id='card-title'>Learning JavaScript With
-                Imagination</p>
-              <p id='overview'>
-                Discover JavaScript in a fun and creative way! Learn coding concepts through imagination, real-world examples, and interactive exercises that make learning enjoyable and easy.
-              </p>
-              <p id='name'>Iresh Dilshan</p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
-                <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
-                <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
-              </div>
-              <button onClick={handleEnrollNow}>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
-            </div>
-            <div className="card-2">
-              <img src={course_card_img} alt="card-1-img" />
-              <div className="cate-and-price">
-                <p id='category'>Development</p>
-                <p id='price'>$19.99</p>
-              </div>
-              <p id='card-title'>Learning JavaScript With
-                Imagination</p>
-              <p id='overview'>
-                Discover JavaScript in a fun and creative way! Learn coding concepts through imagination, real-world examples, and interactive exercises that make learning enjoyable and easy.
-              </p>
-              <p id='name'>Iresh Dilshan</p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
-                <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
-                <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
-              </div>
-
-              <button onClick={handleEnrollNow}>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
-            </div>
-            <div className="card-3">
-              <img src={course_card_img} alt="card-1-img" />
-              <div className="cate-and-price">
-                <p id='category'>Development</p>
-                <p id='price'>$19.99</p>
-              </div>
-              <p id='card-title'>Learning JavaScript With
-                Imagination</p>
-              <p id='overview'>
-                Discover JavaScript in a fun and creative way! Learn coding concepts through imagination, real-world examples, and interactive exercises that make learning enjoyable and easy.
-              </p>
-              <p id='name'>Iresh Dilshan</p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
-                <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
-                <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
-              </div>
-
-              <button onClick={handleEnrollNow}>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
-            </div>
-          </div>
-          <div className="set-2">
-            <div className="card-1">
-              <img src={course_card_img} alt="card-1-img" />
-              <div className="cate-and-price">
-                <p id='category'>Development</p>
-                <p id='price'>$19.99</p>
-              </div>
-              <p id='card-title'>Learning JavaScript With
-                Imagination</p>
-              <p id='overview'>
-                Discover JavaScript in a fun and creative way! Learn coding concepts through imagination, real-world examples, and interactive exercises that make learning enjoyable and easy.
-              </p>
-              <p id='name'>Iresh Dilshan</p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
-                <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
-                <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
-              </div>
-
-              <button onClick={handleEnrollNow}>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
-            </div>
-            <div className="card-2">
-              <img src={course_card_img} alt="card-1-img" />
-              <div className="cate-and-price">
-                <p id='category'>Development</p>
-                <p id='price'>$19.99</p>
-              </div>
-              <p id='card-title'>Learning JavaScript With
-                Imagination</p>
-              <p id='overview'>
-                Discover JavaScript in a fun and creative way! Learn coding concepts through imagination, real-world examples, and interactive exercises that make learning enjoyable and easy.
-              </p>
-              <p id='name'>Iresh Dilshan</p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
-                <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
-                <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
-              </div>
-
-              <button onClick={handleEnrollNow}>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
-
-            </div>
-            <div className="card-3">
-              <img src={course_card_img} alt="card-1-img" />
-              <div className="cate-and-price">
-                <p id='category'>Development</p>
-                <p id='price'>$19.99</p>
-              </div>
-              <p id='card-title'>Learning JavaScript With
-                Imagination</p>
-              <p id='overview'>
-                Discover JavaScript in a fun and creative way! Learn coding concepts through imagination, real-world examples, and interactive exercises that make learning enjoyable and easy.
-              </p>
-              <p id='name'>Iresh Dilshan</p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
-                <img src="https://img.icons8.com/?size=100&id=8ggStxqyboK5&format=png&color=000000" alt="" style={{ height: '15px', width: '15px' }} />
-                <p style={{ fontSize: '12px', color: 'var(--text-color)' }}> (4.8 Reviews)</p>
-              </div>
-
-              <button onClick={handleEnrollNow}>Enroll Now <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" style={{ height: '15px', width: '15px' }} /></button>
-            </div>
+      {/* Footer */}
+      <footer className="medium-footer">
+        <div className="footer-container">
+          <div className="footer-links">
+            <a href="#">Help</a>
+            <a href="#">Status</a>
+            <a href="#">About</a>
+            <a href="#">Careers</a>
+            <a href="#">Press</a>
+            <a href="#">Blog</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Text to speech</a>
+            <a href="#">Teams</a>
           </div>
         </div>
-      </section>
-      {/* Pricing Section */}
-      <section id="pricing">
-        <p id="title">Pricing Plans</p>
-        <p id="sub-title">Choose the plan that fits your learning journey</p>
-        <p id="description">Choose the plan under that fits your learning journey. Unlock more features and flexibility as you upgrade.</p>
-        <div className="pricing-cards">
-          <div className="pricing-card">
-            <div className="plan-name">Starter</div>
-            <div className="plan-price">$0<span>/mo</span></div>
-            <ul className="plan-features">
-              <li>Access to free courses</li>
-              <li>Community support</li>
-              <li>Basic resources</li>
-              <li>Mobile app access</li>
-              <li>Weekly newsletter</li>
-              <li>Limited quizzes</li>
-              <li>Access on any device</li>
-              <li>Course progress tracking</li>
-            </ul>
-            <button className="plan-btn" >Get Started</button>
-          </div>
-          <div className="pricing-card popular">
-            <div className="plan-badge">Most Popular</div>
-            <div className="plan-name">Pro</div>
-            <div className="plan-price">$19<span>/mo</span></div>
-            <ul className="plan-features">
-              <li>All Starter features</li>
-              <li>Unlimited course access</li>
-              <li>Downloadable resources</li>
-              <li>Priority support</li>
-              <li>Certificate of completion</li>
-              <li>Exclusive webinars</li>
-              <li>Practice projects</li>
-              <li>Offline access</li>
-              <li>Early access to new courses</li>
-              <li>Ad-free experience</li>
-            </ul>
-            <button className="plan-btn" onClick={handleStartFreeTrial}>Start Free Trial</button>
-          </div>
-          <div className="pricing-card">
-            <div className="plan-name">Team</div>
-            <div className="plan-price">$49<span>/mo</span></div>
-            <ul className="plan-features">
-              <li>All Pro features</li>
-              <li>Team analytics</li>
-              <li>Admin dashboard</li>
-              <li>Custom onboarding</li>
-              <li>Dedicated account manager</li>
-              <li>Team collaboration tools</li>
-              <li>Bulk enrollment discounts</li>
-              <li>Custom team training</li>
-              <li>Advanced reporting</li>
-              <li>API access</li>
-            </ul>
-            <button className="plan-btn" >Contact Sales</button>
-          </div>
-        </div>
-      </section>
-      {/* About Us Section */}
-      <section id="about" className="about-section">
-        <p className="about-title">About Us</p>
-        <p className="about-sub-title">Empowering Learners Everywhere</p>
-        <div className="about-desc">
-          EduSpark is dedicated to making high-quality education accessible to everyone. Our platform brings together expert instructors, engaging content, and a supportive community to help you achieve your learning goals. Whether you're advancing your career, exploring new interests, or upskilling your team, EduSpark is your trusted partner on the journey to success.
-        </div>
-        <div className="about-highlights">
-          <div className="about-highlight-card">
-            <img src="https://img.icons8.com/?size=100&id=60671&format=png&color=6366f1" alt="icon" className="about-icon" />
-            <div className="about-highlight-value">20,000+</div>
-            <div className="about-highlight-label">Active Learners</div>
-          </div>
-          <div className="about-highlight-card">
-            <img src="https://img.icons8.com/?size=100&id=79387&format=png&color=6366f1" alt="icon" className="about-icon" />
-            <div className="about-highlight-value">150+</div>
-            <div className="about-highlight-label">Expert Instructors</div>
-          </div>
-          <div className="about-highlight-card">
-            <img src="https://img.icons8.com/?size=100&id=9oUOrI5mCb9u&format=png&color=6366f1" alt="icon" className="about-icon" />
-            <div className="about-highlight-value">1,200+</div>
-            <div className="about-highlight-label">Courses Offered</div>
-          </div>
-        </div>
-      </section>
-
-      {/* Wrorkshop section */}
-      <section id='worksop'>
-        <div className="left-side">
-          <img src={about_img} alt="" />
-        </div>
-        <div className="right-side">
-          <div className="top">
-            <p id="title">Free Workshop</p>
-            <p id="sub-title">Join Our Free Workshops</p>
-            <p id="description">Edhen an unknown printer took a galley of type and scrambled it to make a <br />
-              type specimen bookas survived not only five centuries.Edhen an unknown <br />
-              printer took a galley of type and scrambled.</p>
-          </div>
-          <div className="bottom">
-            <div className="left-side">
-              <div className="logo-and-title">
-                <div className="logo">
-                  <img src="https://img.icons8.com/?size=100&id=oZ0ORHGX8aeH&format=png&color=fcfcfc" alt="" />
-                </div>
-                <p id='title'>Smooth Virtual Live <br />
-                  Classes</p>
-              </div>
-              <p id='bottom-txt'>Edhen an unknown printer Rtook <br />
-                galley of type scrambled.</p>
-            </div>
-            <div className="right-side">
-              <div className="logo-and-title">
-                <div className="logo">
-                  <img src="https://img.icons8.com/?size=100&id=79387&format=png&color=fcfcfc" alt="" />
-                </div>
-                <p id='title'>99% Graduation <br />
-                  Complete</p>
-              </div>
-              <p id='bottom-txt'>Edhen an unknown printer Rtook <br />
-                galley of type scrambled.</p>
-            </div>
-          </div>
-          <button onClick={handleQuickJoinNow}>Quick Join Now  <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
-        </div>
-      </section>
-
-      <section id='count-card'>
-        <p>Thousands of <span> Courses </span> <br />
-          authored by industry <br />
-          experts</p>
-        <div className="middle">
-          <p id='count'>45k+</p>
-          <span>Active Students</span>
-        </div>
-        <hr />
-        <div className="right">
-          <p id='count'>328+</p>
-          <span>Best Instructors</span>
-        </div>
-        <img src={count_card} alt="count-card" />
-        {/* blob */}
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <path fill="#6366F1" d="M46.1,-48.6C58.5,-33.7,66.6,-16.8,65.2,-1.3C63.9,14.2,53.3,28.4,40.8,39.4C28.4,50.4,14.2,58.1,1,57.1C-12.2,56.1,-24.4,46.4,-34.2,35.4C-44,24.4,-51.4,12.2,-55.9,-4.5C-60.4,-21.3,-62.1,-42.5,-52.3,-57.4C-42.5,-72.4,-21.3,-80.9,-2.2,-78.7C16.8,-76.5,33.7,-63.5,46.1,-48.6Z" transform="translate(100 100)" />
-        </svg>
-        {/* border blob */}
-        <svg id='second-blob' viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" >
-          <path fill="none" stroke="#fff" strokeWidth="0.5" d="M46.1,-48.6C58.5,-33.7,66.6,-16.8,65.2,-1.3C63.9,14.2,53.3,28.4,40.8,39.4C28.4,50.4,14.2,58.1,1,57.1C-12.2,56.1,-24.4,46.4,-34.2,35.4C-44,24.4,-51.4,12.2,-55.9,-4.5C-60.4,-21.3,-62.1,-42.5,-52.3,-57.4C-42.5,-72.4,-21.3,-80.9,-2.2,-78.7C16.8,-76.5,33.7,-63.5,46.1,-48.6Z" transform="translate(100 100)" />
-        </svg>
-      </section>
-
-      <section id='events'>
-        <div className="left-side">
-          <p id='title'>Upcoming Events</p>
-          <p id='sub-title'>Join Our Community <br />
-            And Make it Bigger</p>
-          <p id='description'>Edhen an unknown printer took a galley acrambled <br />
-            make a type specimen bookas centuries.Edhen <br />
-            anderely unknown printer took a galley.</p>
-            <button onClick={handleSeeAllEvents}>See All Events <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
-        </div>
-        <div className="right-side">
-          <div className="box"></div>
-          <div className="events-cards">
-            <div className="card-1">
-              <div className="event-title">React Workshop</div>
-              <div className="event-date">Sep 15, 2025</div>
-              <div className="event-details">Learn React fundamentals and build modern web applications</div>
-              <div className="event-location">Online - Zoom</div>
-              <button className="enroll-btn" onClick={handleEnrollNow}>Enroll Now</button>
-            </div>
-            <div className="card-2">
-              <div className="event-title">UI/UX Design Bootcamp</div>
-              <div className="event-date">Sep 22, 2025</div>
-              <div className="event-details">Master design principles and create stunning user interfaces</div>
-              <div className="event-location">New York, NY</div>
-              <button className="enroll-btn" onClick={handleEnrollNow}>Enroll Now</button>
-            </div>
-            <div className="card-3">
-              <div className="event-title">JavaScript Masterclass</div>
-              <div className="event-date">Sep 29, 2025</div>
-              <div className="event-details">Advanced JavaScript concepts and modern ES6+ features</div>
-              <div className="event-location">San Francisco, CA</div>
-              <button className="enroll-btn" onClick={handleEnrollNow}>Enroll Now</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Blog Section */}
-      <section id="blog">
-        <p id="title">Our Blog</p>
-        <p id="sub-title">Latest News & Articles</p>
-        <p id="description">Stay updated with the latest trends, tips, and insights from our expert community</p>
-        <div className="blog-cards">
-          <div className="blog-card">
-            <img src="https://images.unsplash.com/photo-1593720213428-28a5b9e94613?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="JavaScript Development" className="blog-img" />
-            <div className="blog-category">Web Development</div>
-            <div className="blog-title">10 JavaScript Tips Every Developer Should Know</div>
-            <div className="blog-excerpt">Discover essential JavaScript techniques that will boost your productivity and code quality...</div>
-            <div className="blog-meta">
-              <span className="blog-date">Sep 1, 2025</span>
-              <span className="blog-author">By John Doe</span>
-            </div>
-            <button className="blog-btn" onClick={handleReadMore}>Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
-          </div>
-          <div className="blog-card">
-            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="UI/UX Design" className="blog-img" />
-            <div className="blog-category">Design</div>
-            <div className="blog-title">The Future of UI/UX Design in 2025</div>
-            <div className="blog-excerpt">Explore upcoming design trends and how they will shape user experiences in the coming year...</div>
-            <div className="blog-meta">
-              <span className="blog-date">Aug 28, 2025</span>
-              <span className="blog-author">By Jane Smith</span>
-            </div>
-            <button className="blog-btn" onClick={handleReadMore}>Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
-          </div>
-          <div className="blog-card">
-            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI and Machine Learning" className="blog-img" />
-            <div className="blog-category">Technology</div>
-            <div className="blog-title">AI and Machine Learning: A Beginner's Guide</div>
-            <div className="blog-excerpt">Learn the fundamentals of artificial intelligence and how to get started with ML projects...</div>
-            <div className="blog-meta">
-              <span className="blog-date">Aug 25, 2025</span>
-              <span className="blog-author">By Mike Johnson</span>
-            </div>
-            <button className="blog-btn" onClick={handleReadMore}>Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
-          </div>
-          <div className="blog-card">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Data Science" className="blog-img" />
-            <div className="blog-category">Data Science</div>
-            <div className="blog-title">Data Visualization Best Practices</div>
-            <div className="blog-excerpt">Master the art of presenting data effectively with these proven visualization techniques...</div>
-            <div className="blog-meta">
-              <span className="blog-date">Aug 22, 2025</span>
-              <span className="blog-author">By Sarah Chen</span>
-            </div>
-            <button className="blog-btn" onClick={handleReadMore}>Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
-          </div>
-          <div className="blog-card">
-            <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Mobile Development" className="blog-img" />
-            <div className="blog-category">Mobile Development</div>
-            <div className="blog-title">Building Your First Mobile App</div>
-            <div className="blog-excerpt">Step-by-step guide to creating mobile applications using modern development frameworks...</div>
-            <div className="blog-meta">
-              <span className="blog-date">Aug 19, 2025</span>
-              <span className="blog-author">By Alex Rodriguez</span>
-            </div>
-            <button className="blog-btn" onClick={handleReadMore}>Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
-          </div>
-          <div className="blog-card">
-            <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Cloud Computing" className="blog-img" />
-            <div className="blog-category">Cloud Computing</div>
-            <div className="blog-title">AWS vs Azure vs Google Cloud: Which to Choose?</div>
-            <div className="blog-excerpt">Compare the top cloud platforms and find the best solution for your next project...</div>
-            <div className="blog-meta">
-              <span className="blog-date">Aug 16, 2025</span>
-              <span className="blog-author">By David Wilson</span>
-            </div>
-            <button className="blog-btn" onClick={handleReadMore}>Read More <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="right-arrow" /></button>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer Section */}
-      <div className="footer-container">
-        <div className="footer-content">
-          <div className="footer-top">
-            <div className="footer-column">
-              <div className="footer-logo">
-                <img src={logo} alt="eduspark-logo" />
-              </div>
-              <p className="footer-description" style={{fontSize: '14px'}}>
-                Empowering learners worldwide with cutting-edge courses and expert-led training programs. Join thousands of students achieving their career goals.
-              </p>
-              <div className="social-links">
-                <a href="#" className="social-link">
-                  <img src="https://img.icons8.com/?size=100&id=8824&format=png&color=ffffff" alt="facebook" />
-                </a>
-                <a href="#" className="social-link">
-                  <img src="https://img.icons8.com/?size=100&id=5MQ0gPAYYx7a&format=png&color=ffffff" alt="twitter" />
-                </a>
-                <a href="#" className="social-link">
-                  <img src="https://img.icons8.com/?size=100&id=xuvGCOXi8Wyg&format=png&color=ffffff" alt="linkedin" />
-                </a>
-                <a href="#" className="social-link">
-                  <img src="https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png&color=ffffff" alt="instagram" />
-                </a>
-              </div>
-            </div>
-            
-            <div className="footer-column">
-              <h4>Quick Links</h4>
-              <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#courses">Courses</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#events">Events</a></li>
-                <li><a href="#blog">Blog</a></li>
-              </ul>
-            </div>
-            
-            <div className="footer-column">
-              <h4>Categories</h4>
-              <ul>
-                <li><a href="#">Web Development</a></li>
-                <li><a href="#">Mobile Apps</a></li>
-                <li><a href="#">Data Science</a></li>
-                <li><a href="#">UI/UX Design</a></li>
-                <li><a href="#">Digital Marketing</a></li>
-                <li><a href="#">Business</a></li>
-              </ul>
-            </div>
-            
-            <div className="footer-column">
-              <h4>Support</h4>
-              <ul>
-                <li><Link to="/help">Help Center</Link></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><Link to="/privacy">Privacy Policy</Link></li>
-                <li><Link to="/terms">Terms of Service</Link></li>
-                <li><Link to="/refund">Refund Policy</Link></li>
-                <li><Link to="/faqs">FAQs</Link></li>
-              </ul>
-            </div>
-            
-            <div className="footer-column">
-              <h4>Newsletter</h4>
-              <p className="newsletter-text" style={{fontSize: '14px'}}>Subscribe to our newsletter for the latest updates and exclusive offers.</p>
-              <div className="newsletter-form">
-                <input type="email" placeholder="Enter your email" className="newsletter-input" />
-                <button className="newsletter-btn">
-                  <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=fcfcfc" alt="subscribe" />
-                </button>
-              </div>
-              <div className="contact-info">
-                <div className="contact-item">
-                  <img src="https://img.icons8.com/?size=100&id=9659&format=png&color=ffffff" alt="email" />
-                  <span>support@eduspark.com</span>
-                </div>
-                <div className="contact-item">
-                  <img src="https://img.icons8.com/?size=100&id=9730&format=png&color=ffffff" alt="phone" />
-                  <span>+1 (555) 123-4567</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="footer-bottom">
-            <div className="footer-bottom-content">
-              <p>&copy; 2025 EduSpark. All rights reserved.</p>
-              <div className="footer-bottom-links">
-                <Link to="/privacy">Privacy</Link>
-                <Link to="/terms">Terms</Link>
-                <a href="#">Cookies</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      </footer>
 
       {/* Sign In Modal */}
       {showSignInModal && (
-        <div className="modal-overlay" onClick={handleModalClose}>
-          <div className="modal-content auth-modal" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-overlay" onClick={handleCloseModals}>
+          <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
-              <h2>Sign In to EduSpark</h2>
-              <button className="close-btn" onClick={() => setShowSignInModal(false)}>
-                <img src="https://img.icons8.com/?size=100&id=8112&format=png&color=666666" alt="close" style={{ height: '20px', width: '20px' }} />
+              <h2>Welcome back.</h2>
+              <button className="modal-close" onClick={handleCloseModals}>
+                ✕
               </button>
             </div>
-            <div className="auth-modal-content">
-              <form className="auth-form" onSubmit={handleSignInSubmit}>
-                <div className="form-group">
-                  <label htmlFor="signInEmail">Email Address</label>
-                  <input
-                    type="email"
-                    id="signInEmail"
-                    name="email"
-                    placeholder="Enter your email"
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="signInPassword">Password</label>
-                  <input
-                    type="password"
-                    id="signInPassword"
-                    name="password"
-                    placeholder="Enter your password"
-                    required
-                  />
-                </div>
-                <div className="form-options">
-                  <label className="remember-me">
-                    <input type="checkbox" name="remember" />
-                    <span>Remember me</span>
-                  </label>
-                  <a href="#" className="forgot-password">Forgot Password?</a>
-                </div>
-                <button type="submit" className="auth-btn primary">
-                  Sign In
-                  <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=ffffff" alt="arrow" />
-                </button>
-                <div className="divider">
-                  <span>or</span>
-                </div>
-                <button type="button" className="auth-btn google" onClick={handleGoogleAuth}>
-                  <img src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000" alt="google" />
-                  Continue with Google
-                </button>
-                <div className="auth-footer">
-                  <p>Don't have an account? <a href="#" onClick={(e) => {e.preventDefault(); handleSwitchToSignUp();}}>Sign Up</a></p>
-                </div>
-              </form>
+            
+            <div className="social-buttons">
+              <button type="button" className="google-btn" onClick={handleGoogleAuth}>
+                <svg width="18" height="18" viewBox="0 0 24 24">
+                  <path fill="#4285f4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                  <path fill="#34a853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                  <path fill="#fbbc05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                  <path fill="#ea4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                Sign in with Google
+              </button>
+              
+              <button type="button" className="facebook-btn" onClick={handleGoogleAuth}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+                Sign in with Facebook
+              </button>
+            </div>
+
+            <div className="divider">
+              <span>or</span>
+            </div>
+
+            <form onSubmit={handleSignInSubmit} className="auth-form">
+              <div className="form-group">
+                <label htmlFor="signInEmail">Email</label>
+                <input
+                  type="email"
+                  id="signInEmail"
+                  name="email"
+                  value={signInData.email}
+                  onChange={handleSignInInputChange}
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="signInPassword">Password</label>
+                <input
+                  type="password"
+                  id="signInPassword"
+                  name="password"
+                  value={signInData.password}
+                  onChange={handleSignInInputChange}
+                  placeholder="Enter your password"
+                  required
+                />
+              </div>
+              <button type="submit" className="auth-submit-btn">
+                Sign In
+              </button>
+            </form>
+
+            <div className="auth-footer">
+              <p>No account? <a href="#" onClick={(e) => {e.preventDefault(); handleSwitchToSignUp();}}>Create one</a></p>
             </div>
           </div>
         </div>
@@ -918,211 +431,125 @@ export default function LandingPage() {
 
       {/* Sign Up Modal */}
       {showSignUpModal && (
-        <div className="modal-overlay" onClick={handleModalClose}>
-          <div className="modal-content auth-modal" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-overlay" onClick={handleCloseModals}>
+          <div className="auth-modal signup-modal" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
-              <h2>Join EduSpark</h2>
-              <button className="close-btn" onClick={() => setShowSignUpModal(false)}>
-                <img src="https://img.icons8.com/?size=100&id=8112&format=png&color=666666" alt="close" style={{ height: '20px', width: '20px' }} />
-              </button>
-            </div>
-            <div className="auth-modal-content">
-              <form className="auth-form" onSubmit={handleSignUpSubmit}>
-                <div className="form-group">
-                  <label htmlFor="signUpFullName">Full Name</label>
-                  <input
-                    type="text"
-                    id="signUpFullName"
-                    name="fullName"
-                    value={signUpData.fullName}
-                    onChange={handleSignUpInputChange}
-                    placeholder="Enter your full name"
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="signUpEmail">Email Address</label>
-                  <input
-                    type="email"
-                    id="signUpEmail"
-                    name="email"
-                    value={signUpData.email}
-                    onChange={handleSignUpInputChange}
-                    placeholder="Enter your email"
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="signUpPassword">Password</label>
-                  <input
-                    type="password"
-                    id="signUpPassword"
-                    name="password"
-                    value={signUpData.password}
-                    onChange={handleSignUpInputChange}
-                    placeholder="Create a password"
-                    required
-                    className={!isPasswordValid && passwordError ? 'error' : ''}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="signUpConfirmPassword">Confirm Password</label>
-                  <input
-                    type="password"
-                    id="signUpConfirmPassword"
-                    name="confirmPassword"
-                    value={signUpData.confirmPassword}
-                    onChange={handleSignUpInputChange}
-                    placeholder="Confirm your password"
-                    required
-                    className={!isPasswordValid && passwordError ? 'error' : ''}
-                  />
-                  {passwordError && (
-                    <div className="password-error">
-                      {passwordError}
-                    </div>
-                  )}
-                  {passwordSuccess && !passwordError && (
-                    <div className="password-success">
-                      {passwordSuccess}
-                    </div>
-                  )}
-                </div>
-                <div className="form-options">
-                  <label className="remember-me">
-                    <input type="checkbox" name="terms" />
-                    <span>I agree to the Terms of Service and Privacy Policy</span>
-                  </label>
-                </div>
-                <button type="submit" className="auth-btn primary">
-                  Create Account
-                  <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=ffffff" alt="arrow" />
-                </button>
-                <div className="divider">
-                  <span>or</span>
-                </div>
-                <button type="button" className="auth-btn google" onClick={handleGoogleAuth}>
-                  <img src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000" alt="google" />
-                  Continue with Google
-                </button>
-                <div className="auth-footer">
-                  <p>Already have an account? <a href="#" onClick={(e) => {e.preventDefault(); handleSwitchToSignIn();}}>Sign In</a></p>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Contact Modal */}
-      {showContactModal && (
-        <div className="modal-overlay" onClick={handleModalClose}>
-          <div className="contact-modal">
-            <div className="modal-header">
-              <div className="modal-logo">
-                <img src={logo} alt="EduSpark Logo" />
-              </div>
-              <button 
-                className="modal-close-btn"
-                onClick={() => setShowContactModal(false)}
-              >
-                <img src="https://img.icons8.com/?size=100&id=6483&format=png&color=666666" alt="close" />
+              <h2>Join EduSpark.</h2>
+              <button className="modal-close" onClick={handleCloseModals}>
+                ✕
               </button>
             </div>
             
-            <div className="modal-content">
-              <div className="modal-title">
-                <h2>Get in Touch</h2>
-                <p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
-              </div>
+            <div className="social-buttons">
+              <button type="button" className="google-btn" onClick={handleGoogleAuth}>
+                <svg width="18" height="18" viewBox="0 0 24 24">
+                  <path fill="#4285f4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                  <path fill="#34a853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                  <path fill="#fbbc05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                  <path fill="#ea4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                Sign up with Google
+              </button>
               
-              <form className="contact-form" onSubmit={handleSubmit}>
-                <div className="form-row">
-                  <div className="form-group">
-                    <label htmlFor="name">Full Name *</label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      placeholder="Enter your full name"
-                      required
-                    />
+              <button type="button" className="facebook-btn" onClick={handleGoogleAuth}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+                Sign up with Facebook
+              </button>
+            </div>
+
+            <div className="divider">
+              <span>or</span>
+            </div>
+
+            <button type="button" className="email-signup-btn" onClick={() => {
+              // Toggle to show email form
+              const emailForm = document.querySelector('.email-form');
+              if (emailForm) {
+                emailForm.style.display = emailForm.style.display === 'none' ? 'block' : 'none';
+              }
+            }}>
+              Sign up with email
+            </button>
+
+            <form onSubmit={handleSignUpSubmit} className="auth-form email-form" style={{display: 'none'}}>
+              <div className="form-group">
+                <label htmlFor="signUpFullName">Full Name</label>
+                <input
+                  type="text"
+                  id="signUpFullName"
+                  name="fullName"
+                  value={signUpData.fullName}
+                  onChange={handleSignUpInputChange}
+                  placeholder="Enter your full name"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="signUpEmail">Email</label>
+                <input
+                  type="email"
+                  id="signUpEmail"
+                  name="email"
+                  value={signUpData.email}
+                  onChange={handleSignUpInputChange}
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="signUpPassword">Password</label>
+                <input
+                  type="password"
+                  id="signUpPassword"
+                  name="password"
+                  value={signUpData.password}
+                  onChange={handleSignUpInputChange}
+                  placeholder="Create a password"
+                  required
+                  className={!isPasswordValid && passwordError ? 'error' : ''}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="signUpConfirmPassword">Confirm Password</label>
+                <input
+                  type="password"
+                  id="signUpConfirmPassword"
+                  name="confirmPassword"
+                  value={signUpData.confirmPassword}
+                  onChange={handleSignUpInputChange}
+                  placeholder="Confirm your password"
+                  required
+                  className={!isPasswordValid && passwordError ? 'error' : ''}
+                />
+                {passwordError && (
+                  <div className="password-error">
+                    {passwordError}
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="email">Email Address *</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      placeholder="Enter your email address"
-                      required
-                    />
+                )}
+                {passwordSuccess && !passwordError && (
+                  <div className="password-success">
+                    {passwordSuccess}
                   </div>
-                </div>
-                
-                <div className="form-row">
-                  <div className="form-group">
-                    <label htmlFor="phone">Phone Number</label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      placeholder="Enter your phone number"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="subject">Subject *</label>
-                    <select
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      required
-                    >
-                      <option value="">Select a subject</option>
-                      <option value="course-inquiry">Course Inquiry</option>
-                      <option value="technical-support">Technical Support</option>
-                      <option value="billing">Billing & Payment</option>
-                      <option value="partnership">Partnership</option>
-                      <option value="feedback">Feedback</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-                </div>
-                
-                <div className="form-group full-width">
-                  <label htmlFor="message">Message *</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    placeholder="Tell us how we can help you..."
-                    rows={5}
-                    required
-                  ></textarea>
-                </div>
-                
-                <div className="form-actions">
-                  <button type="button" className="cancel-btn" onClick={() => setShowContactModal(false)}>
-                    Cancel
-                  </button>
-                  <button type="submit" className="submit-btn">
-                    Send Message
-                    <img src="https://img.icons8.com/?size=100&id=VjUxG2ZHfWSs&format=png&color=ffffff" alt="send" />
-                  </button>
-                </div>
-              </form>
+                )}
+              </div>
+              <button type="submit" className="auth-submit-btn">
+                Create Account
+              </button>
+            </form>
+
+            <div className="auth-footer">
+              <p>Already have an account? <a href="#" onClick={(e) => {e.preventDefault(); handleSwitchToSignIn();}}>Sign in</a></p>
+            </div>
+
+            <div className="terms-text">
+              Click "Sign up" to agree to EduSpark's <a href="#">Terms of Service</a> and acknowledge that EduSpark's <a href="#">Privacy Policy</a> applies to you.
             </div>
           </div>
         </div>
       )}
     </div>
-  )
+  );
 }
+
