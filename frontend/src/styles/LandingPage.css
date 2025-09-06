@@ -1,17 +1,119 @@
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-body{
+body {
   background-color: var(--medium-bg);
+  overflow-x: hidden;
 }
 
-nav{
+nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 150px;
+  padding: 20px 170px;
   position: sticky;
+  background-color: var(--medium-bg);
+  z-index: 1;
 }
+
+nav .logo h3 {
+  font-family: var(--font-charter);
+  font-size: 30px;
+}
+
+nav .middle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav .middle .links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+nav .middle .links a {
+  font-size: 15px;
+  color: var(--medium-black);
+  text-decoration: none;
+  font-family: 'Gabarito';
+}
+
+nav .middle .links button{
+  font-family: 'Gabarito';
+  background-color: var(--medium-black);
+  color: var(--medium-white);
+  border-radius: 50px;
+  padding: 10px 15px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+#hero{
+  padding: 15px 170px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  gap: 195px;
+}
+
+#hero h1{
+  font-family: var(--font-charter);
+  font-size: 120px;
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+#hero p{
+  font-size: 22px;
+  font-family: var(--font-sohne);
+  margin: 25px 0;
+}
+
+#hero button{
+  background-color: var(--medium-black);
+  color: var(--medium-white);
+  font-family: var(--font-sohne);
+  padding: 12px 40px;
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#hero .right-side img{
+  height: 500px;
+  transform: scale(1.2);
+  margin-right: -152px;
+  margin-top: 25px;
+}
+
+footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+footer a{
+  text-decoration: none;
+  color: var(--medium-gray);
+  font-family: var(--font-sohne);
+  font-size: 12px;
+}
+/* #hero .left-side h1{
+  font-family: var(--font-charter);
+} */
+
+/* 070 347 1590 */
