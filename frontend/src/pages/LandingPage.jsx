@@ -1,12 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import logo from "../assets/logo.png"
-import hero_card_img from '../assets/hero-card-img.png'
-import course_card_img from '../assets/Link.png'
-import about_img from '../assets/aboutus-img.png'
-import count_card from '../assets/count-card.png'
 import '../styles/LandingPage.css'
-import feature_img from '../assets/feature-img.png'
 
 export default function LandingPage() {
   // Category popup state and outside click handler
@@ -222,61 +216,53 @@ export default function LandingPage() {
   };
 
   return (
-    <div>
-      <nav>
-        <div className="logo">
-          <img src={logo} alt="eduspark-logo" />
-        </div>
-        <div className="links">
-          <a href="#home">Home</a>
-          <a href="#features">Features</a>
-          <a href="#courses">Courses</a>
-          <div className="nav-categories" ref={catRef}>
-            <a
-              href="#"
-              className="categories-link"
-              onClick={e => {
-                e.preventDefault();
-                setShowCats(v => !v);
-              }}
-            >Categories</a>
-            <div
-              className="categories-popup"
-              style={{
-                display: showCats ? 'grid' : 'none',
-                opacity: showCats ? 1 : 0,
-                pointerEvents: showCats ? 'auto' : 'none'
-              }}
-            >
-              {[
-                'Web Development', 'Mobile Apps', 'UI/UX', 'Data Science', 'AI & ML', 'Cloud', 'Cybersecurity',
-                'Business', 'Marketing', 'Finance', 'Photography', 'Music', 'Language', 'Health',
-                'Personal Dev', 'Productivity', 'Design', 'Animation', 'Game Dev', 'Engineering', 'Math',
-                'Science', 'Cooking', 'Fitness', 'Writing', 'Test Prep', 'Kids', 'Other'
-              ].map((cat, i) => (
-                <span className="category-item" key={i}>{cat}</span>
-              ))}
+    <div className="medium-landing">
+      {/* Medium-style Navigation */}
+      <nav className="medium-nav">
+        <div className="nav-container">
+          <div className="nav-left">
+            <h1 className="medium-logo">EduSpark</h1>
+          </div>
+          <div className="nav-center">
+            <div className="nav-links">
+              <a href="#" className="nav-link">Our story</a>
+              <a href="#" className="nav-link">Membership</a>
+              <a href="#" className="nav-link">Write</a>
+              <a href="#" className="nav-link" onClick={handleOpenSignIn}>Sign In</a>
             </div>
           </div>
-          <a href="#pricing">Pricing</a>
-          <a href="#about">About</a>
-          <a 
-            href="#contact" 
-            onClick={(e) => {
-              e.preventDefault();
-              setShowContactModal(true);
-            }}
-          >
-            Contact
-          </a>
-        </div>
-        <div className="signup-btn">
-          <button onClick={handleOpenSignUp}>Register</button>
+          <div className="nav-right">
+            <button className="get-started-btn" onClick={handleOpenSignUp}>
+              Get started
+            </button>
+          </div>
         </div>
       </nav>
 
-      {/* hero Section */}
-      <section id='hero'>
+      {/* Medium-style Hero Section */}
+      <section className="hero-section">
+        <div className="hero-container">
+          <div className="hero-content">
+            <h1 className="hero-title">Stay curious.</h1>
+            <p className="hero-subtitle">
+              Discover stories, thinking, and expertise from writers on any topic.
+            </p>
+            <button className="start-reading-btn" onClick={handleOpenSignUp}>
+              Start reading
+            </button>
+          </div>
+          <div className="hero-image">
+            <div className="floating-letters">
+              <span className="letter letter-m">M</span>
+              <span className="letter letter-e">E</span>
+              <span className="letter letter-d">D</span>
+              <span className="letter letter-i">I</span>
+              <span className="letter letter-u">U</span>
+              <span className="letter letter-final-m">M</span>
+            </div>
+          </div>
+        </div>
+      </section>
         <div className="left-side">
           <h4 id='title'>Welcome to EduSpark</h4>
           <p id='sub-title'>Learning is <span> What you </span> <br />
@@ -303,7 +289,7 @@ export default function LandingPage() {
           <div className="bar-1"></div>
           <div className="bar-2"></div>
         </div>
-      </section>
+     
 
       {/* features Section */}
       <section id='features'>
