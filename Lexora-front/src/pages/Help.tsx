@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../style/help.css'
 import { Link } from 'react-router-dom'
 
 export default function Help() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   const helpSections = [
     {
       title: 'Getting started',
@@ -131,9 +136,14 @@ export default function Help() {
         </div>
         <div className="right-side">
           <Link to="/">Back to lexora.com</Link>
-          <button>Submit a request</button>
+          <button onClick={openModal}>Submit a request</button>
         </div>
       </nav>
+
+      <div className="search-bar">
+        <h1>How can we help?</h1>
+        <input type="text" placeholder='Search for help topics...'/>
+      </div>
 
       <div className="warning-msg">
         <img src="https://img.icons8.com/?size=100&id=5tH5sHqq0t2q&format=png&color=000000" alt="warning-logo" />
@@ -153,6 +163,84 @@ export default function Help() {
           </div>
         ))}
       </div>
+
+      <div className="last-card">
+        <h1>Can't find what you're looking for?</h1>
+        <button onClick={openModal}>Submit a request</button>
+      </div>
+
+      <footer className='help-footer'>
+        <a href="">Status</a>
+        <a href="">Writer</a>
+        <a href="">Blog</a>
+        <a href="">Careers</a>
+        <a href="">Privacy</a>
+        <a href="">Terms</a>
+        <a href="">About</a>
+      </footer>
+
+      {/* Contact Modal */}
+      {isModalOpen && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="contact-modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>Submit a Request</h2>
+              <button className="close-btn" onClick={closeModal}>&times;</button>
+            </div>
+            <form className="contact-form">
+              <div className="form-group">
+                <label htmlFor="email">Your email address *</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  required 
+                  placeholder="Enter your email"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="subject">Subject *</label>
+                <input 
+                  type="text" 
+                  id="subject" 
+                  name="subject" 
+                  required 
+                  placeholder="Brief description of your issue"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="category">Category</label>
+                <select id="category" name="category">
+                  <option value="">Select a category</option>
+                  <option value="account">Account Issues</option>
+                  <option value="technical">Technical Problems</option>
+                  <option value="billing">Billing & Payments</option>
+                  <option value="content">Content & Publishing</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="message">Description *</label>
+                <textarea 
+                  id="message" 
+                  name="message" 
+                  rows={5}
+                  required 
+                  placeholder="Describe your issue in detail..."
+                ></textarea>
+              </div>
+              <div className="form-actions">
+                <button type="button" className="cancel-btn" onClick={closeModal}>
+                  Cancel
+                </button>
+                <button type="submit" className="submit-btn">
+                  Submit Request
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
