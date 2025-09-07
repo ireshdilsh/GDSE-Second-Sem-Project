@@ -1,0 +1,153 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.help-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 170px;
+    background-color: #000;
+}
+
+.help-nav .left-side {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.help-nav h1 {
+    font-size: 30px;
+}
+
+.help-nav h1,
+.help-nav p {
+    color: #fff;
+}
+
+.help-nav p {
+    font-size: 13px;
+    font-family: 'Sohne', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.help-nav .right-side {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.help-nav .right-side a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: 'Sohne', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.help-nav .right-side button {
+    padding: 12px 20px;
+    background-color: #000;
+    color: #fff;
+    font-size: 14px;
+    font-family: 'Sohne', -apple-system, BlinkMacSystemFont, sans-serif;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.warning-msg {
+    display: flex;
+    gap: 20px;
+    background-color: rgba(255, 255, 0, 0.218);
+    margin: 50px 170px;
+    padding: 25px 30px;
+    color: #000;
+    font-size: 15px;
+    line-height: 23px;
+    font-family: 'Sohne', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.warning-msg img{
+    height: 25px;
+    aspect-ratio: 1/1;
+}
+
+.help-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    padding: 40px 170px;
+    min-height: calc(100vh - 80px);
+}
+
+.help-card {
+    background: #fff;
+    padding: 30px;
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.help-card h1 {
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+    font-family: 'Sohne', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.help-description {
+    font-size: 17px;
+    font-weight: 500;
+    color: #666;
+    margin-bottom: 18px;
+    border-bottom: 2px solid #f0f0f0;
+    line-height: 1.5;
+    font-family: 'Sohne', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.help-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0 0;
+}
+
+.help-card li {
+    font-size: 14px;
+    color: #000;
+    margin-bottom: 8px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f5f5f5;
+    font-family: 'Sohne', -apple-system, BlinkMacSystemFont, sans-serif;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.help-card li:hover {
+    color: #000;
+}
+
+.help-card li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .help-cards-container {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .help-nav {
+        padding: 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .help-nav .right-side {
+        gap: 15px;
+    }
+}

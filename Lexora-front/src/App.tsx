@@ -1,10 +1,9 @@
-// import './App.css'
-import Landing from './pages/Landing'
+import Controller from './Controller'
 
 function App() {
   return (
    <div>
-      <Landing/>
+      <Controller/>
    </div>
   )
 }
