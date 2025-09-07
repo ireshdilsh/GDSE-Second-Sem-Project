@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import '../styles/LandingPage.css'
+import { Link } from 'react-router-dom'
 
 export default function LandingPage() {
   const [showSignInModal, setShowSignInModal] = useState(false)
@@ -84,15 +85,15 @@ export default function LandingPage() {
 
             <div className="modal-content">
 
-              <button>Sign in With Google</button>
-              <button>Sign in With FaceBook</button>
-              <button>Sign in With GitHub</button>
+              <button><img src="https://img.icons8.com/?size=100&id=V5cGWnc9R4xj&format=png&color=000000" alt="google-logo" />Sign in With Google</button>
+              <button><img src="https://img.icons8.com/?size=100&id=118497&format=png&color=000000" alt="facebook-logo" />Sign in With FaceBook</button>
+              <button><img src="https://img.icons8.com/?size=100&id=12599&format=png&color=000000" alt="github-logo" />Sign in With GitHub</button>
 
               <div className="modal-footer">
                 <p>
                   No account? <a href="#" onClick={(e) => { e.preventDefault(); switchToSignUp(); }}>Create one</a>
                 </p>
-                <p>Forgot email or trouble signing in? <a href="">Get help.</a></p>
+                <p>Forgot email or trouble signing in? <Link to='/help-center'>Get help.</Link></p>
                 <p id='privacy-policy'>By clicking "Sign in", you accept Medium's <a href="">Terms of Service</a> and <a href="">Privacy Policy.</a></p>
               </div>
             </div>
@@ -112,9 +113,9 @@ export default function LandingPage() {
 
             <div className="modal-content">
 
-              <button>Sign in With Google</button>
-              <button>Sign in With FaceBook</button>
-              <button>Sign in With GitHub</button>
+              <button><img src="https://img.icons8.com/?size=100&id=V5cGWnc9R4xj&format=png&color=000000" alt="google-logo" />Sign in With Google</button>
+              <button><img src="https://img.icons8.com/?size=100&id=118497&format=png&color=000000" alt="facebook-logo" />Sign in With FaceBook</button>
+              <button><img src="https://img.icons8.com/?size=100&id=12599&format=png&color=000000" alt="github-logo" />Sign in With GitHub</button>
 
               <div className="modal-footer">
                 <p>
