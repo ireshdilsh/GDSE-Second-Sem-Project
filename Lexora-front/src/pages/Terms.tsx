@@ -1,12 +1,15 @@
 import React from 'react'
 import '../style/terms.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function Terms() {
+
+    const navigate = useNavigate()
+
   return (
     <div className="terms-page">
       <nav className='terms-nav'>
-        <div className="left-side">
+        <div className="left-side" onClick={()=>{navigate('/')}}>
           <h1>Lexora</h1>
           <p style={{fontFamily:'Sohne, -apple-system, BlinkMacSystemFont, sans-serif',fontSize:'13px',fontWeight:'500'}}>Terms of Service</p>
         </div>

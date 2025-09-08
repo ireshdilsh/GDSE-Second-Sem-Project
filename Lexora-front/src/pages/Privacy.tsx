@@ -1,12 +1,15 @@
 import React from 'react'
 import '../style/privacy.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function Privacy() {
+
+    const navigate = useNavigate()
+
   return (
     <div className="privacy-page">
       <nav className='privacy-nav'>
-        <div className="left-side">
+        <div className="left-side" onClick={()=>{navigate('/')}}>
           <h1>Lexora</h1>
           <p id='p'>Privacy Policy</p>
         </div>

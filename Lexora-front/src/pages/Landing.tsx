@@ -81,7 +81,7 @@ export default function Landing() {
                         <button className="close-btn" onClick={closeModals}>×</button>
 
                         <div className="modal-header">
-                            <h2>Welcome Back.</h2>
+                            <h2 style={{fontFamily:'Charter, Georgia, serif', textAlign: 'center'}}>Welcome Back.</h2>
                         </div>
 
                         <div className="modal-content">
@@ -95,7 +95,7 @@ export default function Landing() {
                                     No account? <a href="#" onClick={(e) => { e.preventDefault(); switchToSignUp(); }}>Create one</a>
                                 </p>
                                 <p>Forgot email or trouble signing in? <Link to="/help">Get help.</Link></p>
-                                <p id='privacy-policy'>By clicking "Sign in", you accept Medium's <a href="">Terms of Service</a> and <a href="">Privacy Policy.</a></p>
+                                <p id='privacy-policy'>By clicking "Sign in", you accept Medium's <Link to="/terms">Terms of Service</Link> and <Link to="/privacy">Privacy Policy.</Link></p>
                             </div>
                         </div>
                     </div>
@@ -109,7 +109,7 @@ export default function Landing() {
                         <button className="close-btn" onClick={closeModals}>×</button>
 
                         <div className="modal-header">
-                            <h2>Join Lexora.</h2>
+                            <h2 style={{fontFamily:'Charter, Georgia, serif', textAlign: 'center'}}>Join Lexora.</h2>
                         </div>
 
                         <div className="modal-content">
@@ -122,7 +122,7 @@ export default function Landing() {
                                 <p>
                                     Already have an account? <a href="#" onClick={(e) => { e.preventDefault(); switchToSignIn(); }}>Sign in</a>
                                 </p>
-                                <p id='privacy-policy'>By clicking "Sign up", you accept Medium's <a href="">Terms of Service</a> and <a href="">Privacy Policy.</a></p>
+                                <p id='privacy-policy'>By clicking "Sign up", you accept Medium's <Link to="/terms">Terms of Service</Link> and <Link to="/privacy">Privacy Policy.</Link></p>
                             </div>
                         </div>
                     </div>

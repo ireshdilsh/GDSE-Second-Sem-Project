@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../style/about.css'
-import '../style/landing.css'
+// import '../style/landing.css'
 import { Link, useNavigate, } from 'react-router-dom'
 
 export default function About() {
@@ -64,7 +64,7 @@ export default function About() {
                         <button className="close-btn" onClick={closeModals}>×</button>
 
                         <div className="modal-header">
-                            <h2>Welcome Back.</h2>
+                            <h2 style={{fontFamily:'Charter, Georgia, serif', textAlign: 'center'}}>Welcome Back.</h2>
                         </div>
 
                         <div className="modal-content">
@@ -78,7 +78,7 @@ export default function About() {
                                     No account? <a href="#" onClick={(e) => { e.preventDefault(); switchToSignUp(); }}>Create one</a>
                                 </p>
                                 <p>Forgot email or trouble signing in? <Link to="/help">Get help.</Link></p>
-                                <p id='privacy-policy'>By clicking "Sign in", you accept Medium's <a href="">Terms of Service</a> and <a href="">Privacy Policy.</a></p>
+                                <p id='privacy-policy'>By clicking "Sign in", you accept Medium's <Link to="/terms">Terms of Service</Link> and <Link to="/privacy">Privacy Policy.</Link></p>
                             </div>
                         </div>
                     </div>
@@ -91,7 +91,7 @@ export default function About() {
                         <button className="close-btn" onClick={closeModals}>×</button>
 
                         <div className="modal-header">
-                            <h2>Join Lexora.</h2>
+                            <h2 style={{fontFamily:'Charter, Georgia, serif', textAlign: 'center'}}>Join Lexora.</h2>
                         </div>
 
                         <div className="modal-content">
@@ -104,7 +104,7 @@ export default function About() {
                                 <p>
                                     Already have an account? <a href="#" onClick={(e) => { e.preventDefault(); switchToSignIn(); }}>Sign in</a>
                                 </p>
-                                <p id='privacy-policy'>By clicking "Sign up", you accept Medium's <a href="">Terms of Service</a> and <a href="">Privacy Policy.</a></p>
+                                <p id='privacy-policy'>By clicking "Sign up", you accept Medium's <Link to="/terms">Terms of Service</Link> and <Link to="/privacy">Privacy Policy.</Link></p>
                             </div>
                         </div>
                     </div>
