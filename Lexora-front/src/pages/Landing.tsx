@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import '../style/landing.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, type NavigateFunction } from 'react-router-dom'
 
 export default function Landing() {
     const [showSignInModal, setShowSignInModal] = useState(false)
     const [showSignUpModal, setShowSignUpModal] = useState(false)
+
+    const navigate: NavigateFunction = useNavigate();
 
     const openSignInModal = () => {
         setShowSignInModal(true)
@@ -33,7 +35,7 @@ export default function Landing() {
     return (
         <div>
             <nav>
-                <div className="logo">
+                <div className="logo" onClick={() => navigate('/')}>
                     <h3>Lexora</h3>
                 </div>
                 <div className="middle">

@@ -20,6 +20,7 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
+    cursor: pointer;
 }
 
 .help-nav h1 {
@@ -178,7 +179,7 @@ body {
     cursor: pointer;
 }
 
-.help-footer{
+.help-footer {
     display: flex;
     justify-content: right;
     align-items: center;
@@ -187,13 +188,13 @@ body {
     padding: 50px 170px;
 }
 
-.help-footer a{
+.help-footer a {
     text-decoration: none;
     color: #fff;
     font-size: 14px;
 }
 
-.search-bar{
+.search-bar {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -201,12 +202,12 @@ body {
     margin: 50px 0;
 }
 
-.search-bar h1{
+.search-bar h1 {
     font-size: 60px;
     font-weight: 500;
 }
 
-.search-bar input{
+.search-bar input {
     width: 40%;
     height: 60px;
     font-size: 20px;
@@ -367,16 +368,16 @@ body {
         width: 95%;
         margin: 20px;
     }
-    
+
     .modal-header,
     .contact-form {
         padding: 20px;
     }
-    
+
     .form-actions {
         flex-direction: column;
     }
-    
+
     .cancel-btn,
     .submit-btn {
         width: 100%;

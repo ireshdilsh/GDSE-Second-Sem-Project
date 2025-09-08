@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import '../style/help.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, type NavigateFunction } from 'react-router-dom'
 
 export default function Help() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  const navigate: NavigateFunction = useNavigate();
 
   const helpSections = [
     {
@@ -130,7 +132,7 @@ export default function Help() {
   return (
     <div>
       <nav className='help-nav'>
-        <div className="left-side">
+        <div className="left-side" onClick={() => { navigate('/') }}>
           <h1>Lexora</h1>
           <p>Help Center</p>
         </div>
@@ -142,7 +144,7 @@ export default function Help() {
 
       <div className="search-bar">
         <h1>How can we help?</h1>
-        <input type="text" placeholder='Search for help topics...'/>
+        <input type="text" placeholder='Search for help topics...' />
       </div>
 
       <div className="warning-msg">
@@ -190,21 +192,21 @@ export default function Help() {
             <form className="contact-form">
               <div className="form-group">
                 <label htmlFor="email">Your email address *</label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  name="email" 
-                  required 
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
                   placeholder="Enter your email"
                 />
               </div>
               <div className="form-group">
                 <label htmlFor="subject">Subject *</label>
-                <input 
-                  type="text" 
-                  id="subject" 
-                  name="subject" 
-                  required 
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  required
                   placeholder="Brief description of your issue"
                 />
               </div>
@@ -221,11 +223,11 @@ export default function Help() {
               </div>
               <div className="form-group">
                 <label htmlFor="message">Description *</label>
-                <textarea 
-                  id="message" 
-                  name="message" 
+                <textarea
+                  id="message"
+                  name="message"
                   rows={5}
-                  required 
+                  required
                   placeholder="Describe your issue in detail..."
                 ></textarea>
               </div>
