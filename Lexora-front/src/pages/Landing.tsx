@@ -70,9 +70,8 @@ export default function Landing() {
                 <a href="">Press</a>
                 <a href="">Blog</a>
                 <Link to="/privacy">Privacy</Link>
-                <a href="">Rules</a>
-                <a href="">Terms</a>
-                <a href="">Text to Speach</a>
+                <Link to='/terms'>Terms</Link>
+                <a href="">Text to Speech</a>
             </footer>
 
             {/* Sign In Modal */}

@@ -4,6 +4,7 @@ import Landing from './pages/Landing'
 import Help from './pages/Help'
 import About from './pages/About'
 import Privacy from './pages/Privacy'
+import Terms from './pages/Terms'
 
 export default function Controller() {
   return (
@@ -14,6 +15,7 @@ export default function Controller() {
                 <Route path='/help' element={<Help/>}/>
                 <Route path='/about' element={<About/>}/>
                 <Route path='/privacy' element={<Privacy/>}/>
+                <Route path='/terms' element={<Terms/>}/>
             </Routes>
         </BrowserRouter>
     </div>
