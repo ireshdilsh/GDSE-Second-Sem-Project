@@ -40,9 +40,9 @@ export default function Landing() {
                 </div>
                 <div className="middle">
                     <div className="links">
-                        <a href="#" onClick={(e) => { e.preventDefault(); }}>Our Story</a>
-                        <a href="#" onClick={(e) => { e.preventDefault(); }}>Membership</a>
-                        <a href="#" onClick={(e) => { e.preventDefault(); }}>Write</a>
+                        <Link to='/about'>Our Story</Link>
+                        <Link to='/membership'>Membership</Link>
+                        <a href="#" onClick={openSignUpModal}>Write</a>
                         <a href="#" onClick={(e) => { e.preventDefault(); openSignInModal(); }}>Sign In</a>
                         <button onClick={openSignUpModal}>Get Started</button>
                     </div>

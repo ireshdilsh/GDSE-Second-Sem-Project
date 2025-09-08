@@ -24,12 +24,16 @@ body {
     background-color: #fff;
     border-bottom: 1.5px solid #000;
     color: #000;
+     position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .privacy-nav .left-side {
     display: flex;
     align-items: center;
     gap: 15px;
+    cursor: pointer;
 }
 
 .privacy-nav h1 {

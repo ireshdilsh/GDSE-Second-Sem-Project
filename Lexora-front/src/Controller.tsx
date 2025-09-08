@@ -5,6 +5,7 @@ import Help from './pages/Help'
 import About from './pages/About'
 import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
+import Membership from './pages/Membership'
 
 export default function Controller() {
   return (
@@ -16,6 +17,7 @@ export default function Controller() {
                 <Route path='/about' element={<About/>}/>
                 <Route path='/privacy' element={<Privacy/>}/>
                 <Route path='/terms' element={<Terms/>}/>
+                <Route path='/membership' element={<Membership/>}/>
             </Routes>
         </BrowserRouter>
     </div>
