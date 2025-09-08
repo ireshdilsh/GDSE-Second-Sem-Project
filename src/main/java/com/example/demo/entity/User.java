@@ -29,9 +29,16 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = true)
     private String firstName;
+
+    @Column(nullable = true)
     private String lastName;
+
+    @Column(nullable = true)
     private String bio;
+
+    @Column(nullable = true)
     private String profileImage;
 
     @Enumerated(EnumType.STRING)

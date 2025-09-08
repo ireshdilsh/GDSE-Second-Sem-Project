@@ -65,10 +65,10 @@ public class ArticleController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/all/drafts")
-    public ResponseEntity<APIResponse> getAllArticlesByAuthor(@RequestParam Long authorId) {
-        logger.info("Fetching all articles by author: {} (including drafts)", authorId);
-        List<ArticleDto> articles = articleService.getArticlesByAuthor(authorId);
+    @GetMapping("/all/drafts/{id}")
+    public ResponseEntity<APIResponse> getAllArticlesByAuthor(@PathVariable Long id) {
+        logger.info("Fetching all articles by author: {} (including drafts)", id);
+        List<ArticleDto> articles = articleService.getArticlesByAuthor(id);
         APIResponse response = new APIResponse(200, "Author articles retrieved successfully", articles);
         logger.info("Retrieved {} total articles for author", articles.size());
         return ResponseEntity.ok(response);
