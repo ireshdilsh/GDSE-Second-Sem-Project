@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../style/help.css'
-import { Link, useNavigate, type NavigateFunction } from 'react-router-dom'
+import { Link, useNavigate, } from 'react-router-dom'
 
 export default function Help() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -8,7 +8,7 @@ export default function Help() {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const navigate: NavigateFunction = useNavigate();
+  const navigate = useNavigate();
 
   const helpSections = [
     {

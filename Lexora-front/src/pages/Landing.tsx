@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import '../style/landing.css'
-import { Link, useNavigate, type NavigateFunction } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function Landing() {
-    const [showSignInModal, setShowSignInModal] = useState(false)
-    const [showSignUpModal, setShowSignUpModal] = useState(false)
+    const [showSignInModal, setShowSignInModal] = useState<boolean>(false)
+    const [showSignUpModal, setShowSignUpModal] = useState<boolean>(false)
 
-    const navigate: NavigateFunction = useNavigate();
+    const navigate = useNavigate();
 
     const openSignInModal = () => {
         setShowSignInModal(true)
@@ -65,11 +65,11 @@ export default function Landing() {
             <footer>
                 <Link to="/help">Help</Link>
                 <a href="">Status</a>
-                <a href="">About</a>
+                <Link to='/about'>About</Link>
                 <a href="">Careers</a>
                 <a href="">Press</a>
                 <a href="">Blog</a>
-                <a href="">Privacy</a>
+                <Link to="/privacy">Privacy</Link>
                 <a href="">Rules</a>
                 <a href="">Terms</a>
                 <a href="">Text to Speach</a>

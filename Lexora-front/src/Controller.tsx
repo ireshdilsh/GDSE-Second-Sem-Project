@@ -2,6 +2,8 @@ import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Landing from './pages/Landing'
 import Help from './pages/Help'
+import About from './pages/About'
+import Privacy from './pages/Privacy'
 
 export default function Controller() {
   return (
@@ -10,6 +12,8 @@ export default function Controller() {
             <Routes>
                 <Route path='/' element={<Landing/>}/>
                 <Route path='/help' element={<Help/>}/>
+                <Route path='/about' element={<About/>}/>
+                <Route path='/privacy' element={<Privacy/>}/>
             </Routes>
         </BrowserRouter>
     </div>

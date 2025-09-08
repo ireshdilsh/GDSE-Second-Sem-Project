@@ -1,0 +1,93 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.about-page {
+    width: 100%;
+    height: 100%;
+    background-color: #212121;
+    display: flex;
+    flex-direction: column;
+}
+
+.about-navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 170px;
+    background-color: #212121;
+    border-bottom: 1.5px solid #fff;
+}
+
+.about-navbar .left-side{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+}
+
+.about-navbar .left-side h1{
+    font-size: 32px;
+    color: #fff;
+} 
+
+.about-navbar .left-side p{
+    color: #fff;
+    font-family: 'Sohne', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13.5px;
+}
+
+.about-navbar .right-side{
+    display: flex;
+    gap: 15px;
+}
+
+.about-navbar .right-side button{
+    padding: 10px 25px;
+    border: none;
+    border-radius: 25px;
+    outline: none;
+    cursor: pointer;
+    font-family: 'Gabarito';
+    font-size: 14px;
+}
+
+.about-navbar #sign-in{
+    border: 1.5px solid #fff;
+    background-color: #212121;
+    color: #fff;
+}
+
+.about-navbar #sign-up{
+    background-color: #fff;
+}
+
+.about-body{
+    margin-top: 50px;
+    padding: 50px 170px;
+}
+
+.about-body h1{
+    font-size: 75px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.about-desc{
+    font-size: 22px;
+    color: #fff;
+    margin-top: 40px;
+    line-height: 32px;
+    text-align: left;
+}
+
+.about-desc-secnd-title{
+    font-size: 36px;
+    margin-top: 50px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #fff;
+    text-align: left;
+}
