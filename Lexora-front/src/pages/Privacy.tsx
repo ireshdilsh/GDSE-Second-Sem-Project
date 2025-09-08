@@ -8,7 +8,7 @@ export default function Privacy() {
       <nav className='privacy-nav'>
         <div className="left-side">
           <h1>Lexora</h1>
-          <p>Privacy Policy</p>
+          <p id='p'>Privacy Policy</p>
         </div>
         <div className="right-side">
           <Link to="/">Back to lexora.com</Link>

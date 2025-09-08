@@ -21,8 +21,9 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px 170px;
-    background-color: #000;
-    color: #fff;
+    background-color: #fff;
+    border-bottom: 1.5px solid #000;
+    color: #000;
 }
 
 .privacy-nav .left-side {
@@ -36,9 +37,9 @@ body {
     font-weight: 600;
 }
 
-.privacy-nav p {
+#p {
     font-size: 13px;
-    color: #fff;
+    color: #000;
     font-family: 'Sohne', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
@@ -49,9 +50,9 @@ body {
 }
 
 .privacy-nav .right-side a {
-    color: #fff;
+    color: #000;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 14px;
     font-family: 'Sohne', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
@@ -145,6 +146,7 @@ body {
     margin-bottom: 20px;
     padding-bottom: 8px;
     border-bottom: 1px solid #e9ecef;
+    font-family: 'Sohne', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .privacy-section h3 {
@@ -250,6 +252,6 @@ body {
 
 .privacy-page p{
     font-size: 20px;
-    color: #000;
+    /* color: #000; */
     line-height: 32px;
 }
