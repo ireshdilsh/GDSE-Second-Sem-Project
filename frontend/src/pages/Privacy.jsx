@@ -9,7 +9,7 @@ export default function Privacy() {
         <div className="privacy-page">
             <nav className='privacy-navbar'>
                 <div className="left-side" onClick={() => navigate('/')}>
-                    <h1>Lexora</h1>
+                    <h1><h1><h4>Lexora</h4></h1></h1>
                     <p>Privacy Policy</p>
                 </div>
                 <div className="right-side">

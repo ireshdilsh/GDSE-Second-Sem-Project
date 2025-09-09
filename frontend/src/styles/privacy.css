@@ -27,8 +27,8 @@
     cursor: pointer;
 }
 
-.privacy-navbar .left-side h1 {
-    font-size: 32px;
+.privacy-navbar .left-side h1 h1 h4 {
+    /* font-size: 32px; */
     font-weight: 400;
     /* color: #fff; */
 }

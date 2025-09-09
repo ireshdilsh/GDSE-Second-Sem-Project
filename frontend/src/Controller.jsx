@@ -6,6 +6,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Membership from './pages/Membership'
 import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
+import Dashboard from './pages/Dashboard'
+import Write from './pages/Write'
 
 export default function Controller() {
     return (
@@ -17,6 +19,8 @@ export default function Controller() {
                     <Route path='/membership' element={<Membership/>}></Route>
                     <Route path='/privacy' element={<Privacy/>}></Route>
                     <Route path='/terms' element={<Terms/>}></Route>
+                    <Route path='/writer/dashboard' element={<Dashboard/>}></Route>
+                    <Route path='/writer/write' element={<Write/>}></Route>
                 </Routes>
             </BrowserRouter>
         </div>

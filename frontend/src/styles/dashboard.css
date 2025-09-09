@@ -1,3 +1,70 @@
 body{
     overflow-x: hidden;
 }
+
+.dashboard{
+    height: 100%;
+    /* padding: 0 170px; */
+}
+
+.dash-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 17px 170px;
+    border-bottom: 1.2px solid #d5d5d5;
+}
+
+.dash-nav .left-side{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.dash-nav .left-side h1 h1 h4{
+    font-weight: 400;
+}
+
+.dash-nav .left-side input{
+    height: 43px;
+    outline: none;
+    border-radius: 40px;
+    width: 250px;
+    padding: 0 15px;
+    color: 5d5d5d;
+    border: none;
+    background-color: #fafafa;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
+
+.dash-nav .right-side{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.dash-nav .right-side a{
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--poppins);
+    font-size: 14px;
+}
+
+.dash-nav .right-side img{
+    height: 25px;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}
+
+.dash-nav .right-side .profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

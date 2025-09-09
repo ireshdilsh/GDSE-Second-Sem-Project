@@ -9,7 +9,7 @@ export default function Terms() {
         <div className="terms-page">
             <nav className='terms-navbar'>
                 <div className="left-side" onClick={() => navigate('/')}>
-                    <h1>Lexora</h1>
+                    <h1><h1><h4>Lexora</h4></h1></h1>
                     <p>Terms of Service</p>
                 </div>
                 <div className="right-side">

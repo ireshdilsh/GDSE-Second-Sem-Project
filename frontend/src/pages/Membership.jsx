@@ -10,7 +10,7 @@ export default function Membership() {
     <div className='membership-page'>
             <nav className='membership-navbar'>
                 <div className="left-side" onClick={() => { navigate('/') }}>
-                    <h1>Lexora</h1>
+                    <h1><h1><h4>Lexora</h4></h1></h1>
                     <p>Membership</p>
                 </div>
                 

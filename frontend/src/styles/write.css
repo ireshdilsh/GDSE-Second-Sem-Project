@@ -1,0 +1,16 @@
+body{
+    overflow-x: hidden;
+}
+
+.write{
+    height: 100%;
+    /* padding: 0 170px; */
+}
+
+.write-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 17px 170px;
+    border-bottom: 1.2px solid #d5d5d5;
+}

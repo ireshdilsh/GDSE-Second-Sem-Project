@@ -10,7 +10,7 @@ export default function About() {
         <div className="about-page">
             <nav className='about-navbar'>
                 <div className="left-side" onClick={() => navigate('/')}>
-                    <h1>Lexora</h1>
+                    <h1><h1><h4>Lexora</h4></h1></h1>
                     <p>About us</p>
                 </div>
                 <div className="right-side">
