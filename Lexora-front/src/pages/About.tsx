@@ -2,6 +2,7 @@ import { useEffect, useState, } from 'react'
 import '../style/about.css'
 import { Link, useNavigate } from 'react-router-dom'
 
+// Declare Google types
 const GOOGLE_CLIENT_ID = "141602930536-i1ia3re5sq16brqrdi7m8ctkk6n85i7s.apps.googleusercontent.com";
 
 declare global {
@@ -38,6 +39,9 @@ export default function About() {
     const [showSignInModal, setShowSignInModal] = useState<boolean>(false)
     const [showSignUpModal, setShowSignUpModal] = useState<boolean>(false)
 
+    //    const GOOGLE_CLIENT_ID = "141602930536-i1ia3re5sq16brqrdi7m8ctkk6n85i7s.apps.googleusercontent.com"
+
+
     const openSignInModal = () => {
         setShowSignInModal(true)
         setShowSignUpModal(false)
@@ -69,7 +73,7 @@ export default function About() {
                     },
                 });
                 window.google.accounts.id.renderButton(
-                    document.getElementById('google-signin-btn'),
+                    document.getElementById('google-signin-btns'),
                     { theme: 'outline', size: 'large', text: showSignInModal ? 'signin_with' : 'signup_with' }
                 );
             };
@@ -79,6 +83,7 @@ export default function About() {
             };
         }
     }, [showSignInModal, showSignUpModal, navigate]);
+
 
     const closeModals = () => {
         setShowSignInModal(false)
@@ -128,8 +133,10 @@ export default function About() {
                         </div>
 
                         <div className="modal-content">
+                            <p style={{textAlign: 'center', marginBottom: '12px', color: '#555'}}>Sign in to access your personalized dashboard, stories, and reading list. Your journey starts here.</p>
 
-                            <div id="google-signin-btn" style={{ marginBottom: '16px' }}></div>
+                            <div id="google-signin-btns" style={{ marginBottom: '16px' }}></div>
+
 
                             <div className="modal-footer">
                                 <p>
@@ -153,8 +160,9 @@ export default function About() {
                         </div>
 
                         <div className="modal-content">
+                            <p style={{textAlign: 'center', marginBottom: '12px', color: '#555'}}>Create your Lexora account to write, read, and connect with inspiring stories and people.</p>
 
-                            <div id="google-signin-btn" style={{ marginBottom: '16px' }}></div>
+                            <div id="google-signin-btns" style={{ marginBottom: '16px' }}></div>
 
                             <div className="modal-footer">
                                 <p>

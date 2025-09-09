@@ -145,6 +145,7 @@ export default function Landing() {
                             <h2 style={{fontFamily:'Charter, Georgia, serif', textAlign: 'center'}}>Welcome Back.</h2>
                         </div>
                         <div className="modal-content">
+                            <p style={{textAlign: 'center', marginBottom: '12px', color: '#555'}}>Sign in to access your personalized dashboard, stories, and reading list. Your journey starts here.</p>
                             <div id="google-signin-btn" style={{ marginBottom: '16px' }}></div>
                             {/* ...other sign-in options if needed... */}
                             <div className="modal-footer">
@@ -168,6 +169,7 @@ export default function Landing() {
                             <h2 style={{fontFamily:'Charter, Georgia, serif', textAlign: 'center'}}>Join Lexora.</h2>
                         </div>
                         <div className="modal-content">
+                            <p style={{textAlign: 'center', marginBottom: '12px', color: '#555'}}>Create your Lexora account to write, read, and connect with inspiring stories and people.</p>
                             <div id="google-signin-btn" style={{ marginBottom: '16px' }}></div>
                             {/* ...other sign-up options if needed... */}
                             <div className="modal-footer">
