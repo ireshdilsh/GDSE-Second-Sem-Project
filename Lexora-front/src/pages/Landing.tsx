@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import '../style/landing.css'
 import { Link, useNavigate } from 'react-router-dom'
 
-
 const GOOGLE_CLIENT_ID = "141602930536-i1ia3re5sq16brqrdi7m8ctkk6n85i7s.apps.googleusercontent.com";
 
 declare global {
