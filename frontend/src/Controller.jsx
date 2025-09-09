@@ -4,6 +4,8 @@ import Landing from './pages/Landing'
 import About from './pages/About'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Membership from './pages/Membership'
+import Privacy from './pages/Privacy'
+import Terms from './pages/Terms'
 
 export default function Controller() {
     return (
@@ -13,6 +15,8 @@ export default function Controller() {
                     <Route path='/' element={<Landing/>}></Route>
                     <Route path='/about' element={<About/>}></Route>
                     <Route path='/membership' element={<Membership/>}></Route>
+                    <Route path='/privacy' element={<Privacy/>}></Route>
+                    <Route path='/terms' element={<Terms/>}></Route>
                 </Routes>
             </BrowserRouter>
         </div>

@@ -13,6 +13,8 @@ export default function Landing() {
                     <div className="links">
                         <Link to='/about'>Our Story</Link>
                         <Link to='/membership'>Membership</Link>
+                        <Link to='/privacy'>Privacy</Link>
+                        <Link to='/terms'>Terms</Link>
                         <a href="">Write</a>
                     </div>
                     <div className="btns">
