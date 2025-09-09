@@ -13,6 +13,10 @@ body {
     z-index: 1;
 }
 
+.landing-nav .left-side h1 h1 h4{
+    font-weight: 400;
+}
+
 .landing-nav .right-side {
     display: flex;
     justify-content: center;

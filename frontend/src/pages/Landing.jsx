@@ -1,5 +1,6 @@
 import React from 'react'
 import '../styles/landing.css'
+import { Link } from 'react-router-dom'
 
 export default function Landing() {
     return (
@@ -10,8 +11,8 @@ export default function Landing() {
                 </div>
                 <div className="right-side">
                     <div className="links">
-                        <a href="">Our Story</a>
-                        <a href="">Membership</a>
+                        <Link to='/about'>Our Story</Link>
+                        <Link to='/membership'>Membership</Link>
                         <a href="">Write</a>
                     </div>
                     <div className="btns">

@@ -1,0 +1,252 @@
+.membership-page {
+    /* font-family: 'Sohne', 'Helvetica Neue', Arial, sans-serif; */
+    background-color: #fff;
+    min-height: 100vh;
+}
+
+/* Navbar */
+.membership-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 170px;
+    border-bottom: 1px solid #e6e6e6;
+    background-color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.membership-navbar .left-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+}
+
+.membership-navbar .left-side h1 {
+    font-size: 32px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.membership-navbar .left-side p{
+    font-size: 13px;
+    font-family: var(--poppins);
+}
+
+/* Main Content */
+.membership-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 40px;
+}
+
+/* Hero Section */
+.membership-content .hero-section {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.membership-content .hero-section h1 {
+    font-size: 100px;
+    font-weight: 400;
+    margin: 0;
+}
+
+/* Benefits Section */
+.benefits-section {
+    margin-bottom: 80px;
+}
+
+.benefit-item {
+    margin-bottom: 50px;
+    max-width: 800px;
+}
+
+.benefit-item h3 {
+    font-size: 34px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    font-family: var(--poppins);
+    /* font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; */
+}
+
+.benefit-item p {
+    font-size: 20px;
+    line-height: 32px;
+    color: #6b6b6b;
+    /* font-family: 'Charter', Georgia, serif; */
+    
+    margin: 0;
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    margin-bottom: 80px;
+}
+
+.testimonials-section h2 {
+    font-size: 36px;
+    font-weight: 400;
+    margin-bottom: 40px;
+    /* font-family: 'Charter', Georgia, serif; */
+    font-family: var(--poppins);
+}
+
+.testimonial {
+    margin-bottom: 40px;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border-left: 4px solid #1a8917;
+}
+
+.testimonial-content p {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.author strong {
+    font-size: 16px;
+    display: block;
+    margin-bottom: 4px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.author span {
+    font-size: 14px;
+    color: #6b6b6b;
+    font-family: var(--poppins);
+}
+
+/* Plans Section */
+.plans-section {
+    margin-bottom: 60px;
+}
+
+.plans-section h2 {
+    font-size: 42px;
+    font-weight: 400;
+    margin-bottom: 40px;
+    text-align: center;
+    /* font-family: 'Charter', Georgia, serif; */
+    font-family: var(--poppins);
+}
+
+.plans-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.plan-card {
+    border: 1px solid #e6e6e6;
+    border-radius: 12px;
+    padding: 40px 30px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.plan-card.premium {
+    border: 2px solid #1a8917;
+    position: relative;
+}
+
+.plan-header h3 {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.price {
+    margin-bottom: 30px;
+}
+
+.price .amount {
+    font-size: 32px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600;
+    display: block;
+}
+
+.price .yearly {
+    font-size: 16px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #6b6b6b;
+    margin-top: 4px;
+}
+
+.get-started-btn {
+    background-color: #1a8917;
+    color: white;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 30px;
+    width: 100%;
+    font-family: var(--gabarito);
+}
+
+.get-started-btn:hover {
+    background-color: #0f5d0f;
+}
+
+.get-started-btn.premium-btn {
+    background-color: var(--text-color);
+
+}
+
+.get-started-btn.premium-btn:hover {
+    background-color: #1a1a1a;
+}
+
+.plan-features {
+    text-align: left;
+}
+
+.all-benefits {
+    font-size: 16px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.plus {
+    font-size: 14px;
+    color: #1a8917;
+    font-weight: 600;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    margin-bottom: 16px;
+}
+
+.plan-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.plan-features li {
+    font-size: 16px;
+    color: #6b6b6b;
+    margin-bottom: 12px;
+    padding-left: 20px;
+    position: relative;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.plan-features li::before {
+    content: '✓';
+    color: #1a8917;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
