@@ -13,6 +13,8 @@ body{
     align-items: center;
     padding: 17px 170px;
     border-bottom: 1.2px solid #d5d5d5;
+    transition: margin-left 0.3s ease;
+    background-color: white;
 }
 
 .dash-nav .left-side{
@@ -20,6 +22,25 @@ body{
     justify-content: center;
     align-items: center;
     gap: 25px;
+    transition: all 0.3s ease;
+}
+
+.dashboard.content-shifted .dash-nav .left-side {
+    margin-left: -140px;
+}
+
+.dash-nav .left-side .logo-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 100px;
+    margin-right: 10px;
+}
+
+.dash-nav .left-side .menu-icon {
+    height: 22px;
+    width: 22px;
+    cursor: pointer;
 }
 
 .dash-nav .left-side h1 h1 h4{
@@ -67,4 +88,114 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 8px;
+    position: relative;
+    cursor: pointer;
+}
+
+.dash-nav .right-side .profile span{
+    font-family: var(--poppins);
+    font-size: 14px;
+    color: #5D5D5D;
+}
+
+/* Profile Popup Styles */
+.profile-popup {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    width: 240px;
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    overflow: hidden;
+    font-family: var(--poppins);
+}
+
+.profile-popup-header {
+    display: flex;
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f0;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.popup-user-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-popup-header .close-popup {
+    width: 24px;
+    height: 24px;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #757575;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    padding: 0;
+    margin-left: 10px;
+}
+
+.profile-popup-header .close-popup:hover {
+    background-color: #f0f0f0;
+}
+
+.profile-popup-header img {
+    height: 40px !important;
+    width: 40px !important;
+    border-radius: 50%;
+}
+
+.profile-popup-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.profile-popup-info h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #292929;
+}
+
+.profile-popup-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #757575;
+}
+
+.profile-popup-menu {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0;
+}
+
+.profile-popup-menu a {
+    display: block !important;
+    padding: 10px 16px;
+    color: #292929;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    justify-content: flex-start !important;
+}
+
+.profile-popup-menu a:hover {
+    background-color: #f9f9f9;
+}
+
+.profile-popup-menu .divider {
+    height: 1px;
+    background-color: #f0f0f0;
+    margin: 8px 0;
 }

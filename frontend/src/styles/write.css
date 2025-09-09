@@ -14,3 +14,225 @@ body{
     padding: 17px 170px;
     border-bottom: 1.2px solid #d5d5d5;
 }
+
+.write-nav .left-side{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+}
+
+.write-nav .left-side p{
+    font-size: 13px;
+    font-family: var(--poppins);
+}
+
+.write-nav h1 h1 h4{
+    font-weight: 400;
+    margin: 0;
+}
+
+.write-nav .right-side{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.write-nav .right-side img{
+    height: 25px;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}
+
+.write-nav .right-side button{
+    font-family: var(--gabarito);
+    font-weight: 500;
+    padding: 8px 15px;
+    border: none;
+    outline: none;
+    background-color: #f1f1f1;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.write-nav .right-side span{
+    font-family: var(--poppins);
+    font-size: 14px;
+    color: #5D5D5D;
+}
+
+.write-nav .profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Profile Popup Styles */
+.profile-popup {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    width: 240px;
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    overflow: hidden;
+    font-family: var(--poppins);
+}
+
+.profile-popup-header {
+    display: flex;
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f0;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.popup-user-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-popup-header .close-popup {
+    width: 24px;
+    height: 24px;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #757575;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    padding: 0;
+    margin-left: 10px;
+}
+
+.profile-popup-header .close-popup:hover {
+    background-color: #f0f0f0;
+}
+
+.profile-popup-header img {
+    height: 40px !important;
+    width: 40px !important;
+    border-radius: 50%;
+}
+
+.profile-popup-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.profile-popup-info h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #292929;
+}
+
+.profile-popup-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #757575;
+}
+
+.profile-popup-menu {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0;
+}
+
+.profile-popup-menu a {
+    display: block !important;
+    padding: 10px 16px;
+    color: #292929;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    justify-content: flex-start !important;
+}
+
+.profile-popup-menu a:hover {
+    background-color: #f9f9f9;
+}
+
+.profile-popup-menu .divider {
+    height: 1px;
+    background-color: #f0f0f0;
+    margin: 8px 0;
+}
+
+/* Info Message Styles */
+.info-message {
+    display: flex;
+    align-items: flex-start;
+    background-color: #f8f9fa;
+    border-left: 4px solid #1a8917;
+    margin: 20px 170px;
+    padding: 16px 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.info-icon {
+    margin-right: 15px;
+    margin-top: 2px;
+}
+
+.info-icon img {
+    width: 24px;
+    height: 24px;
+}
+
+.info-content {
+    flex: 1;
+}
+
+.info-content h4 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    color: #292929;
+    font-family: var(--poppins);
+    font-weight: 600;
+}
+
+.info-content p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #5D5D5D;
+    font-family: var(--poppins);
+}
+
+.close-info {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #757575;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 10px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.close-info:hover {
+    background-color: #e9ecef;
+}
