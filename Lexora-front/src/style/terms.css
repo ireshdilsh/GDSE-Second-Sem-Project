@@ -282,3 +282,101 @@ body {
     line-height: 32px;
     font-family: 'Charter', Georgia, serif;
 }
+
+/* Enhanced Responsive Media Queries */
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+    .terms-nav {
+        padding: 15px 40px;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .terms-nav h1 {
+        font-size: 26px;
+    }
+    
+    .terms-nav p {
+        font-size: 12px;
+    }
+    
+    .terms-content {
+        padding: 30px;
+        margin: 0;
+    }
+
+    .terms-header h1 {
+        font-size: 36px;
+        text-align: center;
+    }
+    
+    .terms-intro p {
+        font-size: 16px;
+        text-align: center;
+        line-height: 28px;
+    }
+
+    .terms-section h2 {
+        font-size: 24px;
+    }
+
+    .terms-section h3 {
+        font-size: 18px;
+    }
+    
+    .terms-section p,
+    .terms-section li {
+        font-size: 16px;
+        line-height: 28px;
+    }
+
+    .terms-footer {
+        padding: 25px;
+        gap: 20px;
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Small Mobile (320px and below) */
+@media (max-width: 320px) {
+    .terms-nav {
+        padding: 10px 15px;
+    }
+    
+    .terms-nav h1 {
+        font-size: 18px;
+    }
+    
+    .terms-content {
+        padding: 15px;
+    }
+    
+    .terms-header h1 {
+        font-size: 26px;
+    }
+    
+    .terms-intro p {
+        font-size: 13px;
+        line-height: 22px;
+    }
+    
+    .terms-section h2 {
+        font-size: 18px;
+    }
+    
+    .terms-section h3 {
+        font-size: 14px;
+    }
+    
+    .terms-section p,
+    .terms-section li {
+        font-size: 13px;
+        line-height: 22px;
+    }
+    
+    .terms-footer {
+        padding: 15px;
+    }
+}

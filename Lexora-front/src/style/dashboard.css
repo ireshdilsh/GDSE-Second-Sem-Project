@@ -192,6 +192,8 @@
     }
 }
 
+/* Enhanced Responsive Media Queries */
+
 @media (max-width: 768px) {
     .dashboard-content {
         padding: 20px 15px;
@@ -199,10 +201,16 @@
     
     .dashboard-navbar {
         padding: 15px 20px;
+        flex-direction: column;
+        gap: 10px;
     }
     
     .dashboard-navbar .left-side h1 {
-        font-size: 24px;
+        font-size: 28px;
+    }
+    
+    .dashboard-navbar .left-side span {
+        font-size: 14px;
     }
     
     .welcome-section {
@@ -212,24 +220,61 @@
     .user-info {
         flex-direction: column;
         text-align: center;
+        gap: 15px;
     }
     
     .user-details h1 {
-        font-size: 28px;
+        font-size: 32px;
+    }
+    
+    .user-details h3 {
+        font-size: 18px;
+    }
+    
+    .dashboard-main {
+        padding: 0 20px;
     }
     
     .dashboard-cards {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
     
     .card {
+        padding: 24px;
+        text-align: center;
+    }
+    
+    .recent-activity {
+        margin-top: 30px;
         padding: 20px;
     }
 }
 
 @media (max-width: 480px) {
-    .user-details h1 {
+    .dashboard-navbar {
+        padding: 12px 15px;
+    }
+    
+    .dashboard-navbar .left-side h1 {
         font-size: 24px;
+    }
+    
+    .dashboard-navbar .left-side span {
+        font-size: 13px;
+    }
+    
+    .dashboard-navbar .right-side button {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+    
+    .welcome-section {
+        padding: 20px 15px;
+    }
+    
+    .user-details h1 {
+        font-size: 28px;
     }
     
     .user-details h3 {
@@ -239,5 +284,70 @@
     .profile-picture {
         width: 60px;
         height: 60px;
+    }
+    
+    .dashboard-main {
+        padding: 0 15px;
+    }
+    
+    .card {
+        padding: 20px;
+    }
+    
+    .card h3 {
+        font-size: 18px;
+    }
+    
+    .card p {
+        font-size: 14px;
+    }
+    
+    .card button {
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    .recent-activity {
+        padding: 15px;
+    }
+    
+    .recent-activity h2 {
+        font-size: 20px;
+    }
+}
+
+/* Small Mobile (320px and below) */
+@media (max-width: 320px) {
+    .dashboard-navbar .left-side h1 {
+        font-size: 20px;
+    }
+    
+    .user-details h1 {
+        font-size: 24px;
+    }
+    
+    .user-details h3 {
+        font-size: 14px;
+    }
+    
+    .profile-picture {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .card {
+        padding: 16px;
+    }
+    
+    .card h3 {
+        font-size: 16px;
+    }
+    
+    .card p {
+        font-size: 13px;
+    }
+    
+    .recent-activity h2 {
+        font-size: 18px;
     }
 }

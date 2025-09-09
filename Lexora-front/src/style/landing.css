@@ -265,3 +265,167 @@ footer a{
   width: 320px;
   border-radius: 20px;
 }
+
+/* Responsive Media Queries */
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+  nav {
+    padding: 15px 40px;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  nav .middle .links {
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  nav .middle .links a {
+    font-size: 14px;
+  }
+  
+  #hero {
+    flex-direction: column;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  #hero .left-side {
+    margin-bottom: 30px;
+  }
+  
+  #hero .left-side h1 {
+    font-size: 48px;
+    line-height: 1.2;
+  }
+  
+  #hero .left-side p {
+    font-size: 18px;
+    margin: 20px 0;
+  }
+  
+  #hero .right-side img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  footer {
+    padding: 30px 20px;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+  }
+  
+  .modal-content button {
+    width: 280px;
+  }
+  
+  #google-signin-btns,#google-signin-btn {
+    width: 280px;
+  }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+  nav {
+    padding: 10px 20px;
+  }
+  
+  nav .logo h3 {
+    font-size: 24px;
+  }
+  
+  nav .middle .links {
+    gap: 10px;
+  }
+  
+  nav .middle .links a {
+    font-size: 13px;
+  }
+  
+  nav .middle .links button {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+  
+  #hero {
+    padding: 30px 15px;
+  }
+  
+  #hero .left-side h1 {
+    font-size: 36px;
+  }
+  
+  #hero .left-side p {
+    font-size: 16px;
+  }
+  
+  #hero .left-side button {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  footer {
+    padding: 20px 15px;
+    text-align: center;
+  }
+  
+  footer a {
+    font-size: 13px;
+  }
+  
+  .modal-container {
+    margin: 10px;
+    padding: 24px 16px 16px;
+  }
+  
+  .modal-header h2 {
+    font-size: 24px;
+  }
+  
+  .modal-content button {
+    width: 100%;
+    max-width: 260px;
+  }
+  
+  #google-signin-btns,#google-signin-btn {
+    width: 100%;
+    max-width: 260px;
+  }
+  
+  .modal-footer p {
+    font-size: 13px;
+  }
+}
+
+/* Small Mobile (320px and below) */
+@media (max-width: 320px) {
+  nav .logo h3 {
+    font-size: 20px;
+  }
+  
+  #hero .left-side h1 {
+    font-size: 28px;
+  }
+  
+  #hero .left-side p {
+    font-size: 14px;
+  }
+  
+  .modal-container {
+    margin: 5px;
+    padding: 20px 12px 12px;
+  }
+  
+  .modal-content button {
+    width: 100%;
+    max-width: 220px;
+    font-size: 14px;
+  }
+  
+  #google-signin-btns,#google-signin-btn {
+    width: 100%;
+    max-width: 220px;
+  }
+}
