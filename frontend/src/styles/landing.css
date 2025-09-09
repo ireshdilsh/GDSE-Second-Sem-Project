@@ -1,0 +1,99 @@
+body {
+    overflow-x: hidden;
+}
+
+.landing-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 17px 170px;
+    background-color: var(--bg-color);
+    border-bottom: 1.2px solid #000;
+    position: sticky;
+    z-index: 1;
+}
+
+.landing-nav .right-side {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
+}
+
+.landing-nav .right-side .links {
+    display: flex;
+    gap: 30px;
+}
+
+.landing-nav .right-side .links a {
+    text-decoration: none;
+    font-family: var(--gabarito);
+    font-size: 14.5px;
+    font-weight: 500;
+}
+
+.landing-nav .right-side .btns {
+    display: flex;
+    gap: 30px;
+}
+
+.landing-nav .right-side .btns .login-btn {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-family: var(--gabarito);
+    font-size: 14.5px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.landing-nav .right-side .btns .signup-btn {
+    padding: 12px 20px;
+    font-family: var(--gabarito);
+    font-size: 14.5px;
+    border-radius: 25px;
+    color: #fff;
+    border: none;
+    background-color: var(--text-color);
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.landing-page .hero-section {
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 97px 170px;
+}
+
+.landing-page .hero-section .left-side h1 {
+    font-size: 120px;
+    line-height: 100px;
+    font-weight: 500;
+}
+
+.hero-section .left-side p {
+    font-size: 32px;
+    margin: 25px 0px;
+    line-height: 1.5;
+}
+
+.hero-section .left-side button{
+    background-color: var(--text-color);
+    color: #fff;
+    font-family: var(--gabarito);
+    font-size: 20px;
+    padding: 13px 45px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 400;
+}
+
+.landing-page .hero-section .right-side img {
+    height: 450px;
+    transform: scale(1.32);
+    margin-top: -30px;
+    margin-right: -118px;
+}

@@ -1,0 +1,15 @@
+:root{
+  --primary-color: #4CAF50;
+  --bg-color: #F7F4ED;
+  --text-color: #333333;
+  --gabarito: 'Gabarito';
+  --poppins: 'Poppins';
+  /* --montserrat: 'Montserrat'; */
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: var(--text-color);
+}
