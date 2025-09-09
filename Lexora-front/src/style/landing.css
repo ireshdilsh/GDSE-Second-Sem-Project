@@ -261,7 +261,7 @@ footer a{
   color: #8B8B8B;
 }
 
-#google-signin-btns {
+#google-signin-btns,#google-signin-btn {
   width: 320px;
   border-radius: 20px;
 }
