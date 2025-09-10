@@ -12,9 +12,9 @@ export default function Write() {
 
     const [content, setContent] = useState('')
 
-    const btn = () =>{
+    const btn = () => {
         const readingCount = estimateReadingTime(content)
-        alert("reading time is "+ readingCount);
+        alert("reading time is " + readingCount);
     }
 
     const estimateReadingTime = (text) => {
@@ -82,7 +82,7 @@ export default function Write() {
                 <div className="title-area">
                     <input type="text" placeholder='Title' />
                 </div>
-               
+
                 <div className="description-area">
                     <textarea value={content} onChange={(e) => { setContent(e.target.value) }} name="" id="" placeholder='Tell your story...'></textarea>
                 </div>

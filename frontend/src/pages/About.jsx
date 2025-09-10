@@ -6,24 +6,24 @@ export default function About() {
 
     const navigate = useNavigate();
 
-     const [showSignInModal, setShowSignInModal] = useState(false);
-        const [showSignUpModal, setShowSignUpModal] = useState(false);
-    
-        const openSignInModal = () => {
-            setShowSignInModal(true);
-            setShowSignUpModal(false);
-        };
-    
-        const openSignUpModal = () => {
-            setShowSignUpModal(true);
-            setShowSignInModal(false);
-        };
-    
-        const closeModals = () => {
-            setShowSignInModal(false);
-            setShowSignUpModal(false);
-        };
-    
+    const [showSignInModal, setShowSignInModal] = useState(false);
+    const [showSignUpModal, setShowSignUpModal] = useState(false);
+
+    const openSignInModal = () => {
+        setShowSignInModal(true);
+        setShowSignUpModal(false);
+    };
+
+    const openSignUpModal = () => {
+        setShowSignUpModal(true);
+        setShowSignInModal(false);
+    };
+
+    const closeModals = () => {
+        setShowSignInModal(false);
+        setShowSignUpModal(false);
+    };
+
 
     return (
         <div className="about-page">
@@ -47,7 +47,7 @@ export default function About() {
                 <p className="about-desc">Instead of selling ads or selling your data, we're supported by a growing <br /> community of over a million Lexora members who believe in our <br /> mission. If you're new here, start reading. Dive deeper into whatever <br /> matters to you. Find a post that helps you learn something new, or <br /> reconsider something familiar—and then write your story.</p>
             </div>
 
-               {/* Sign In Modal */}
+            {/* Sign In Modal */}
             {showSignInModal && (
                 <div className="modal-overlay" onClick={closeModals}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
