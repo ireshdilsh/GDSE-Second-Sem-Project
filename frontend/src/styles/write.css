@@ -256,3 +256,7 @@ body {
     padding: 0 170px;
 }
 
+.reading-time-display p {
+    color: #5D5D5D;
+    font-weight: 400;
+}
