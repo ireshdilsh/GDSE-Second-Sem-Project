@@ -1,21 +1,25 @@
-body{
+body {
     overflow-x: hidden;
 }
 
-.write{
+.write {
     height: 100%;
     /* padding: 0 170px; */
 }
 
-.write-nav{
+.write-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 17px 170px;
     border-bottom: 1.2px solid #d5d5d5;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #fff;
 }
 
-.write-nav .left-side{
+.write-nav .left-side {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,30 +27,30 @@ body{
     cursor: pointer;
 }
 
-.write-nav .left-side p{
+.write-nav .left-side p {
     font-size: 13px;
     font-family: var(--poppins);
 }
 
-.write-nav h1 h1 h4{
+.write-nav h1 h1 h4 {
     font-weight: 400;
     margin: 0;
 }
 
-.write-nav .right-side{
+.write-nav .right-side {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
 }
 
-.write-nav .right-side img{
+.write-nav .right-side img {
     height: 25px;
     aspect-ratio: 1/1;
     cursor: pointer;
 }
 
-.write-nav .right-side button{
+.write-nav .right-side button {
     font-family: var(--gabarito);
     font-weight: 500;
     padding: 8px 15px;
@@ -57,13 +61,13 @@ body{
     cursor: pointer;
 }
 
-.write-nav .right-side span{
+.write-nav .right-side span {
     font-family: var(--poppins);
     font-size: 14px;
     color: #5D5D5D;
 }
 
-.write-nav .profile{
+.write-nav .profile {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -216,23 +220,39 @@ body{
     font-family: var(--poppins);
 }
 
-.close-info {
-    background: none;
-    border: none;
-    font-size: 20px;
-    color: #757575;
-    cursor: pointer;
-    padding: 0;
-    margin-left: 10px;
-    width: 24px;
-    height: 24px;
+.write-area {
     display: flex;
-    align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    transition: background-color 0.2s;
+    align-items: center;
+    flex-direction: column;
+    padding: 25px 350px;
 }
 
-.close-info:hover {
-    background-color: #e9ecef;
+.title-area input,
+.description-area textarea {
+    font-weight: 400;
+    color: #333;
+    width: 1000px;
+    border: none;
+    outline: none;
+    font-size: 36px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 400;
+    padding: 15px 25px;
 }
+
+.description-area textarea {
+    height: 500px;
+    /* margin-top: 25px; */
+    font-size: 26px;
+}
+
+.reading-time-display {
+    display: flex;
+    justify-content: right;
+    align-items: flex-end;
+    margin-top: 15px;
+    font-size: 22px;
+    padding: 0 170px;
+}
+
