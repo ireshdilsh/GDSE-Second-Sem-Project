@@ -1,9 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../styles/terms.css'
 
 export default function Terms() {
     const navigate = useNavigate();
+    const [showContactModal, setShowContactModal] = useState(false);
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+    });
+
+    const openContactModal = () => {
+        setShowContactModal(true);
+    };
+
+    const closeContactModal = () => {
+        setShowContactModal(false);
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Here you would typically send the form data to your backend
+        console.log('Form submitted:', formData);
+        alert('Request sent successfully!');
+        closeContactModal();
+        // Reset form
+        setFormData({
+            name: '',
+            email: '',
+            subject: '',
+            message: ''
+        });
+    };
 
     return (
         <div className="terms-page">
@@ -64,6 +102,67 @@ export default function Terms() {
                     <p>If you have any questions about these Terms, please contact us at terms@lexora.com.</p>
                 </div>
             </div>
+
+            <div className="contact-form">
+                <p>Can't find what you're looking for?</p>
+                <button onClick={openContactModal}>Submit a request</button>
+            </div>
+
+            {/* Contact Form Modal */}
+            {showContactModal && (
+                <div className="contact-modal-overlay" onClick={closeContactModal}>
+                    <div className="contact-modal-content" onClick={e => e.stopPropagation()}>
+                        <button className="close-modal" onClick={closeContactModal}>&times;</button>
+                        <h2>Contact Us</h2>
+                        <form onSubmit={handleSubmit}>
+                            <div className="form-group">
+                                <label htmlFor="name">Name</label>
+                                <input 
+                                    type="text" 
+                                    id="name" 
+                                    name="name" 
+                                    value={formData.name} 
+                                    onChange={handleChange} 
+                                    required 
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="email">Email</label>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    value={formData.email} 
+                                    onChange={handleChange} 
+                                    required 
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="subject">Subject</label>
+                                <input 
+                                    type="text" 
+                                    id="subject" 
+                                    name="subject" 
+                                    value={formData.subject} 
+                                    onChange={handleChange} 
+                                    required 
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="message">Message</label>
+                                <textarea 
+                                    id="message" 
+                                    name="message" 
+                                    value={formData.message} 
+                                    onChange={handleChange} 
+                                    required 
+                                ></textarea>
+                            </div>
+                            <button type="submit" className="submit-button">Send Request</button>
+                        </form>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

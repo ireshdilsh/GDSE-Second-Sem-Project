@@ -88,3 +88,135 @@
     line-height: 1.6;
     margin-bottom: 10px;
 }
+
+.terms-page .contact-form {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+    padding: 50px 170px;
+   flex-direction: column;
+   background-color: #fafafa;
+}
+
+.terms-page .contact-form p {
+   font-size: 48px;
+}
+
+.terms-page .contact-form button{
+    background-color: var(--primary-color);
+    padding: 8px 20px;
+    border: none;
+    outline: none;
+    border-radius: 25px;
+    font-weight: 500;
+    margin-top: 30px;
+    color: #fff;
+    font-family: var(--poppins);
+    cursor: pointer;
+}
+
+/* Contact Modal Styles */
+.contact-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.contact-modal-content {
+    background-color: white;
+    width: 100%;
+    max-width: 550px;
+    border-radius: 6px;
+    padding: 30px;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #757575;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.close-modal:hover {
+    background-color: #f0f0f0;
+}
+
+.contact-modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 500;
+    color: #292929;
+    font-family: var(--poppins);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-family: var(--poppins);
+    font-size: 14px;
+    font-weight: 500;
+    color: #5d5d5d;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.submit-button {
+    background-color: var(--primary-color);
+    color: white;
+    font-family: var(--gabarito);
+    font-size: 16px;
+    font-weight: 500;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+}

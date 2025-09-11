@@ -197,3 +197,57 @@
     aspect-ratio: 1/1;
     margin-left: -55px;
 }
+
+/* Auth Form Styles */
+.auth-form {
+    margin-top: 25px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.auth-form .form-group {
+    margin-bottom: 20px;
+}
+
+.auth-form .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-family: var(--gabarito);
+    font-size: 14px;
+    font-weight: 500;
+    color: #292929;
+}
+
+.auth-form .form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-family: var(--gabarito);
+    font-size: 16px;
+    transition: border-color 0.2s;
+}
+
+.auth-form .form-group input:focus {
+    outline: none;
+    border-color: var(--text-color);
+}
+
+.auth-submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--text-color);
+    color: white;
+    font-family: var(--gabarito);
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.auth-submit-btn:hover {
+    background-color: #000;
+}
