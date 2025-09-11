@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.ContactDto;
@@ -15,12 +16,14 @@ import com.example.demo.service.ContactService;
 
 import lombok.RequiredArgsConstructor;
 
-@Service
 @RequiredArgsConstructor
+@Service
 public class ContactServiceImpl implements ContactService {
 
-    private ContactRepository repository;
-    private ModelMapper mapper;
+    @Autowired
+    ContactRepository repository;
+    
+    private final ModelMapper mapper;
 
     private Logger logger = LoggerFactory.getLogger(ContactServiceImpl.class);
     @Override
@@ -30,6 +33,7 @@ public class ContactServiceImpl implements ContactService {
                 .map(entity -> mapper.map(entity, ContactDto.class))
                 .collect(Collectors.toList());
         logger.info("Fetched {} contacts", contacts.size());
+
         return contacts;
     }
     @Override

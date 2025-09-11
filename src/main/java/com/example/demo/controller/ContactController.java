@@ -15,14 +15,13 @@ import com.example.demo.service.ContactService;
 import com.example.demo.utils.APIResponse;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
 
 @RestController
-@RequestMapping("/api/contacts")
+@RequestMapping("/api/v1/contacts")
 @CrossOrigin(origins = "*")
 public class ContactController {
 
@@ -31,7 +30,7 @@ public class ContactController {
 
     private final Logger logger = LoggerFactory.getLogger(ContactController.class);
 
-    @GetMapping("path")
+    @GetMapping("/get/all")
     public ResponseEntity<APIResponse> getMethodName() {
         logger.info("GET request received");
         List<ContactDto> dtos = service.getAllContacts();
@@ -39,7 +38,7 @@ public class ContactController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("path")
+    @PostMapping("/request")
     public ResponseEntity<APIResponse> postMethodName(@RequestBody ContactDto contactDto) {
         logger.info("POST request received with data: {}", contactDto);
         ContactDto created = service.createContact(contactDto);
