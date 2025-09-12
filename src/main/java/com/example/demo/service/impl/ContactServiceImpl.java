@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,6 +41,7 @@ public class ContactServiceImpl implements ContactService {
     public ContactDto createContact(ContactDto contactDto) {
         logger.info("Creating contact: {}", contactDto.getName());
         Contact entity = mapper.map(contactDto, Contact.class);
+        entity.setDate(LocalDate.now());
         Contact saved = repository.save(entity);
         logger.info("Contact created with ID: {}", saved.getId());
         return mapper.map(saved, ContactDto.class);

@@ -1,24 +1,21 @@
-[2025-09-11 23:47:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[2025-09-11 23:47:58] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[2025-09-11 23:48:00] - Hibernate is in classpath; If applicable, HQL parser will be used.
-[2025-09-11 23:48:35] - Starting DemoApplication using Java 17.0.11 with PID 11040 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
-[2025-09-11 23:48:35] - No active profile set, falling back to 1 default profile: "default"
-[2025-09-11 23:48:40] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-[2025-09-11 23:48:40] - Finished Spring Data repository scanning in 223 ms. Found 4 JPA repository interfaces.
-[2025-09-11 23:48:41] - Tomcat initialized with port 8080 (http)
-[2025-09-11 23:48:41] - Initializing ProtocolHandler ["http-nio-8080"]
-[2025-09-11 23:48:41] - Starting service [Tomcat]
-[2025-09-11 23:48:41] - Starting Servlet engine: [Apache Tomcat/10.1.41]
-[2025-09-11 23:48:42] - Initializing Spring embedded WebApplicationContext
-[2025-09-11 23:48:42] - Root WebApplicationContext: initialization completed in 6062 ms
-[2025-09-11 23:48:42] - HHH000204: Processing PersistenceUnitInfo [name: default]
-[2025-09-11 23:48:42] - HHH000412: Hibernate ORM core version 6.6.15.Final
-[2025-09-11 23:48:42] - HHH000026: Second-level cache disabled
-[2025-09-11 23:48:43] - No LoadTimeWeaver setup: ignoring JPA class transformer
-[2025-09-11 23:48:43] - HikariPool-1 - Starting...
-[2025-09-11 23:48:44] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@aa8dce8
-[2025-09-11 23:48:44] - HikariPool-1 - Start completed.
-[2025-09-11 23:48:44] - HHH10001005: Database info:
+[2025-09-12 12:55:43] - Starting DemoApplication using Java 17.0.11 with PID 14156 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
+[2025-09-12 12:55:43] - No active profile set, falling back to 1 default profile: "default"
+[2025-09-12 12:56:10] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-09-12 12:56:12] - Finished Spring Data repository scanning in 1019 ms. Found 4 JPA repository interfaces.
+[2025-09-12 12:56:30] - Tomcat initialized with port 8080 (http)
+[2025-09-12 12:56:32] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-09-12 12:56:32] - Starting service [Tomcat]
+[2025-09-12 12:56:32] - Starting Servlet engine: [Apache Tomcat/10.1.41]
+[2025-09-12 12:56:35] - Initializing Spring embedded WebApplicationContext
+[2025-09-12 12:56:35] - Root WebApplicationContext: initialization completed in 49512 ms
+[2025-09-12 12:56:40] - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-09-12 12:56:42] - HHH000412: Hibernate ORM core version 6.6.15.Final
+[2025-09-12 12:56:44] - HHH000026: Second-level cache disabled
+[2025-09-12 12:56:49] - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-09-12 12:56:52] - HikariPool-1 - Starting...
+[2025-09-12 12:57:06] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@66e12c3b
+[2025-09-12 12:57:07] - HikariPool-1 - Start completed.
+[2025-09-12 12:57:10] - HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 9.0.1
@@ -26,39 +23,44 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-[2025-09-11 23:48:47] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[2025-09-11 23:48:47] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[2025-09-11 23:48:47] - Hibernate is in classpath; If applicable, HQL parser will be used.
-[2025-09-11 23:48:50] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-[2025-09-11 23:48:50] - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-[2025-09-11 23:48:51] - Starting ProtocolHandler ["http-nio-8080"]
-[2025-09-11 23:48:51] - Tomcat started on port 8080 (http) with context path '/'
-[2025-09-11 23:48:51] - Started DemoApplication in 16.737 seconds (process running for 18.171)
-[2025-09-11 23:49:01] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-[2025-09-11 23:49:01] - Initializing Servlet 'dispatcherServlet'
-[2025-09-11 23:49:01] - Completed initialization in 0 ms
-[2025-09-11 23:49:01] - GET request received
-[2025-09-11 23:49:01] - Fetching all contacts
-[2025-09-11 23:49:21] - POST request received with data: com.example.demo.dto.ContactDto@495b7cca
-[2025-09-11 23:49:21] - Creating contact: Iresh Dilshan
-[2025-09-11 23:50:26] - Starting DemoApplication using Java 17.0.11 with PID 12876 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
-[2025-09-11 23:50:26] - No active profile set, falling back to 1 default profile: "default"
-[2025-09-11 23:50:29] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-[2025-09-11 23:50:29] - Finished Spring Data repository scanning in 226 ms. Found 4 JPA repository interfaces.
-[2025-09-11 23:50:31] - Tomcat initialized with port 8080 (http)
-[2025-09-11 23:50:31] - Initializing ProtocolHandler ["http-nio-8080"]
-[2025-09-11 23:50:31] - Starting service [Tomcat]
-[2025-09-11 23:50:31] - Starting Servlet engine: [Apache Tomcat/10.1.41]
-[2025-09-11 23:50:31] - Initializing Spring embedded WebApplicationContext
-[2025-09-11 23:50:31] - Root WebApplicationContext: initialization completed in 5084 ms
-[2025-09-11 23:50:32] - HHH000204: Processing PersistenceUnitInfo [name: default]
-[2025-09-11 23:50:32] - HHH000412: Hibernate ORM core version 6.6.15.Final
-[2025-09-11 23:50:32] - HHH000026: Second-level cache disabled
-[2025-09-11 23:50:33] - No LoadTimeWeaver setup: ignoring JPA class transformer
-[2025-09-11 23:50:33] - HikariPool-1 - Starting...
-[2025-09-11 23:50:34] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3ec7eb5
-[2025-09-11 23:50:34] - HikariPool-1 - Start completed.
-[2025-09-11 23:50:34] - HHH10001005: Database info:
+[2025-09-12 12:57:26] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-09-12 12:57:40] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-12 12:57:48] - Hibernate is in classpath; If applicable, HQL parser will be used.
+[2025-09-12 12:57:55] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-09-12 12:57:55] - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+[2025-09-12 12:57:59] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-09-12 12:57:59] - Tomcat started on port 8080 (http) with context path '/'
+[2025-09-12 12:57:59] - Started DemoApplication in 150.352 seconds (process running for 199.968)
+[2025-09-12 13:08:36] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-09-12 13:08:36] - Initializing Servlet 'dispatcherServlet'
+[2025-09-12 13:08:36] - Completed initialization in 0 ms
+[2025-09-12 13:12:26] - POST request received with data: com.example.demo.dto.ContactDto@610230f5
+[2025-09-12 13:12:27] - Creating contact: 
+[2025-09-12 13:12:27] - Contact created with ID: 10
+[2025-09-12 13:12:27] - Contact created successfully with ID: 10
+[2025-09-12 13:15:16] - Commencing graceful shutdown. Waiting for active requests to complete
+[2025-09-12 13:15:16] - Graceful shutdown complete
+[2025-09-12 13:15:16] - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-12 13:15:16] - HikariPool-1 - Shutdown initiated...
+[2025-09-12 13:15:17] - HikariPool-1 - Shutdown completed.
+[2025-09-12 13:15:37] - Starting DemoApplication using Java 17.0.11 with PID 1252 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
+[2025-09-12 13:15:37] - No active profile set, falling back to 1 default profile: "default"
+[2025-09-12 13:15:40] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-09-12 13:15:40] - Finished Spring Data repository scanning in 265 ms. Found 4 JPA repository interfaces.
+[2025-09-12 13:15:42] - Tomcat initialized with port 8080 (http)
+[2025-09-12 13:15:42] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-09-12 13:15:42] - Starting service [Tomcat]
+[2025-09-12 13:15:42] - Starting Servlet engine: [Apache Tomcat/10.1.41]
+[2025-09-12 13:15:42] - Initializing Spring embedded WebApplicationContext
+[2025-09-12 13:15:42] - Root WebApplicationContext: initialization completed in 4643 ms
+[2025-09-12 13:15:43] - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-09-12 13:15:43] - HHH000412: Hibernate ORM core version 6.6.15.Final
+[2025-09-12 13:15:43] - HHH000026: Second-level cache disabled
+[2025-09-12 13:15:43] - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-09-12 13:15:43] - HikariPool-1 - Starting...
+[2025-09-12 13:15:44] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4cef0747
+[2025-09-12 13:15:44] - HikariPool-1 - Start completed.
+[2025-09-12 13:15:44] - HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 9.0.1
@@ -66,32 +68,27 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-[2025-09-11 23:50:37] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[2025-09-11 23:50:37] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[2025-09-11 23:50:37] - Hibernate is in classpath; If applicable, HQL parser will be used.
-[2025-09-11 23:50:41] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-[2025-09-11 23:50:41] - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
-[2025-09-11 23:50:42] - Starting ProtocolHandler ["http-nio-8080"]
-[2025-09-11 23:50:42] - Tomcat started on port 8080 (http) with context path '/'
-[2025-09-11 23:50:42] - Started DemoApplication in 17.09 seconds (process running for 18.471)
-[2025-09-11 23:51:00] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-[2025-09-11 23:51:00] - Initializing Servlet 'dispatcherServlet'
-[2025-09-11 23:51:00] - Completed initialization in 19 ms
-[2025-09-11 23:51:01] - GET request received
-[2025-09-11 23:51:01] - Fetching all contacts
-[2025-09-11 23:51:01] - Fetched 7 contacts
-[2025-09-11 23:51:24] - POST request received with data: com.example.demo.dto.ContactDto@322ad575
-[2025-09-11 23:51:24] - Creating contact: Iresh silva
-[2025-09-11 23:51:26] - Contact created with ID: 8
-[2025-09-11 23:51:26] - Contact created successfully with ID: 8
-[2025-09-11 23:51:40] - GET request received
-[2025-09-11 23:51:40] - Fetching all contacts
-[2025-09-11 23:51:40] - Fetched 8 contacts
-[2025-09-11 23:52:20] - POST request received with data: com.example.demo.dto.ContactDto@37d34d52
-[2025-09-11 23:52:20] - Creating contact: Iresh silva
-[2025-09-11 23:52:20] - Contact created with ID: 9
-[2025-09-11 23:52:20] - Contact created successfully with ID: 9
-[2025-09-11 23:52:28] - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
-[2025-09-11 23:52:32] - GET request received
-[2025-09-11 23:52:32] - Fetching all contacts
-[2025-09-11 23:52:32] - Fetched 9 contacts
+[2025-09-12 13:15:47] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-09-12 13:15:47] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-12 13:15:47] - Hibernate is in classpath; If applicable, HQL parser will be used.
+[2025-09-12 13:15:49] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-09-12 13:15:49] - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+[2025-09-12 13:15:50] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-09-12 13:15:50] - Tomcat started on port 8080 (http) with context path '/'
+[2025-09-12 13:15:50] - Started DemoApplication in 14.415 seconds (process running for 15.728)
+[2025-09-12 13:19:31] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-09-12 13:19:31] - Initializing Servlet 'dispatcherServlet'
+[2025-09-12 13:19:31] - Completed initialization in 0 ms
+[2025-09-12 13:19:31] - POST request received with data: com.example.demo.dto.ContactDto@6508c276
+[2025-09-12 13:19:31] - Creating contact: Thenu Nethangi
+[2025-09-12 13:19:32] - Contact created with ID: 11
+[2025-09-12 13:19:32] - Contact created successfully with ID: 11
+[2025-09-12 13:26:02] - POST request received with data: com.example.demo.dto.ContactDto@715e32cd
+[2025-09-12 13:26:02] - Creating contact: sdfsdfsdf
+[2025-09-12 13:26:03] - Contact created with ID: 12
+[2025-09-12 13:26:03] - Contact created successfully with ID: 12
+[2025-09-12 14:01:15] - Commencing graceful shutdown. Waiting for active requests to complete
+[2025-09-12 14:01:15] - Graceful shutdown complete
+[2025-09-12 14:01:15] - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-12 14:01:15] - HikariPool-1 - Shutdown initiated...
+[2025-09-12 14:01:16] - HikariPool-1 - Shutdown completed.
