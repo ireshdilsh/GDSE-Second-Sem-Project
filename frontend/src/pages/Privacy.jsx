@@ -1,25 +1,78 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../styles/privacy.css'
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default function Privacy() {
     const navigate = useNavigate();
 
     const [showContactModal, setShowContactModal] = useState(false);
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-    });
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    };
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [subject, setSubject] = useState('');
+    const [message, setMessage] = useState('');
+
+    const submitReq = async (e) => {
+        e.preventDefault();
+
+        const data = {
+            "name": name,
+            "email": email,
+            "subject": subject,
+            "message": message
+        }
+
+        try {
+            const resp = await axios.post('http://localhost:8080/api/v1/contacts/request', data);
+            console.log(resp.data);
+            clearFields();
+            successMsg();
+            closeContactModal();
+        } catch (err) {
+            clearFields();
+            errorMsg();
+            console.log(err);
+        }
+    }
+
+    const clearFields = () => {
+        setName('');
+        setEmail('');
+        setSubject('');
+        setMessage('');
+    }
+
+    const successMsg = () => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Request Submitted',
+            text: 'Your request has been submitted successfully.'
+        })
+    }
+
+    const errorMsg = () => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Submission Failed',
+            text: 'There was an error submitting your request. Please try again later.'
+        })
+    }
+
+    const handleName = (e) => {
+        setName(e.target.value);
+    }
+    const handleEmail = (e) => {
+        setEmail(e.target.value);
+    }
+    const handleSubject = (e) => {
+        setSubject(e.target.value);
+    }
+    const handleMsg = (e) => {
+        setMessage(e.target.value);
+    }
+
     const openContactModal = () => {
         setShowContactModal(true);
     };
@@ -27,7 +80,6 @@ export default function Privacy() {
     const closeContactModal = () => {
         setShowContactModal(false);
     };
-
 
     return (
         <div className="privacy-page">
@@ -110,8 +162,8 @@ export default function Privacy() {
                                     type="text"
                                     id="name"
                                     name="name"
-                                    value={formData.name}
-                                    onChange={handleChange}
+                                    // value={formData.name}
+                                    onChange={handleName}
                                     required
                                 />
                             </div>
@@ -121,8 +173,8 @@ export default function Privacy() {
                                     type="email"
                                     id="email"
                                     name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
+                                    // value={formData.email}
+                                    onChange={handleEmail}
                                     required
                                 />
                             </div>
@@ -132,8 +184,8 @@ export default function Privacy() {
                                     type="text"
                                     id="subject"
                                     name="subject"
-                                    value={formData.subject}
-                                    onChange={handleChange}
+                                    // value={formData.subject}
+                                    onChange={handleSubject}
                                     required
                                 />
                             </div>
@@ -142,12 +194,12 @@ export default function Privacy() {
                                 <textarea
                                     id="message"
                                     name="message"
-                                    value={formData.message}
-                                    onChange={handleChange}
+                                    // value={formData.message}
+                                    onChange={handleMsg}
                                     required
                                 ></textarea>
                             </div>
-                            <button type="submit" className="submit-button">Send Request</button>
+                            <button type="submit" onClick={submitReq} className="submit-button">Send Request</button>
                         </form>
                     </div>
                 </div>

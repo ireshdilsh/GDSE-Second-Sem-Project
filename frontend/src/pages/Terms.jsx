@@ -1,16 +1,77 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../styles/terms.css'
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 export default function Terms() {
     const navigate = useNavigate();
     const [showContactModal, setShowContactModal] = useState(false);
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-    });
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [subject, setSubject] = useState('');
+    const [message, setMessage] = useState('');
+
+    const submitReq = async (e) => {
+        e.preventDefault();
+
+        const data = {
+            "name": name,
+            "email": email,
+            "subject": subject,
+            "message": message
+        }
+
+        try {
+            const resp = await axios.post('http://localhost:8080/api/v1/contacts/request', data);
+            console.log(resp.data);
+            clearFields();
+            successMsg();
+            closeContactModal();
+        } catch (err) {
+            clearFields();
+            errorMsg();
+            console.log(err);
+        }
+    }
+
+    const clearFields = () => {
+        setName('');
+        setEmail('');
+        setSubject('');
+        setMessage('');
+    }
+
+    const successMsg = () => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Request Submitted',
+            text: 'Your request has been submitted successfully.'
+        })
+    }
+
+    const errorMsg = () => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Submission Failed',
+            text: 'There was an error submitting your request. Please try again later.'
+        })
+    }
+
+    const handleName = (e) => {
+        setName(e.target.value);
+    }
+    const handleEmail = (e) => {
+        setEmail(e.target.value);
+    }
+    const handleSubject = (e) => {
+        setSubject(e.target.value);
+    }
+    const handleMsg = (e) => {
+        setMessage(e.target.value);
+    }
+
 
     const openContactModal = () => {
         setShowContactModal(true);
@@ -18,29 +79,6 @@ export default function Terms() {
 
     const closeContactModal = () => {
         setShowContactModal(false);
-    };
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Here you would typically send the form data to your backend
-        console.log('Form submitted:', formData);
-        alert('Request sent successfully!');
-        closeContactModal();
-        // Reset form
-        setFormData({
-            name: '',
-            email: '',
-            subject: '',
-            message: ''
-        });
     };
 
     return (
@@ -51,14 +89,14 @@ export default function Terms() {
                     <p>Terms of Service</p>
                 </div>
                 <div className="right-side">
-                   
+
                 </div>
             </nav>
 
             <div className="terms-body">
                 <h1>Terms of Service</h1>
                 <p className='last-updated'>Last updated: September 9, 2025</p>
-                
+
                 <div className="terms-section">
                     <h2>1. Acceptance of Terms</h2>
                     <p>By accessing and using Lexora, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.</p>
@@ -114,55 +152,56 @@ export default function Terms() {
                     <div className="contact-modal-content" onClick={e => e.stopPropagation()}>
                         <button className="close-modal" onClick={closeContactModal}>&times;</button>
                         <h2>Contact Us</h2>
-                        <form onSubmit={handleSubmit}>
+                        <form>
                             <div className="form-group">
                                 <label htmlFor="name">Name</label>
-                                <input 
-                                    type="text" 
-                                    id="name" 
-                                    name="name" 
-                                    value={formData.name} 
-                                    onChange={handleChange} 
-                                    required 
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    // value={formData.name}
+                                    onChange={handleName}
+                                    required
                                 />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="email">Email</label>
-                                <input 
-                                    type="email" 
-                                    id="email" 
-                                    name="email" 
-                                    value={formData.email} 
-                                    onChange={handleChange} 
-                                    required 
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    // value={formData.email}
+                                    onChange={handleEmail}
+                                    required
                                 />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="subject">Subject</label>
-                                <input 
-                                    type="text" 
-                                    id="subject" 
-                                    name="subject" 
-                                    value={formData.subject} 
-                                    onChange={handleChange} 
-                                    required 
+                                <input
+                                    type="text"
+                                    id="subject"
+                                    name="subject"
+                                    // value={formData.subject}
+                                    onChange={handleSubject}
+                                    required
                                 />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="message">Message</label>
-                                <textarea 
-                                    id="message" 
-                                    name="message" 
-                                    value={formData.message} 
-                                    onChange={handleChange} 
-                                    required 
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    // value={formData.message}
+                                    onChange={handleMsg}
+                                    required
                                 ></textarea>
                             </div>
-                            <button type="submit" className="submit-button">Send Request</button>
+                            <button type="submit" onClick={submitReq} className="submit-button">Send Request</button>
                         </form>
                     </div>
                 </div>
             )}
+
         </div>
     )
 }
