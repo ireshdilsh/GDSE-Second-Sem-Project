@@ -17,14 +17,20 @@ public class AuthResponse {
     private String lastName;
     private String role;
 
-    public AuthResponse(String accessToken, Long id, String username, String email, 
-                       String firstName, String lastName, String role) {
+    public AuthResponse(String accessToken, Long id, String username, String email,
+            String firstName, String lastName, String role) {
         this.accessToken = accessToken;
         this.id = id;
         this.username = username;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.role = role;
+    }
+
+    public AuthResponse(Long id, String email, String role) {
+        this.id = id;
+        this.email = email;
         this.role = role;
     }
 }
