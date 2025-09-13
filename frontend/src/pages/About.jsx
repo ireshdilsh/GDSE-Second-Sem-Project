@@ -10,14 +10,20 @@ export default function About() {
     const [showSignUpModal, setShowSignUpModal] = useState(false);
     const [showSignInForm, setShowSignInForm] = useState(false);
     const [showSignUpForm, setShowSignUpForm] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
     const [signInData, setSignInData] = useState({
-        email: '',
+        usernameOrEmail: '',
         password: ''
     });
     const [signUpData, setSignUpData] = useState({
+        firstname: '',
+        lastname: '',
+        username: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        bio: ''
     });
 
     const openSignInModal = () => {
@@ -25,6 +31,7 @@ export default function About() {
         setShowSignUpModal(false);
         setShowSignInForm(false);
         setShowSignUpForm(false);
+        setErrorMessage('');
     };
 
     const openSignUpModal = () => {
@@ -32,6 +39,7 @@ export default function About() {
         setShowSignInModal(false);
         setShowSignInForm(false);
         setShowSignUpForm(false);
+        setErrorMessage('');
     };
 
     const closeModals = () => {
@@ -39,14 +47,19 @@ export default function About() {
         setShowSignUpModal(false);
         setShowSignInForm(false);
         setShowSignUpForm(false);
+        setErrorMessage('');
+        setSignInData({ usernameOrEmail: '', password: '' });
+        setSignUpData({ firstname: '', lastname: '', username: '', email: '', password: '', confirmPassword: '', bio: '' });
     };
 
     const openSignInForm = () => {
         setShowSignInForm(true);
+        setErrorMessage('');
     };
 
     const openSignUpForm = () => {
         setShowSignUpForm(true);
+        setErrorMessage('');
     };
 
     const handleSignInChange = (e) => {
@@ -55,6 +68,7 @@ export default function About() {
             ...prev,
             [name]: value
         }));
+        setErrorMessage(''); // Clear error when user types
     };
 
     const handleSignUpChange = (e) => {
@@ -65,12 +79,51 @@ export default function About() {
         }));
     };
 
-    const handleSignInSubmit = (e) => {
+    const handleSignInSubmit = async (e) => {
         e.preventDefault();
-        console.log('Sign in data:', signInData);
-        // Here you would typically handle authentication
-        alert('Sign in successful!');
-        closeModals();
+        setIsLoading(true);
+        setErrorMessage('');
+
+        try {
+            const response = await fetch('http://localhost:8080/api/v1/auth/signin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    usernameOrEmail: signInData.usernameOrEmail,
+                    password: signInData.password
+                })
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.status === 200) {
+                // Store authentication data
+                localStorage.setItem('authToken', data.data.accessToken);
+                localStorage.setItem('userData', JSON.stringify({
+                    id: data.data.id,
+                    username: data.data.username,
+                    email: data.data.email,
+                    firstName: data.data.firstName,
+                    lastName: data.data.lastName,
+                    role: data.data.role
+                }));
+
+                alert('Sign in successful!');
+                closeModals();
+                
+                // Navigate to dashboard
+                navigate('/writer/dashboard');
+            } else {
+                setErrorMessage(data.message || 'Sign in failed. Please try again.');
+            }
+        } catch (error) {
+            console.error('Sign in error:', error);
+            setErrorMessage('Network error. Please check your connection and try again.');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleSignUpSubmit = (e) => {
@@ -140,15 +193,22 @@ export default function About() {
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <button className="close-modal" onClick={closeModals}>&times;</button>
                         <h1>Sign in with email</h1>
+                        {errorMessage && (
+                            <div className="error-message">
+                                {errorMessage}
+                            </div>
+                        )}
                         <form onSubmit={handleSignInSubmit} className="auth-form">
                             <div className="form-group">
-                                <label>Email</label>
+                                <label>Email or Username</label>
                                 <input 
-                                    type="email" 
-                                    name="email" 
-                                    value={signInData.email} 
+                                    type="text" 
+                                    name="usernameOrEmail" 
+                                    value={signInData.usernameOrEmail} 
                                     onChange={handleSignInChange} 
-                                    required 
+                                    required
+                                    disabled={isLoading}
+                                    placeholder="Enter your email or username"
                                 />
                             </div>
                             <div className="form-group">
@@ -158,10 +218,14 @@ export default function About() {
                                     name="password" 
                                     value={signInData.password} 
                                     onChange={handleSignInChange} 
-                                    required 
+                                    required
+                                    disabled={isLoading}
+                                    placeholder="Enter your password"
                                 />
                             </div>
-                            <button type="submit" className="auth-submit-btn">Sign in</button>
+                            <button type="submit" className="auth-submit-btn" disabled={isLoading}>
+                                {isLoading ? 'Signing in...' : 'Sign in'}
+                            </button>
                         </form>
                         <div className="modal-footer">
                             <p>No Account? <a href="#" onClick={(e) => {
@@ -207,34 +271,86 @@ export default function About() {
                         <button className="close-modal" onClick={closeModals}>&times;</button>
                         <h1>Sign up with email</h1>
                         <form onSubmit={handleSignUpSubmit} className="auth-form">
-                            <div className="form-group">
-                                <label>Email</label>
-                                <input 
-                                    type="email" 
-                                    name="email" 
-                                    value={signUpData.email} 
-                                    onChange={handleSignUpChange} 
-                                    required 
-                                />
+                            <div className="form-row">
+                                <div className="form-group">
+                                    <label>First Name</label>
+                                    <input 
+                                        type="text" 
+                                        name="firstname" 
+                                        value={signUpData.firstname} 
+                                        onChange={handleSignUpChange} 
+                                        required 
+                                        placeholder="Enter your first name"
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>Last Name</label>
+                                    <input 
+                                        type="text" 
+                                        name="lastname" 
+                                        value={signUpData.lastname} 
+                                        onChange={handleSignUpChange} 
+                                        required 
+                                        placeholder="Enter your last name"
+                                    />
+                                </div>
+                            </div>
+                            <div className="form-row">
+                                <div className="form-group">
+                                    <label>Username</label>
+                                    <input 
+                                        type="text" 
+                                        name="username" 
+                                        value={signUpData.username} 
+                                        onChange={handleSignUpChange} 
+                                        required 
+                                        placeholder="Choose a unique username"
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>Email</label>
+                                    <input 
+                                        type="email" 
+                                        name="email" 
+                                        value={signUpData.email} 
+                                        onChange={handleSignUpChange} 
+                                        required 
+                                        placeholder="Enter your email address"
+                                    />
+                                </div>
+                            </div>
+                            <div className="form-row">
+                                <div className="form-group">
+                                    <label>Create Password</label>
+                                    <input 
+                                        type="password" 
+                                        name="password" 
+                                        value={signUpData.password} 
+                                        onChange={handleSignUpChange} 
+                                        required 
+                                        placeholder="Create a strong password"
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>Confirm Password</label>
+                                    <input 
+                                        type="password" 
+                                        name="confirmPassword" 
+                                        value={signUpData.confirmPassword} 
+                                        onChange={handleSignUpChange} 
+                                        required 
+                                        placeholder="Confirm your password"
+                                    />
+                                </div>
                             </div>
                             <div className="form-group">
-                                <label>Create Password</label>
-                                <input 
-                                    type="password" 
-                                    name="password" 
-                                    value={signUpData.password} 
-                                    onChange={handleSignUpChange} 
-                                    required 
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label>Confirm Password</label>
-                                <input 
-                                    type="password" 
-                                    name="confirmPassword" 
-                                    value={signUpData.confirmPassword} 
-                                    onChange={handleSignUpChange} 
-                                    required 
+                                <label>Bio (Optional)</label>
+                                <textarea
+                                    name="bio"
+                                    value={signUpData.bio}
+                                    onChange={handleSignUpChange}
+                                    placeholder="Tell us a bit about yourself..."
+                                    rows="3"
                                 />
                             </div>
                             <button type="submit" className="auth-submit-btn">Create account</button>

@@ -6,6 +6,32 @@ import { Link } from 'react-router-dom'
 export default function Dashboard() {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showOffcanvas, setShowOffcanvas] = useState(true);
+  const [userData, setUserData] = useState({
+    firstName: 'User',
+    lastName: '',
+    username: '@user',
+    email: 'user@example.com'
+  });
+
+  // Load user data from localStorage
+  useEffect(() => {
+    const storedUserData = localStorage.getItem('userData');
+    if (storedUserData) {
+      const parsedData = JSON.parse(storedUserData);
+      setUserData({
+        firstName: parsedData.firstName || 'User',
+        lastName: parsedData.lastName || '',
+        username: parsedData.username ? `@${parsedData.username}` : '@user',
+        email: parsedData.email || 'user@example.com'
+      });
+    }
+  }, []);
+
+  const getDisplayName = () => {
+    return userData.firstName && userData.lastName 
+      ? `${userData.firstName} ${userData.lastName}` 
+      : userData.firstName || 'User';
+  };
 
   const toggleProfileMenu = () => {
     setShowProfileMenu(!showProfileMenu);
@@ -56,15 +82,16 @@ export default function Dashboard() {
             <Link to="/writer/write"><img src="https://img.icons8.com/?size=100&id=Pi3IAam41WM2&format=png&color=5D5D5D" alt="write-img"/> Write</Link>
             <img src="https://img.icons8.com/?size=100&id=83989&format=png&color=5D5D5D" alt="notification-img" />
             <div className="profile" onClick={toggleProfileMenu}>
-              <img src="https://img.icons8.com/?size=100&id=7819&format=png&color=5D5D5D" alt="profile-img" /><span>Iresh Dilshan</span>
+              <img src="https://img.icons8.com/?size=100&id=7819&format=png&color=5D5D5D" alt="profile-img" />
+              <span>{getDisplayName()}</span>
               {showProfileMenu && (
-                <div className="profile-popup">
+                <div className="profile-popup" style={{width: '330px'}}>
                   <div className="profile-popup-header">
                     <div className="popup-user-container">
                       <img src="https://img.icons8.com/?size=100&id=7819&format=png&color=5D5D5D" alt="profile-img" />
                       <div className="profile-popup-info">
-                        <h4>Iresh Dilshan</h4>
-                        <p>@ireshdilshan</p>
+                        <h4>{getDisplayName()}</h4>
+                        <p>{userData.email}</p>
                       </div>
                     </div>
                     <button className="close-popup" onClick={(e) => {
@@ -98,8 +125,8 @@ export default function Dashboard() {
             <div className="user-info">
               <img src="https://img.icons8.com/?size=100&id=7819&format=png&color=5D5D5D" alt="profile-img" />
               <div className="user-details">
-                <h4>Iresh Dilshan</h4>
-                <p>@ireshdilshan</p>
+                <h4>{getDisplayName()}</h4>
+                <p>{userData.username}</p>
               </div>
             </div>
           </div>

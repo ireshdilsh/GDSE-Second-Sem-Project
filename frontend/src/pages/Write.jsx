@@ -1,10 +1,36 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../styles/write.css'
 import { useNavigate, Link } from 'react-router-dom';
 
 export default function Write() {
     const navigate = useNavigate();
     const [showProfileMenu, setShowProfileMenu] = useState(false);
+    const [userData, setUserData] = useState({
+        firstName: 'User',
+        lastName: '',
+        username: '@user',
+        email: 'user@example.com'
+    });
+
+    // Load user data from localStorage
+    useEffect(() => {
+        const storedUserData = localStorage.getItem('userData');
+        if (storedUserData) {
+            const parsedData = JSON.parse(storedUserData);
+            setUserData({
+                firstName: parsedData.firstName || 'User',
+                lastName: parsedData.lastName || '',
+                username: parsedData.username ? `@${parsedData.username}` : '@user',
+                email: parsedData.email || 'user@example.com'
+            });
+        }
+    }, []);
+
+    const getDisplayName = () => {
+        return userData.firstName && userData.lastName 
+            ? `${userData.firstName} ${userData.lastName}` 
+            : userData.firstName || 'User';
+    };
 
     const toggleProfileMenu = () => {
         setShowProfileMenu(!showProfileMenu);
@@ -12,15 +38,31 @@ export default function Write() {
 
     const [content, setContent] = useState('')
 
-    const btn = () => {
-        const readingCount = estimateReadingTime(content)
-        alert("reading time is " + readingCount);
-    }
-
     const estimateReadingTime = (text) => {
         const words = text.trim().split(/\s+/).filter(Boolean).length;
         return Math.max(0, Math.ceil(words / 15));
     }
+
+    // mathana implements karanna thiyenawa
+    const handleSaveDraft = () => {
+        // Get user data from localStorage
+        const storedUserData = localStorage.getItem('userData');
+        
+        if (storedUserData) {
+            const parsedData = JSON.parse(storedUserData);
+            const userId = parsedData.id;
+            
+            // Console log the user ID
+            console.log('User ID:', userId);
+            console.log('Saving draft for user:', parsedData);
+            
+            // Here you can add your draft saving logic
+            alert('Draft saved successfully!');
+        } else {
+            console.log('No user data found in localStorage');
+            alert('Please sign in to save drafts');
+        }
+    };
 
     return (
         <div className='write-page'>
@@ -30,18 +72,19 @@ export default function Write() {
                     <p>Draft</p>
                 </div>
                 <div className="right-side">
-                    <button onClick={btn}>Add to Draft</button>
+                    <button onClick={handleSaveDraft}>Add to Draft</button>
                     <img src="https://img.icons8.com/?size=100&id=83989&format=png&color=5D5D5D" alt="notification-img" />
                     <div className="profile" onClick={toggleProfileMenu}>
-                        <img src="https://img.icons8.com/?size=100&id=7819&format=png&color=5D5D5D" alt="profile-img" /><span>Iresh Dilshan</span>
+                        <img src="https://img.icons8.com/?size=100&id=7819&format=png&color=5D5D5D" alt="profile-img" />
+                        <span>{getDisplayName()}</span>
                         {showProfileMenu && (
-                            <div className="profile-popup">
+                            <div className="profile-popup" style={{width: '330px'}}>
                                 <div className="profile-popup-header">
                                     <div className="popup-user-container">
                                         <img src="https://img.icons8.com/?size=100&id=7819&format=png&color=5D5D5D" alt="profile-img" />
                                         <div className="profile-popup-info">
-                                            <h4>Iresh Dilshan</h4>
-                                            <p>@ireshdilshan</p>
+                                            <h4>{getDisplayName()}</h4>
+                                            <p>{userData.email}</p>
                                         </div>
                                     </div>
                                     <button className="close-popup" onClick={(e) => {
