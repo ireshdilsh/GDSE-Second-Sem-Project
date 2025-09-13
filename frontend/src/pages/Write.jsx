@@ -141,6 +141,7 @@ export default function Write() {
             <section className="write-area">
                 <div className="title-area">
                     <input type="text" placeholder='Title' />
+                    <input id='subtitle' type="text" placeholder='Subtitle' />
                 </div>
 
                 <div className="description-area">
