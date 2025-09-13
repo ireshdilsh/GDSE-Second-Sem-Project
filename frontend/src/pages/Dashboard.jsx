@@ -111,7 +111,24 @@ export default function Dashboard() {
                     <Link to="/referrals">Referrals</Link>
                     <div className="divider"></div>
                     <Link to="/help">Help</Link>
-                    <Link to="/">Sign out</Link>
+                    <button 
+                      onClick={() => {
+                        localStorage.removeItem('authToken');
+                        localStorage.removeItem('userData');
+                        window.location.href = '/';
+                      }}
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        color: 'inherit',
+                        textDecoration: 'none',
+                        cursor: 'pointer',
+                        padding: 0,
+                        font: 'inherit'
+                      }}
+                    >
+                      Sign out
+                    </button>
                   </div>
                 </div>
               )}
