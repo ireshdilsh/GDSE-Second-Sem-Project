@@ -230,7 +230,6 @@ body {
 
 .title-area input,
 .description-area textarea {
-    font-weight: 400;
     color: #333;
     width: 1000px;
     border: none;
