@@ -22,16 +22,16 @@ public class ArticleDto {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private LocalDateTime publishedAt;
-    
+
     // Author information
     private Long authorId;
     private String authorUsername;
     private String authorProfileImage;
-    
+
     // Category information
     private Long categoryId;
     private String categoryName;
-    
+
     // Comment count
     private Integer commentCount;
 }
