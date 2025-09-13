@@ -1,40 +1,22 @@
-[2025-09-13 11:49:06] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[2025-09-13 11:49:08] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[2025-09-13 11:49:12] - Hibernate is in classpath; If applicable, HQL parser will be used.
-[2025-09-13 11:49:17] - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
-[2025-09-13 11:49:18] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-[2025-09-13 11:49:22] - Starting ProtocolHandler ["http-nio-8080"]
-[2025-09-13 11:49:22] - Tomcat started on port 8080 (http) with context path '/'
-[2025-09-13 11:49:22] - Started DemoApplication in 39.462 seconds (process running for 40.657)
-[2025-09-13 12:13:48] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-[2025-09-13 12:13:48] - Initializing Servlet 'dispatcherServlet'
-[2025-09-13 12:13:48] - Completed initialization in 0 ms
-[2025-09-13 12:13:49] - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.example.demo.utils.APIResponse> com.example.demo.controller.AuthController.registerUser(com.example.demo.dto.auth.SignupRequest) with 3 errors: [Field error in object 'signupRequest' on field 'firstName': rejected value [null]; codes [NotBlank.signupRequest.firstName,NotBlank.firstName,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [signupRequest.firstName,firstName]; arguments []; default message [firstName]]; default message [First name is required]] [Field error in object 'signupRequest' on field 'lastName': rejected value [null]; codes [NotBlank.signupRequest.lastName,NotBlank.lastName,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [signupRequest.lastName,lastName]; arguments []; default message [lastName]]; default message [Last name is required]] [Field error in object 'signupRequest' on field 'username': rejected value [null]; codes [NotBlank.signupRequest.username,NotBlank.username,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [signupRequest.username,username]; arguments []; default message [username]]; default message [Username is required]] ]
-[2025-09-13 12:13:49] - Unauthorized error: Full authentication is required to access this resource
-[2025-09-13 12:14:17] - Commencing graceful shutdown. Waiting for active requests to complete
-[2025-09-13 12:14:17] - Graceful shutdown complete
-[2025-09-13 12:14:17] - Closing JPA EntityManagerFactory for persistence unit 'default'
-[2025-09-13 12:14:17] - HikariPool-1 - Shutdown initiated...
-[2025-09-13 12:14:17] - HikariPool-1 - Shutdown completed.
-[2025-09-13 12:14:59] - HV000001: Hibernate Validator 8.0.2.Final
-[2025-09-13 12:14:59] - Starting DemoApplication using Java 17.0.11 with PID 17172 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
-[2025-09-13 12:14:59] - No active profile set, falling back to 1 default profile: "default"
-[2025-09-13 12:15:02] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-[2025-09-13 12:15:03] - Finished Spring Data repository scanning in 273 ms. Found 4 JPA repository interfaces.
-[2025-09-13 12:15:05] - Tomcat initialized with port 8080 (http)
-[2025-09-13 12:15:05] - Initializing ProtocolHandler ["http-nio-8080"]
-[2025-09-13 12:15:05] - Starting service [Tomcat]
-[2025-09-13 12:15:05] - Starting Servlet engine: [Apache Tomcat/10.1.41]
-[2025-09-13 12:15:05] - Initializing Spring embedded WebApplicationContext
-[2025-09-13 12:15:05] - Root WebApplicationContext: initialization completed in 6422 ms
-[2025-09-13 12:15:06] - HHH000204: Processing PersistenceUnitInfo [name: default]
-[2025-09-13 12:15:06] - HHH000412: Hibernate ORM core version 6.6.15.Final
-[2025-09-13 12:15:06] - HHH000026: Second-level cache disabled
-[2025-09-13 12:15:07] - No LoadTimeWeaver setup: ignoring JPA class transformer
-[2025-09-13 12:15:07] - HikariPool-1 - Starting...
-[2025-09-13 12:15:08] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6cb194f5
-[2025-09-13 12:15:08] - HikariPool-1 - Start completed.
-[2025-09-13 12:15:08] - HHH10001005: Database info:
+[2025-09-13 19:43:06] - HV000001: Hibernate Validator 8.0.2.Final
+[2025-09-13 19:43:06] - Starting DemoApplication using Java 17.0.11 with PID 236 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
+[2025-09-13 19:43:06] - No active profile set, falling back to 1 default profile: "default"
+[2025-09-13 19:43:10] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-09-13 19:43:10] - Finished Spring Data repository scanning in 293 ms. Found 4 JPA repository interfaces.
+[2025-09-13 19:43:13] - Tomcat initialized with port 8080 (http)
+[2025-09-13 19:43:13] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-09-13 19:43:13] - Starting service [Tomcat]
+[2025-09-13 19:43:13] - Starting Servlet engine: [Apache Tomcat/10.1.41]
+[2025-09-13 19:43:13] - Initializing Spring embedded WebApplicationContext
+[2025-09-13 19:43:13] - Root WebApplicationContext: initialization completed in 7455 ms
+[2025-09-13 19:43:14] - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-09-13 19:43:14] - HHH000412: Hibernate ORM core version 6.6.15.Final
+[2025-09-13 19:43:14] - HHH000026: Second-level cache disabled
+[2025-09-13 19:43:15] - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-09-13 19:43:15] - HikariPool-1 - Starting...
+[2025-09-13 19:43:19] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5f68eec6
+[2025-09-13 19:43:19] - HikariPool-1 - Start completed.
+[2025-09-13 19:43:26] - HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 9.0.1
@@ -42,39 +24,44 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-[2025-09-13 12:15:11] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[2025-09-13 12:15:11] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[2025-09-13 12:15:13] - Hibernate is in classpath; If applicable, HQL parser will be used.
-[2025-09-13 12:15:15] - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
-[2025-09-13 12:15:16] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-[2025-09-13 12:15:17] - Starting ProtocolHandler ["http-nio-8080"]
-[2025-09-13 12:15:17] - Tomcat started on port 8080 (http) with context path '/'
-[2025-09-13 12:15:17] - Started DemoApplication in 19.806 seconds (process running for 21.47)
-[2025-09-13 12:15:42] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-[2025-09-13 12:15:42] - Initializing Servlet 'dispatcherServlet'
-[2025-09-13 12:15:42] - Completed initialization in 19 ms
-[2025-09-13 12:15:43] - User registration attempt for username: null
-[2025-09-13 12:15:44] - SQL Error: 1048, SQLState: 23000
-[2025-09-13 12:15:44] - Column 'username' cannot be null
-[2025-09-13 12:43:03] - HV000001: Hibernate Validator 8.0.2.Final
-[2025-09-13 12:43:04] - Starting DemoApplication using Java 17.0.11 with PID 13492 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
-[2025-09-13 12:43:04] - No active profile set, falling back to 1 default profile: "default"
-[2025-09-13 12:43:09] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-[2025-09-13 12:43:09] - Finished Spring Data repository scanning in 466 ms. Found 4 JPA repository interfaces.
-[2025-09-13 12:43:12] - Tomcat initialized with port 8080 (http)
-[2025-09-13 12:43:12] - Initializing ProtocolHandler ["http-nio-8080"]
-[2025-09-13 12:43:12] - Starting service [Tomcat]
-[2025-09-13 12:43:12] - Starting Servlet engine: [Apache Tomcat/10.1.41]
-[2025-09-13 12:43:12] - Initializing Spring embedded WebApplicationContext
-[2025-09-13 12:43:12] - Root WebApplicationContext: initialization completed in 8346 ms
-[2025-09-13 12:43:13] - HHH000204: Processing PersistenceUnitInfo [name: default]
-[2025-09-13 12:43:14] - HHH000412: Hibernate ORM core version 6.6.15.Final
-[2025-09-13 12:43:14] - HHH000026: Second-level cache disabled
-[2025-09-13 12:43:16] - No LoadTimeWeaver setup: ignoring JPA class transformer
-[2025-09-13 12:43:16] - HikariPool-1 - Starting...
-[2025-09-13 12:43:17] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@513fab1e
-[2025-09-13 12:43:17] - HikariPool-1 - Start completed.
-[2025-09-13 12:43:17] - HHH10001005: Database info:
+[2025-09-13 19:43:38] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-09-13 19:43:38] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-13 19:43:42] - Hibernate is in classpath; If applicable, HQL parser will be used.
+[2025-09-13 19:43:46] - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+[2025-09-13 19:43:48] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-09-13 19:43:55] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-09-13 19:43:55] - Tomcat started on port 8080 (http) with context path '/'
+[2025-09-13 19:43:55] - Started DemoApplication in 52.519 seconds (process running for 53.947)
+[2025-09-13 19:44:03] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-09-13 19:44:03] - Initializing Servlet 'dispatcherServlet'
+[2025-09-13 19:44:03] - Completed initialization in 2 ms
+[2025-09-13 19:44:03] - Fetching all published articles - page: 0, size: 10
+[2025-09-13 19:44:03] - Fetching all published articles
+[2025-09-13 19:44:05] - Retrieved 2 articles
+[2025-09-13 19:44:06] - Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+
+[2025-09-13 19:44:44] - Unauthorized error: Full authentication is required to access this resource
+[2025-09-13 19:49:33] - HV000001: Hibernate Validator 8.0.2.Final
+[2025-09-13 19:49:33] - Starting DemoApplication using Java 17.0.11 with PID 11940 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
+[2025-09-13 19:49:33] - No active profile set, falling back to 1 default profile: "default"
+[2025-09-13 19:49:36] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-09-13 19:49:37] - Finished Spring Data repository scanning in 235 ms. Found 4 JPA repository interfaces.
+[2025-09-13 19:49:38] - Tomcat initialized with port 8080 (http)
+[2025-09-13 19:49:38] - Initializing ProtocolHandler ["http-nio-8080"]
+[2025-09-13 19:49:38] - Starting service [Tomcat]
+[2025-09-13 19:49:38] - Starting Servlet engine: [Apache Tomcat/10.1.41]
+[2025-09-13 19:49:39] - Initializing Spring embedded WebApplicationContext
+[2025-09-13 19:49:39] - Root WebApplicationContext: initialization completed in 5377 ms
+[2025-09-13 19:49:39] - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-09-13 19:49:39] - HHH000412: Hibernate ORM core version 6.6.15.Final
+[2025-09-13 19:49:39] - HHH000026: Second-level cache disabled
+[2025-09-13 19:49:40] - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-09-13 19:49:40] - HikariPool-1 - Starting...
+[2025-09-13 19:49:41] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6cb194f5
+[2025-09-13 19:49:41] - HikariPool-1 - Start completed.
+[2025-09-13 19:49:42] - HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 9.0.1
@@ -82,24 +69,20 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-[2025-09-13 12:43:21] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[2025-09-13 12:43:22] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[2025-09-13 12:43:23] - Hibernate is in classpath; If applicable, HQL parser will be used.
-[2025-09-13 12:43:28] - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
-[2025-09-13 12:43:28] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-[2025-09-13 12:43:32] - Starting ProtocolHandler ["http-nio-8080"]
-[2025-09-13 12:43:33] - Tomcat started on port 8080 (http) with context path '/'
-[2025-09-13 12:43:33] - Started DemoApplication in 31.141 seconds (process running for 32.284)
-[2025-09-13 12:44:42] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-[2025-09-13 12:44:42] - Initializing Servlet 'dispatcherServlet'
-[2025-09-13 12:44:42] - Completed initialization in 17 ms
-[2025-09-13 12:44:43] - User registration attempt for username: git123
-[2025-09-13 12:44:47] - User registered successfully with ID: 6
-[2025-09-13 12:45:32] - User login attempt for: git123
-[2025-09-13 12:45:35] - User logged in successfully: git123
-[2025-09-13 12:46:40] - User registration attempt for username: wer
-[2025-09-13 12:46:41] - User registered successfully with ID: 7
-[2025-09-13 12:49:32] - User registration attempt for username: dsdf
-[2025-09-13 12:49:35] - User registered successfully with ID: 8
-[2025-09-13 12:50:04] - User login attempt for: dsdf
-[2025-09-13 12:50:04] - User logged in successfully: dsdf
+[2025-09-13 19:49:44] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-09-13 19:49:44] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-13 19:49:45] - Hibernate is in classpath; If applicable, HQL parser will be used.
+[2025-09-13 19:49:48] - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+[2025-09-13 19:49:48] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2025-09-13 19:49:50] - Starting ProtocolHandler ["http-nio-8080"]
+[2025-09-13 19:49:50] - Tomcat started on port 8080 (http) with context path '/'
+[2025-09-13 19:49:50] - Started DemoApplication in 18.561 seconds (process running for 19.762)
+[2025-09-13 19:51:03] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-09-13 19:51:03] - Initializing Servlet 'dispatcherServlet'
+[2025-09-13 19:51:03] - Completed initialization in 0 ms
+[2025-09-13 19:51:06] - User login attempt for: dsdf
+[2025-09-13 19:51:09] - User logged in successfully: dsdf
+[2025-09-13 20:04:38] - User login attempt for: iresh111
+[2025-09-13 20:04:38] - Authentication failed for user: iresh111
+[2025-09-13 20:04:50] - User login attempt for: dsdf
+[2025-09-13 20:04:50] - User logged in successfully: dsdf

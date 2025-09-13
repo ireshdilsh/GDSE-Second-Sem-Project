@@ -27,6 +27,7 @@ public class Article {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
+    @Column(nullable = true)
     private String featuredImage;
 
     private Integer readTime; // Estimated reading time in minutes
