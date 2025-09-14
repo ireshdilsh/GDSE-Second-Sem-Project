@@ -113,8 +113,6 @@ export default function Landing() {
 
                 alert('Sign in successful!');
                 closeModals();
-
-                // Navigate to dashboard
                 navigate('/writer/dashboard');
             } else {
                 setErrorMessage(data.message || 'Sign in failed. Please try again.');
