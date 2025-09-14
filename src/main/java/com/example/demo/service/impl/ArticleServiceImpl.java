@@ -237,7 +237,7 @@ public class ArticleServiceImpl implements ArticleService {
     private Integer calculateReadTime(String content) {
         // Assume average reading speed of 200 words per minute
         int wordCount = content.split("\\s+").length;
-        return Math.max(1, wordCount / 200);
+        return Math.max(1, wordCount / 15);
     }
 
     private String saveFeaturedImage(MultipartFile imageFile) {
