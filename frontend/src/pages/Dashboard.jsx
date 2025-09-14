@@ -74,7 +74,7 @@ export default function Dashboard() {
                 className="menu-icon"
                 onClick={toggleOffcanvas}
               />
-              <h1><h1><h4>Lexora</h4></h1></h1>
+              <h1><h3><h4>Lexora</h4></h3></h1>
             </div>
             <input type="text" placeholder='Search'/>
           </div>

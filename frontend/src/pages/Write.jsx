@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import '../styles/write.css'
 import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default function Write() {
     const navigate = useNavigate();
@@ -12,8 +14,21 @@ export default function Write() {
         email: 'user@example.com'
     });
 
+    const [categories, setCategories] = useState([])
+
+    const getAllCategories = async () => {
+        try {
+            const resp = await axios.get('http://localhost:8080/api/v1/categories/all')
+            setCategories(resp.data.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
     // Load user data from localStorage
     useEffect(() => {
+
+        getAllCategories()
+
         const storedUserData = localStorage.getItem('userData');
         if (storedUserData) {
             const parsedData = JSON.parse(storedUserData);
@@ -27,8 +42,8 @@ export default function Write() {
     }, []);
 
     const getDisplayName = () => {
-        return userData.firstName && userData.lastName 
-            ? `${userData.firstName} ${userData.lastName}` 
+        return userData.firstName && userData.lastName
+            ? `${userData.firstName} ${userData.lastName}`
             : userData.firstName || 'User';
     };
 
@@ -37,30 +52,60 @@ export default function Write() {
     };
 
     const [content, setContent] = useState('')
+    const [title, setTitle] = useState('')
+    const [subtitle, setSubtitle] = useState('')
+    const [category, setCategory] = useState('')
 
-    const estimateReadingTime = (text) => {
-        const words = text.trim().split(/\s+/).filter(Boolean).length;
-        return Math.max(0, Math.ceil(words / 15));
+    const clearFields = () => {
+        setContent('')
+        setTitle('')
+        setSubtitle('')
     }
 
-    // mathana implements karanna thiyenawa
-    const handleSaveDraft = () => {
+    const handleSaveDraft = async (e) => {
+
+        e.preventDefault();
         // Get user data from localStorage
         const storedUserData = localStorage.getItem('userData');
-        
+
         if (storedUserData) {
             const parsedData = JSON.parse(storedUserData);
             const userId = parsedData.id;
-            
-            // Console log the user ID
-            console.log('User ID:', userId);
-            console.log('Saving draft for user:', parsedData);
-            
-            // Here you can add your draft saving logic
-            alert('Draft saved successfully!');
+
+            const draftData = {
+                "title": title,
+                "subtitle": subtitle,
+                "content": content,
+                "authorId": userId,
+                "categoryId": category
+            }
+            try {
+                const resp = await axios.post('http://localhost:8080/api/v1/articles/create', draftData)
+                console.log(resp.data)
+                clearFields()
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Draft Saved',
+                    text: 'Your article has been saved in Draft successfully.',
+                    timer: 5000
+                })
+            } catch (error) {
+                console.log(error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Something Wrong',
+                    text: 'Cannot be save your article in draft.try again later',
+                    timer: 5000
+                })
+            }
         } else {
             console.log('No user data found in localStorage');
-            alert('Please sign in to save drafts');
+            Swal.fire({
+                icon: 'error',
+                title: 'Something Wrong',
+                text: 'Please login again.',
+                timer: 5000
+            })
         }
     };
 
@@ -68,7 +113,7 @@ export default function Write() {
         <div className='write-page'>
             <nav className="write-nav">
                 <div className="left-side" onClick={() => navigate('/writer/dashboard')}>
-                    <h1><h1><h4>Lexora</h4></h1></h1>
+                    <h1><h3><h4>Lexora</h4></h3></h1>
                     <p>Draft</p>
                 </div>
                 <div className="right-side">
@@ -78,7 +123,7 @@ export default function Write() {
                         <img src="https://img.icons8.com/?size=100&id=7819&format=png&color=5D5D5D" alt="profile-img" />
                         <span>{getDisplayName()}</span>
                         {showProfileMenu && (
-                            <div className="profile-popup" style={{width: '330px'}}>
+                            <div className="profile-popup" style={{ width: '330px' }}>
                                 <div className="profile-popup-header">
                                     <div className="popup-user-container">
                                         <img src="https://img.icons8.com/?size=100&id=7819&format=png&color=5D5D5D" alt="profile-img" />
@@ -104,23 +149,23 @@ export default function Write() {
                                     <Link to="/referrals">Referrals</Link>
                                     <div className="divider"></div>
                                     <Link to="/help">Help</Link>
-                                    <button 
-                                      onClick={() => {
-                                        localStorage.removeItem('authToken');
-                                        localStorage.removeItem('userData');
-                                        window.location.href = '/';
-                                      }}
-                                      style={{
-                                        background: 'none',
-                                        border: 'none',
-                                        color: 'inherit',
-                                        textDecoration: 'none',
-                                        cursor: 'pointer',
-                                        padding: 0,
-                                        font: 'inherit'
-                                      }}
+                                    <button
+                                        onClick={() => {
+                                            localStorage.removeItem('authToken');
+                                            localStorage.removeItem('userData');
+                                            window.location.href = '/';
+                                        }}
+                                        style={{
+                                            background: 'none',
+                                            border: 'none',
+                                            color: 'inherit',
+                                            textDecoration: 'none',
+                                            cursor: 'pointer',
+                                            padding: 0,
+                                            font: 'inherit'
+                                        }}
                                     >
-                                      Sign out
+                                        Sign out
                                     </button>
                                 </div>
                             </div>
@@ -140,18 +185,23 @@ export default function Write() {
             </div>
             <section className="write-area">
                 <div className="title-area">
-                    <input type="text" placeholder='Title' />
-                    <input id='subtitle' type="text" placeholder='Subtitle' />
+                    <input value={title} type="text" placeholder='Title' onChange={(e) => { setTitle(e.target.value) }} />
+                    <input value={subtitle} id='subtitle' type="text" placeholder='Subtitle' onChange={(e) => { setSubtitle(e.target.value) }} />
+                    <select name="" id="" onChange={(e) => { setCategory(e.target.value) }}>
+                        <option value="">Select Category</option>
+                        {categories && categories.map((cate) => (
+                            <option value={cate.id} key={cate.id}>
+                                {cate.name}
+                            </option>
+                        ))}
+                    </select>
                 </div>
 
                 <div className="description-area">
-                    <textarea value={content} onChange={(e) => { setContent(e.target.value) }} name="" id="" placeholder='Tell your story...'></textarea>
+                    <textarea value={content} onChange={(e) => { setContent(e.target.value) }} placeholder='Tell your story...'></textarea>
                 </div>
 
             </section>
-            <div className="reading-time-display">
-                <p>Estimated Reading Time: {estimateReadingTime(content)} min</p>
-            </div>
         </div>
     )
 }
