@@ -152,23 +152,6 @@ export default function Landing() {
         } catch (error) {
             console.error('Sign up error:', error);
         }
-        // const resp = fetch('http://localhost:8080/api/v1/auth/signup', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(data)
-        // });
-
-        // const datas = await resp.json();
-
-        // if (resp.ok && datas.status === 201) {
-        //     alert('Account created successfully!');
-        //     closeModals();
-        //     openSignInModal();
-        // } else {
-        //     alert(datas.message || 'Sign up failed. Please try again.');
-        // }
     };
 
     return (
