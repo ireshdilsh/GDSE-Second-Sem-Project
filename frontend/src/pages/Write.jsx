@@ -14,6 +14,8 @@ export default function Write() {
         email: 'user@example.com'
     });
 
+    const [loadDraftCards, setLoadDraftCards] = useState([])
+
     const [categories, setCategories] = useState([])
 
     const getAllCategories = async () => {
@@ -28,6 +30,7 @@ export default function Write() {
     useEffect(() => {
 
         getAllCategories()
+        getAllArticlesByAuthor()
 
         const storedUserData = localStorage.getItem('userData');
         if (storedUserData) {
@@ -62,51 +65,116 @@ export default function Write() {
         setSubtitle('')
     }
 
-    const handleSaveDraft = async (e) => {
+    const getAllArticlesByAuthor = async () => {
+        const id = getUserID();
+        console.log("getAllArticlesByAuthor" + id);
 
-        e.preventDefault();
-        // Get user data from localStorage
+        try {
+            const resp = await axios.get(`http://localhost:8080/api/v1/articles/all/drafts/${id}`);
+            setLoadDraftCards(resp.data.data)
+            console.log(resp.data.data);
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
+    const getUserID = () => {
         const storedUserData = localStorage.getItem('userData');
 
         if (storedUserData) {
             const parsedData = JSON.parse(storedUserData);
-            const userId = parsedData.id;
-
-            const draftData = {
-                "title": title,
-                "subtitle": subtitle,
-                "content": content,
-                "authorId": userId,
-                "categoryId": category
-            }
-            try {
-                const resp = await axios.post('http://localhost:8080/api/v1/articles/create', draftData)
-                console.log(resp.data)
-                clearFields()
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Draft Saved',
-                    text: 'Your article has been saved in Draft successfully.',
-                    timer: 5000
-                })
-            } catch (error) {
-                console.log(error);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Something Wrong',
-                    text: 'Cannot be save your article in draft.try again later',
-                    timer: 5000
-                })
-            }
+            return parsedData.id;
         } else {
-            console.log('No user data found in localStorage');
+            return null;
+        }
+    }
+
+    const handleSaveDraft = async (e) => {
+        e.preventDefault();
+
+        // Validate all fields
+        if (!title.trim()) {
             Swal.fire({
                 icon: 'error',
-                title: 'Something Wrong',
-                text: 'Please login again.',
-                timer: 5000
+                title: 'Title Required',
+                text: 'Please enter a title for your article.',
+                confirmButtonColor: '#1a8917'
+            });
+            return;
+        }
+
+        if (!subtitle.trim()) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Subtitle Required',
+                text: 'Please enter a subtitle for your article.',
+                confirmButtonColor: '#1a8917'
+            });
+            return;
+        }
+
+        if (!content.trim()) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Content Required',
+                text: 'Please write some content for your article.',
+                confirmButtonColor: '#1a8917'
+            });
+            return;
+        }
+
+        if (!category) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Category Required',
+                text: 'Please select a category for your article.',
+                confirmButtonColor: '#1a8917'
+            });
+            return;
+        }
+
+        const userId = getUserID();
+
+        if (!userId) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Authentication Error',
+                text: 'You need to be logged in to save drafts.',
+                confirmButtonColor: '#1a8917'
+            });
+            return;
+        }
+
+        const draftData = {
+            "title": title,
+            "subtitle": subtitle,
+            "content": content,
+            "authorId": userId,
+            "categoryId": category
+        }
+        try {
+            const resp = await axios.post('http://localhost:8080/api/v1/articles/create', draftData)
+            console.log(resp.data)
+            getAllArticlesByAuthor()
+            clearFields()
+            Swal.fire({
+                icon: 'success',
+                title: 'Draft Saved',
+                text: 'Your article has been saved in Draft successfully.',
+                timer: 5000,
+                confirmButtonColor: '#1a8917'
+            })
+        } catch (error) {
+            console.log(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Something Went Wrong',
+                text: error.response?.data?.message || 'Cannot save your article in draft. Please try again later.',
+                confirmButtonColor: '#1a8917'
             })
         }
+
     };
 
     return (
@@ -114,7 +182,7 @@ export default function Write() {
             <nav className="write-nav">
                 <div className="left-side" onClick={() => navigate('/writer/dashboard')}>
                     <h1><h3><h4>Lexora</h4></h3></h1>
-                    <p>Draft</p>
+                    <p>Write</p>
                 </div>
                 <div className="right-side">
                     <button onClick={handleSaveDraft}>Add to Draft</button>
@@ -185,23 +253,49 @@ export default function Write() {
             </div>
             <section className="write-area">
                 <div className="title-area">
-                    <input value={title} type="text" placeholder='Title' onChange={(e) => { setTitle(e.target.value) }} />
-                    <input value={subtitle} id='subtitle' type="text" placeholder='Subtitle' onChange={(e) => { setSubtitle(e.target.value) }} />
-                    <select name="" id="" onChange={(e) => { setCategory(e.target.value) }}>
-                        <option value="">Select Category</option>
-                        {categories && categories.map((cate) => (
-                            <option value={cate.id} key={cate.id}>
-                                {cate.name}
-                            </option>
-                        ))}
-                    </select>
+                    <div className="input-field">
+                        <input id="title-input" value={title} type="text" placeholder='Enter article title' onChange={(e) => { setTitle(e.target.value) }} />
+                    </div>
+                    <div className="input-field">
+                        <input id="subtitle-input" value={subtitle} className="subtitle-input" type="text" placeholder='Enter article subtitle' onChange={(e) => { setSubtitle(e.target.value) }} />
+                    </div>
+                    <div className="category-selector">
+                        <select name="category" id="category-select" onChange={(e) => { setCategory(e.target.value) }}>
+                            <option value="">Select Category</option>
+                            {categories && categories.map((cate) => (
+                                <option value={cate.id} key={cate.id}>
+                                    {cate.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
 
                 <div className="description-area">
-                    <textarea value={content} onChange={(e) => { setContent(e.target.value) }} placeholder='Tell your story...'></textarea>
+                    <textarea 
+                        id="content-textarea"
+                        style={{textAlign:'justify'}} 
+                        value={content} 
+                        onChange={(e) => { setContent(e.target.value) }} 
+                        placeholder='Tell your story...'
+                    ></textarea>
                 </div>
 
+                <div className="additional-info">
+                    <h3>Your Drafts</h3>
+                    <p>
+                        You can access all your draft articles from your dashboard. Continue working on your existing drafts or create new content anytime.
+                    </p>
+                    <div className="draft-info">
+                        <img src="https://img.icons8.com/?size=100&id=12115&format=png&color=5D5D5D" alt="draft-icon" />
+                        <span>You have saved drafts</span>
+                        <span className="draft-count">{loadDraftCards ? loadDraftCards.length : 0}</span>
+                    </div>
+                    <button onClick={() => navigate('/writer/article/draft')} className="view-drafts-btn">View all drafts</button>
+                </div>
             </section>
+
+          
         </div>
     )
 }

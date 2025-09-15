@@ -9,6 +9,7 @@ import Terms from './pages/Terms'
 import Dashboard from './pages/Dashboard'
 import Write from './pages/Write'
 import ProtectedRoutes from './utils/ProtectedRoutes'
+import DrarfPage from './pages/DrarfPage'
 
 export default function Controller() {
     return (
@@ -23,6 +24,7 @@ export default function Controller() {
                     <Route element={<ProtectedRoutes />}>
                         <Route path='/writer/dashboard' element={<Dashboard />}></Route>
                         <Route path='/writer/write' element={<Write />}></Route>
+                        <Route path='/writer/article/draft' element={<DrarfPage/>}></Route>
                     </Route>
                 </Routes>
             </BrowserRouter>

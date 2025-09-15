@@ -76,6 +76,13 @@ body {
     cursor: pointer;
 }
 
+.write-nav .profile .profile-trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
 /* Profile Popup Styles */
 .profile-popup {
     position: absolute;
@@ -88,6 +95,7 @@ body {
     z-index: 1000;
     overflow: hidden;
     font-family: var(--poppins);
+    display: block !important; /* Ensure popup is visible when toggled */
 }
 
 .profile-popup-header {
@@ -181,13 +189,14 @@ body {
 .info-message {
     display: flex;
     align-items: flex-start;
-    background-color: #f8f9fa;
+    background-color: rgba(26, 137, 23, 0.05);
     border-left: 4px solid #1a8917;
     margin: 20px 170px;
     padding: 16px 20px;
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .info-icon {
@@ -220,12 +229,40 @@ body {
     font-family: var(--poppins);
 }
 
+.info-content .writer-link {
+    color: #1a8917;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s, text-decoration 0.2s;
+    display: inline;
+    margin-left: 5px;
+}
+
+.info-content .writer-link:hover {
+    color: #146c13;
+    text-decoration: underline;
+}
+
 .write-area {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding: 25px 350px;
+}
+
+.title-area {
+    width: 1000px;
+    margin-bottom: 20px;
+}
+
+.input-field {
+    margin-bottom: 15px;
+}
+
+.required {
+    color: #e74c3c;
+    margin-left: 4px;
 }
 
 .title-area input,
@@ -240,8 +277,56 @@ body {
     padding: 15px 25px;
 }
 
-#subtitle{
-    font-size: 30px;
+.subtitle-input {
+    font-size: 30px !important;
+}
+
+.category-selector {
+    width: 1000px;
+    padding: 0 25px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.category-selector label {
+    display: block;
+    margin-bottom: 8px;
+    font-family: var(--poppins);
+    font-size: 16px;
+    color: #555;
+    font-weight: 500;
+}
+
+.category-selector select {
+    width: 300px;
+    padding: 10px 15px;
+    font-family: var(--poppins);
+    font-size: 16px;
+    color: #333;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 15px;
+}
+
+.category-selector select:focus {
+    outline: none;
+    border-color: #1a8917;
+}
+
+.category-selector select:hover {
+    border-color: #c0c0c0;
+}
+
+.category-selector select option {
+    padding: 10px;
+    font-family: var(--poppins);
 }
 
 .description-area textarea {
@@ -262,4 +347,259 @@ body {
 .reading-time-display p {
     color: #5D5D5D;
     font-weight: 400;
+}
+
+#draft-cards{
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 10px 170px;
+    gap: 25px;
+}
+
+#draft-cards .card{
+    display: flex;
+    gap: 20px;
+    width: calc(33.33% - 20px); /* Exactly 3 cards per row with gap consideration */
+    min-width: 300px;
+    max-width: 400px;
+    flex: 0 0 auto;
+    height: 400px; /* Fixed height for all cards */
+    padding: 25px;
+    border: 1.2px solid #efefef;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    overflow: hidden; /* Hide overflow content */
+    transition: transform 0.3s ease;
+    position: relative; /* For absolute positioning of children */
+}
+
+#draft-cards .card .card-body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+}
+
+#draft-cards .card .card-actions {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 5;
+}
+
+#draft-cards .card .card-actions .edit-icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#draft-cards .card .card-actions .edit-icon:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Card action menu */
+#draft-cards .card .card-action-menu {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background-color: white;
+    width: 150px;
+    border-radius: 6px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    z-index: 10;
+}
+
+#draft-cards .card .card-action-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#draft-cards .card .card-action-item:hover {
+    background-color: #f5f5f5;
+}
+
+#draft-cards .card .card-action-item img {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+}
+
+#draft-cards .card .card-action-item span {
+    font-family: var(--poppins);
+    font-size: 14px;
+    color: #333;
+}
+
+#draft-cards .card .card-action-item.delete {
+    color: #e74c3c;
+}
+
+#draft-cards .card .card-action-item.delete span {
+    color: #e74c3c;
+}
+
+#draft-cards .card .card-body h1{
+    font-weight: 400;
+    font-family: var(--poppins);
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 10px;
+}   
+
+#draft-cards .card .card-body h3{
+    margin: 10px 0;
+    font-family: var(--gabarito);
+    font-weight: 500;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#draft-cards .card .card-body p{
+    font-size: 14px;
+    font-family: var(--poppins);
+    margin: 10px 0;
+    text-align: justify;
+    display: -webkit-box;
+    -webkit-line-clamp: 7; /* Limit to 7 lines of text */
+    line-clamp: 7; /* Standard property for compatibility */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.5;
+    max-height: 150px; /* Approximately 7 lines */
+}
+
+#draft-cards .card .card-body #categoryName{
+    font-size: 12px;
+    background-color: #ededed;
+    margin: 20px 0;
+    padding: 5px 10px;
+    width: 100px;
+    font-family: var(--poppins);
+    text-align: center;
+    border-radius: 25px;
+}
+
+#draft-cards .card .card-body h5{
+    font-size: 12px;
+    color: #5D5D5D;
+    margin: 5px 0;
+    font-family: var(--poppins);
+}
+
+#draft-cards .card .card-body button{
+    font-family: var(--gabarito);
+    font-weight: 500;
+    padding: 8px 15px;
+    border: none;
+    outline: none;
+    background-color: #f1f1f1;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+/* Responsive adjustments for draft cards */
+@media screen and (max-width: 1400px) {
+    #draft-cards .card {
+        width: calc(50% - 20px); /* 2 cards per row on medium screens */
+    }
+}
+
+@media screen and (max-width: 992px) {
+    #draft-cards {
+        padding: 10px 100px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #draft-cards {
+        padding: 10px 50px;
+    }
+    
+    #draft-cards .card {
+        width: 100%; /* 1 card per row on small screens */
+        max-width: 100%;
+    }
+}
+
+/* Additional information section */
+.additional-info {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin: 20px 0;
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.additional-info h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #333;
+    font-family: var(--gabarito);
+}
+
+.additional-info p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555;
+    margin-bottom: 15px;
+    font-family: var(--gabarito);
+}
+
+.draft-info {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-family: var(--gabarito);
+}
+
+.draft-info img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.draft-count {
+    background-color: #e6f7e6;
+    color: #1a8917;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 12px;
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.view-drafts-btn {
+    display: inline-block;
+    color: #1a8917;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 16px;
+    border: 1px solid #1a8917;
+    background-color: transparent;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    font-family: var(--gabarito);
+}
+
+.view-drafts-btn:hover {
+    background-color: #1a8917;
+    color: white;
 }
