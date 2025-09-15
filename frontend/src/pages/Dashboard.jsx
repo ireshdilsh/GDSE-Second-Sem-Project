@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import '../styles/dashboard.css'
 import '../styles/offcanvas.css'
-import { Link } from 'react-router-dom'
+import '../styles/write.css' // For using card styles
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 export default function Dashboard() {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showOffcanvas, setShowOffcanvas] = useState(true);
+  const [publishedArticles, setPublishedArticles] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const pageSize = 9; // 9 articles per page (3 cards per row x 3 rows)
+  const navigate = useNavigate();
+  
   const [userData, setUserData] = useState({
     firstName: 'User',
     lastName: '',
@@ -25,7 +34,38 @@ export default function Dashboard() {
         email: parsedData.email || 'user@example.com'
       });
     }
+    
+    // Fetch published articles when component mounts
+    fetchPublishedArticles(0);
   }, []);
+  
+  // Function to fetch published articles with pagination
+  const fetchPublishedArticles = async (page) => {
+    setIsLoading(true);
+    try {
+      const response = await axios.get(`http://localhost:8080/api/v1/articles/all?page=${page}&size=${pageSize}`);
+      
+      if (response.status === 200) {
+        const data = response.data.data;
+        setPublishedArticles(data.content);
+        setTotalPages(data.totalPages);
+        setCurrentPage(page);
+      } else {
+        console.error('Failed to fetch articles');
+      }
+    } catch (error) {
+      console.error('Error fetching published articles:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  
+  // Handle page change
+  const handlePageChange = (newPage) => {
+    if (newPage >= 0 && newPage < totalPages) {
+      fetchPublishedArticles(newPage);
+    }
+  };
 
   const getDisplayName = () => {
     return userData.firstName && userData.lastName 
@@ -189,6 +229,72 @@ export default function Dashboard() {
         
         {/* Overlay for mobile */}
         {showOffcanvas && <div className="offcanvas-overlay" onClick={toggleOffcanvas}></div>}
+        
+        {/* Published Articles Section */}
+        <div className="dashboard-content">
+          <div className="content-header">
+            <h2>Published Articles</h2>
+            <p>Discover the latest articles from our writers</p>
+          </div>
+          
+          {isLoading ? (
+            <div className="loading-indicator">
+              <p>Loading articles...</p>
+            </div>
+          ) : (
+            <>
+              {/* Articles Grid */}
+              <div id="published-articles">
+                {publishedArticles.length > 0 ? (
+                  publishedArticles.map((article) => (
+                    <div className="card" key={article.id} onClick={() => navigate(`/article/${article.id}`)}>
+                      <div className="card-body">
+                        <h1>{article.title}</h1>
+                        <h3>{article.subtitle}</h3>
+                        <div className="article-meta">
+                          <h5>Published on: {new Date(article.publishedAt).toLocaleDateString()}</h5>
+                          <h5>Reading Time: {article.readTime}</h5>
+                        </div>
+                        <p id='categoryName'>{article.categoryName}</p>
+                        <p style={{marginTop:'-80px',textAlign:'justify'}}>{article.content}</p>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="no-articles">
+                    <p>No published articles available at the moment.</p>
+                    <Link to="/writer/write" className="start-writing-btn">Start Writing</Link>
+                  </div>
+                )}
+              </div>
+              
+              {/* Pagination */}
+              {publishedArticles.length > 0 && (
+                <div className="pagination">
+                  <button 
+                    onClick={() => handlePageChange(currentPage - 1)} 
+                    disabled={currentPage === 0}
+                    className="pagination-btn"
+                  >
+                    Previous
+                  </button>
+                  
+                  <span className="page-info">
+                    Page {currentPage + 1} of {totalPages}
+                  </span>
+                  
+                  <button 
+                    onClick={() => handlePageChange(currentPage + 1)} 
+                    disabled={currentPage === totalPages - 1}
+                    className="pagination-btn"
+                  >
+                    Next
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+        </div>
     </div>
   )
 }

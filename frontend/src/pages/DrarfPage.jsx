@@ -127,8 +127,8 @@ export default function DrarfPage() {
                 });
                 break;
             case 'delete':
-                // Confirm and delete the article
-                Swal.fire({
+
+            Swal.fire({
                     title: 'Delete Article?',
                     text: "This action cannot be undone!",
                     icon: 'warning',
@@ -139,7 +139,6 @@ export default function DrarfPage() {
                 }).then(async (result) => {
                     if (result.isConfirmed) {
                         try {
-                            // Call API to delete the article
                             const response = await axios.delete(`http://localhost:8080/api/v1/articles/${cardId}`);
                             
                             if (response.status === 200) {
