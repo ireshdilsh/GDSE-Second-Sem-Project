@@ -1,88 +1,102 @@
-[2025-09-13 19:43:06] - HV000001: Hibernate Validator 8.0.2.Final
-[2025-09-13 19:43:06] - Starting DemoApplication using Java 17.0.11 with PID 236 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
-[2025-09-13 19:43:06] - No active profile set, falling back to 1 default profile: "default"
-[2025-09-13 19:43:10] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-[2025-09-13 19:43:10] - Finished Spring Data repository scanning in 293 ms. Found 4 JPA repository interfaces.
-[2025-09-13 19:43:13] - Tomcat initialized with port 8080 (http)
-[2025-09-13 19:43:13] - Initializing ProtocolHandler ["http-nio-8080"]
-[2025-09-13 19:43:13] - Starting service [Tomcat]
-[2025-09-13 19:43:13] - Starting Servlet engine: [Apache Tomcat/10.1.41]
-[2025-09-13 19:43:13] - Initializing Spring embedded WebApplicationContext
-[2025-09-13 19:43:13] - Root WebApplicationContext: initialization completed in 7455 ms
-[2025-09-13 19:43:14] - HHH000204: Processing PersistenceUnitInfo [name: default]
-[2025-09-13 19:43:14] - HHH000412: Hibernate ORM core version 6.6.15.Final
-[2025-09-13 19:43:14] - HHH000026: Second-level cache disabled
-[2025-09-13 19:43:15] - No LoadTimeWeaver setup: ignoring JPA class transformer
-[2025-09-13 19:43:15] - HikariPool-1 - Starting...
-[2025-09-13 19:43:19] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5f68eec6
-[2025-09-13 19:43:19] - HikariPool-1 - Start completed.
-[2025-09-13 19:43:26] - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 9.0.1
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-[2025-09-13 19:43:38] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[2025-09-13 19:43:38] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[2025-09-13 19:43:42] - Hibernate is in classpath; If applicable, HQL parser will be used.
-[2025-09-13 19:43:46] - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
-[2025-09-13 19:43:48] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-[2025-09-13 19:43:55] - Starting ProtocolHandler ["http-nio-8080"]
-[2025-09-13 19:43:55] - Tomcat started on port 8080 (http) with context path '/'
-[2025-09-13 19:43:55] - Started DemoApplication in 52.519 seconds (process running for 53.947)
-[2025-09-13 19:44:03] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-[2025-09-13 19:44:03] - Initializing Servlet 'dispatcherServlet'
-[2025-09-13 19:44:03] - Completed initialization in 2 ms
-[2025-09-13 19:44:03] - Fetching all published articles - page: 0, size: 10
-[2025-09-13 19:44:03] - Fetching all published articles
-[2025-09-13 19:44:05] - Retrieved 2 articles
-[2025-09-13 19:44:06] - Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
-	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
-	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
-
-[2025-09-13 19:44:44] - Unauthorized error: Full authentication is required to access this resource
-[2025-09-13 19:49:33] - HV000001: Hibernate Validator 8.0.2.Final
-[2025-09-13 19:49:33] - Starting DemoApplication using Java 17.0.11 with PID 11940 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
-[2025-09-13 19:49:33] - No active profile set, falling back to 1 default profile: "default"
-[2025-09-13 19:49:36] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-[2025-09-13 19:49:37] - Finished Spring Data repository scanning in 235 ms. Found 4 JPA repository interfaces.
-[2025-09-13 19:49:38] - Tomcat initialized with port 8080 (http)
-[2025-09-13 19:49:38] - Initializing ProtocolHandler ["http-nio-8080"]
-[2025-09-13 19:49:38] - Starting service [Tomcat]
-[2025-09-13 19:49:38] - Starting Servlet engine: [Apache Tomcat/10.1.41]
-[2025-09-13 19:49:39] - Initializing Spring embedded WebApplicationContext
-[2025-09-13 19:49:39] - Root WebApplicationContext: initialization completed in 5377 ms
-[2025-09-13 19:49:39] - HHH000204: Processing PersistenceUnitInfo [name: default]
-[2025-09-13 19:49:39] - HHH000412: Hibernate ORM core version 6.6.15.Final
-[2025-09-13 19:49:39] - HHH000026: Second-level cache disabled
-[2025-09-13 19:49:40] - No LoadTimeWeaver setup: ignoring JPA class transformer
-[2025-09-13 19:49:40] - HikariPool-1 - Starting...
-[2025-09-13 19:49:41] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6cb194f5
-[2025-09-13 19:49:41] - HikariPool-1 - Start completed.
-[2025-09-13 19:49:42] - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 9.0.1
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-[2025-09-13 19:49:44] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[2025-09-13 19:49:44] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[2025-09-13 19:49:45] - Hibernate is in classpath; If applicable, HQL parser will be used.
-[2025-09-13 19:49:48] - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
-[2025-09-13 19:49:48] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-[2025-09-13 19:49:50] - Starting ProtocolHandler ["http-nio-8080"]
-[2025-09-13 19:49:50] - Tomcat started on port 8080 (http) with context path '/'
-[2025-09-13 19:49:50] - Started DemoApplication in 18.561 seconds (process running for 19.762)
-[2025-09-13 19:51:03] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-[2025-09-13 19:51:03] - Initializing Servlet 'dispatcherServlet'
-[2025-09-13 19:51:03] - Completed initialization in 0 ms
-[2025-09-13 19:51:06] - User login attempt for: dsdf
-[2025-09-13 19:51:09] - User logged in successfully: dsdf
-[2025-09-13 20:04:38] - User login attempt for: iresh111
-[2025-09-13 20:04:38] - Authentication failed for user: iresh111
-[2025-09-13 20:04:50] - User login attempt for: dsdf
-[2025-09-13 20:04:50] - User logged in successfully: dsdf
+[2025-09-16 09:38:55] - Article created with ID: 6
+[2025-09-16 09:38:55] - Article created successfully with ID: 6
+[2025-09-16 09:38:55] - Unauthorized error: Full authentication is required to access this resource
+[2025-09-16 09:39:01] - Unauthorized error: Full authentication is required to access this resource
+[2025-09-16 09:39:01] - Unauthorized error: Full authentication is required to access this resource
+[2025-09-16 09:39:04] - Unauthorized error: Full authentication is required to access this resource
+[2025-09-16 09:39:04] - Fetching all categories
+[2025-09-16 09:39:04] - Fetching all categories
+[2025-09-16 09:39:04] - Unauthorized error: Full authentication is required to access this resource
+[2025-09-16 09:39:04] - Retrieved 2 categories
+[2025-09-16 09:39:04] - Fetching all categories
+[2025-09-16 09:39:04] - Fetching all categories
+[2025-09-16 09:39:04] - Retrieved 2 categories
+[2025-09-16 09:45:02] - Fetching all categories
+[2025-09-16 09:45:02] - Unauthorized error: Full authentication is required to access this resource
+[2025-09-16 09:45:02] - Fetching all categories
+[2025-09-16 09:45:02] - Retrieved 2 categories
+[2025-09-16 09:46:38] - Fetching all categories
+[2025-09-16 09:46:38] - Fetching all categories
+[2025-09-16 09:46:38] - Retrieved 2 categories
+[2025-09-16 09:46:38] - Unauthorized error: Full authentication is required to access this resource
+[2025-09-16 09:49:43] - Fetching all published articles - page: 0, size: 9
+[2025-09-16 09:49:43] - Fetching all published articles
+[2025-09-16 09:49:43] - Retrieved 1 articles
+[2025-09-16 09:49:43] - Fetching all published articles - page: 0, size: 9
+[2025-09-16 09:49:43] - Fetching all published articles
+[2025-09-16 09:49:43] - Retrieved 1 articles
+[2025-09-16 09:50:37] - User login attempt for: dsdf
+[2025-09-16 09:50:37] - User logged in successfully: dsdf
+[2025-09-16 09:50:40] - Fetching all published articles - page: 0, size: 9
+[2025-09-16 09:50:40] - Fetching all published articles
+[2025-09-16 09:50:40] - Retrieved 1 articles
+[2025-09-16 09:50:40] - Fetching all published articles - page: 0, size: 9
+[2025-09-16 09:50:40] - Fetching all published articles
+[2025-09-16 09:50:40] - Retrieved 1 articles
+[2025-09-16 09:50:50] - Incrementing view count for article: 1
+[2025-09-16 09:50:50] - Incrementing view count for article: 1
+[2025-09-16 09:50:50] - Incrementing view count for article: 1
+[2025-09-16 09:50:50] - Incrementing view count for article: 1
+[2025-09-16 09:50:50] - Incrementing view count for article: 1
+[2025-09-16 09:50:50] - Incrementing view count for article: 1
+[2025-09-16 09:50:50] - Fetching article by ID: 1
+[2025-09-16 09:50:50] - Fetching article by ID: 1
+[2025-09-16 09:50:50] - Fetching article by ID: 1
+[2025-09-16 09:50:50] - Fetching article by ID: 1
+[2025-09-16 09:50:54] - Incrementing like count for article: 1
+[2025-09-16 09:50:54] - Incrementing like count for article: 1
+[2025-09-16 09:50:55] - Incrementing like count for article: 1
+[2025-09-16 09:50:55] - Incrementing like count for article: 1
+[2025-09-16 09:50:56] - Incrementing like count for article: 1
+[2025-09-16 09:50:56] - Incrementing like count for article: 1
+[2025-09-16 09:51:02] - Fetching all published articles - page: 0, size: 9
+[2025-09-16 09:51:02] - Fetching all published articles
+[2025-09-16 09:51:02] - Retrieved 1 articles
+[2025-09-16 09:51:02] - Fetching all published articles - page: 0, size: 9
+[2025-09-16 09:51:02] - Fetching all published articles
+[2025-09-16 09:51:02] - Retrieved 1 articles
+[2025-09-16 09:51:15] - Incrementing view count for article: 1
+[2025-09-16 09:51:15] - Incrementing view count for article: 1
+[2025-09-16 09:51:15] - Incrementing view count for article: 1
+[2025-09-16 09:51:15] - Incrementing view count for article: 1
+[2025-09-16 09:51:15] - Incrementing view count for article: 1
+[2025-09-16 09:51:15] - Incrementing view count for article: 1
+[2025-09-16 09:51:15] - Fetching article by ID: 1
+[2025-09-16 09:51:15] - Fetching article by ID: 1
+[2025-09-16 09:51:15] - Fetching article by ID: 1
+[2025-09-16 09:51:15] - Fetching article by ID: 1
+[2025-09-16 09:51:19] - Fetching all published articles - page: 0, size: 9
+[2025-09-16 09:51:19] - Fetching all published articles
+[2025-09-16 09:51:19] - Retrieved 1 articles
+[2025-09-16 09:51:19] - Fetching all published articles - page: 0, size: 9
+[2025-09-16 09:51:19] - Fetching all published articles
+[2025-09-16 09:51:19] - Retrieved 1 articles
+[2025-09-16 10:15:01] - User login attempt for: dsdf
+[2025-09-16 10:15:03] - User logged in successfully: dsdf
+[2025-09-16 10:15:07] - Fetching all published articles - page: 0, size: 9
+[2025-09-16 10:15:07] - Fetching all published articles
+[2025-09-16 10:15:07] - Retrieved 1 articles
+[2025-09-16 10:15:08] - Fetching all published articles - page: 0, size: 9
+[2025-09-16 10:15:08] - Fetching all published articles
+[2025-09-16 10:15:08] - Retrieved 1 articles
+[2025-09-16 10:15:17] - Fetching article by ID: 1
+[2025-09-16 10:15:17] - Incrementing view count for article: 1
+[2025-09-16 10:15:17] - Incrementing view count for article: 1
+[2025-09-16 10:15:17] - Incrementing view count for article: 1
+[2025-09-16 10:15:17] - Fetching article by ID: 1
+[2025-09-16 10:15:17] - Incrementing view count for article: 1
+[2025-09-16 10:15:17] - Incrementing view count for article: 1
+[2025-09-16 10:15:17] - Incrementing view count for article: 1
+[2025-09-16 10:15:17] - Fetching article by ID: 1
+[2025-09-16 10:15:17] - Fetching article by ID: 1
+[2025-09-16 10:15:34] - Fetching all published articles - page: 0, size: 9
+[2025-09-16 10:15:34] - Fetching all published articles
+[2025-09-16 10:15:34] - Retrieved 1 articles
+[2025-09-16 10:15:34] - Fetching all published articles - page: 0, size: 9
+[2025-09-16 10:15:34] - Fetching all published articles
+[2025-09-16 10:15:34] - Retrieved 1 articles
+[2025-09-16 10:24:14] - Commencing graceful shutdown. Waiting for active requests to complete
+[2025-09-16 10:24:15] - Graceful shutdown complete
+[2025-09-16 10:24:15] - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-16 10:24:15] - HikariPool-1 - Shutdown initiated...
+[2025-09-16 10:24:15] - HikariPool-1 - Shutdown completed.
