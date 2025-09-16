@@ -1,102 +1,78 @@
-[2025-09-16 09:38:55] - Article created with ID: 6
-[2025-09-16 09:38:55] - Article created successfully with ID: 6
-[2025-09-16 09:38:55] - Unauthorized error: Full authentication is required to access this resource
-[2025-09-16 09:39:01] - Unauthorized error: Full authentication is required to access this resource
-[2025-09-16 09:39:01] - Unauthorized error: Full authentication is required to access this resource
-[2025-09-16 09:39:04] - Unauthorized error: Full authentication is required to access this resource
-[2025-09-16 09:39:04] - Fetching all categories
-[2025-09-16 09:39:04] - Fetching all categories
-[2025-09-16 09:39:04] - Unauthorized error: Full authentication is required to access this resource
-[2025-09-16 09:39:04] - Retrieved 2 categories
-[2025-09-16 09:39:04] - Fetching all categories
-[2025-09-16 09:39:04] - Fetching all categories
-[2025-09-16 09:39:04] - Retrieved 2 categories
-[2025-09-16 09:45:02] - Fetching all categories
-[2025-09-16 09:45:02] - Unauthorized error: Full authentication is required to access this resource
-[2025-09-16 09:45:02] - Fetching all categories
-[2025-09-16 09:45:02] - Retrieved 2 categories
-[2025-09-16 09:46:38] - Fetching all categories
-[2025-09-16 09:46:38] - Fetching all categories
-[2025-09-16 09:46:38] - Retrieved 2 categories
-[2025-09-16 09:46:38] - Unauthorized error: Full authentication is required to access this resource
-[2025-09-16 09:49:43] - Fetching all published articles - page: 0, size: 9
-[2025-09-16 09:49:43] - Fetching all published articles
-[2025-09-16 09:49:43] - Retrieved 1 articles
-[2025-09-16 09:49:43] - Fetching all published articles - page: 0, size: 9
-[2025-09-16 09:49:43] - Fetching all published articles
-[2025-09-16 09:49:43] - Retrieved 1 articles
-[2025-09-16 09:50:37] - User login attempt for: dsdf
-[2025-09-16 09:50:37] - User logged in successfully: dsdf
-[2025-09-16 09:50:40] - Fetching all published articles - page: 0, size: 9
-[2025-09-16 09:50:40] - Fetching all published articles
-[2025-09-16 09:50:40] - Retrieved 1 articles
-[2025-09-16 09:50:40] - Fetching all published articles - page: 0, size: 9
-[2025-09-16 09:50:40] - Fetching all published articles
-[2025-09-16 09:50:40] - Retrieved 1 articles
-[2025-09-16 09:50:50] - Incrementing view count for article: 1
-[2025-09-16 09:50:50] - Incrementing view count for article: 1
-[2025-09-16 09:50:50] - Incrementing view count for article: 1
-[2025-09-16 09:50:50] - Incrementing view count for article: 1
-[2025-09-16 09:50:50] - Incrementing view count for article: 1
-[2025-09-16 09:50:50] - Incrementing view count for article: 1
-[2025-09-16 09:50:50] - Fetching article by ID: 1
-[2025-09-16 09:50:50] - Fetching article by ID: 1
-[2025-09-16 09:50:50] - Fetching article by ID: 1
-[2025-09-16 09:50:50] - Fetching article by ID: 1
-[2025-09-16 09:50:54] - Incrementing like count for article: 1
-[2025-09-16 09:50:54] - Incrementing like count for article: 1
-[2025-09-16 09:50:55] - Incrementing like count for article: 1
-[2025-09-16 09:50:55] - Incrementing like count for article: 1
-[2025-09-16 09:50:56] - Incrementing like count for article: 1
-[2025-09-16 09:50:56] - Incrementing like count for article: 1
-[2025-09-16 09:51:02] - Fetching all published articles - page: 0, size: 9
-[2025-09-16 09:51:02] - Fetching all published articles
-[2025-09-16 09:51:02] - Retrieved 1 articles
-[2025-09-16 09:51:02] - Fetching all published articles - page: 0, size: 9
-[2025-09-16 09:51:02] - Fetching all published articles
-[2025-09-16 09:51:02] - Retrieved 1 articles
-[2025-09-16 09:51:15] - Incrementing view count for article: 1
-[2025-09-16 09:51:15] - Incrementing view count for article: 1
-[2025-09-16 09:51:15] - Incrementing view count for article: 1
-[2025-09-16 09:51:15] - Incrementing view count for article: 1
-[2025-09-16 09:51:15] - Incrementing view count for article: 1
-[2025-09-16 09:51:15] - Incrementing view count for article: 1
-[2025-09-16 09:51:15] - Fetching article by ID: 1
-[2025-09-16 09:51:15] - Fetching article by ID: 1
-[2025-09-16 09:51:15] - Fetching article by ID: 1
-[2025-09-16 09:51:15] - Fetching article by ID: 1
-[2025-09-16 09:51:19] - Fetching all published articles - page: 0, size: 9
-[2025-09-16 09:51:19] - Fetching all published articles
-[2025-09-16 09:51:19] - Retrieved 1 articles
-[2025-09-16 09:51:19] - Fetching all published articles - page: 0, size: 9
-[2025-09-16 09:51:19] - Fetching all published articles
-[2025-09-16 09:51:19] - Retrieved 1 articles
-[2025-09-16 10:15:01] - User login attempt for: dsdf
-[2025-09-16 10:15:03] - User logged in successfully: dsdf
-[2025-09-16 10:15:07] - Fetching all published articles - page: 0, size: 9
-[2025-09-16 10:15:07] - Fetching all published articles
-[2025-09-16 10:15:07] - Retrieved 1 articles
-[2025-09-16 10:15:08] - Fetching all published articles - page: 0, size: 9
-[2025-09-16 10:15:08] - Fetching all published articles
-[2025-09-16 10:15:08] - Retrieved 1 articles
-[2025-09-16 10:15:17] - Fetching article by ID: 1
-[2025-09-16 10:15:17] - Incrementing view count for article: 1
-[2025-09-16 10:15:17] - Incrementing view count for article: 1
-[2025-09-16 10:15:17] - Incrementing view count for article: 1
-[2025-09-16 10:15:17] - Fetching article by ID: 1
-[2025-09-16 10:15:17] - Incrementing view count for article: 1
-[2025-09-16 10:15:17] - Incrementing view count for article: 1
-[2025-09-16 10:15:17] - Incrementing view count for article: 1
-[2025-09-16 10:15:17] - Fetching article by ID: 1
-[2025-09-16 10:15:17] - Fetching article by ID: 1
-[2025-09-16 10:15:34] - Fetching all published articles - page: 0, size: 9
-[2025-09-16 10:15:34] - Fetching all published articles
-[2025-09-16 10:15:34] - Retrieved 1 articles
-[2025-09-16 10:15:34] - Fetching all published articles - page: 0, size: 9
-[2025-09-16 10:15:34] - Fetching all published articles
-[2025-09-16 10:15:34] - Retrieved 1 articles
-[2025-09-16 10:24:14] - Commencing graceful shutdown. Waiting for active requests to complete
-[2025-09-16 10:24:15] - Graceful shutdown complete
-[2025-09-16 10:24:15] - Closing JPA EntityManagerFactory for persistence unit 'default'
-[2025-09-16 10:24:15] - HikariPool-1 - Shutdown initiated...
-[2025-09-16 10:24:15] - HikariPool-1 - Shutdown completed.
+[2025-09-16 22:15:02] - Starting DemoApplication using Java 21.0.4 with PID 10924 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
+[2025-09-16 22:15:02] - No active profile set, falling back to 1 default profile: "default"
+[2025-09-16 22:15:03] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: I/O failure while processing configuration class [com.example.demo.security.JwtAuthenticationEntryPoint]
+[2025-09-16 22:15:03] - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: I/O failure while processing configuration class [com.example.demo.security.JwtAuthenticationEntryPoint]
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:286)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:218)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:354)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:281)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:204)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:172)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:418)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:290)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:118)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1362)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1351)
+	at com.example.demo.DemoApplication.main(DemoApplication.java:9)
+Caused by: java.io.FileNotFoundException: class path resource [org/springframework/security/web/AuthenticationEntryPoint.class] cannot be opened because it does not exist
+	at org.springframework.core.io.ClassPathResource.getInputStream(ClassPathResource.java:215)
+	at org.springframework.core.type.classreading.SimpleMetadataReader.getClassReader(SimpleMetadataReader.java:54)
+	at org.springframework.core.type.classreading.SimpleMetadataReader.<init>(SimpleMetadataReader.java:48)
+	at org.springframework.core.type.classreading.SimpleMetadataReaderFactory.getMetadataReader(SimpleMetadataReaderFactory.java:103)
+	at org.springframework.boot.type.classreading.ConcurrentReferenceCachingMetadataReaderFactory.createMetadataReader(ConcurrentReferenceCachingMetadataReaderFactory.java:98)
+	at org.springframework.boot.type.classreading.ConcurrentReferenceCachingMetadataReaderFactory.getMetadataReader(ConcurrentReferenceCachingMetadataReaderFactory.java:85)
+	at org.springframework.core.type.classreading.SimpleMetadataReaderFactory.getMetadataReader(SimpleMetadataReaderFactory.java:81)
+	at org.springframework.boot.type.classreading.ConcurrentReferenceCachingMetadataReaderFactory.getMetadataReader(ConcurrentReferenceCachingMetadataReaderFactory.java:75)
+	at org.springframework.context.annotation.ConfigurationClassParser.asSourceClass(ConfigurationClassParser.java:711)
+	at org.springframework.context.annotation.ConfigurationClassParser$SourceClass.getInterfaces(ConfigurationClassParser.java:1060)
+	at org.springframework.context.annotation.ConfigurationClassParser.processInterfaces(ConfigurationClassParser.java:441)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:385)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:281)
+	... 18 common frames omitted
+[2025-09-16 22:18:09] - Starting DemoApplication using Java 21.0.4 with PID 9808 (C:\Users\Admin\Downloads\demo\target\classes started by Admin in C:\Users\Admin\Downloads\demo)
+[2025-09-16 22:18:09] - No active profile set, falling back to 1 default profile: "default"
+[2025-09-16 22:18:09] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: I/O failure while processing configuration class [com.example.demo.security.JwtAuthenticationEntryPoint]
+[2025-09-16 22:18:09] - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: I/O failure while processing configuration class [com.example.demo.security.JwtAuthenticationEntryPoint]
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:286)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:218)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:354)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:281)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:204)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:172)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:418)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:290)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:118)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1362)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1351)
+	at com.example.demo.DemoApplication.main(DemoApplication.java:9)
+Caused by: java.io.FileNotFoundException: class path resource [org/springframework/security/web/AuthenticationEntryPoint.class] cannot be opened because it does not exist
+	at org.springframework.core.io.ClassPathResource.getInputStream(ClassPathResource.java:215)
+	at org.springframework.core.type.classreading.SimpleMetadataReader.getClassReader(SimpleMetadataReader.java:54)
+	at org.springframework.core.type.classreading.SimpleMetadataReader.<init>(SimpleMetadataReader.java:48)
+	at org.springframework.core.type.classreading.SimpleMetadataReaderFactory.getMetadataReader(SimpleMetadataReaderFactory.java:103)
+	at org.springframework.boot.type.classreading.ConcurrentReferenceCachingMetadataReaderFactory.createMetadataReader(ConcurrentReferenceCachingMetadataReaderFactory.java:98)
+	at org.springframework.boot.type.classreading.ConcurrentReferenceCachingMetadataReaderFactory.getMetadataReader(ConcurrentReferenceCachingMetadataReaderFactory.java:85)
+	at org.springframework.core.type.classreading.SimpleMetadataReaderFactory.getMetadataReader(SimpleMetadataReaderFactory.java:81)
+	at org.springframework.boot.type.classreading.ConcurrentReferenceCachingMetadataReaderFactory.getMetadataReader(ConcurrentReferenceCachingMetadataReaderFactory.java:75)
+	at org.springframework.context.annotation.ConfigurationClassParser.asSourceClass(ConfigurationClassParser.java:711)
+	at org.springframework.context.annotation.ConfigurationClassParser$SourceClass.getInterfaces(ConfigurationClassParser.java:1060)
+	at org.springframework.context.annotation.ConfigurationClassParser.processInterfaces(ConfigurationClassParser.java:441)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:385)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:281)
+	... 18 common frames omitted
