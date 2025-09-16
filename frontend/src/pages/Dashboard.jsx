@@ -67,6 +67,51 @@ export default function Dashboard() {
     }
   };
 
+  // Function to increment view count
+  const incrementViewCount = async (articleId) => {
+    try {
+      const response = await axios.post(`http://localhost:8080/api/v1/articles/${articleId}/view`);
+      if (response.status === 200) {
+        // Update the local state with the new view count
+        setPublishedArticles(prevArticles =>
+          prevArticles.map(article =>
+            article.id === articleId
+              ? { ...article, viewCount: response.data.data.viewCount }
+              : article
+          )
+        );
+      }
+    } catch (error) {
+      console.error('Error incrementing view count:', error);
+    }
+  }
+
+  // Handle article card click
+  const handleArticleClick = (article) => {
+    incrementViewCount(article.id);
+    navigate(`/article/${article.id}`);
+  }
+
+  // Function to increment like count
+  const incrementLikeCount = async (articleId, event) => {
+    event.stopPropagation(); // Prevent card click when like button is clicked
+    try {
+      const response = await axios.post(`http://localhost:8080/api/v1/articles/${articleId}/like`);
+      if (response.status === 200) {
+        // Update the local state with the new like count
+        setPublishedArticles(prevArticles =>
+          prevArticles.map(article =>
+            article.id === articleId
+              ? { ...article, likeCount: response.data.data.likeCount }
+              : article
+          )
+        )
+      }
+    } catch (error) {
+      console.error('Error incrementing like count:', error);
+    }
+  }
+
   const getDisplayName = () => {
     return userData.firstName && userData.lastName 
       ? `${userData.firstName} ${userData.lastName}` 
@@ -247,13 +292,34 @@ export default function Dashboard() {
               <div id="published-articles">
                 {publishedArticles.length > 0 ? (
                   publishedArticles.map((article) => (
-                    <div className="card" key={article.id} onClick={() => navigate(`/article/${article.id}`)}>
+                    <div className="card" key={article.id} onClick={() => handleArticleClick(article)}>
                       <div className="card-body">
                         <h1>{article.title}</h1>
                         <h3>{article.subtitle}</h3>
                         <div className="article-meta">
                           <h5>Published on: {new Date(article.publishedAt).toLocaleDateString()}</h5>
                           <h5>Reading Time: {article.readTime}</h5>
+                        </div>
+                        <div className="article-stats">
+                          <span className="view-count">
+                            👁️ {article.viewCount || 0} views
+                          </span>
+                          <button 
+                            className="like-button"
+                            onClick={(e) => incrementLikeCount(article.id, e)}
+                            style={{
+                              background: 'none',
+                              border: 'none',
+                              cursor: 'pointer',
+                              fontSize: '14px',
+                              color: '#666',
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '5px'
+                            }}
+                          >
+                            ❤️ {article.likeCount || 0}
+                          </button>
                         </div>
                         <p id='categoryName'>{article.categoryName}</p>
                         <p style={{marginTop:'-80px',textAlign:'justify'}}>{article.content}</p>

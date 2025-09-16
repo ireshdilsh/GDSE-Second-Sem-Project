@@ -10,6 +10,7 @@ import Dashboard from './pages/Dashboard'
 import Write from './pages/Write'
 import ProtectedRoutes from './utils/ProtectedRoutes'
 import DrarfPage from './pages/DrarfPage'
+import ArticlePage from './pages/ArticlePage'
 
 export default function Controller() {
     return (
@@ -25,6 +26,7 @@ export default function Controller() {
                         <Route path='/writer/dashboard' element={<Dashboard />}></Route>
                         <Route path='/writer/write' element={<Write />}></Route>
                         <Route path='/writer/article/draft' element={<DrarfPage/>}></Route>
+                        <Route path='/article/:id' element={<ArticlePage />}></Route>
                     </Route>
                 </Routes>
             </BrowserRouter>

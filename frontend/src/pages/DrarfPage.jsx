@@ -29,7 +29,7 @@ export default function DrarfPage() {
                 email: parsedData.email || 'user@example.com'
             });
         }
-    }, []);
+    }, [])
 
     const getAllArticlesByAuthor = async () => {
         const id = getUserID();
