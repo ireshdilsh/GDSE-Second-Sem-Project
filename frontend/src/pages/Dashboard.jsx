@@ -35,7 +35,6 @@ export default function Dashboard() {
       });
     }
     
-    // Fetch published articles when component mounts
     fetchPublishedArticles(0);
   }, []);
   
