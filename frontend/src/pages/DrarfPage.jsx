@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, useCallback } from 'react'
 import '../styles/write.css'
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
@@ -8,6 +8,7 @@ export default function DrarfPage() {
     const [loadDraftCards, setLoadDraftCards] = useState([])
     const [showProfileMenu, setShowProfileMenu] = useState(false);
     const [activeCardMenu, setActiveCardMenu] = useState(null); // Track which card's menu is open
+    const [isLoading, setIsLoading] = useState(true); // Add loading state
     const profileRef = useRef(null);
     const cardMenuRef = useRef(null);
     const [userData, setUserData] = useState({
@@ -16,43 +17,69 @@ export default function DrarfPage() {
         username: '@user',
         email: 'user@example.com'
     });
-    useEffect(() => {
-        getAllArticlesByAuthor();
-
-        const storedUserData = localStorage.getItem('userData');
-        if (storedUserData) {
-            const parsedData = JSON.parse(storedUserData);
-            setUserData({
-                firstName: parsedData.firstName || 'User',
-                lastName: parsedData.lastName || '',
-                username: parsedData.username ? `@${parsedData.username}` : '@user',
-                email: parsedData.email || 'user@example.com'
-            });
-        }
-    }, [])
-
-    const getAllArticlesByAuthor = async () => {
+    const getAllArticlesByAuthor = useCallback(async () => {
         const id = getUserID();
-        console.log("getAllArticlesByAuthor" + id);
+        console.log("getAllArticlesByAuthor - User ID:", id);
+
+        if (!id) {
+            console.error('User ID not found in localStorage');
+            setLoadDraftCards([]);
+            return;
+        }
 
         try {
             const resp = await axios.get(`http://localhost:8080/api/v1/articles/all/drafts/${id}`);
-            setLoadDraftCards(resp.data.data)
-            console.log(resp.data.data);
+            console.log('Draft articles response:', resp.data);
+            
+            if (resp.data && resp.data.data) {
+                setLoadDraftCards(resp.data.data);
+            } else {
+                setLoadDraftCards([]);
+            }
         } catch (error) {
-            console.log(error);
+            console.error('Error fetching draft articles:', error);
+            setLoadDraftCards([]);
         }
-    }
+    }, []);
+
+    useEffect(() => {
+        const initializePage = async () => {
+            setIsLoading(true);
+            
+            // Load user data first
+            const storedUserData = localStorage.getItem('userData');
+            if (storedUserData) {
+                const parsedData = JSON.parse(storedUserData);
+                setUserData({
+                    firstName: parsedData.firstName || 'User',
+                    lastName: parsedData.lastName || '',
+                    username: parsedData.username ? `@${parsedData.username}` : '@user',
+                    email: parsedData.email || 'user@example.com'
+                });
+            }
+            
+            // Then load drafts for this user
+            await getAllArticlesByAuthor();
+            setIsLoading(false);
+        };
+        
+        initializePage();
+    }, [getAllArticlesByAuthor])
 
     const getUserID = () => {
         const storedUserData = localStorage.getItem('userData');
-
+        
         if (storedUserData) {
-            const parsedData = JSON.parse(storedUserData);
-            return parsedData.id;
-        } else {
-            return null;
+            try {
+                const parsedData = JSON.parse(storedUserData);
+                // Try different possible field names for user ID
+                return parsedData.id || parsedData.userId || parsedData.user_id || null;
+            } catch (error) {
+                console.error('Error parsing user data:', error);
+                return null;
+            }
         }
+        return null;
     }
 
     const getDisplayName = () => {
@@ -273,48 +300,62 @@ export default function DrarfPage() {
 
 
                 <section id='draft-cards'>
-
-                    {loadDraftCards && loadDraftCards.map((draftCard) => (
-                        <div className="card" key={draftCard.id}>
-                            <div className="card-body">
-                                <div className="card-actions">
-                                    <img 
-                                        src="https://img.icons8.com/?size=100&id=98963&format=png&color=333333" 
-                                        alt="options-icon" 
-                                        className="edit-icon" 
-                                        onClick={(e) => toggleCardMenu(draftCard.id, e)}
-                                    />
-                                    {activeCardMenu === draftCard.id && (
-                                        <div className="card-action-menu" ref={cardMenuRef}>
-                                            <div className="card-action-item" onClick={(e) => handleCardAction('view', draftCard.id, e)}>
-                                                <img src="https://img.icons8.com/?size=100&id=11779&format=png&color=333333" alt="view" />
-                                                <span>View</span>
-                                            </div>
-                                            <div className="card-action-item" onClick={(e) => handleCardAction('edit', draftCard.id, e)}>
-                                                <img src="https://img.icons8.com/?size=100&id=12082&format=png&color=333333" alt="edit" />
-                                                <span>Edit</span>
-                                            </div>
-                                            <div className="card-action-item" onClick={(e) => handleCardAction('publish', draftCard.id, e)}>
-                                                <img src="https://img.icons8.com/?size=100&id=12148&format=png&color=333333" alt="publish" />
-                                                <span>Publish</span>
-                                            </div>
-                                            <div className="card-action-item delete" onClick={(e) => handleCardAction('delete', draftCard.id, e)}>
-                                                <img src="https://img.icons8.com/?size=100&id=67884&format=png&color=333333" alt="delete" />
-                                                <span>Delete</span>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                                <h1>{draftCard.title}</h1>
-                                <h3>{draftCard.subtitle}</h3>
-                                <h5>{draftCard.createdAt}</h5>
-                                <h5>Astimated Reading Time: {draftCard.readTime}</h5>
-                                <p id='categoryName'>{draftCard.categoryName}</p>
-                                <p>{draftCard.content}</p>
-                            </div>
+                    {isLoading ? (
+                        <div className="loading-container">
+                            <div className="loading-spinner"></div>
+                            <p>Loading your drafts...</p>
                         </div>
-                    ))}
-                    {/* </div> */}
+                    ) : loadDraftCards && loadDraftCards.length > 0 ? (
+                        loadDraftCards.map((draftCard) => (
+                            <div className="card" key={draftCard.id}>
+                                <div className="card-body">
+                                    <div className="card-actions">
+                                        <img 
+                                            src="https://img.icons8.com/?size=100&id=98963&format=png&color=333333" 
+                                            alt="options-icon" 
+                                            className="edit-icon" 
+                                            onClick={(e) => toggleCardMenu(draftCard.id, e)}
+                                        />
+                                        {activeCardMenu === draftCard.id && (
+                                            <div className="card-action-menu" ref={cardMenuRef}>
+                                                <div className="card-action-item" onClick={(e) => handleCardAction('view', draftCard.id, e)}>
+                                                    <img src="https://img.icons8.com/?size=100&id=11779&format=png&color=333333" alt="view" />
+                                                    <span>View</span>
+                                                </div>
+                                                <div className="card-action-item" onClick={(e) => handleCardAction('edit', draftCard.id, e)}>
+                                                    <img src="https://img.icons8.com/?size=100&id=12082&format=png&color=333333" alt="edit" />
+                                                    <span>Edit</span>
+                                                </div>
+                                                <div className="card-action-item" onClick={(e) => handleCardAction('publish', draftCard.id, e)}>
+                                                    <img src="https://img.icons8.com/?size=100&id=12148&format=png&color=333333" alt="publish" />
+                                                    <span>Publish</span>
+                                                </div>
+                                                <div className="card-action-item delete" onClick={(e) => handleCardAction('delete', draftCard.id, e)}>
+                                                    <img src="https://img.icons8.com/?size=100&id=67884&format=png&color=333333" alt="delete" />
+                                                    <span>Delete</span>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <h1>{draftCard.title}</h1>
+                                    <h3>{draftCard.subtitle}</h3>
+                                    <h5>{draftCard.createdAt}</h5>
+                                    <h5>Estimated Reading Time: {draftCard.readTime}</h5>
+                                    <p id='categoryName'>{draftCard.categoryName}</p>
+                                    <p>{draftCard.content}</p>
+                                </div>
+                            </div>
+                        ))
+                    ) : (
+                        <div className="no-drafts">
+                            <div className="no-drafts-icon">
+                                <img src="https://img.icons8.com/?size=100&id=12115&format=png&color=CCCCCC" alt="no-drafts" />
+                            </div>
+                            <h3>No drafts found</h3>
+                            <p>You haven't created any drafts yet. Start writing your first article!</p>
+                            <Link to="/writer/write" className="start-writing-btn">Start Writing</Link>
+                        </div>
+                    )}
                 </section>
             </div>
         </div>

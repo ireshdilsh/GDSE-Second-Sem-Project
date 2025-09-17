@@ -1,22 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Charter:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Sohne:wght@300;400;500;600;700&display=swap');
-
-:root{
-
-  /* Medium-style colors */
-  --medium-black: #242424;
-  --medium-dark-gray: #6B6B6B;
-  --medium-gray: #8B8B8B;
-  --medium-light-gray: #F2F2F2;
-  --medium-border: #E6E6E6;
-  --medium-green: #1A8917;
-  --medium-white: #FFFFFF;
-  --medium-hover: #F9F9F9;
-  --medium-bg : #F7F4ED;
-  
-  /* Medium-style fonts */
-  --font-charter: 'Charter', Georgia, serif;
-  --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-sohne: 'Sohne', -apple-system, BlinkMacSystemFont, sans-serif;
+@import "tailwindcss";
+input,textarea,select{
+    outline: none;
 }

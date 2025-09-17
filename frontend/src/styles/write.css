@@ -603,3 +603,82 @@ body {
     background-color: #1a8917;
     color: white;
 }
+
+/* Loading and No Drafts States */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    gap: 20px;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #1a8917;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-container p {
+    font-family: var(--poppins);
+    color: #666;
+    font-size: 16px;
+    margin: 0;
+}
+
+.no-drafts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+    gap: 20px;
+}
+
+.no-drafts-icon img {
+    width: 80px;
+    height: 80px;
+    opacity: 0.5;
+}
+
+.no-drafts h3 {
+    font-family: var(--poppins);
+    color: #333;
+    font-size: 24px;
+    margin: 0;
+}
+
+.no-drafts p {
+    font-family: var(--poppins);
+    color: #666;
+    font-size: 16px;
+    margin: 0;
+    max-width: 400px;
+}
+
+.start-writing-btn {
+    display: inline-block;
+    background-color: #1a8917;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 12px 24px;
+    border-radius: 25px;
+    transition: all 0.2s ease;
+    font-family: var(--poppins);
+}
+
+.start-writing-btn:hover {
+    background-color: #0d5e0f;
+    transform: translateY(-1px);
+}

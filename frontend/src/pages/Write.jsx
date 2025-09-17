@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import '../styles/write.css'
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
 export default function Write() {
+    console.log('Write component is rendering...');
     const navigate = useNavigate();
     const [showProfileMenu, setShowProfileMenu] = useState(false);
     const [userData, setUserData] = useState({
@@ -15,6 +16,7 @@ export default function Write() {
     });
 
     const [loadDraftCards, setLoadDraftCards] = useState([])
+    const [isLoadingDrafts, setIsLoadingDrafts] = useState(false)
 
     const [categories, setCategories] = useState([])
 
@@ -26,23 +28,39 @@ export default function Write() {
             console.log(error)
         }
     }
-    // Load user data from localStorage
+    // Load user data from localStorage and fetch drafts
     useEffect(() => {
+        console.log('Write page useEffect running...');
+        const initializePage = async () => {
+            console.log('Write page initializing...');
+            setIsLoadingDrafts(true);
+            
+            // Load categories
+            await getAllCategories();
+            
+            // Load user data first
+            const storedUserData = localStorage.getItem('userData');
+            console.log('Write page - stored user data:', storedUserData);
+            
+            if (storedUserData) {
+                const parsedData = JSON.parse(storedUserData);
+                console.log('Write page - parsed user data:', parsedData);
+                setUserData({
+                    firstName: parsedData.firstName || 'User',
+                    lastName: parsedData.lastName || '',
+                    username: parsedData.username ? `@${parsedData.username}` : '@user',
+                    email: parsedData.email || 'user@example.com'
+                });
+            }
+            
+            // Then load drafts for this user
+            await getAllArticlesByAuthor();
+            setIsLoadingDrafts(false);
+            console.log('Write page initialization complete');
+        };
 
-        getAllCategories()
-        getAllArticlesByAuthor()
-
-        const storedUserData = localStorage.getItem('userData');
-        if (storedUserData) {
-            const parsedData = JSON.parse(storedUserData);
-            setUserData({
-                firstName: parsedData.firstName || 'User',
-                lastName: parsedData.lastName || '',
-                username: parsedData.username ? `@${parsedData.username}` : '@user',
-                email: parsedData.email || 'user@example.com'
-            });
-        }
-    }, []);
+        initializePage();
+    }, [getAllArticlesByAuthor]);
 
     const getDisplayName = () => {
         return userData.firstName && userData.lastName
@@ -65,29 +83,45 @@ export default function Write() {
         setSubtitle('')
     }
 
-    const getAllArticlesByAuthor = async () => {
+    const getAllArticlesByAuthor = useCallback(async () => {
         const id = getUserID();
-        console.log("getAllArticlesByAuthor" + id);
+        console.log("getAllArticlesByAuthor - User ID:", id);
+
+        if (!id) {
+            console.error('User ID not found in localStorage');
+            setLoadDraftCards([]);
+            return;
+        }
 
         try {
             const resp = await axios.get(`http://localhost:8080/api/v1/articles/all/drafts/${id}`);
-            setLoadDraftCards(resp.data.data)
-            console.log(resp.data.data);
+            console.log('Draft articles response:', resp.data);
+            
+            if (resp.data && resp.data.data) {
+                setLoadDraftCards(resp.data.data);
+            } else {
+                setLoadDraftCards([]);
+            }
         } catch (error) {
-            console.log(error);
+            console.error('Error fetching draft articles:', error);
+            setLoadDraftCards([]);
         }
-
-    }
+    }, []);
 
     const getUserID = () => {
         const storedUserData = localStorage.getItem('userData');
-
+        
         if (storedUserData) {
-            const parsedData = JSON.parse(storedUserData);
-            return parsedData.id;
-        } else {
-            return null;
+            try {
+                const parsedData = JSON.parse(storedUserData);
+                // Try different possible field names for user ID
+                return parsedData.id || parsedData.userId || parsedData.user_id || null;
+            } catch (error) {
+                console.error('Error parsing user data:', error);
+                return null;
+            }
         }
+        return null;
     }
 
     const handleSaveDraft = async (e) => {
@@ -289,7 +323,9 @@ export default function Write() {
                     <div className="draft-info">
                         <img src="https://img.icons8.com/?size=100&id=12115&format=png&color=5D5D5D" alt="draft-icon" />
                         <span>You have saved drafts</span>
-                        <span className="draft-count">{loadDraftCards ? loadDraftCards.length : 0}</span>
+                        <span className="draft-count">
+                            {isLoadingDrafts ? '...' : (loadDraftCards ? loadDraftCards.length : 0)}
+                        </span>
                     </div>
                     <button onClick={() => navigate('/writer/article/draft')} className="view-drafts-btn">View all drafts</button>
                 </div>

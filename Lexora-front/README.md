@@ -1,69 +1,48 @@
-# React + TypeScript + Vite
+Project Overview – “Lexora: Human Stories & Ideas”
+Introduction
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Lexora is a web-based platform inspired by Medium that allows users to read, write, and share articles seamlessly. It serves as a digital space for individuals to express their ideas, stories, and expertise while engaging with a community of readers and writers.
 
-Currently, two official plugins are available:
+Objectives
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Provide a user-friendly interface for publishing and reading articles.
+Enable user authentication for secure access to content creation and management.
+Facilitate community engagement through comments, likes, and following authors.
+Offer personalized content feeds to enhance user experience.
 
-## Expanding the ESLint configuration
+Key Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+User Registration & Login – Secure sign-up and login with email or social media.
+Article Creation & Publishing – Rich-text editor for writing and formatting articles.
+Reading Experience – Clean, distraction-free reading interface with categories and tags.
+Engagement Tools – Likes, comments, bookmarks, and share options.
+User Profiles – Authors can showcase their published work, bio, and followers.
+Search & Recommendations – Users can discover articles based on interests.
+Admin Dashboard – Manage content, users, and platform analytics.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Target Users
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+Writers looking to share articles, essays, or personal stories.
+Readers interested in diverse topics and curated content.
+Businesses or individuals aiming to build a following via thought leadership.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Technology Stack
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Frontend: React + Tailwind CSS
+Backend: Spring Boot with REST APIs
+Database: MySql
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Authentication: JWT or OAuth 2.0
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+
+Expected Outcomes
+
+A scalable content publishing platform with a smooth reading and writing experience.
+A growing community of engaged readers and writers.
+Analytics on readership and engagement for authors.
+
+Future Enhancements
+
+Premium subscriptions for ad-free reading or exclusive content.
+AI-assisted writing suggestions.
+Monetization for authors.

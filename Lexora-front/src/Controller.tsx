@@ -1,27 +1,25 @@
-import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Landing from './pages/Landing'
-import Help from './pages/Help'
-import About from './pages/About'
-import Privacy from './pages/Privacy'
-import Terms from './pages/Terms'
-import Membership from './pages/Membership'
-import Dashboard from './pages/Dashboard'
+// import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import LandingPage from './pages/LandingPage'
+import WriterDashboard from './pages/WriterDashboard'
+import WriteArticle from './pages/WriteArticle'
+import Drafts from './pages/Drafts'
+import Settings from './pages/Settings'
+import MyStories from './pages/MyStories'
+import Contact from './pages/Contact'
 
 export default function Controller() {
   return (
-    <div>
-        <BrowserRouter>
-            <Routes>
-                <Route path='/' element={<Landing/>}/>
-                <Route path='/help' element={<Help/>}/>
-                <Route path='/about' element={<About/>}/>
-                <Route path='/privacy' element={<Privacy/>}/>
-                <Route path='/terms' element={<Terms/>}/>
-                <Route path='/membership' element={<Membership/>}/>
-                <Route path='/dashboard' element={<Dashboard/>}/>
-            </Routes>
-        </BrowserRouter>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/dashboard" element={<WriterDashboard />} />
+        <Route path='/write/article' element={<WriteArticle/>}></Route>
+        <Route path='/drafts' element={<Drafts/>}></Route>
+        <Route path='/my-stories' element={<MyStories/>}></Route>
+        <Route path='/contact' element={<Contact/>}></Route>
+        <Route path='/settings' element={<Settings/>}></Route>
+      </Routes>
+    </Router>
   )
 }
