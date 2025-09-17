@@ -11,7 +11,6 @@ import com.example.lexorabackend.service.ArticleService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -38,7 +37,6 @@ public class ArticleServiceImpl implements ArticleService {
         article.setStatus(Article.ArticleStatus.DRAFT.name());
         article.setEstimatedReadTime(calculateReadTime(articleDto.getContent()));
 
-        // Set relationships
         setRelationships(article, articleDto);
 
         Article savedArticle = articleRepository.save(article);

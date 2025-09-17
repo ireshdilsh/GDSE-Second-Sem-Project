@@ -1,45 +1,105 @@
 package com.example.lexorabackend.service.impl;
 
 import com.example.lexorabackend.dto.AuthDto;
+import com.example.lexorabackend.dto.AuthRequestDto;
 import com.example.lexorabackend.entity.Auth;
 import com.example.lexorabackend.repository.AuthRepository;
+import com.example.lexorabackend.security.jwt.JwtUtil;
 import com.example.lexorabackend.service.AuthService;
-import com.example.lexorabackend.util.APIResponse;
-import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
-
-    private final ModelMapper modelMapper;
 
     @Autowired
     private AuthRepository authRepository;
 
-    Logger logger = LoggerFactory.getLogger(AuthServiceImpl.class);
+    @Autowired
+    private ModelMapper modelMapper;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     @Override
     public AuthDto createAccount(AuthDto authDto) {
-        logger.info("createAccount");
-        return modelMapper.map(authRepository.save(modelMapper.map(authDto, Auth.class)), AuthDto.class);
+        // Check if user already exists
+        if (authRepository.findByEmail(authDto.getEmail()).isPresent()) {
+            throw new RuntimeException("User with this email already exists");
+        }
+
+        // Convert DTO to entity
+        Auth auth = modelMapper.map(authDto, Auth.class);
+
+        // Encode the password
+        auth.setPassword(passwordEncoder.encode(auth.getPassword()));
+
+        // Save the user
+        Auth savedAuth = authRepository.save(auth);
+
+        // Generate JWT token
+        String token = jwtUtil.generateToken(savedAuth.getEmail());
+
+        // Map entity to DTO
+        AuthDto responseDto = modelMapper.map(savedAuth, AuthDto.class);
+        responseDto.setToken(token);
+        responseDto.setPassword(null); // Don't return the password
+
+        return responseDto;
     }
 
     @Override
     public List<AuthDto> getAllAccounts() {
-        logger.info("getAllAccounts");
-        List<Auth> accounts = authRepository.findAll();
+        List<Auth> authors = authRepository.findAll();
+        return authors.stream()
+                .map(auth -> {
+                    AuthDto dto = modelMapper.map(auth, AuthDto.class);
+                    dto.setPassword(null); // Don't return the password
+                    return dto;
+                })
+                .collect(Collectors.toList());
+    }
 
-        if (accounts.isEmpty()) {
-            logger.info("No accounts found");
-            throw new RuntimeException("No accounts found");
-        }
-        return authRepository.findAll().stream().map(account -> modelMapper.map(account, AuthDto.class)).toList();
+    @Override
+    public AuthDto authenticate(AuthRequestDto authRequestDto) {
+        // Authenticate the user
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        authRequestDto.getEmail(),
+                        authRequestDto.getPassword()
+                )
+        );
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        // Retrieve the authenticated user
+        Auth auth = authRepository.findByEmail(authRequestDto.getEmail())
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + authRequestDto.getEmail()));
+
+        // Generate JWT token
+        String token = jwtUtil.generateToken(auth.getEmail());
+
+        // Map entity to DTO
+        AuthDto responseDto = modelMapper.map(auth, AuthDto.class);
+        responseDto.setToken(token);
+        responseDto.setPassword(null); // Don't return the password
+
+        return responseDto;
     }
 }
