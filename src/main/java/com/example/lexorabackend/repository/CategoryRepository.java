@@ -1,9 +1,9 @@
 package com.example.lexorabackend.repository;
 
-import com.example.lexorabackend.entity.Cateory;
+import com.example.lexorabackend.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CategoryRepository extends JpaRepository<Cateory, Long> {
+public interface CategoryRepository extends JpaRepository<Category, Long> {
 }

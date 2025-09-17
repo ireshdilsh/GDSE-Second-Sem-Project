@@ -35,7 +35,7 @@ public class CategoryController {
         logger.info("Getting all categories");
         List<CategoryDto>dtos = categoryService.getAllCategory();
         logger.info("All category request sent");
-        return new ResponseEntity<>(new APIResponse(200, "All category request sent successfully", dtos), HttpStatus.OK);
+        return new ResponseEntity(new APIResponse(200, "All category request sent successfully", dtos), HttpStatus.OK);
     }
 
     @PutMapping("/update/category=/{id}")
@@ -43,7 +43,7 @@ public class CategoryController {
         logger.info("Updating category");
         CategoryDto dto = categoryService.updateCategory(id,categoryDto);
         logger.info("Category updated");
-        return  new ResponseEntity<>(new APIResponse(200, "Category request sent successfully", dto), HttpStatus.OK);
+        return new ResponseEntity<>(new APIResponse(200, "Category request sent successfully", dto), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/category=/{id}")

@@ -1,7 +1,7 @@
 package com.example.lexorabackend.service.impl;
 
 import com.example.lexorabackend.dto.CategoryDto;
-import com.example.lexorabackend.entity.Cateory;
+import com.example.lexorabackend.entity.Category;
 import com.example.lexorabackend.repository.CategoryRepository;
 import com.example.lexorabackend.service.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -27,13 +27,13 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryDto addNewCategory(CategoryDto categoryDto) {
         logger.info("Adding new category");
-        return modelMapper.map(categoryRepository.save(modelMapper.map(categoryDto,Cateory.class)), CategoryDto.class);
+        return modelMapper.map(categoryRepository.save(modelMapper.map(categoryDto, Category.class)), CategoryDto.class);
     }
 
     @Override
     public List<CategoryDto> getAllCategory() {
         logger.info("Getting all categories");
-        List<Cateory>cateories =  categoryRepository.findAll();
+        List<Category>cateories =  categoryRepository.findAll();
 
         if (cateories.isEmpty()) {
             logger.info("No categories found");
@@ -45,13 +45,13 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryDto updateCategory(Long id, CategoryDto categoryDto) {
         logger.info("Updating category");
-        Cateory cateory =  categoryRepository.findById(id).get();
+        Category cateory =  categoryRepository.findById(id).get();
         if (cateory == null) {
             logger.info("No category found");
             throw new RuntimeException("No category found");
         }
         cateory.setCategoryName(categoryDto.getCategoryName());
-        Cateory updateCategory = categoryRepository.save(cateory);
+        Category updateCategory = categoryRepository.save(cateory);
         logger.info("Category updated successfully");
         return modelMapper.map(updateCategory,CategoryDto.class);
     }
@@ -59,7 +59,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryDto deleteCategory(Long id) {
         logger.info("Deleting category");
-        Cateory cateory =  categoryRepository.findById(id).get();
+        Category cateory =  categoryRepository.findById(id).get();
         if (cateory == null) {
             logger.info("No category found");
             throw new RuntimeException("No category found");

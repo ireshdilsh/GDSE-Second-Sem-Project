@@ -27,15 +27,14 @@ public class ContactController {
         logger.info("Contact request received");
         ContactDto dto = contactService.sendContactRequest(contactDto);
         logger.info("Contact request sent");
-        return new ResponseEntity(new APIResponse(200, "Contact request sent successfully", dto),  HttpStatus.CREATED);
+        return new ResponseEntity<>(new APIResponse(200, "Contact request sent successfully", dto), HttpStatus.CREATED);
     }
 
     @GetMapping("/get/all/contacts")
-    public ResponseEntity<List<ContactDto>> getAllContacts() {
+    public ResponseEntity<APIResponse> getAllContacts() {
         logger.info("Fetching all contacts");
         List<ContactDto> contactList = contactService.getAllContacts();
         logger.info("Fetched all contacts");
-        return new ResponseEntity(new APIResponse(200, "Fetched all contacts successfully", contactList), HttpStatus.OK);
+        return new ResponseEntity<>(new APIResponse(200, "Fetched all contacts successfully", contactList), HttpStatus.OK);
     }
-
 }

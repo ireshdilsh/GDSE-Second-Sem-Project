@@ -5,29 +5,59 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Article {
-
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private Long id;
-    private  String title;
+    private UUID id;
+
+    @Column(nullable = false)
+    private String title;
+
     private String subTitle;
 
+    @Column(columnDefinition = "TEXT")
+    private String content;
+
     @ManyToOne
-    @JoinColumn(name = "cate_id")
-    private Cateory cateory;
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     @ManyToOne
     @JoinColumn(name = "author_id")
     private Auth author;
 
-    private String content;
-    private LocalDateTime publishDate;
-    private int readTime;
+    private String status = ArticleStatus.DRAFT.name();
+    private LocalDate createdAt;
+    private LocalDate updatedAt;
+    private LocalDate publishedAt;
+    private int estimatedReadTime;
+    private long viewCount;
+    private long likeCount;
+    private boolean featured;
+    private String coverImage;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDate.now();
+        viewCount = 0;
+        likeCount = 0;
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDate.now();
+    }
+
+    public enum ArticleStatus {
+        DRAFT,
+        PUBLISHED,
+    }
 }

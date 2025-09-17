@@ -4,18 +4,32 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.UUID;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ArticleDto {
-    private Long id;
+    private UUID id;
     private String title;
     private String subTitle;
-    private CategoryDto cateory;
-    private AuthDto author;
     private String content;
-    private LocalDateTime publishDate;
-    private int readTime;
+    private CategoryDto category;
+    private AuthDto author;
+    private String status;
+    private LocalDate createdAt;
+    private LocalDate updatedAt;
+    private LocalDate publishedAt;
+    private int estimatedReadTime;
+    private long viewCount;
+    private long likeCount;
+    private boolean featured;
+    private String coverImage;
+
+    // Additional fields for response
+    private String authorName;
+    private String categoryName;
+    private String formattedDate;
+    private String readingTime;
 }
