@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Entity
 @Data
@@ -15,8 +13,8 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Article {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false)
     private String title;
@@ -41,8 +39,6 @@ public class Article {
     private int estimatedReadTime;
     private long viewCount;
     private long likeCount;
-    private boolean featured;
-    private String coverImage;
 
     @PrePersist
     protected void onCreate() {

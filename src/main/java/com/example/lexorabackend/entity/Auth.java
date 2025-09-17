@@ -15,15 +15,17 @@ import java.util.UUID;
 public class Auth {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String email;
     private String password;
+    @Column(nullable = true)
     private String bio;
+    @Column(nullable = true)
     private String website;
+    @Column(nullable = true)
     private String twitterUsername;
-    private String token;
     private String role = Role.USER.toString();
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
