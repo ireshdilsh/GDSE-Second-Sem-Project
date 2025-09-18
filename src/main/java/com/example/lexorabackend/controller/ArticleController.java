@@ -193,7 +193,7 @@ public class ArticleController {
         );
     }
 
-    // GET DRAFT ARTICLES BY AUTHOR - Get draft articles by author ID
+    // GET DRAFT ARTICLES BY AUTHOR ID
     @GetMapping("/get/draft/articles/author/{authorId}")
     public ResponseEntity<APIResponse> getDraftArticlesByAuthorID(@PathVariable Long authorId) {
         logger.info("Getting draft articles for author ID: {}", authorId);
