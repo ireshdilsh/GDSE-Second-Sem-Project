@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, type NavigateFunction } from 'react-router-dom';
 import { type User } from '../types/User';
+import axios from 'axios';
 
 const MyStories = () => {
     const navigate: NavigateFunction = useNavigate();
@@ -24,10 +25,49 @@ const MyStories = () => {
     };
 
     const [user, setUser] = useState<User | null>(null);
+    const [loadArticles, setLoadArticles] = useState<any[]>([])
 
     useEffect(() => {
         loadProfile()
+        loadAllArticlesAuthorByID()
     }, []);
+
+    const loadAllArticlesAuthorByID = async () => {
+        // Fix: Change 'userDat' to 'userData'
+        const storedUser = localStorage.getItem('userData')
+        if (!storedUser) {
+            alert("You need to logging first get all articles")
+            navigate('/dashboard')
+            return;
+        }
+
+        const parsedUser = JSON.parse(storedUser)
+        const id = parsedUser.id
+
+        try {
+            // Add authorization header with token
+            const token = parsedUser.token;
+            const resp = await axios.get(
+                `http://localhost:8080/api/v1/articles/get/articles/author/${id}`,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                }
+            )
+            setLoadArticles(resp.data.data)
+            console.log(resp.data)
+        } catch (error) {
+            console.error("Error loading articles:", error)
+            if (axios.isAxiosError(error) && error.response?.status === 401) {
+                alert("Your session has expired. Please log in again.")
+                localStorage.removeItem('userData')
+                navigate('/')
+            } else {
+                alert("Cannot load articles by authorID")
+            }
+        }
+    }
 
     const loadProfile = async () => {
         const storedUser = localStorage.getItem('userData');
@@ -273,28 +313,6 @@ const MyStories = () => {
                         </div>
                     </div>
                 </div>
-
-                {/* Empty State */}
-                <div className="text-center py-12">
-                    <div className="mx-auto w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6">
-                        <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                    </div>
-                    <h2 className="text-xl font-semibold text-gray-900 mb-2">No Published Stories Yet</h2>
-                    <p className="text-gray-600 mb-6 max-w-md mx-auto">
-                        Once you publish your first story, it will appear here. Start writing and share your thoughts with the world!
-                    </p>
-                    <button
-                        onClick={() => navigate('/write/article')}
-                        className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 font-medium"
-                    >
-                        <svg className="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                        </svg>
-                        Create New Story
-                    </button>
-                </div>
             </div>
 
             {/* Offcanvas Sidebar */}
@@ -323,7 +341,7 @@ const MyStories = () => {
                         <div className="p-6 border-b border-gray-200">
                             <div className="flex items-center space-x-3 mb-4">
                                 <div className="w-12 h-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white font-semibold text-lg">
-                                   {user?.name ? user.name.substring(0, 2).toUpperCase() : 'JD'}
+                                    {user?.name ? user.name.substring(0, 2).toUpperCase() : 'JD'}
                                 </div>
                                 <div>
                                     <h3 className="font-semibold text-gray-900">{user?.name || 'John Doe'}</h3>
@@ -402,6 +420,69 @@ const MyStories = () => {
                     </div>
                 </div>
             )}
+
+            <section id='my-stories'>
+                {loadArticles.length > 0 ? (
+                    loadArticles.map((article, index) => (
+                        <div key={index} className="mt-20 relative">
+                            <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-8 max-w-4xl mx-auto">
+                                <div className="flex items-center space-x-4 mb-6">
+                                    <div className="w-12 h-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-full"></div>
+                                    <div>
+                                        <h3 className="font-semibold text-gray-900">{article.title}</h3>
+                                        <p className="text-gray-500 text-sm">By {article.authorName} • {article.estimatedReadTime || '5'} min read</p>
+                                    </div>
+                                </div>
+                                <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                                    {article.subtitle || article.subTitle}
+                                </h2>
+                                <p className="text-gray-600 leading-relaxed">
+                                    {article.content?.substring(0, 200)}...
+                                </p>
+                                <div className="flex items-center justify-between mt-6 pt-6 border-t border-gray-100">
+                                    <div className="flex items-center space-x-6">
+                                        <span className="flex items-center space-x-2 text-gray-500">
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                            </svg>
+                                            <span>247</span>
+                                        </span>
+                                        <span className="flex items-center space-x-2 text-gray-500">
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                            </svg>
+                                            <span>42</span>
+                                        </span>
+                                    </div>
+                                    <button className="text-blue-600 hover:text-blue-800 font-medium">Read More</button>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                ) : (
+                    // Keep your existing empty state
+                    <div className="text-center py-12">
+                        <div className="mx-auto w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6">
+                            <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                        </div>
+                        <h2 className="text-xl font-semibold text-gray-900 mb-2">No Published Stories Yet</h2>
+                        <p className="text-gray-600 mb-6 max-w-md mx-auto">
+                            Once you publish your first story, it will appear here. Start writing and share your thoughts with the world!
+                        </p>
+                        <button
+                            onClick={() => navigate('/write/article')}
+                            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 font-medium"
+                        >
+                            <svg className="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                            </svg>
+                            Create New Story
+                        </button>
+                    </div>
+                )}
+            </section>
         </div>
     );
 };

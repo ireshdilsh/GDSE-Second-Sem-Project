@@ -69,7 +69,7 @@ export default function WriteArticle() {
 
   // Write Articles For useStates
   const [title, setTitle] = useState<Write["title"]>('');
-  const [subtitle, setSubtitle] = useState<Write["subtitle"]>('');
+  const [subtitle, setSubtitle] = useState<Write["subTitle"]>('');
   const [content, setContent] = useState<Write["content"]>('');
   const [categoryID, setCategoryID] = useState<Write["categoryID"]>(0);
 
@@ -89,7 +89,7 @@ export default function WriteArticle() {
 
     const newArticle: Write = {
       title,
-      subtitle,
+      subTitle: subtitle,
       content,
       categoryID,
       authorID: id

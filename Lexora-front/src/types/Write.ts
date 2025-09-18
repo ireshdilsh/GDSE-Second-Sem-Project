@@ -1,6 +1,6 @@
 export interface Write {
     title: string
-    subtitle: string
+    subTitle: string
     content:string
     categoryID:number
     authorID:number
