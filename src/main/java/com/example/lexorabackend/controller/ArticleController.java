@@ -34,7 +34,7 @@ public class ArticleController {
         );
     }
 
-    // READ - Get all articles
+    // READ - Get all articles (DRAFT / PUBLISHED)
     @GetMapping("/get/all/articles")
     public ResponseEntity<APIResponse> getAllArticles() {
         logger.info("Getting all articles");
