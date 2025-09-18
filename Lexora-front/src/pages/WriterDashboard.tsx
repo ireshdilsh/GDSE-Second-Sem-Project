@@ -34,16 +34,7 @@ const WriterDashboard = () => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    // Check all localStorage items for debugging
-    console.log("All localStorage items:");
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (key) {
-        console.log(`${key}: ${localStorage.getItem(key)}`);
-      }
-    }
-
-    // Read user data from localStorage
+    
     const storedUser = localStorage.getItem('userData');
     console.log("Retrieved from localStorage:", storedUser);
 
@@ -122,7 +113,7 @@ const WriterDashboard = () => {
                   onClick={toggleProfile}
                   className="w-10 h-10 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white font-semibold hover:shadow-lg transition-all duration-300"
                 >
-                   {user?.name ? user.name.substring(0, 2).toUpperCase() : 'JD'}
+                  {user?.name ? user.name.substring(0, 2).toUpperCase() : 'JD'}
                 </button>
 
                 {/* Profile Dropdown */}
@@ -184,9 +175,12 @@ const WriterDashboard = () => {
                           <span className="text-gray-700">Settings</span>
                         </button>
 
-                        <button onClick={() => { navigate('/') 
+                        <button onClick={() => {
+                          navigate('/')
                           localStorage.removeItem('userData')
-                          console.log('remove userData')}} className="w-full text-left px-4 py-3 rounded-lg hover:bg-red-50 transition-colors flex items-center space-x-3 text-red-600">
+                          console.log('remove userData')
+                        }}
+                          className="w-full text-left px-4 py-3 rounded-lg hover:bg-red-50 transition-colors flex items-center space-x-3 text-red-600">
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                           </svg>
@@ -222,7 +216,7 @@ const WriterDashboard = () => {
           <div className="p-6 border-b border-gray-200">
             <div className="flex items-center space-x-4">
               <div className="w-16 h-16 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                 {user?.name ? user.name.substring(0, 2).toUpperCase() : 'JD'}
+                {user?.name ? user.name.substring(0, 2).toUpperCase() : 'JD'}
               </div>
               <div>
                 <h3 className="text-xl font-bold text-gray-900">{user?.name}</h3>
