@@ -12,7 +12,25 @@ export default function Settings() {
 
     useEffect(() => {
         loadProfile();
+        getAuthorID();
     }, []);
+
+    const getAuthorID = async () => {
+        const storedUser = localStorage.getItem('userData');
+        if (storedUser) {
+            try {
+                const parsedUser: User = JSON.parse(storedUser);
+                console.log("Parsed User in Article page in write:", parsedUser.id);
+                return parsedUser.id;
+            } catch (err) {
+                console.error("Error parsing stored user:", err);
+                localStorage.removeItem("userData");
+                navigate("/");
+            }
+        } else {
+            navigate("/");
+        }
+    }
 
     const loadProfile = async () => {
         const storedUser = localStorage.getItem('userData');
@@ -522,7 +540,7 @@ export default function Settings() {
                                 <div>
                                     <h3 className="font-semibold text-gray-900">{user?.name || 'John Doe'}</h3>
                                     <p className="text-sm text-gray-500">{user?.email || 'john.doe@example.com'}</p>
-                                     <p className="text-sm text-blue-600">Writer since {new Date().getFullYear()}</p>
+                                    <p className="text-sm text-blue-600">Writer since {new Date().getFullYear()}</p>
                                 </div>
                             </div>
                         </div>

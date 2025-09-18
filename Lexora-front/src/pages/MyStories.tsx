@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, type NavigateFunction } from 'react-router-dom';
+import { type User } from '../types/User';
 
 const MyStories = () => {
     const navigate: NavigateFunction = useNavigate();
@@ -21,6 +22,54 @@ const MyStories = () => {
     const closeOffcanvas = () => {
         setIsOffcanvasOpen(false);
     };
+
+    const [user, setUser] = useState<User | null>(null);
+
+    useEffect(() => {
+        loadProfile()
+        getAuthorID()
+    }, []);
+
+    const loadProfile = async () => {
+        const storedUser = localStorage.getItem('userData');
+        console.log("Retrieved from localStorage for WriteArticlePage:", storedUser);
+
+        if (storedUser) {
+            try {
+                const parsedUser: User = JSON.parse(storedUser);
+                console.log("Parsed User in Article page in write:", parsedUser);
+                setUser({
+                    id: parsedUser.id,
+                    email: parsedUser.email,
+                    name: parsedUser.name,
+                    token: parsedUser.token,
+                    isLoggedIn: parsedUser.isLoggedIn
+                })
+            } catch (error) {
+                console.error("Error parsing stored user:", error);
+                localStorage.removeItem("userData");
+                navigate("/");
+            }
+        }
+    }
+
+    const getAuthorID = async () => {
+        const storedUser = localStorage.getItem('userData');
+        if (storedUser) {
+            try {
+                const parsedUser: User = JSON.parse(storedUser);
+                console.log("Parsed User in Article page in write:", parsedUser.id);
+                return parsedUser.id;
+            } catch (err) {
+                console.error("Error parsing stored user:", err);
+                localStorage.removeItem("userData");
+                navigate("/");
+            }
+        } else {
+            navigate("/");
+        }
+    }
+
 
     return (
         <div className="min-h-screen bg-white">
@@ -78,7 +127,7 @@ const MyStories = () => {
                                     onClick={toggleProfile}
                                     className="w-10 h-10 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white font-semibold hover:shadow-lg transition-all duration-300"
                                 >
-                                    JD
+                                    {user?.name ? user.name.substring(0, 2).toUpperCase() : 'JD'}
                                 </button>
 
                                 {/* Profile Dropdown */}
@@ -91,9 +140,9 @@ const MyStories = () => {
                                                     LE
                                                 </div>
                                                 <div>
-                                                    <h3 className="text-xl font-bold text-gray-900">John Doe</h3>
-                                                    <p className="text-gray-600">john.doe@example.com</p>
-                                                    <p className="text-sm text-blue-600">Writer since 2023</p>
+                                                    <h3 className="text-xl font-bold text-gray-900">{user?.name}</h3>
+                                                    <p className="text-gray-600">{user?.email}</p>
+                                                    <p className="text-sm text-blue-600">Writer since {new Date().getFullYear()}</p>
                                                 </div>
                                             </div>
 
@@ -129,22 +178,22 @@ const MyStories = () => {
                                                     <span className="text-gray-700">Drafts</span>
                                                 </button>
 
-                        <button className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center space-x-3">
-                          <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                          </svg>
-                          <span className="text-gray-700">Analytics</span>
-                        </button>
+                                                <button className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center space-x-3">
+                                                    <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                                    </svg>
+                                                    <span className="text-gray-700">Analytics</span>
+                                                </button>
 
-                        <button 
-                          onClick={() => navigate('/contact')}
-                          className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center space-x-3"
-                        >
-                          <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                          </svg>
-                          <span className="text-gray-700">Contact Us</span>
-                        </button>                                                <div className="border-t border-gray-200 my-2"></div>
+                                                <button
+                                                    onClick={() => navigate('/contact')}
+                                                    className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center space-x-3"
+                                                >
+                                                    <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                                    </svg>
+                                                    <span className="text-gray-700">Contact Us</span>
+                                                </button>                                                <div className="border-t border-gray-200 my-2"></div>
 
                                                 <button
                                                     onClick={() => navigate('/settings')}
@@ -271,12 +320,12 @@ const MyStories = () => {
             {isOffcanvasOpen && (
                 <div className="fixed inset-0 z-50">
                     {/* Overlay */}
-                    <div 
+                    <div
                         className="absolute inset-0"
                         style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}
                         onClick={closeOffcanvas}
                     ></div>
-                    
+
                     {/* Sidebar */}
                     <div className="absolute left-0 top-0 h-full w-80 bg-white shadow-xl transform transition-transform duration-300">
                         {/* Close Button */}
@@ -293,11 +342,12 @@ const MyStories = () => {
                         <div className="p-6 border-b border-gray-200">
                             <div className="flex items-center space-x-3 mb-4">
                                 <div className="w-12 h-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white font-semibold text-lg">
-                                    JD
+                                   {user?.name ? user.name.substring(0, 2).toUpperCase() : 'JD'}
                                 </div>
                                 <div>
-                                    <h3 className="font-semibold text-gray-900">John Doe</h3>
-                                    <p className="text-sm text-gray-500">john.doe@example.com</p>
+                                    <h3 className="font-semibold text-gray-900">{user?.name || 'John Doe'}</h3>
+                                    <p className="text-sm text-gray-500">{user?.email || 'john.doe@example.com'}</p>
+                                    <p className="text-xs text-blue-600">Writer since {new Date().getFullYear()}</p>
                                 </div>
                             </div>
                         </div>
@@ -306,7 +356,7 @@ const MyStories = () => {
                         <div className="p-4">
                             <nav className="space-y-2">
                                 <button
-                                    onClick={() => {navigate('/dashboard'); closeOffcanvas();}}
+                                    onClick={() => { navigate('/dashboard'); closeOffcanvas(); }}
                                     className="w-full flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200"
                                 >
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -317,7 +367,7 @@ const MyStories = () => {
                                 </button>
 
                                 <button
-                                    onClick={() => {navigate('/write/article'); closeOffcanvas();}}
+                                    onClick={() => { navigate('/write/article'); closeOffcanvas(); }}
                                     className="w-full flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200"
                                 >
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -327,7 +377,7 @@ const MyStories = () => {
                                 </button>
 
                                 <button
-                                    onClick={() => {navigate('/drafts'); closeOffcanvas();}}
+                                    onClick={() => { navigate('/drafts'); closeOffcanvas(); }}
                                     className="w-full flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200"
                                 >
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -337,7 +387,7 @@ const MyStories = () => {
                                 </button>
 
                                 <button
-                                    onClick={() => {navigate('/my-stories'); closeOffcanvas();}}
+                                    onClick={() => { navigate('/my-stories'); closeOffcanvas(); }}
                                     className="w-full flex items-center space-x-3 px-4 py-3 bg-blue-50 text-blue-700 rounded-lg"
                                 >
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -347,7 +397,7 @@ const MyStories = () => {
                                 </button>
 
                                 <button
-                                    onClick={() => {navigate('/settings'); closeOffcanvas();}}
+                                    onClick={() => { navigate('/settings'); closeOffcanvas(); }}
                                     className="w-full flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200"
                                 >
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -358,7 +408,7 @@ const MyStories = () => {
                                 </button>
 
                                 <button
-                                    onClick={() => {navigate('/contact'); closeOffcanvas();}}
+                                    onClick={() => { navigate('/contact'); closeOffcanvas(); }}
                                     className="w-full flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200"
                                 >
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

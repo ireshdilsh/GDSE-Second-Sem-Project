@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate, type NavigateFunction } from 'react-router-dom'
+import { type User } from '../types/User';
 
 export default function Drafts() {
     const [isProfileOpen, setIsProfileOpen] = useState<boolean>(false);
@@ -22,6 +23,54 @@ export default function Drafts() {
         setIsOffcanvasOpen(false);
     };
 
+    const [user, setUser] = useState<User | null>(null);
+
+    useEffect(() => {
+        loadProfile()
+        getAuthorID()
+    }, []);
+
+    const loadProfile = async () => {
+        const storedUser = localStorage.getItem('userData');
+        console.log("Retrieved from localStorage for WriteArticlePage:", storedUser);
+
+        if (storedUser) {
+            try {
+                const parsedUser: User = JSON.parse(storedUser);
+                console.log("Parsed User in Article page in write:", parsedUser);
+                setUser({
+                    id: parsedUser.id,
+                    email: parsedUser.email,
+                    name: parsedUser.name,
+                    token: parsedUser.token,
+                    isLoggedIn: parsedUser.isLoggedIn
+                })
+            } catch (error) {
+                console.error("Error parsing stored user:", error);
+                localStorage.removeItem("userData");
+                navigate("/");
+            }
+        }
+    }
+
+    const getAuthorID = async () => {
+        const storedUser = localStorage.getItem('userData');
+        if (storedUser) {
+            try {
+                const parsedUser: User = JSON.parse(storedUser);
+                console.log("Parsed User in Article page in write:", parsedUser.id);
+                return parsedUser.id;
+            } catch (err) {
+                console.error("Error parsing stored user:", err);
+                localStorage.removeItem("userData");
+                navigate("/");
+            }
+        } else {
+            navigate("/");
+        }
+    }
+
+
     return (
         <div className="min-h-screen bg-white">
             {/* Header */}
@@ -29,7 +78,7 @@ export default function Drafts() {
                 <div className="max-w-7xl mx-auto px-6 py-4">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-4">
-                            <div className="flex items-center space-x-2 cursor-pointer" onClick={()=>{navigate('/dashboard')}}>
+                            <div className="flex items-center space-x-2 cursor-pointer" onClick={() => { navigate('/dashboard') }}>
                                 <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                                     <span className="text-white font-bold text-lg">L</span>
                                 </div>
@@ -78,7 +127,7 @@ export default function Drafts() {
                                     onClick={toggleProfile}
                                     className="w-10 h-10 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white font-semibold hover:shadow-lg transition-all duration-300"
                                 >
-                                    LE
+                                    {user?.name ? user.name.substring(0, 2).toUpperCase() : 'JD'}
                                 </button>
 
                                 {/* Profile Dropdown */}
@@ -88,12 +137,12 @@ export default function Drafts() {
                                             {/* Profile Header */}
                                             <div className="flex items-center space-x-4 mb-6">
                                                 <div className="w-16 h-16 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                                                    JD
+                                                    {user?.name ? user.name.substring(0, 2).toUpperCase() : 'JD'}
                                                 </div>
                                                 <div>
-                                                    <h3 className="text-xl font-bold text-gray-900">John Doe</h3>
-                                                    <p className="text-gray-600">john.doe@example.com</p>
-                                                    <p className="text-sm text-blue-600">Writer since 2023</p>
+                                                    <h3 className="text-xl font-bold text-gray-900">{user?.name}</h3>
+                                                    <p className="text-gray-600">{user?.email}</p>
+                                                    <p className="text-sm text-blue-600">Writer since {new Date().getFullYear()}</p>
                                                 </div>
                                             </div>
 
@@ -106,7 +155,7 @@ export default function Drafts() {
                                                     <span className="text-gray-700">Overview</span>
                                                 </button>
 
-                                                <button onClick={()=>{navigate('/my-stories')}} className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center space-x-3">
+                                                <button onClick={() => { navigate('/my-stories') }} className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center space-x-3">
                                                     <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                                     </svg>
@@ -120,7 +169,7 @@ export default function Drafts() {
                                                     <span className="text-gray-700">Analytics</span>
                                                 </button>
 
-                                                <button 
+                                                <button
                                                     onClick={() => navigate('/contact')}
                                                     className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center space-x-3"
                                                 >
@@ -132,7 +181,7 @@ export default function Drafts() {
 
                                                 <div className="border-t border-gray-200 my-2"></div>
 
-                                                <button onClick={()=>{navigate('/settings')}} className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center space-x-3">
+                                                <button onClick={() => { navigate('/settings') }} className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center space-x-3">
                                                     <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -140,7 +189,7 @@ export default function Drafts() {
                                                     <span className="text-gray-700">Settings</span>
                                                 </button>
 
-                                                <button onClick={()=>{navigate('/')}} className="w-full text-left px-4 py-3 rounded-lg hover:bg-red-50 transition-colors flex items-center space-x-3 text-red-600">
+                                                <button onClick={() => { navigate('/') }} className="w-full text-left px-4 py-3 rounded-lg hover:bg-red-50 transition-colors flex items-center space-x-3 text-red-600">
                                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                                                     </svg>
@@ -176,12 +225,12 @@ export default function Drafts() {
             {isOffcanvasOpen && (
                 <div className="fixed inset-0 z-50">
                     {/* Overlay */}
-                    <div 
+                    <div
                         className="absolute inset-0"
                         style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}
                         onClick={closeOffcanvas}
                     ></div>
-                    
+
                     {/* Sidebar */}
                     <div className="absolute left-0 top-0 h-full w-80 bg-white shadow-xl transform transition-transform duration-300">
                         {/* Close Button */}
@@ -198,11 +247,12 @@ export default function Drafts() {
                         <div className="p-6 border-b border-gray-200">
                             <div className="flex items-center space-x-3 mb-4">
                                 <div className="w-12 h-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white font-semibold text-lg">
-                                    JD
+                                    {user?.name ? user.name.substring(0, 2).toUpperCase() : 'JD'}
                                 </div>
                                 <div>
-                                    <h3 className="font-semibold text-gray-900">John Doe</h3>
-                                    <p className="text-sm text-gray-500">john.doe@example.com</p>
+                                    <h3 className="font-semibold text-gray-900">{user?.name}</h3>
+                                    <p className="text-sm text-gray-500">{user?.email}</p>
+                                    <p className="text-sm text-blue-600">Writer since {new Date().getFullYear()}</p>
                                 </div>
                             </div>
                         </div>
@@ -211,7 +261,7 @@ export default function Drafts() {
                         <div className="p-4">
                             <nav className="space-y-2">
                                 <button
-                                    onClick={() => {navigate('/dashboard'); closeOffcanvas();}}
+                                    onClick={() => { navigate('/dashboard'); closeOffcanvas(); }}
                                     className="w-full flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200"
                                 >
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -222,7 +272,7 @@ export default function Drafts() {
                                 </button>
 
                                 <button
-                                    onClick={() => {navigate('/write/article'); closeOffcanvas();}}
+                                    onClick={() => { navigate('/write/article'); closeOffcanvas(); }}
                                     className="w-full flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200"
                                 >
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -232,7 +282,7 @@ export default function Drafts() {
                                 </button>
 
                                 <button
-                                    onClick={() => {navigate('/drafts'); closeOffcanvas();}}
+                                    onClick={() => { navigate('/drafts'); closeOffcanvas(); }}
                                     className="w-full flex items-center space-x-3 px-4 py-3 bg-blue-50 text-blue-700 rounded-lg"
                                 >
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -242,7 +292,7 @@ export default function Drafts() {
                                 </button>
 
                                 <button
-                                    onClick={() => {navigate('/my-stories'); closeOffcanvas();}}
+                                    onClick={() => { navigate('/my-stories'); closeOffcanvas(); }}
                                     className="w-full flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200"
                                 >
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -252,7 +302,7 @@ export default function Drafts() {
                                 </button>
 
                                 <button
-                                    onClick={() => {navigate('/settings'); closeOffcanvas();}}
+                                    onClick={() => { navigate('/settings'); closeOffcanvas(); }}
                                     className="w-full flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200"
                                 >
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -263,7 +313,7 @@ export default function Drafts() {
                                 </button>
 
                                 <button
-                                    onClick={() => {navigate('/contact'); closeOffcanvas();}}
+                                    onClick={() => { navigate('/contact'); closeOffcanvas(); }}
                                     className="w-full flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200"
                                 >
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -1,15 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, type NavigateFunction } from 'react-router-dom';
 import axios from "axios";
 import { type ContactDetails } from '../types/ContactDetails';
-// interface ContactDetails {
-//     firstName: string
-//     lastName: string
-//     email: string
-//     phone: number
-//     subject: string
-//     message: string
-// }
+import { type User } from '../types/User';
 
 const Contact = () => {
     const navigate: NavigateFunction = useNavigate();
@@ -73,6 +66,35 @@ const Contact = () => {
         setIsOffcanvasOpen(false);
     };
 
+    const [user, setUser] = useState<User | null>(null);
+
+    useEffect(() => {
+        loadProfile()
+    }, []);
+
+    const loadProfile = async () => {
+        const storedUser = localStorage.getItem('userData');
+        console.log("Retrieved from localStorage for WriteArticlePage:", storedUser);
+
+        if (storedUser) {
+            try {
+                const parsedUser: User = JSON.parse(storedUser);
+                console.log("Parsed User in Article page in write:", parsedUser);
+                setUser({
+                    id: parsedUser.id,
+                    email: parsedUser.email,
+                    name: parsedUser.name,
+                    token: parsedUser.token,
+                    isLoggedIn: parsedUser.isLoggedIn
+                })
+            } catch (error) {
+                console.error("Error parsing stored user:", error);
+                localStorage.removeItem("userData");
+                navigate("/");
+            }
+        }
+    }
+
     return (
         <div className="min-h-screen bg-white">
             {/* Header */}
@@ -129,7 +151,7 @@ const Contact = () => {
                                     onClick={toggleProfile}
                                     className="w-10 h-10 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white font-semibold hover:shadow-lg transition-all duration-300"
                                 >
-                                    LE
+                                    {user?.name ? user.name.substring(0, 2).toUpperCase() : 'JD'}
                                 </button>
 
                                 {/* Profile Dropdown */}
@@ -139,12 +161,12 @@ const Contact = () => {
                                             {/* Profile Header */}
                                             <div className="flex items-center space-x-4 mb-6">
                                                 <div className="w-16 h-16 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                                                    JD
+                                                    {user?.name ? user.name.substring(0, 2).toUpperCase() : 'JD'}
                                                 </div>
                                                 <div>
-                                                    <h3 className="text-xl font-bold text-gray-900">John Doe</h3>
-                                                    <p className="text-gray-600">john.doe@example.com</p>
-                                                    <p className="text-sm text-blue-600">Writer since 2023</p>
+                                                    <h3 className="text-xl font-bold text-gray-900">{user?.name || 'John Doe'}</h3>
+                                                    <p className="text-gray-600">{user?.email || 'john.doe@example.com'}</p>
+                                                    <p className="text-sm text-blue-600">Writer since {new Date().getFullYear()}</p>
                                                 </div>
                                             </div>
 
@@ -454,11 +476,12 @@ const Contact = () => {
                         <div className="p-6 border-b border-gray-200">
                             <div className="flex items-center space-x-3 mb-4">
                                 <div className="w-12 h-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white font-semibold text-lg">
-                                    JD
+                                    {user?.name ? user.name.substring(0, 2).toUpperCase() : 'JD'}
                                 </div>
                                 <div>
-                                    <h3 className="font-semibold text-gray-900">John Doe</h3>
-                                    <p className="text-sm text-gray-500">john.doe@example.com</p>
+                                    <h3 className="font-semibold text-gray-900">{user?.name || 'John Doe'}</h3>
+                                    <p className="text-sm text-gray-500">{user?.email || 'john.doe@example.com'}</p>
+                                    <p className="text-sm text-blue-600">Writer since {new Date().getFullYear()}</p>
                                 </div>
                             </div>
                         </div>
