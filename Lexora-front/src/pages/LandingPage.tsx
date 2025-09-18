@@ -8,14 +8,6 @@ interface login {
   password: string
 }
 
-interface UserResponse {
-  id: string;
-  email: string;
-  name: string;
-  token: string;
-  // Add any other fields your API returns
-}
-
 const LandingPage = () => {
   const [isSignInOpen, setIsSignInOpen] = useState<boolean>(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState<boolean>(false);
@@ -25,33 +17,36 @@ const LandingPage = () => {
   const [email, setEmail] = useState<login["email"]>('')
   const [password, setPassword] = useState<login["password"]>('')
 
-  const loginHandle = async () => {
+  const loginHandle = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
 
     try {
-      const data: login = {
-        email, password
-      }
-      const resp = await axios.post<UserResponse>("http://localhost:8080/api/auth/login", data)
+      const data = { email, password };
+      console.log("Attempting login with:", { email });
+
+      const resp = await axios.post("http://localhost:8080/api/auth/login", data);
       console.log("Login successful, response:", resp.data);
-      alert("Sign in Success!")
-      localStorage.setItem('user', JSON.stringify({
-        id: resp.data.id,
-        email: resp.data.email,
-        name: resp.data.name,
-        token: resp.data.token,
+
+      // Create user object with ID (use a default ID if not provided by API)
+      const userData = {
+        id: resp.data.data.id.toString(), // Convert to string to be consistent
+        name: resp.data.data.name,
+        email: resp.data.data.email,
+        token: resp.data.data.token || 'temp-token',
         isLoggedIn: true
-      }));
-      setIsSignInOpen(false);
-      setEmail('');
-      setPassword('');
-      navigate('/dashboard')
+      };
 
+      // Store in localStorage with the key 'userData'
+      localStorage.setItem('userData', JSON.stringify(userData));
+      console.log("User data saved to localStorage:", userData);
+
+      alert("Sign in Success!");
+      navigate('/dashboard');
     } catch (error) {
-      console.log(error)
-      alert("Sometihng Went Wrong")
+      console.error("Login error:", error);
+      alert("Something Went Wrong");
     }
-  }
-
+  };
 
   const openSignIn = () => {
     setIsSignInOpen(true);

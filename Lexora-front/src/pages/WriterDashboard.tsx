@@ -32,31 +32,42 @@ const WriterDashboard = () => {
   const navigate: NavigateFunction = useNavigate()
 
   const [user, setUser] = useState<User | null>(null);
-  // const navigate = useNavigate();
 
   useEffect(() => {
+    // Check all localStorage items for debugging
+    console.log("All localStorage items:");
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key) {
+        console.log(`${key}: ${localStorage.getItem(key)}`);
+      }
+    }
+
     // Read user data from localStorage
-    const storedUser = localStorage.getItem("user");
+    const storedUser = localStorage.getItem('userData');
+    console.log("Retrieved from localStorage:", storedUser);
 
     if (storedUser) {
       try {
         const parsedUser: User = JSON.parse(storedUser);
-        setUser(parsedUser);
+        console.log("Parsed user data:", parsedUser);
+        setUser({
+          id: parsedUser.id,
+          email: parsedUser.email,
+          name: parsedUser.name,
+          token: parsedUser.token,
+          isLoggedIn: parsedUser.isLoggedIn
+        });
       } catch (err) {
         console.error("Error parsing stored user:", err);
-        localStorage.removeItem("user");
-        navigate("/"); // back to login
+        localStorage.removeItem("userData");
+        navigate("/");
       }
     } else {
-      // No user logged in
-      navigate("/"); // redirect to login
+      console.log("No user data found in localStorage");
+      navigate("/");
     }
   }, [navigate]);
-
-  if (!user) {
-    return <div>Loading...</div>;
-  }
-
 
   return (
     <div className="min-h-screen bg-white">
@@ -111,7 +122,7 @@ const WriterDashboard = () => {
                   onClick={toggleProfile}
                   className="w-10 h-10 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white font-semibold hover:shadow-lg transition-all duration-300"
                 >
-                  LE
+                   {user?.name ? user.name.substring(0, 2).toUpperCase() : 'JD'}
                 </button>
 
                 {/* Profile Dropdown */}
@@ -124,8 +135,8 @@ const WriterDashboard = () => {
                           JD
                         </div>
                         <div>
-                          <h3 className="text-xl font-bold text-gray-900">{user.name}</h3>
-                          <p className="text-gray-600">{user.email}</p>
+                          <h3 className="text-xl font-bold text-gray-900">{user?.name}</h3>
+                          <p className="text-gray-600">{user?.email}</p>
                           <p className="text-sm text-blue-600">Writer since 2023</p>
                         </div>
                       </div>
@@ -209,11 +220,11 @@ const WriterDashboard = () => {
           <div className="p-6 border-b border-gray-200">
             <div className="flex items-center space-x-4">
               <div className="w-16 h-16 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                JD
+                 {user?.name ? user.name.substring(0, 2).toUpperCase() : 'JD'}
               </div>
               <div>
-                <h3 className="text-xl font-bold text-gray-900">John Doe</h3>
-                <p className="text-gray-600">john.doe@example.com</p>
+                <h3 className="text-xl font-bold text-gray-900">{user?.name}</h3>
+                <p className="text-gray-600">{user?.email}</p>
                 <p className="text-sm text-blue-600">Writer since 2023</p>
               </div>
             </div>
