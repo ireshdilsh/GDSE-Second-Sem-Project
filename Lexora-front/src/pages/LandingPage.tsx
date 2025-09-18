@@ -8,14 +8,52 @@ interface login {
   password: string
 }
 
+interface Register {
+  name: string
+  email: string
+  password: string
+}
+
 const LandingPage = () => {
   const [isSignInOpen, setIsSignInOpen] = useState<boolean>(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState<boolean>(false);
 
   const navigate: NavigateFunction = useNavigate()
 
+  // For Login Form
   const [email, setEmail] = useState<login["email"]>('')
   const [password, setPassword] = useState<login["password"]>('')
+
+  // For Register Form
+  const [name, setName] = useState<Register["name"]>('')
+  const [registerEmail, setRegisterEmail] = useState<Register["email"]>('')
+  const [registerPassword, setRegisterPassword] = useState<Register["password"]>('')
+  const [confirmPassword, setConfirmPassword] = useState<string>('')
+
+  const registerHandle = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    if (confirmPassword != registerPassword) {
+      alert("Password and Confirm Password do not match!");
+      return;
+    }
+
+    const data: Register = {
+      name,
+      email: registerEmail,
+      password: registerPassword
+    }
+
+    try {
+      const resp = await axios.post<Register>("http://localhost:8080/api/auth/register", data);
+      console.log("Registration successful, response:", resp.data);
+      alert("Registration successful!");
+      openSignIn();
+    } catch (error) {
+      console.error("Registration error:", error);
+      alert("Something went wrong");
+    }
+  }
 
   const loginHandle = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -681,6 +719,8 @@ const LandingPage = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
                 <input
+                  value={name}
+                  onChange={(e) => { setName(e.target.value) }}
                   type="text"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                   placeholder="Enter your full name"
@@ -690,6 +730,8 @@ const LandingPage = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
                 <input
+                  value={registerEmail}
+                  onChange={(e) => { setRegisterEmail(e.target.value) }}
                   type="email"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                   placeholder="Enter your email"
@@ -699,6 +741,8 @@ const LandingPage = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
                 <input
+                  value={registerPassword}
+                  onChange={(e) => { setRegisterPassword(e.target.value) }}
                   type="password"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                   placeholder="Create a password"
@@ -708,6 +752,8 @@ const LandingPage = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
                 <input
+                  value={confirmPassword}
+                  onChange={(e) => { setConfirmPassword(e.target.value) }}
                   type="password"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                   placeholder="Confirm your password"
@@ -725,7 +771,8 @@ const LandingPage = () => {
               </div>
 
               <button
-                type="submit"
+                onClick={registerHandle}
+                type="button"
                 className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105"
               >
                 Create Account
