@@ -2,17 +2,19 @@ import { useState } from 'react';
 import '../style/landing.css'
 import { type NavigateFunction, useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { type Register } from '../types/Register';
+import { type Login } from '../types/Login';
 
-interface login {
-  email: string
-  password: string
-}
+// interface login {
+//   email: string
+//   password: string
+// }
 
-interface Register {
-  name: string
-  email: string
-  password: string
-}
+// interface Register {
+//   name: string
+//   email: string
+//   password: string
+// }
 
 const LandingPage = () => {
   const [isSignInOpen, setIsSignInOpen] = useState<boolean>(false);
@@ -21,8 +23,8 @@ const LandingPage = () => {
   const navigate: NavigateFunction = useNavigate()
 
   // For Login Form
-  const [email, setEmail] = useState<login["email"]>('')
-  const [password, setPassword] = useState<login["password"]>('')
+  const [email, setEmail] = useState<Login["email"]>('')
+  const [password, setPassword] = useState<Login["password"]>('')
 
   // For Register Form
   const [name, setName] = useState<Register["name"]>('')
@@ -33,7 +35,7 @@ const LandingPage = () => {
   const registerHandle = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    if (confirmPassword != registerPassword) {
+    if (confirmPassword !== registerPassword) {
       alert("Password and Confirm Password do not match!");
       return;
     }

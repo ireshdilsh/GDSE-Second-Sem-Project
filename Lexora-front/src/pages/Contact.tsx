@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate, type NavigateFunction } from 'react-router-dom';
 import axios from "axios";
-
-
-interface ContactDetails {
-    firstName: string
-    lastName: string
-    email: string
-    phone: number
-    subject: string
-    message: string
-}
+import { type ContactDetails } from '../types/ContactDetails';
+// interface ContactDetails {
+//     firstName: string
+//     lastName: string
+//     email: string
+//     phone: number
+//     subject: string
+//     message: string
+// }
 
 const Contact = () => {
     const navigate: NavigateFunction = useNavigate();
