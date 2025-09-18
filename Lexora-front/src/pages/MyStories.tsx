@@ -427,7 +427,9 @@ const MyStories = () => {
                         <div key={index} className="mt-20 relative">
                             <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-8 max-w-4xl mx-auto">
                                 <div className="flex items-center space-x-4 mb-6">
-                                    <div className="w-12 h-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-full"></div>
+                                    <div className="w-12 h-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white font-semibold">
+                                         {user?.name ? user.name.substring(0, 2).toUpperCase() : 'JD'}
+                                    </div>
                                     <div>
                                         <h3 className="font-semibold text-gray-900">{article.title}</h3>
                                         <p className="text-gray-500 text-sm">By {article.authorName} • {article.estimatedReadTime || '5'} min read</p>
