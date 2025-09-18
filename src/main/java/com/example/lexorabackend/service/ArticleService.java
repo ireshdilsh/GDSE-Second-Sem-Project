@@ -19,6 +19,7 @@ public interface ArticleService {
     // Filtering and Search
     List<ArticleDto> getPublishedArticles();
     List<ArticleDto> getArticlesByAuthor(Long authorId);
+    List<ArticleDto> getDraftArticlesByAuthorID(Long authorId);
     List<ArticleDto> getArticlesByCategory(Long categoryId);
     List<ArticleDto> searchArticles(String query);
     List<ArticleDto> getTrendingArticles();

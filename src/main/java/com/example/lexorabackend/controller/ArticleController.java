@@ -192,4 +192,16 @@ public class ArticleController {
             HttpStatus.OK
         );
     }
+
+    // GET DRAFT ARTICLES BY AUTHOR - Get draft articles by author ID
+    @GetMapping("/get/draft/articles/author/{authorId}")
+    public ResponseEntity<APIResponse> getDraftArticlesByAuthorID(@PathVariable Long authorId) {
+        logger.info("Getting draft articles for author ID: {}", authorId);
+        List<ArticleDto> dtos = articleService.getDraftArticlesByAuthorID(authorId);
+        logger.info("Retrieved {} draft articles for author", dtos.size());
+        return new ResponseEntity<>(
+            new APIResponse(200, "Author's draft articles retrieved successfully", dtos),
+            HttpStatus.OK
+        );
+    }
 }

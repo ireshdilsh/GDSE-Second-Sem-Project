@@ -173,6 +173,15 @@ public class ArticleServiceImpl implements ArticleService {
         articleRepository.decrementLikeCount(id);
     }
 
+    @Override
+    public List<ArticleDto> getDraftArticlesByAuthorID(Long authorId) {
+        List<Article> articles = articleRepository.findByAuthor_IdAndStatusOrderByCreatedAtDesc(
+                authorId, Article.ArticleStatus.DRAFT.name());
+        return articles.stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
     // Helper Methods
     private void setRelationships(Article article, ArticleDto articleDto) {
         if (articleDto.getCategoryID() != null) {
