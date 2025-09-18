@@ -27,7 +27,6 @@ const LandingPage = () => {
       const resp = await axios.post("http://localhost:8080/api/auth/login", data);
       console.log("Login successful, response:", resp.data);
 
-      // Create user object with ID (use a default ID if not provided by API)
       const userData = {
         id: resp.data.data.id.toString(), // Convert to string to be consistent
         name: resp.data.data.name,
@@ -36,7 +35,6 @@ const LandingPage = () => {
         isLoggedIn: true
       };
 
-      // Store in localStorage with the key 'userData'
       localStorage.setItem('userData', JSON.stringify(userData));
       console.log("User data saved to localStorage:", userData);
 
