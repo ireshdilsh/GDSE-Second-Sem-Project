@@ -99,7 +99,7 @@ const MyStories = () => {
                 <div className="max-w-7xl mx-auto px-6 py-4">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-4">
-                            <div className="flex items-center space-x-2">
+                            <div className="flex items-center space-x-2 cursor-pointer" onClick={()=>{navigate('/dashboard')}}>
                                 <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                                     <span className="text-white font-bold text-lg">L</span>
                                 </div>
@@ -424,7 +424,7 @@ const MyStories = () => {
             <section id='my-stories'>
                 {loadArticles.length > 0 ? (
                     loadArticles.map((article, index) => (
-                        <div key={index} className="mt-20 relative">
+                        <div key={index} className="mt-5 relative">
                             <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-8 max-w-4xl mx-auto">
                                 <div className="flex items-center space-x-4 mb-6">
                                     <div className="w-12 h-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white font-semibold">
@@ -441,23 +441,6 @@ const MyStories = () => {
                                 <p className="text-gray-600 leading-relaxed">
                                     {article.content?.substring(0, 200)}...
                                 </p>
-                                <div className="flex items-center justify-between mt-6 pt-6 border-t border-gray-100">
-                                    <div className="flex items-center space-x-6">
-                                        <span className="flex items-center space-x-2 text-gray-500">
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                                            </svg>
-                                            <span>247</span>
-                                        </span>
-                                        <span className="flex items-center space-x-2 text-gray-500">
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                                            </svg>
-                                            <span>42</span>
-                                        </span>
-                                    </div>
-                                    <button className="text-blue-600 hover:text-blue-800 font-medium">Read More</button>
-                                </div>
                             </div>
                         </div>
                     ))

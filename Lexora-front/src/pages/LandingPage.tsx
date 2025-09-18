@@ -5,17 +5,6 @@ import axios from 'axios';
 import { type Register } from '../types/Register';
 import { type Login } from '../types/Login';
 
-// interface login {
-//   email: string
-//   password: string
-// }
-
-// interface Register {
-//   name: string
-//   email: string
-//   password: string
-// }
-
 const LandingPage = () => {
   const [isSignInOpen, setIsSignInOpen] = useState<boolean>(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState<boolean>(false);

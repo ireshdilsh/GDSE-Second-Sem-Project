@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, type NavigateFunction } from 'react-router-dom'
 import { type User } from '../types/User';
+import axios from 'axios';
 
 export default function Drafts() {
     const [isProfileOpen, setIsProfileOpen] = useState<boolean>(false);
@@ -27,7 +28,36 @@ export default function Drafts() {
 
     useEffect(() => {
         loadProfile()
+        loadDraftArticlesWithAuthorID()
     }, []);
+
+    const [draftArticles, setDraftArticles] = useState<any[]>([])
+
+    const loadDraftArticlesWithAuthorID = async () => {
+        const storedUser = localStorage.getItem('userData');
+
+        if (!storedUser) {
+            alert("You need to be logged in to save articles");
+            navigate('/');
+            return;
+        }
+
+        const parsedUser = JSON.parse(storedUser);
+        const id = parsedUser.id;
+        const token = parsedUser.token;
+
+        try {
+            const resp = await axios.get(`http://localhost:8080/api/v1/articles/get/draft/articles/author/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            setDraftArticles(resp.data.data)
+            console.log(resp.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const loadProfile = async () => {
         const storedUser = localStorage.getItem('userData');
@@ -49,6 +79,28 @@ export default function Drafts() {
                 localStorage.removeItem("userData");
                 navigate("/");
             }
+        }
+    }
+
+    const publishArticle = async(articleId:number) => {
+        try {
+            const resp = await axios.put(`http://localhost:8080/api/v1/articles/publish/article/${articleId}`)
+            console.log(resp)
+            alert('Article published successfully')
+            loadDraftArticlesWithAuthorID()
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const deleteArticle = async(articleId:number) => {
+        try{
+            const resp = await axios.delete(`http://localhost:8080/api/v1/articles/delete/article/${articleId}`)
+            console.log(resp)
+            alert('Article Delete Successfully !')
+            loadDraftArticlesWithAuthorID()
+        }catch (error) {
+            console.log(error)
         }
     }
 
@@ -201,6 +253,31 @@ export default function Drafts() {
                     <p className="text-gray-600">Manage your draft articles - edit, publish, or delete them</p>
                 </div>
             </div>
+
+            {draftArticles && draftArticles.map((article) => (
+                <div className="mt-5 relative">
+                    <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-8 max-w-4xl mx-auto">
+                        <div className="flex items-center space-x-4 mb-6">
+                            <div className="w-12 h-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-full"></div>
+                            <div>
+                                <h3 className="font-semibold text-gray-900">{article.title}</h3>
+                                <p className="text-gray-500 text-sm">By {article.authorName} • {article.estimatedReadTime} min read</p>
+                            </div>
+                        </div>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                            {article.subTitle}
+                        </h2>
+                        <p className="text-gray-600 leading-relaxed">
+                            {article.content}
+                        </p>
+                        <div className="flex items-center justify-between mt-6 pt-6 border-t border-gray-100">
+                            <button className="text-blue-600 hover:text-blue-800 font-medium" onClick={()=>publishArticle(article.id)}>Publish Article</button>
+                            <button className='text-red-500 hover:text-red-700' onClick={()=>deleteArticle(article.id)}>Delete Article</button>
+                            <p className='text-gray-500 text-sm'>Created at : {article.createdAt}</p>
+                        </div>
+                    </div>
+                </div>
+            ))}
 
             {/* Offcanvas Sidebar */}
             {isOffcanvasOpen && (

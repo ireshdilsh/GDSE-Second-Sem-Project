@@ -450,6 +450,7 @@ const WriterDashboard = () => {
                   <div>
                     <h3 className="font-semibold text-gray-900">{article.title}</h3>
                     <p className="text-gray-500 text-sm">By {article.authorName} • {article.estimatedReadTime || '5'} min read</p>
+                    <p>{article.publishedAt}</p>
                   </div>
                 </div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">
