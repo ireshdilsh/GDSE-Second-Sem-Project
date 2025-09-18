@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, type NavigateFunction } from 'react-router-dom';
-
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  token: string;
-  isLoggedIn: boolean;
-}
+import {type User} from '../types/User';
 
 const WriterDashboard = () => {
   const [isProfileOpen, setIsProfileOpen] = useState<boolean>(false);

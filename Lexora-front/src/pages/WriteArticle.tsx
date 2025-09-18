@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, type NavigateFunction } from 'react-router-dom'
 import '../style/WriteArticle.css'
+import { type User } from '../types/User';
 import axios from 'axios';
 
 export default function WriteArticle() {
@@ -9,16 +10,59 @@ export default function WriteArticle() {
   const navigate: NavigateFunction = useNavigate();
 
   const [categories, setCategories] = useState<any[]>([]);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     getAllCategories();
+    getAuthorID()
+    loadProfile()
   }, []);
+
+  const loadProfile = async () => {
+    const storedUser = localStorage.getItem('userData');
+    console.log("Retrieved from localStorage for WriteArticlePage:", storedUser);
+
+    if (storedUser) {
+      try {
+        const parsedUser: User = JSON.parse(storedUser);
+        console.log("Parsed User in Article page in write:", parsedUser);
+        setUser({
+          id: parsedUser.id,
+          email: parsedUser.email,
+          name: parsedUser.name,
+          token: parsedUser.token,
+          isLoggedIn: parsedUser.isLoggedIn
+        })
+      } catch (error) {
+        console.error("Error parsing stored user:", error);
+        localStorage.removeItem("userData");
+        navigate("/");
+      }
+    }
+  }
+
+  const getAuthorID = async () => {
+    const storedUser = localStorage.getItem('userData');
+    if (storedUser) {
+      try {
+        const parsedUser: User = JSON.parse(storedUser);
+        console.log("Parsed User in Article page in write:", parsedUser.id);
+        return parsedUser.id;
+      } catch (err) {
+        console.error("Error parsing stored user:", err);
+        localStorage.removeItem("userData");
+        navigate("/");
+      }
+    } else {
+      navigate("/");
+    }
+  }
 
   const getAllCategories = async () => {
     try {
-        const resp = await axios.get("http://localhost:8080/api/v1/category/get/all/categories")
-        setCategories(resp.data.data);
-        console.log(resp.data.data);
+      const resp = await axios.get("http://localhost:8080/api/v1/category/get/all/categories")
+      setCategories(resp.data.data);
+      console.log(resp.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -57,7 +101,7 @@ export default function WriteArticle() {
                 </svg>
               </button>
 
-              <div className="flex items-center space-x-2 cursor-pointer" onClick={()=>{navigate('/dashboard')}}>
+              <div className="flex items-center space-x-2 cursor-pointer" onClick={() => { navigate('/dashboard') }}>
                 <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-lg">L</span>
                 </div>
@@ -86,7 +130,7 @@ export default function WriteArticle() {
                   onClick={toggleProfile}
                   className="w-10 h-10 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white font-semibold hover:shadow-lg transition-all duration-300"
                 >
-                  JD
+                  {user?.name ? user.name.substring(0, 2).toUpperCase() : 'JD'}
                 </button>
 
                 {/* Profile Dropdown */}
@@ -96,12 +140,12 @@ export default function WriteArticle() {
                       {/* Profile Header */}
                       <div className="flex items-center space-x-4 mb-6">
                         <div className="w-16 h-16 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                          JD
+                          {user?.name ? user.name.substring(0, 2).toUpperCase() : 'JD'}
                         </div>
                         <div>
-                          <h3 className="text-xl font-bold text-gray-900">John Doe</h3>
-                          <p className="text-gray-600">john.doe@example.com</p>
-                          <p className="text-sm text-blue-600">Writer since 2023</p>
+                          <h3 className="text-xl font-bold text-gray-900">{user?.name}</h3>
+                          <p className="text-gray-600">{user?.email}</p>
+                          <p className="text-sm text-blue-600">Writer since {new Date().getFullYear()}</p>
                         </div>
                       </div>
 
@@ -114,7 +158,7 @@ export default function WriteArticle() {
                           <span className="text-gray-700">Overview</span>
                         </button>
 
-                        <button onClick={()=>{navigate('/my-stories')}} className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center space-x-3">
+                        <button onClick={() => { navigate('/my-stories') }} className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center space-x-3">
                           <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                           </svg>
@@ -128,7 +172,7 @@ export default function WriteArticle() {
                           <span className="text-gray-700">Analytics</span>
                         </button>
 
-                        <button 
+                        <button
                           onClick={() => navigate('/contact')}
                           className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center space-x-3"
                         >
@@ -140,7 +184,7 @@ export default function WriteArticle() {
 
                         <div className="border-t border-gray-200 my-2"></div>
 
-                        <button onClick={()=>{navigate('/settings')}} className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center space-x-3">
+                        <button onClick={() => { navigate('/settings') }} className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center space-x-3">
                           <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -148,7 +192,12 @@ export default function WriteArticle() {
                           <span className="text-gray-700">Settings</span>
                         </button>
 
-                        <button onClick={()=>{navigate('/')}} className="w-full text-left px-4 py-3 rounded-lg hover:bg-red-50 transition-colors flex items-center space-x-3 text-red-600">
+                        <button onClick={() => {
+                          navigate('/')
+                          localStorage.removeItem('userData')
+                          console.log('remove userData')
+                        }}
+                          className="w-full text-left px-4 py-3 rounded-lg hover:bg-red-50 transition-colors flex items-center space-x-3 text-red-600">
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                           </svg>
@@ -184,12 +233,12 @@ export default function WriteArticle() {
           <div className="p-6 border-b border-gray-200">
             <div className="flex items-center space-x-4">
               <div className="w-16 h-16 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                LE
+                {user?.name ? user.name.substring(0, 2).toUpperCase() : 'JD'}
               </div>
               <div>
-                <h3 className="text-xl font-bold text-gray-900">John Doe</h3>
-                <p className="text-gray-600">john.doe@example.com</p>
-                <p className="text-sm text-blue-600">Writer since 2023</p>
+                <h3 className="text-xl font-bold text-gray-900">{user?.name}</h3>
+                <p className="text-gray-600">{user?.email}</p>
+                <p className="text-sm text-blue-600">Writer since {new Date().getFullYear()}</p>
               </div>
             </div>
           </div>
