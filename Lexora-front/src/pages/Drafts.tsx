@@ -27,7 +27,6 @@ export default function Drafts() {
 
     useEffect(() => {
         loadProfile()
-        getAuthorID()
     }, []);
 
     const loadProfile = async () => {
@@ -52,24 +51,6 @@ export default function Drafts() {
             }
         }
     }
-
-    const getAuthorID = async () => {
-        const storedUser = localStorage.getItem('userData');
-        if (storedUser) {
-            try {
-                const parsedUser: User = JSON.parse(storedUser);
-                console.log("Parsed User in Article page in write:", parsedUser.id);
-                return parsedUser.id;
-            } catch (err) {
-                console.error("Error parsing stored user:", err);
-                localStorage.removeItem("userData");
-                navigate("/");
-            }
-        } else {
-            navigate("/");
-        }
-    }
-
 
     return (
         <div className="min-h-screen bg-white">

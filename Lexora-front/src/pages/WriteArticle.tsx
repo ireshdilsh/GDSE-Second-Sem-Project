@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, type NavigateFunction } from 'react-router-dom'
 import '../style/WriteArticle.css'
 import { type User } from '../types/User';
+import { type Write } from '../types/Write';
 import axios from 'axios';
 
 export default function WriteArticle() {
@@ -14,7 +15,6 @@ export default function WriteArticle() {
 
   useEffect(() => {
     getAllCategories();
-    getAuthorID()
     loadProfile()
   }, []);
 
@@ -38,23 +38,6 @@ export default function WriteArticle() {
         localStorage.removeItem("userData");
         navigate("/");
       }
-    }
-  }
-
-  const getAuthorID = async () => {
-    const storedUser = localStorage.getItem('userData');
-    if (storedUser) {
-      try {
-        const parsedUser: User = JSON.parse(storedUser);
-        console.log("Parsed User in Article page in write:", parsedUser.id);
-        return parsedUser.id;
-      } catch (err) {
-        console.error("Error parsing stored user:", err);
-        localStorage.removeItem("userData");
-        navigate("/");
-      }
-    } else {
-      navigate("/");
     }
   }
 
@@ -83,6 +66,65 @@ export default function WriteArticle() {
   const closeOffcanvas = () => {
     setIsOffcanvasOpen(false);
   };
+
+  // Write Articles For useStates
+  const [title, setTitle] = useState<Write["title"]>('');
+  const [subtitle, setSubtitle] = useState<Write["subtitle"]>('');
+  const [content, setContent] = useState<Write["content"]>('');
+  const [categoryID, setCategoryID] = useState<Write["categoryID"]>(0);
+
+  const saveArticleInDraft = async (e: any) => {
+    e.preventDefault();
+
+    const storedUser = localStorage.getItem('userData');
+    if (!storedUser) {
+      alert("You need to be logged in to save articles");
+      navigate('/');
+      return;
+    }
+
+    const parsedUser = JSON.parse(storedUser);
+    const id = parsedUser.id;
+    const token = parsedUser.token;
+
+    const newArticle: Write = {
+      title,
+      subtitle,
+      content,
+      categoryID,
+      authorID: id
+    }
+
+    try {
+      // Include the authentication token in the request header
+      const resp = await axios.post<Write>(
+        "http://localhost:8080/api/v1/articles/add/new/article",
+        newArticle,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      console.log(resp.data)
+      alert("Article saved in Drafts successfully!")
+      setTitle('');
+      setSubtitle('');
+      setContent('');
+      setCategoryID(0);
+    } catch (error) {
+      console.log(error);
+      if (axios.isAxiosError(error) && error.response?.status === 401) {
+        alert("Your session has expired. Please log in again.");
+        localStorage.removeItem('userData');
+        navigate('/');
+      } else {
+        alert("Something went wrong while saving the article in Drafts.");
+      }
+    }
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -355,6 +397,8 @@ export default function WriteArticle() {
               Article Title
             </label>
             <input
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
               type="text"
               id="title"
               name="title"
@@ -368,6 +412,8 @@ export default function WriteArticle() {
               Subtitle
             </label>
             <input
+              value={subtitle}
+              onChange={(e) => setSubtitle(e.target.value)}
               type="text"
               id="subtitle"
               name="subtitle"
@@ -381,13 +427,15 @@ export default function WriteArticle() {
               Category
             </label>
             <select
+              value={categoryID || ""}
+              onChange={(e) => setCategoryID(Number(e.target.value))}
               id="category"
               name="category"
               className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl text-lg bg-gray-50 focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 focus:bg-white transition-all duration-300 hover:border-gray-300 hover:bg-white cursor-pointer"
             >
               <option value="">Select a category</option>
               {categories.map((category) => (
-                <option key={category.id}>
+                <option key={category.id} value={category.id}>
                   {category.categoryName}
                 </option>
               ))}
@@ -399,6 +447,8 @@ export default function WriteArticle() {
               Article Content
             </label>
             <textarea
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
               id="content"
               name="content"
               rows={16}
@@ -409,6 +459,7 @@ export default function WriteArticle() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-end pt-8 border-t border-gray-200">
             <button
+              onClick={saveArticleInDraft}
               type="button"
               className="px-8 py-3 bg-gray-100 text-gray-700 font-semibold rounded-xl border-2 border-gray-200 hover:bg-gray-200 hover:text-gray-800 transform hover:-translate-y-1 hover:shadow-lg transition-all duration-300 uppercase tracking-wide text-sm"
             >

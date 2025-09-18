@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, type NavigateFunction } from 'react-router-dom';
-import {type User} from '../types/User';
+import { type User } from '../types/User';
 
 const WriterDashboard = () => {
   const [isProfileOpen, setIsProfileOpen] = useState<boolean>(false);
@@ -27,7 +27,7 @@ const WriterDashboard = () => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    
+
     const storedUser = localStorage.getItem('userData');
     console.log("Retrieved from localStorage:", storedUser);
 
