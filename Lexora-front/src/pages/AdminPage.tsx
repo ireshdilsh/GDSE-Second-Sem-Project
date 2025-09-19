@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate, type NavigateFunction } from 'react-router-dom';
 
 type User = {
     id: string;
@@ -87,7 +88,15 @@ export default function AdminPage() {
             setArticles([]);
         }
         setArticleLoading(false);
-    };
+    }
+
+    const navigate : NavigateFunction = useNavigate()
+
+    const logoutMethod = () => {
+        localStorage.removeItem('userData')
+        alert('you logout')
+        navigate('/')
+    }
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
@@ -100,25 +109,11 @@ export default function AdminPage() {
                 </div>
                 <div className="flex items-center space-x-4">
                     <span className="text-gray-600 font-medium">Welcome, Admin</span>
-                    <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg font-semibold hover:shadow-lg transition-all duration-300">Logout</button>
+                    <button onClick={logoutMethod} className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg font-semibold hover:shadow-lg transition-all duration-300">Logout</button>
                 </div>
             </header>
 
             <main className="max-w-7xl mx-auto py-10 px-4">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                    <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
-                        <span className="text-4xl font-bold text-blue-600 mb-2">248</span>
-                        <span className="text-gray-600 font-medium">Total Users</span>
-                    </div>
-                    <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
-                        <span className="text-4xl font-bold text-purple-600 mb-2">593</span>
-                        <span className="text-gray-600 font-medium">Total Articles</span>
-                    </div>
-                    <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
-                        <span className="text-4xl font-bold text-green-600 mb-2">129,352</span>
-                        <span className="text-gray-600 font-medium">Total Views</span>
-                    </div>
-                </div>
 
                 <div className="bg-white rounded-xl shadow p-8">
                     <h2 className="text-2xl font-bold text-gray-900 mb-6">Quick Actions</h2>
