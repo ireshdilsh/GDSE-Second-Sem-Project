@@ -3,6 +3,7 @@ package com.example.lexorabackend.controller;
 import com.example.lexorabackend.dto.AuthDto;
 import com.example.lexorabackend.dto.AuthRequestDto;
 import com.example.lexorabackend.service.AuthService;
+import com.example.lexorabackend.service.EmailService;
 import com.example.lexorabackend.util.APIResponse;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -20,12 +21,14 @@ import java.util.List;
 public class AuthController {
 
     private final AuthService authService;
+    private final EmailService emailService;
     private final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
     @PostMapping("/login")
     public ResponseEntity<APIResponse> authenticateUser(@RequestBody AuthRequestDto authRequestDto) {
         logger.info("Authentication request received for user: {}", authRequestDto.getEmail());
         AuthDto authDto = authService.authenticate(authRequestDto);
+        emailService.sendRegistrationSuccessEmail(authDto.getEmail(), authDto.getName());
         logger.info("Authentication successful for user: {}", authRequestDto.getEmail());
         return new ResponseEntity<>(new APIResponse(200, "Authentication successful", authDto), HttpStatus.OK);
     }
@@ -62,3 +65,4 @@ public class AuthController {
         return new ResponseEntity<>(new APIResponse(200, "Author account updated successfully", dto), HttpStatus.OK);
     }
 }
+

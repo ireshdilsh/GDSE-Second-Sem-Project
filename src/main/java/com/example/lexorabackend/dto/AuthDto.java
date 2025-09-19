@@ -21,3 +21,4 @@ public class AuthDto {
     private String token;
     private List<ArticleDto> articles;
 }
+
