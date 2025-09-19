@@ -102,4 +102,33 @@ public class AuthServiceImpl implements AuthService {
 
         return responseDto;
     }
+
+    @Override
+    public AuthDto deleteAuthorAccount(Long id) {
+        Auth auth = authRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+        authRepository.delete(auth);
+        AuthDto responseDto = modelMapper.map(auth, AuthDto.class);
+        responseDto.setPassword(null); // Don't return the password
+        return responseDto;
+    }
+
+    @Override
+    public AuthDto updateAuthAccount(Long id, AuthDto authDto) {
+        Auth auth = authRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+
+        if (auth != null){
+            Auth newAuth = modelMapper.map(authDto, Auth.class);
+
+            auth.setName(newAuth.getName());
+            auth.setBio(newAuth.getBio());
+            auth.setWebsite(newAuth.getWebsite());
+            auth.setTwitterUsername(newAuth.getTwitterUsername());
+
+            AuthDto dto = modelMapper.map(authRepository.save(auth), AuthDto.class);
+            return dto;
+        }
+        return null;
+    }
 }

@@ -45,4 +45,20 @@ public class AuthController {
         logger.info("All accounts request sent");
         return new ResponseEntity<>(new APIResponse(200, "All accounts request sent successfully", dtos), HttpStatus.OK);
     }
+
+    @DeleteMapping("/delete/author/account/{id}")
+    public ResponseEntity<APIResponse> deleteAuthorAccount(@PathVariable Long id) {
+        logger.info("Deleting author account with id: {}", id);
+        AuthDto dto = authService.deleteAuthorAccount(id);
+        logger.info("Author account deleted with id: {}", id);
+        return new ResponseEntity<>(new APIResponse(200, "Author account deleted successfully", dto), HttpStatus.OK);
+    }
+
+    @PutMapping("/update/author/account/{id}")
+    public ResponseEntity<APIResponse> updateAuthorAccount(@PathVariable Long id, @RequestBody AuthDto authDto){
+        logger.info("Updating author account with id: {}", id);
+        AuthDto dto = authService.updateAuthAccount(id,authDto);
+        logger.info("Author account updated with id: {}", id);
+        return new ResponseEntity<>(new APIResponse(200, "Author account updated successfully", dto), HttpStatus.OK);
+    }
 }

@@ -14,4 +14,8 @@ public interface AuthService {
     List<AuthDto> getAllAccounts();
 
     AuthDto authenticate(AuthRequestDto authRequestDto);
+
+    AuthDto deleteAuthorAccount(Long id);
+
+    AuthDto updateAuthAccount(Long id, AuthDto authDto);
 }
