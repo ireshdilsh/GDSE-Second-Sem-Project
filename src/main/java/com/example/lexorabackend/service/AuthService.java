@@ -18,4 +18,5 @@ public interface AuthService {
     AuthDto deleteAuthorAccount(Long id);
 
     AuthDto updateAuthAccount(Long id, AuthDto authDto);
+
 }

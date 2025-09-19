@@ -182,6 +182,23 @@ public class ArticleServiceImpl implements ArticleService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public ArticleDto viewArticle(Long id) {
+        // First, increment the view count
+        incrementViewCount(id);
+
+        // Then, retrieve and return the updated article
+        Article article = articleRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Article not found with id: " + id));
+
+        // Only allow viewing published articles
+        if (!article.getStatus().equals(Article.ArticleStatus.PUBLISHED.name())) {
+            throw new RuntimeException("Cannot view unpublished article with id: " + id);
+        }
+
+        return convertToDto(article);
+    }
+
     // Helper Methods
     private void setRelationships(Article article, ArticleDto articleDto) {
         if (articleDto.getCategoryID() != null) {

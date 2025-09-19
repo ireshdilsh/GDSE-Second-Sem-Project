@@ -24,7 +24,8 @@ public interface ArticleService {
     List<ArticleDto> searchArticles(String query);
     List<ArticleDto> getTrendingArticles();
 
-    // Interaction Methods
+    // Viewing and Interaction Methods
+    ArticleDto viewArticle(Long id);
     void incrementViewCount(Long id);
     void likeArticle(Long id);
     void unlikeArticle(Long id);

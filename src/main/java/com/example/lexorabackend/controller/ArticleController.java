@@ -59,6 +59,18 @@ public class ArticleController {
         );
     }
 
+    // VIEW - View an article (record the view and return article details)
+    @PostMapping("/view/article/{id}")
+    public ResponseEntity<APIResponse> viewArticle(@PathVariable Long id) {
+        logger.info("Viewing article with ID: {}", id);
+        ArticleDto dto = articleService.viewArticle(id);
+        logger.info("Article viewed successfully: {}", dto.getTitle());
+        return new ResponseEntity<>(
+            new APIResponse(200, "Article viewed successfully", dto),
+            HttpStatus.OK
+        );
+    }
+
     // UPDATE - Update article
     @PutMapping("/update/article/{id}")
     public ResponseEntity<APIResponse> updateArticle(
