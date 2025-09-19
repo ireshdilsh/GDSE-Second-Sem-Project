@@ -128,8 +128,8 @@ public class ArticleController {
         List<ArticleDto> dtos = articleService.getPublishedArticles();
         logger.info("Retrieved {} published articles", dtos.size());
         return new ResponseEntity<>(
-            new APIResponse(200, "Published articles retrieved successfully", dtos),
-            HttpStatus.OK
+                new APIResponse(200, "Published articles retrieved successfully", dtos),
+                HttpStatus.OK
         );
     }
 
