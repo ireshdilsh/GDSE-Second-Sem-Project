@@ -17,11 +17,12 @@ type Category = {
 type Article = {
     id: string;
     title: string;
-    subTitle:string;
-    content:string;
+    subTitle: string;
+    content: string;
     authorName: string;
-    publishedDate?: string;
-};
+    publishedAt?: string;
+}
+
 export default function AdminPage() {
     const [isUserModalOpen, setIsUserModalOpen] = useState(false);
     const [users, setUsers] = useState<User[]>([]);
@@ -49,7 +50,7 @@ export default function AdminPage() {
             setUsers([]);
         }
         setLoading(false);
-    };
+    }
 
     const openCategoryModal = async () => {
         setIsCategoryModalOpen(true);
@@ -61,7 +62,7 @@ export default function AdminPage() {
             setCategories([]);
         }
         setCategoryLoading(false);
-    };
+    }
 
     const saveCategory = async () => {
         if (!categoryName.trim()) return;
@@ -76,7 +77,7 @@ export default function AdminPage() {
             console.log(error)
         }
         setCategorySaving(false);
-    };
+    }
 
     const openArticleModal = async () => {
         setIsArticleModalOpen(true);
@@ -90,12 +91,39 @@ export default function AdminPage() {
         setArticleLoading(false);
     }
 
-    const navigate : NavigateFunction = useNavigate()
+    const navigate: NavigateFunction = useNavigate()
 
     const logoutMethod = () => {
         localStorage.removeItem('userData')
         alert('you logout')
         navigate('/')
+    }
+
+    const deleteUser = async (userID: number) => {
+        const api = `http://localhost:8080/api/auth/delete/author/account/${userID}`
+        try {
+            const resp = await axios.delete(api)
+            alert('Deleted')
+            console.log(resp)
+            const reap = await axios.get('http://localhost:8080/api/auth/get/all/accounts');
+            setUsers(reap.data.data);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const deleteCateory = async (categoryID: number) => {
+        const api = `http://localhost:8080/api/v1/category/delete/category=/${categoryID}`
+        try {
+            const resp = await axios.delete(api)
+            console.log(resp)
+            alert('success category delete!')
+            const reap = await axios.get('http://localhost:8080/api/v1/category/get/all/categories');
+            setCategories(reap.data.data);
+        } catch (error) {
+            console.log(error)
+            alert('something went wrong')
+        }
     }
 
     return (
@@ -127,7 +155,7 @@ export default function AdminPage() {
                 {/* User Modal */}
                 {isUserModalOpen && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}>
-                        <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full mx-4 p-8 relative" style={{maxHeight: '80vh', overflowY: 'auto'}}>
+                        <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full mx-4 p-8 relative" style={{ maxHeight: '80vh', overflowY: 'auto' }}>
                             <button
                                 onClick={() => setIsUserModalOpen(false)}
                                 className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
@@ -157,7 +185,7 @@ export default function AdminPage() {
                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">{user.name}</td>
                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">{user.email}</td>
                                                     <td className="px-6 py-4 whitespace-nowrap text-sm">
-                                                        <button className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-xs font-semibold transition-all duration-200">
+                                                        <button onClick={() => deleteUser(Number(user.id))} className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-xs font-semibold transition-all duration-200">
                                                             Delete
                                                         </button>
                                                     </td>
@@ -174,7 +202,7 @@ export default function AdminPage() {
                 {/* Category Modal */}
                 {isCategoryModalOpen && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}>
-                        <div className="bg-white rounded-xl shadow-2xl max-w-xl w-full mx-4 p-8 relative" style={{maxHeight: '80vh', overflowY: 'auto'}}>
+                        <div className="bg-white rounded-xl shadow-2xl max-w-xl w-full mx-4 p-8 relative" style={{ maxHeight: '80vh', overflowY: 'auto' }}>
                             <button
                                 onClick={() => setIsCategoryModalOpen(false)}
                                 className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
@@ -219,7 +247,7 @@ export default function AdminPage() {
                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{cat.id}</td>
                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">{cat.categoryName}</td>
                                                     <td className="px-6 py-4 whitespace-nowrap text-sm">
-                                                        <button className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-xs font-semibold transition-all duration-200">
+                                                        <button onClick={() => deleteCateory(Number(cat.id))} className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-xs font-semibold transition-all duration-200">
                                                             Delete
                                                         </button>
                                                     </td>
@@ -236,7 +264,7 @@ export default function AdminPage() {
                 {/* Article Modal */}
                 {isArticleModalOpen && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}>
-                        <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full mx-4 p-8 relative" style={{maxHeight: '80vh', overflowY: 'auto'}}>
+                        <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full mx-4 p-8 relative" style={{ maxHeight: '80vh', overflowY: 'auto' }}>
                             <button
                                 onClick={() => setIsArticleModalOpen(false)}
                                 className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
@@ -265,7 +293,7 @@ export default function AdminPage() {
                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{article.id}</td>
                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{article.title}</td>
                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{article.authorName}</td>
-                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{article.publishedDate || '-'}</td>
+                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{article.publishedAt || '-'}</td>
                                                 </tr>
                                             ))}
                                         </tbody>

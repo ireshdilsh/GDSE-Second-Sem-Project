@@ -29,6 +29,16 @@ const LandingPage = () => {
       return;
     }
 
+    if (registerEmail.match("/^\S+@\S+\.\S+$/")) {
+      alert("Invalid email format!");
+      return;
+    }
+
+    if (registerPassword.match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/")) {
+      alert('Please use 8 character has uppercase,lowercase,numbers etc...')
+      return;
+    }
+
     const data: Register = {
       name,
       email: registerEmail,
