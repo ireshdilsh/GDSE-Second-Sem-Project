@@ -99,7 +99,6 @@ public class AuthServiceImpl implements AuthService {
         AuthDto responseDto = modelMapper.map(auth, AuthDto.class);
         responseDto.setToken(token);
         responseDto.setPassword(null);
-//        new add
         responseDto.setRole(auth.getRole());
 
         return responseDto;
