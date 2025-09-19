@@ -8,6 +8,7 @@ import Settings from './pages/Settings'
 import MyStories from './pages/MyStories'
 import Contact from './pages/Contact'
 import { ProtectedRoute } from './components/ProtectedRoute'
+import AdminPage from './pages/AdminPage'
 
 export default function Controller() {
   return (
@@ -21,6 +22,7 @@ export default function Controller() {
           <Route path='/my-stories' element={<MyStories />}></Route>
           <Route path='/contact' element={<Contact />}></Route>
           <Route path='/settings' element={<Settings />}></Route>
+          <Route path='/admin' element={<AdminPage/>}></Route>
         </Route>
       </Routes>
     </Router>

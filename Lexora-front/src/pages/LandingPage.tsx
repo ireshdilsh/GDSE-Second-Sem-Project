@@ -61,6 +61,7 @@ const LandingPage = () => {
         name: resp.data.data.name,
         email: resp.data.data.email,
         token: resp.data.data.token || 'temp-token',
+        role: resp.data.data.role,
         isLoggedIn: true
       };
 
@@ -68,7 +69,13 @@ const LandingPage = () => {
       console.log("User data saved to localStorage:", userData);
 
       alert("Sign in Success!");
-      navigate('/dashboard');
+
+      if (userData.role === 'ADMIN') {
+        navigate('/admin')
+      }else{
+        navigate('/dashboard')
+      }
+      
     } catch (error) {
       console.error("Login error:", error);
       alert("Something Went Wrong");
