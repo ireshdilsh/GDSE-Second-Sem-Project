@@ -133,7 +133,7 @@ public class ArticleController {
         );
     }
 
-    // GET BY CATEGORY - Get articles by category
+    // GET BY CATEGOR - Get articles by category
     @GetMapping("/get/articles/category/{categoryId}")
     public ResponseEntity<APIResponse> getArticlesByCategory(@PathVariable Long categoryId) {
         logger.info("Getting articles for category ID: {}", categoryId);
