@@ -7,18 +7,21 @@ import Drafts from './pages/Drafts'
 import Settings from './pages/Settings'
 import MyStories from './pages/MyStories'
 import Contact from './pages/Contact'
+import { ProtectedRoute } from './components/ProtectedRoute'
 
 export default function Controller() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/dashboard" element={<WriterDashboard />} />
-        <Route path='/write/article' element={<WriteArticle/>}></Route>
-        <Route path='/drafts' element={<Drafts/>}></Route>
-        <Route path='/my-stories' element={<MyStories/>}></Route>
-        <Route path='/contact' element={<Contact/>}></Route>
-        <Route path='/settings' element={<Settings/>}></Route>
+        <Route element={<ProtectedRoute />} >
+          <Route path="/dashboard" element={<WriterDashboard />} />
+          <Route path='/write/article' element={<WriteArticle />}></Route>
+          <Route path='/drafts' element={<Drafts />}></Route>
+          <Route path='/my-stories' element={<MyStories />}></Route>
+          <Route path='/contact' element={<Contact />}></Route>
+          <Route path='/settings' element={<Settings />}></Route>
+        </Route>
       </Routes>
     </Router>
   )

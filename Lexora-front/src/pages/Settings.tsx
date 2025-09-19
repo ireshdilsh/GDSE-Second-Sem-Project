@@ -4,7 +4,7 @@ import { type User } from '../types/User';
 import { type Setting } from '../types/Setting';
 import axios from 'axios';
 
-// for update email and password for interfaces
+// for update email and password interfaces
 interface Email {
     email: string
 }
@@ -114,7 +114,6 @@ export default function Settings() {
             alert('Cant delete your account.something went wrong')
             console.log(error)
         }
-
     }
 
     const toggleProfile = () => {
@@ -371,44 +370,6 @@ export default function Settings() {
                             </div>
                         </div>
                         <div className="p-8">
-                            <div className="mb-8">
-                                <h4 className="font-medium text-gray-900 mb-4">Email Address</h4>
-                                <div className="flex items-center space-x-4">
-                                    <input
-                                        type="email"
-                                        placeholder="john.doe@example.com"
-                                        className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                    />
-                                    <button className="bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition-colors">
-                                        Update Email
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div className="mb-8">
-                                <h4 className="font-medium text-gray-900 mb-4">Change Password</h4>
-                                <div className="space-y-4">
-                                    <input
-                                        type="password"
-                                        placeholder="Current Password"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                    />
-                                    <input
-                                        type="password"
-                                        placeholder="New Password"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                    />
-                                    <input
-                                        type="password"
-                                        placeholder="Confirm New Password"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                    />
-                                    <button className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors font-medium">
-                                        Update Password
-                                    </button>
-                                </div>
-                            </div>
-
                             <div className="bg-red-50 border border-red-200 rounded-lg p-6">
                                 <h4 className="font-medium text-red-900 mb-2">Danger Zone</h4>
                                 <p className="text-red-700 text-sm mb-4">
