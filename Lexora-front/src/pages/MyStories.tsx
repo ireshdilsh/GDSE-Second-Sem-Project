@@ -99,7 +99,7 @@ const MyStories = () => {
                 <div className="max-w-7xl mx-auto px-6 py-4">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-4">
-                            <div className="flex items-center space-x-2 cursor-pointer" onClick={()=>{navigate('/dashboard')}}>
+                            <div className="flex items-center space-x-2 cursor-pointer" onClick={() => { navigate('/dashboard') }}>
                                 <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                                     <span className="text-white font-bold text-lg">L</span>
                                 </div>
@@ -227,7 +227,11 @@ const MyStories = () => {
                                                     <span className="text-gray-700">Settings</span>
                                                 </button>
 
-                                                <button className="w-full text-left px-4 py-3 rounded-lg hover:bg-red-50 transition-colors flex items-center space-x-3 text-red-600">
+                                                <button onClick={() => {
+                                                    navigate('/')
+                                                    localStorage.removeItem('userData')
+                                                    console.log('remove userData')
+                                                }} className="w-full text-left px-4 py-3 rounded-lg hover:bg-red-50 transition-colors flex items-center space-x-3 text-red-600">
                                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                                                     </svg>
@@ -428,11 +432,12 @@ const MyStories = () => {
                             <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-8 max-w-4xl mx-auto">
                                 <div className="flex items-center space-x-4 mb-6">
                                     <div className="w-12 h-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white font-semibold">
-                                         {user?.name ? user.name.substring(0, 2).toUpperCase() : 'JD'}
+                                        {user?.name ? user.name.substring(0, 2).toUpperCase() : 'JD'}
                                     </div>
                                     <div>
                                         <h3 className="font-semibold text-gray-900">{article.title}</h3>
                                         <p className="text-gray-500 text-sm">By {article.authorName} • {article.estimatedReadTime || '5'} min read</p>
+                                        <p className='text-gray-500 text-sm'>{article.publishedAt}</p>
                                     </div>
                                 </div>
                                 <h2 className="text-2xl font-bold text-gray-900 mb-4">
@@ -441,6 +446,7 @@ const MyStories = () => {
                                 <p className="text-gray-600 leading-relaxed">
                                     {article.content?.substring(0, 200)}...
                                 </p>
+                                <p className='text-gray-800 leading-relaxed mt-5 text-sm pt-1 pl-2.5 pr-2.5 pb-1 bg-gray-200 rounded-2xl w-22'>{article.status}</p>
                             </div>
                         </div>
                     ))

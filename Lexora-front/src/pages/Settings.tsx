@@ -1,6 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, type NavigateFunction } from 'react-router-dom'
 import { type User } from '../types/User';
+import { type Setting } from '../types/Setting';
+import axios from 'axios';
+
+// for update email and password for interfaces
+interface Email {
+    email: string
+}
+
+interface Password {
+    password: string
+}
+
 export default function Settings() {
 
     const [isProfileOpen, setIsProfileOpen] = useState<boolean>(false);
@@ -13,6 +25,45 @@ export default function Settings() {
     useEffect(() => {
         loadProfile();
     }, []);
+
+    // Settings for useStaes
+    const [name, setName] = useState<Setting["name"]>('')
+    const [bio, setBtio] = useState<Setting["bio"]>('')
+    const [website, setWebSite] = useState<Setting["bio"]>('')
+    const [twitterUsername, setTwitterUsername] = useState<Setting["twitterUsername"]>('')
+
+    const updateProfile = async () => {
+        const storedUser = localStorage.getItem('userData')
+        if (!storedUser) {
+            alert('You need to be signin to update profile')
+            navigate('/')
+            return;
+        }
+
+        const parseUser = JSON.parse(storedUser)
+        const id = parseUser.id
+        const token = parseUser.token
+
+        const update: Setting = {
+            name, bio, website, twitterUsername
+        }
+
+        try {
+            const resp = await axios.put<Setting>(`http://localhost:8080/api/auth/update/author/account/${id}`, update, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+            console.log(resp.data)
+            loadProfile()
+            alert('Profile update success')
+            navigate('/')
+        } catch (error) {
+            alert('Something Went Wrong')
+            console.log(error)
+        }
+    }
 
     const loadProfile = async () => {
         const storedUser = localStorage.getItem('userData');
@@ -35,6 +86,35 @@ export default function Settings() {
                 navigate("/");
             }
         }
+    }
+
+    const deleteAccount = async () => {
+        const storedUser = localStorage.getItem('userData')
+        if (!storedUser) {
+            alert('Something Went Wrong')
+            navigate('/')
+            return;
+        }
+
+        const paresUser = JSON.parse(storedUser)
+        const id = paresUser.id
+        const token = paresUser.token
+
+        try {
+            const resp = await axios.delete(`http://localhost:8080/api/auth/delete/author/account/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            console.log(resp)
+            localStorage.removeItem('userData');
+            alert('Delete Success your Account')
+            navigate('/')
+        } catch (error) {
+            alert('Cant delete your account.something went wrong')
+            console.log(error)
+        }
+
     }
 
     const toggleProfile = () => {
@@ -228,24 +308,19 @@ export default function Settings() {
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
                                     <input
+                                        value={name}
+                                        onChange={(e) => { setName(e.target.value) }}
                                         type="text"
                                         placeholder="John"
                                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                     />
                                 </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Doe"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                    />
-                                </div>
                             </div>
-
                             <div className="mb-6">
                                 <label className="block text-sm font-medium text-gray-700 mb-2">Bio</label>
                                 <textarea
+                                    value={bio}
+                                    onChange={(e) => { setBtio(e.target.value) }}
                                     rows={4}
                                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                     placeholder="Tell us about yourself..."
@@ -257,6 +332,8 @@ export default function Settings() {
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">Website</label>
                                     <input
+                                        value={website}
+                                        onChange={(e) => { setWebSite(e.target.value) }}
                                         type="url"
                                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                         placeholder="https://yourwebsite.com"
@@ -265,6 +342,8 @@ export default function Settings() {
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">Twitter</label>
                                     <input
+                                        value={twitterUsername}
+                                        onChange={(e) => { setTwitterUsername(e.target.value) }}
                                         type="text"
                                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                         placeholder="@username"
@@ -273,7 +352,7 @@ export default function Settings() {
                             </div>
 
                             <div className="pt-6 border-t border-gray-200">
-                                <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                                <button onClick={updateProfile} className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
                                     Save Profile Changes
                                 </button>
                             </div>
@@ -335,7 +414,7 @@ export default function Settings() {
                                 <p className="text-red-700 text-sm mb-4">
                                     Once you delete your account, there is no going back. Please be certain.
                                 </p>
-                                <button className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors font-medium">
+                                <button onClick={deleteAccount} className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors font-medium">
                                     Delete Account
                                 </button>
                             </div>

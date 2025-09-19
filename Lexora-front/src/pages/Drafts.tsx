@@ -82,7 +82,7 @@ export default function Drafts() {
         }
     }
 
-    const publishArticle = async(articleId:number) => {
+    const publishArticle = async (articleId: number) => {
         try {
             const resp = await axios.put(`http://localhost:8080/api/v1/articles/publish/article/${articleId}`)
             console.log(resp)
@@ -93,13 +93,13 @@ export default function Drafts() {
         }
     }
 
-    const deleteArticle = async(articleId:number) => {
-        try{
+    const deleteArticle = async (articleId: number) => {
+        try {
             const resp = await axios.delete(`http://localhost:8080/api/v1/articles/delete/article/${articleId}`)
             console.log(resp)
             alert('Article Delete Successfully !')
             loadDraftArticlesWithAuthorID()
-        }catch (error) {
+        } catch (error) {
             console.log(error)
         }
     }
@@ -222,7 +222,12 @@ export default function Drafts() {
                                                     <span className="text-gray-700">Settings</span>
                                                 </button>
 
-                                                <button onClick={() => { navigate('/') }} className="w-full text-left px-4 py-3 rounded-lg hover:bg-red-50 transition-colors flex items-center space-x-3 text-red-600">
+                                                <button onClick={() => {
+                                                    navigate('/')
+                                                    localStorage.removeItem('userData')
+                                                    console.log('remove userData')
+                                                }}
+                                                    className="w-full text-left px-4 py-3 rounded-lg hover:bg-red-50 transition-colors flex items-center space-x-3 text-red-600">
                                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                                                     </svg>
@@ -271,8 +276,8 @@ export default function Drafts() {
                             {article.content}
                         </p>
                         <div className="flex items-center justify-between mt-6 pt-6 border-t border-gray-100">
-                            <button className="text-blue-600 hover:text-blue-800 font-medium" onClick={()=>publishArticle(article.id)}>Publish Article</button>
-                            <button className='text-red-500 hover:text-red-700' onClick={()=>deleteArticle(article.id)}>Delete Article</button>
+                            <button className="text-blue-600 hover:text-blue-800 font-medium" onClick={() => publishArticle(article.id)}>Publish Article</button>
+                            <button className='text-red-500 hover:text-red-700' onClick={() => deleteArticle(article.id)}>Delete Article</button>
                             <p className='text-gray-500 text-sm'>Created at : {article.createdAt}</p>
                         </div>
                     </div>
