@@ -95,6 +95,26 @@ const WriterDashboard = () => {
     }
   }
 
+  const increaseLikeCount = async(articleId:number) =>{
+    try {
+      const resp = await axios.post(`http://localhost:8080/api/v1/articles/like/article/${articleId}`)
+      console.log(resp)
+      loadAllPublishedArticles()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const increaseViewCount = async(articleId:number) =>{
+    try {
+      const resp = await axios.post(`http://localhost:8080/api/v1/articles/view/article/${articleId}`)
+      console.log('Increase View Count ' + resp.data)
+      loadAllPublishedArticles()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -382,7 +402,7 @@ const WriterDashboard = () => {
               {/* Modal Footer with Icons */}
               <div className="p-6 border-t border-gray-200 flex items-center justify-between">
                 <div className="flex items-center space-x-6">
-                  <span className="flex items-center space-x-2 text-gray-500">
+                  <span className="flex items-center space-x-2 text-gray-500" onClick={()=>increaseLikeCount(selectedArticle.id)} style={{ cursor: 'pointer' }}>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                     </svg>
@@ -471,6 +491,7 @@ const WriterDashboard = () => {
                   </div>
                   <button 
                     onClick={() => {
+                      increaseViewCount(article.id);
                       setSelectedArticle(article);
                       setIsModalOpen(true);
                     }} 
