@@ -121,7 +121,7 @@ public class ArticleController {
         );
     }
 
-    // GET BY AUTHOR - Get articles by author
+    // Get articles by author
     @GetMapping("/get/articles/author/{authorId}")
     public ResponseEntity<APIResponse> getArticlesByAuthor(@PathVariable Long authorId) {
         logger.info("Getting articles for author ID: {}", authorId);
