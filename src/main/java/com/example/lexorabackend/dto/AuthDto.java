@@ -19,6 +19,7 @@ public class AuthDto {
     private String website;
     private String twitterUsername;
     private String token;
+    private String role;
     private List<ArticleDto> articles;
 }
 

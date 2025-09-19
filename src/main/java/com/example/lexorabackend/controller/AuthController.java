@@ -28,7 +28,6 @@ public class AuthController {
     public ResponseEntity<APIResponse> authenticateUser(@RequestBody AuthRequestDto authRequestDto) {
         logger.info("Authentication request received for user: {}", authRequestDto.getEmail());
         AuthDto authDto = authService.authenticate(authRequestDto);
-        emailService.sendRegistrationSuccessEmail(authDto.getEmail(), authDto.getName());
         logger.info("Authentication successful for user: {}", authRequestDto.getEmail());
         return new ResponseEntity<>(new APIResponse(200, "Authentication successful", authDto), HttpStatus.OK);
     }
@@ -37,6 +36,7 @@ public class AuthController {
     public ResponseEntity<APIResponse> registerUser(@RequestBody AuthDto authDto) {
         logger.info("Adding new account");
         AuthDto dto = authService.createAccount(authDto);
+        emailService.sendRegistrationSuccessEmail(authDto.getEmail(), authDto.getName());
         logger.info("Account added");
         return new ResponseEntity<>(new APIResponse(200, "Account created successfully", dto), HttpStatus.CREATED);
     }
